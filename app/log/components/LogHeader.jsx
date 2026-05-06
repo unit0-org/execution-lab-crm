@@ -3,22 +3,21 @@ import { Heading } from '@/ui/Heading'
 import { Inline } from '@/ui/Inline'
 import { AppLink } from '@/ui/AppLink'
 import { SignOutForm } from '@/ui/SignOutForm'
-import { LinkButton } from '@/ui/LinkButton'
 
 function HeaderActions() {
   return (
     <Inline gap="md">
-      <LinkButton href="/log" tone="primary" size="sm">+ Log interaction</LinkButton>
+      <AppLink href="/contacts">Contacts</AppLink>
       <AppLink href="/">Home</AppLink>
       <SignOutForm />
     </Inline>
   )
 }
 
-export function ContactsHeader() {
+export function LogHeader() {
   return (
     <PageHeader
-      title={<Heading gutter="none">Contacts</Heading>}
+      title={<Heading gutter="none">Log interaction</Heading>}
       actions={<HeaderActions />}
     />
   )
