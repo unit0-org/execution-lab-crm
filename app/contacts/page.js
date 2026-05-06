@@ -1,26 +1,27 @@
 import { createClient } from '@/lib/supabase/server'
-import { loadAccounts, loadContacts, indexById } from './_data'
-import { Header } from './_components/Header'
-import { Notice } from './_components/Notice'
-import { AccountsSection } from './_components/AccountsSection'
-import { ContactsSection } from './_components/ContactsSection'
-import { page } from './_styles'
+import { Page } from '@/ui/Page'
+import { useAccounts } from './hooks/useAccounts'
+import { useContacts } from './hooks/useContacts'
+import { useAccountIndex } from './hooks/useAccountIndex'
+import { ContactsHeader } from './components/ContactsHeader'
+import { ContactsNotices } from './components/ContactsNotices'
+import { AccountsSection } from './components/AccountsSection'
+import { ContactsSection } from './components/ContactsSection'
 
 export const dynamic = 'force-dynamic'
 
 export default async function ContactsPage({ searchParams }) {
   const params = await searchParams
   const supabase = await createClient()
-  const accounts = await loadAccounts(supabase)
-  const contacts = await loadContacts(supabase)
+  const accounts = await useAccounts(supabase)
+  const contacts = await useContacts(supabase)
 
   return (
-    <main style={page}>
-      <Header />
-      {params?.connected === '1' && <Notice tone="success">Account connected. Click <strong>Sync</strong> to pull contacts.</Notice>}
-      {params?.error && <Notice tone="error">{params.error}</Notice>}
+    <Page width="wide">
+      <ContactsHeader />
+      <ContactsNotices connected={params?.connected === '1'} error={params?.error} />
       <AccountsSection accounts={accounts} />
-      <ContactsSection contacts={contacts} accountById={indexById(accounts)} />
-    </main>
+      <ContactsSection contacts={contacts} accountById={useAccountIndex(accounts)} />
+    </Page>
   )
 }

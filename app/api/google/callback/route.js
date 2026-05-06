@@ -6,7 +6,7 @@ import { fetchUserInfo } from '@/lib/google/userinfo'
 import { siteOrigin } from '@/lib/google/origin'
 import { upsertGoogleAccount } from '@/lib/google/storeAccount'
 import { redirectWithError } from '@/lib/google/redirects'
-import { validateCallback } from './_validate'
+import { validateCallback } from '@/lib/google/validateCallback'
 
 export async function GET(request) {
   const url = new URL(request.url)

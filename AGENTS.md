@@ -7,10 +7,21 @@ This version has breaking changes — APIs, conventions, and file structure may 
 # House rules
 
 1. **30-line file limit.** No source file may exceed 30 lines without explicit
-   approval. Composition is paramount — extract helpers, components, and
-   styles into their own files. Standing exceptions: lockfiles
+   approval. Compose aggressively. Standing exceptions: lockfiles
    (`pnpm-lock.yaml`), SQL migrations, generated files, `README.md`.
 2. **Clarity over complexity, always.** Boring, obvious code wins.
-3. **Every iteration ships via pull request.** When an iteration is finished,
-   ask before opening the PR. Wait for review.
-4. **Never push directly to `main`.** All changes land via PR.
+3. **No ternary conditionals in JSX.** Use early returns or extract a
+   component. Short-circuit `&&` is fine, but prefer named components.
+4. **Functionality, structure, and style live in separate files.**
+   `Component.jsx` for markup, `Component.styles.js` for styles,
+   `useThing.js` for logic/data.
+5. **No custom styling at the call site.** Components must accept props
+   (`tone`, `align`, `size`). Bad: `<td style={{ ...td, color: '#666' }}>`.
+   Good: `<TableCell tone="muted">`.
+6. **UI library first.** Build reusable primitives in `ui/` and use them
+   everywhere. Avoid raw HTML elements in pages — wrap them.
+7. **Module layout.** Each feature module follows
+   `[module]/{components,hooks,page.js,actions.js}`. Components use
+   `.jsx`. Hooks (server data loaders or React hooks) live in `hooks/`.
+8. **Every iteration ships via pull request.** Ask before opening it.
+9. **Never push directly to `main`.**
