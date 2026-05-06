@@ -3,12 +3,14 @@ import { TableRow } from '@/ui/Table'
 import { LastSyncedAt } from './LastSyncedAt'
 import { AccountActions } from './AccountActions'
 
-export function AccountRow({ account }) {
+export function AccountRow({ account, onMutate }) {
   return (
     <TableRow>
       <TableCell>{account.email}</TableCell>
       <TableCell tone="muted"><LastSyncedAt at={account.last_synced_at} /></TableCell>
-      <TableCell align="right"><AccountActions accountId={account.id} /></TableCell>
+      <TableCell align="right">
+        <AccountActions accountId={account.id} onMutate={onMutate} />
+      </TableCell>
     </TableRow>
   )
 }

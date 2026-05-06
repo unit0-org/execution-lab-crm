@@ -21,10 +21,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 6. **UI library first.** Build reusable primitives in `ui/` and use them
    everywhere. Avoid raw HTML elements in pages — wrap them.
 7. **Module layout.** Each feature module follows
-   `[module]/{components,hooks,queries,page.js,actions.js}`. Components
-   use `.jsx`. Hooks live in `hooks/` and are **synchronous** —
-   pure transforms, env access, real React hooks. Async data loaders
-   live in `queries/` as `get*.js` (reads) alongside `actions.js`
-   (writes).
+   `[module]/{components,hooks,page.js,actions.js}`. Components use
+   `.jsx`. Hooks live in `hooks/` and **must be synchronous functions**:
+   they return state immediately. If a hook exposes async data, it
+   manages it internally with `useState` + `useEffect` — first render
+   returns the default state, subsequent renders update when the async
+   work resolves. Hooks expose a `refresh()` callback when callers may
+   need to re-fetch (e.g. after a mutation). Server actions stay in
+   `actions.js`. No `queries/` folder.
 8. **Every iteration ships via pull request.** Ask before opening it.
 9. **Never push directly to `main`.**
