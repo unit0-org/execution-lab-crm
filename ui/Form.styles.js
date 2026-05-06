@@ -1,6 +1,8 @@
+import { space } from './tokens/space'
+
 export const formStyle = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '1rem',
+  gap: space[4],
   maxWidth: 480,
 }

@@ -1,11 +1,17 @@
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { radius } from './tokens/radius'
+import { fontSize } from './tokens/typography'
+
 export const inputStyle = {
-  padding: '0.5rem 0.625rem',
-  border: '1px solid #d4d4d8',
-  borderRadius: 4,
-  fontSize: '0.95rem',
-  background: 'white',
-  color: '#111',
+  padding: `${space[2]} ${space[3]}`,
+  border: `1px solid ${color.border.strong}`,
+  borderRadius: radius.sm,
+  fontSize: fontSize.sm,
+  background: color.bg.surface,
+  color: color.text.primary,
   font: 'inherit',
   width: '100%',
   boxSizing: 'border-box',
+  transition: 'border-color 120ms ease',
 }

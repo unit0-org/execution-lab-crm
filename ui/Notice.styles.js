@@ -1,13 +1,18 @@
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { radius } from './tokens/radius'
+import { fontSize } from './tokens/typography'
+
 const base = {
-  padding: '0.5rem 0.75rem',
-  borderRadius: 6,
-  fontSize: '0.875rem',
-  marginBottom: '1rem',
+  padding: `${space[2]} ${space[3]}`,
+  borderRadius: radius.md,
+  fontSize: fontSize.sm,
+  marginBottom: space[4],
 }
 
 const tones = {
-  success: { background: '#dcfce7', color: '#166534' },
-  error:   { background: '#fee2e2', color: '#991b1b' },
+  success: { background: color.status.successBg, color: color.status.successText },
+  error:   { background: color.status.errorBg,   color: color.status.errorText },
 }
 
 export const noticeStyle = (tone = 'success') => ({ ...base, ...tones[tone] })
