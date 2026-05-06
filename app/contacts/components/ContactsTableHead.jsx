@@ -7,6 +7,7 @@ export function ContactsTableHead() {
       <TableRow>
         <TableHeader>Name</TableHeader>
         <TableHeader>Email</TableHeader>
+        <TableHeader>Labels</TableHeader>
         <TableHeader>Source account</TableHeader>
       </TableRow>
     </TableHead>

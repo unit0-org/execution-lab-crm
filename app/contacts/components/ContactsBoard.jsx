@@ -1,20 +1,24 @@
 'use client'
 
-import { useAccounts } from '../hooks/useAccounts'
-import { useContacts } from '../hooks/useContacts'
+import { useContactsBoardData } from '../hooks/useContactsBoardData'
 import { useAccountIndex } from '../hooks/useAccountIndex'
+import { filterByTagName } from '@/lib/contacts/filterByTagName'
 import { AccountsSection } from './AccountsSection'
 import { ContactsSection } from './ContactsSection'
 
-export function ContactsBoard() {
-  const { accounts, refresh: refreshAccounts } = useAccounts()
-  const { contacts, refresh: refreshContacts } = useContacts()
-  const refreshAll = () => { refreshAccounts(); refreshContacts() }
-
+export function ContactsBoard({ activeTag }) {
+  const { accounts, contacts, labels, contactTagMap, refresh } = useContactsBoardData()
+  const visible = filterByTagName(contacts, contactTagMap, labels, activeTag)
   return (
     <>
-      <AccountsSection accounts={accounts} onMutate={refreshAll} />
-      <ContactsSection contacts={contacts} accountById={useAccountIndex(accounts)} />
+      <AccountsSection accounts={accounts} onMutate={refresh} />
+      <ContactsSection
+        contacts={visible}
+        accountById={useAccountIndex(accounts)}
+        allLabels={labels}
+        contactTagMap={contactTagMap}
+        onMutate={refresh}
+      />
     </>
   )
 }
