@@ -44,6 +44,7 @@ next-env.d.ts
 # claude code (per-user)
 .claude/settings.local.json
 .claude/skills/
+.claude/worktrees/
 
 # agent skills (reproducible from skills-lock.json)
 .agents/

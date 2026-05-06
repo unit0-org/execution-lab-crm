@@ -1,19 +1,19 @@
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { fontSize, fontWeight } from './tokens/typography'
+
 export const tableStyle = {
   width: '100%',
   borderCollapse: 'collapse',
-  fontSize: '0.9rem',
+  fontSize: fontSize.sm,
 }
 
-const cellBase = { padding: '0.5rem 0.75rem' }
-
-const tones = {
-  default: { color: '#111' },
-  muted:   { color: '#666' },
-}
+const cellBase = { padding: `${space[3]} ${space[3]}` }
+const tones = { default: { color: color.text.primary }, muted: { color: color.text.muted } }
 
 export const cellStyle = ({ align = 'left', tone = 'default' } = {}) => ({
   ...cellBase,
-  borderBottom: '1px solid #f3f4f6',
+  borderBottom: `1px solid ${color.border.default}`,
   textAlign: align,
   ...tones[tone],
 })
@@ -21,10 +21,10 @@ export const cellStyle = ({ align = 'left', tone = 'default' } = {}) => ({
 export const headerStyle = ({ align = 'left' } = {}) => ({
   ...cellBase,
   textAlign: align,
-  borderBottom: '1px solid #e5e7eb',
-  fontWeight: 600,
-  fontSize: '0.8rem',
-  color: '#666',
+  borderBottom: `1px solid ${color.border.strong}`,
+  fontWeight: fontWeight.semibold,
+  fontSize: fontSize.xs,
+  color: color.text.muted,
   textTransform: 'uppercase',
   letterSpacing: '0.04em',
 })

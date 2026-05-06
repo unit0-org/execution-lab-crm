@@ -1,25 +1,29 @@
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { radius } from './tokens/radius'
+import { fontSize, fontWeight } from './tokens/typography'
+
 const base = {
   cursor: 'pointer',
   font: 'inherit',
+  fontWeight: fontWeight.medium,
   textDecoration: 'none',
   display: 'inline-block',
+  transition: 'background 120ms ease, border-color 120ms ease',
 }
 
 const tones = {
-  default: { background: 'white', color: '#111', border: '1px solid #d4d4d8' },
-  primary: { background: '#111',   color: 'white', border: '1px solid #111' },
-  danger:  { background: 'white', color: '#991b1b', border: '1px solid #fecaca' },
+  default: { background: color.bg.surface, color: color.text.primary, border: `1px solid ${color.border.strong}` },
+  primary: { background: color.accent.solid, color: color.accent.text, border: `1px solid ${color.accent.solid}` },
+  danger:  { background: color.bg.surface, color: color.status.errorText, border: `1px solid ${color.border.default}` },
 }
 
 const sizes = {
-  sm: { padding: '0.25rem 0.625rem', borderRadius: 4, fontSize: '0.8rem' },
-  md: { padding: '0.4rem 0.875rem', borderRadius: 6, fontSize: '0.875rem' },
-  lg: { padding: '0.75rem 1rem', borderRadius: 6, fontSize: '0.95rem' },
+  sm: { padding: `${space[1]} ${space[3]}`, borderRadius: radius.sm, fontSize: fontSize.sm },
+  md: { padding: `${space[2]} ${space[4]}`, borderRadius: radius.md, fontSize: fontSize.sm },
+  lg: { padding: `${space[3]} ${space[4]}`, borderRadius: radius.md, fontSize: fontSize.md },
 }
 
 export const buttonStyle = ({ tone = 'default', size = 'md', block } = {}) => ({
-  ...base,
-  ...tones[tone],
-  ...sizes[size],
-  ...(block ? { width: '100%' } : null),
+  ...base, ...tones[tone], ...sizes[size], ...(block ? { width: '100%' } : null),
 })

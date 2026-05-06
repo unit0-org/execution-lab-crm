@@ -1,6 +1,4 @@
-import { inputStyle } from './Input.styles'
-
-const style = { ...inputStyle, minHeight: '5rem', resize: 'vertical', fontFamily: 'inherit' }
+import { textareaStyle } from './Textarea.styles'
 
 export function Textarea({ id, name, defaultValue, rows = 4, required }) {
   return (
@@ -10,7 +8,7 @@ export function Textarea({ id, name, defaultValue, rows = 4, required }) {
       defaultValue={defaultValue}
       rows={rows}
       required={required}
-      style={style}
+      style={textareaStyle}
     />
   )
 }

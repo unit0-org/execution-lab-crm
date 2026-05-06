@@ -1,10 +1,5 @@
-const headerStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: '0.75rem',
-}
+import { sectionHeaderStyle } from './SectionHeader.styles'
 
 export function SectionHeader({ children }) {
-  return <div style={headerStyle}>{children}</div>
+  return <div style={sectionHeaderStyle}>{children}</div>
 }

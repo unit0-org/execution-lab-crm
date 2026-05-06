@@ -1,6 +1,4 @@
-import { inputStyle } from './Input.styles'
-
-const style = { ...inputStyle, appearance: 'auto' }
+import { selectStyle } from './Select.styles'
 
 export function Select({ id, name, defaultValue, required, value, onChange, children }) {
   return (
@@ -11,7 +9,7 @@ export function Select({ id, name, defaultValue, required, value, onChange, chil
       value={value}
       onChange={onChange}
       required={required}
-      style={style}
+      style={selectStyle}
     >
       {children}
     </select>

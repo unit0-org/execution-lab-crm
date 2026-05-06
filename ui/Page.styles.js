@@ -1,14 +1,17 @@
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { font, lineHeight } from './tokens/typography'
+
 const base = {
-  fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
-  padding: '0 1.5rem',
-  lineHeight: 1.5,
-  color: '#111',
+  fontFamily: font.sans,
+  padding: `0 ${space[6]}`,
+  lineHeight: lineHeight.normal,
+  color: color.text.primary,
 }
 
-export const pageStyle = (width = 'narrow') => ({
-  ...base,
-  ...{
-    narrow: { maxWidth: 640, margin: '4rem auto' },
-    wide: { maxWidth: 960, margin: '3rem auto' },
-  }[width],
-})
+const widths = {
+  narrow: { maxWidth: 640, margin: `${space[16]} auto` },
+  wide:   { maxWidth: 960, margin: `${space[12]} auto` },
+}
+
+export const pageStyle = (width = 'narrow') => ({ ...base, ...widths[width] })

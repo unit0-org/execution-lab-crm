@@ -1,14 +1,20 @@
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { radius } from './tokens/radius'
+import { fontSize, fontWeight } from './tokens/typography'
+
 const base = {
   display: 'inline-block',
-  padding: '0.125rem 0.5rem',
-  borderRadius: 4,
-  fontSize: '0.875rem',
+  padding: `${space[1]} ${space[2]}`,
+  borderRadius: radius.sm,
+  fontSize: fontSize.sm,
+  fontWeight: fontWeight.medium,
 }
 
 const tones = {
-  success: { background: '#dcfce7', color: '#166534' },
-  error:   { background: '#fee2e2', color: '#991b1b' },
-  neutral: { background: '#f3f4f6', color: '#374151' },
+  success: { background: color.status.successBg, color: color.status.successText },
+  error:   { background: color.status.errorBg,   color: color.status.errorText },
+  neutral: { background: color.status.neutralBg, color: color.status.neutralText },
 }
 
 export const badgeStyle = (tone = 'neutral') => ({ ...base, ...tones[tone] })

@@ -1,17 +1,19 @@
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { fontSize } from './tokens/typography'
+
 const tones = {
-  default: { color: '#111' },
-  muted:   { color: '#666' },
-  danger:  { color: '#991b1b' },
+  default: { color: color.text.primary },
+  muted:   { color: color.text.muted },
+  danger:  { color: color.status.errorText },
 }
 
-const sizes = {
-  sm: { fontSize: '0.875rem' },
-  md: { fontSize: '1rem' },
-}
+const sizes = { sm: { fontSize: fontSize.sm }, md: { fontSize: fontSize.md } }
+const gutters = { none: 0, sm: space[2], md: space[4], lg: space[8] }
 
 export const textStyle = ({ tone = 'default', size = 'md', gutter } = {}) => ({
   margin: 0,
-  marginBottom: { none: 0, sm: '0.5rem', md: '1rem', lg: '2rem' }[gutter] ?? 0,
+  marginBottom: gutters[gutter] ?? 0,
   ...tones[tone],
   ...sizes[size],
 })
