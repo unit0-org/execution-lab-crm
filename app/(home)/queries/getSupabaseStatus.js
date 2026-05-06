@@ -1,6 +1,5 @@
 // Probe Supabase reachability via a head-only count on contacts.
-// Server-side "hook" — async function called from a Server Component.
-export async function useSupabaseStatus(supabase) {
+export async function getSupabaseStatus(supabase) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   if (!url || !key) return { ok: false, detail: 'Missing Supabase env vars' }
