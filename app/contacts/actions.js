@@ -1,25 +1,17 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
 import { authedClient } from '@/lib/auth/authedClient'
-import { loadAccount } from '@/lib/sync/account'
-import { runSync } from '@/lib/sync/runSync'
+import { runSyncAccountAction } from '@/lib/contacts/actions/syncAccountAction'
+import { runDisconnectAccountAction } from '@/lib/contacts/actions/disconnectAccountAction'
+import { runApplyLabel, runRemoveLabel } from '@/lib/contacts/actions/labelActions'
 
-export async function syncAccount(formData) {
+const guarded = (fn) => async (formData) => {
   const supabase = await authedClient()
   if (!supabase) return { ok: false, error: 'not signed in' }
-
-  const { account, error } = await loadAccount(supabase, formData.get('account_id'))
-  if (error) return { ok: false, error }
-
-  const total = await runSync(supabase, account)
-  revalidatePath('/contacts')
-  return { ok: true, total }
+  return fn(supabase, formData)
 }
 
-export async function disconnectAccount(formData) {
-  const supabase = await authedClient()
-  if (!supabase) return
-  await supabase.from('google_accounts').delete().eq('id', formData.get('account_id'))
-  revalidatePath('/contacts')
-}
+export const syncAccount = guarded((s, fd) => runSyncAccountAction(s, fd.get('account_id')))
+export const disconnectAccount = guarded((s, fd) => runDisconnectAccountAction(s, fd.get('account_id')))
+export const applyLabel = guarded((s, fd) => runApplyLabel(s, fd))
+export const removeContactLabel = guarded((s, fd) => runRemoveLabel(s, fd))
