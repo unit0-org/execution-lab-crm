@@ -1,9 +1,10 @@
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import packageJson from '../package.json'
 
 export const dynamic = 'force-dynamic'
 
-async function checkSupabase() {
+async function checkSupabase(supabase) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
@@ -12,7 +13,6 @@ async function checkSupabase() {
   }
 
   try {
-    const supabase = await createClient()
     const { error } = await supabase
       .from('contacts')
       .select('id', { count: 'exact', head: true })
@@ -25,7 +25,10 @@ async function checkSupabase() {
 }
 
 export default async function Home() {
-  const supabaseStatus = await checkSupabase()
+  const supabase = await createClient()
+  const supabaseStatus = await checkSupabase(supabase)
+  const { data: { user } } = await supabase.auth.getUser()
+
   const env = process.env.VERCEL_ENV || process.env.NODE_ENV || 'unknown'
   const version = packageJson.version
 
@@ -65,7 +68,36 @@ export default async function Home() {
             {supabaseStatus.detail}
           </div>
         </dd>
+
+        <dt style={{ color: '#666' }}>Signed in</dt>
+        <dd style={{ margin: 0 }}>
+          {user ? (
+            <>
+              <code>{user.email}</code>
+              {' · '}
+              <form action="/auth/signout" method="post" style={{ display: 'inline' }}>
+                <button type="submit" style={linkButton}>sign out</button>
+              </form>
+            </>
+          ) : (
+            <Link href="/login" style={{ color: '#111' }}>sign in</Link>
+          )}
+        </dd>
       </dl>
+
+      <p style={{ marginTop: '2rem' }}>
+        <Link href="/contacts" style={{ color: '#111' }}>→ Contacts</Link>
+      </p>
     </main>
   )
+}
+
+const linkButton = {
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  color: '#111',
+  textDecoration: 'underline',
+  font: 'inherit',
+  padding: 0,
 }
