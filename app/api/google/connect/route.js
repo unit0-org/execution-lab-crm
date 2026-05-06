@@ -1,28 +1,17 @@
 import { NextResponse } from 'next/server'
-import { headers, cookies } from 'next/headers'
+import { headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
-import { buildAuthUrl, siteOrigin } from '@/lib/google'
+import { buildAuthUrl } from '@/lib/google/auth'
+import { siteOrigin } from '@/lib/google/origin'
+import { setOAuthState } from '@/lib/google/state'
 
 export async function GET(request) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
+  if (!user) return NextResponse.redirect(new URL('/login', request.url))
 
-  const h = await headers()
-  const origin = siteOrigin(h)
-
-  // CSRF protection: random state tied to a httpOnly cookie.
+  const origin = siteOrigin(await headers())
   const state = crypto.randomUUID()
-  const cookieStore = await cookies()
-  cookieStore.set('google_oauth_state', state, {
-    httpOnly: true,
-    secure: origin.startsWith('https://'),
-    sameSite: 'lax',
-    path: '/',
-    maxAge: 600,
-  })
-
+  await setOAuthState(state, { secure: origin.startsWith('https://') })
   return NextResponse.redirect(buildAuthUrl({ origin, state }))
 }
