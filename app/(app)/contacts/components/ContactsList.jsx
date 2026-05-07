@@ -6,7 +6,7 @@ import { ContactRow } from './ContactRow'
 const emailOf = (idx, c) => idx[c.google_account_id]?.email
 const idsFor = (map, c) => map[c.id] || []
 
-export function ContactsList({ contacts, accountById, allLabels, contactTagMap, allTypes, contactTypeMap, onMutate, selection }) {
+export function ContactsList({ contacts, accountById, allLabels, contactTagMap, onMutate, selection }) {
   if (!contacts.length) {
     return <EmptyState>No contacts match. Connect an account, sync, or clear the filter.</EmptyState>
   }
@@ -19,7 +19,6 @@ export function ContactsList({ contacts, accountById, allLabels, contactTagMap, 
           <ContactRow key={c.id} contact={c}
             accountEmail={emailOf(accountById, c)}
             allLabels={allLabels} appliedLabelIds={idsFor(contactTagMap, c)}
-            allTypes={allTypes} appliedTypeIds={idsFor(contactTypeMap, c)}
             onMutate={onMutate} selection={selection} />
         ))}
       </TableBody>

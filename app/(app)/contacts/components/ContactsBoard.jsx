@@ -4,12 +4,14 @@ import { useContactsBoardData } from '../hooks/useContactsBoardData'
 import { useAccountIndex } from '../hooks/useAccountIndex'
 import { useSelection } from '../hooks/useSelection'
 import { filterByTagName } from '@/lib/contacts/filterByTagName'
+import { filterByAccount } from '@/lib/contacts/filterByAccount'
 import { ContactsSection } from './ContactsSection'
 
-export function ContactsBoard({ activeTag }) {
+export function ContactsBoard({ activeTag, activeAccount }) {
   const data = useContactsBoardData()
   const selection = useSelection()
-  const visible = filterByTagName(data.contacts, data.contactTagMap, data.labels, activeTag)
+  const byTag = filterByTagName(data.contacts, data.contactTagMap, data.labels, activeTag)
+  const visible = filterByAccount(byTag, activeAccount)
 
   return (
     <ContactsSection
@@ -17,8 +19,6 @@ export function ContactsBoard({ activeTag }) {
       accountById={useAccountIndex(data.accounts)}
       allLabels={data.labels}
       contactTagMap={data.contactTagMap}
-      allTypes={data.types}
-      contactTypeMap={data.contactTypeMap}
       onMutate={data.refresh}
       selection={selection}
     />

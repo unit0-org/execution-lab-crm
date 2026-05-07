@@ -7,16 +7,14 @@ const tones = {
   accent:  { background: 'var(--color-accent-tint)', color: 'var(--color-accent-deep)', border: '1px solid var(--color-accent-soft)' },
 }
 
-export const chipStyle = (color, tone = 'default') => ({
+export const chipStyle = (_color, tone = 'default') => ({
   display: 'inline-flex',
   alignItems: 'center',
-  gap: space[2],
+  gap: space[1],
   padding: `2px ${space[2]}`,
   borderRadius: radius.pill,
   fontSize: '11.5px',
   fontWeight: fontWeight.regular,
   whiteSpace: 'nowrap',
-  ...(color && tone === 'default'
-    ? { background: 'var(--color-bg-subtle)', color: 'var(--color-text-secondary)', border: `1px solid ${color}33` }
-    : tones[tone]),
+  ...tones[tone],
 })

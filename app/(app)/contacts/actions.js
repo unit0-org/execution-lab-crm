@@ -5,7 +5,6 @@ import { runSyncAccountAction } from '@/lib/contacts/actions/syncAccountAction'
 import { runDisconnectAccountAction } from '@/lib/contacts/actions/disconnectAccountAction'
 import { runApplyLabel, runRemoveLabel } from '@/lib/contacts/actions/labelActions'
 import { runBulkApplyLabel } from '@/lib/contacts/actions/bulkLabelActions'
-import { runApplyType, runRemoveType } from '@/lib/contacts/actions/typeActions'
 
 const guarded = (fn) => async (formData) => {
   const supabase = await authedClient()
@@ -19,5 +18,3 @@ export const disconnectAccount = guarded((s, fd) => runDisconnectAccountAction(s
 export const applyLabel = guarded((s, fd) => runApplyLabel(s, fd))
 export const removeContactLabel = guarded((s, fd) => runRemoveLabel(s, fd))
 export const bulkApplyLabel = guarded((s, fd) => runBulkApplyLabel(s, fd))
-export const applyType = guarded((s, fd) => runApplyType(s, fd))
-export const removeContactType = guarded((s, fd) => runRemoveType(s, fd))

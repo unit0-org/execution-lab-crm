@@ -1,6 +1,5 @@
 import { toolbarStyle } from './Toolbar.styles'
 
-// Horizontal action bar — used for selection toolbars, batch actions.
-export function Toolbar({ children }) {
-  return <div style={toolbarStyle}>{children}</div>
+export function Toolbar({ variant, children }) {
+  return <div style={toolbarStyle(variant)}>{children}</div>
 }

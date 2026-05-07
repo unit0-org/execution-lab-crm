@@ -17,7 +17,7 @@ export default async function PersonDetailPage({ params }) {
 
   return (
     <Page width="wide">
-      <PersonHeader person={data.person} types={data.extras.types} labels={data.extras.labels} />
+      <PersonHeader person={data.person} labels={data.extras.labels} />
       <PersonLayout
         left={<PersonLeft contactId={id} timeline={data.timeline} notes={data.notes} />}
         right={<PersonRight contactId={id} person={data.person} resources={data.resources} />}

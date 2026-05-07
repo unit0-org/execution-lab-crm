@@ -1,10 +1,10 @@
 import { ColorDot } from './ColorDot'
 import { chipStyle } from './Chip.styles'
 
-export function Chip({ color, tone, children }) {
+export function Chip({ color, tone, dot, children }) {
   return (
     <span style={chipStyle(color, tone)}>
-      {color ? <ColorDot color={color} size="sm" /> : null}
+      {dot && color ? <ColorDot color={color} size="sm" /> : null}
       {children}
     </span>
   )

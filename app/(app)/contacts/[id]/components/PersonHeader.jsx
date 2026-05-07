@@ -6,7 +6,7 @@ import { PersonName } from './PersonName'
 import { WarmthDots } from './WarmthDots'
 import { PersonChips } from './PersonChips'
 
-export function PersonHeader({ person, types, labels }) {
+export function PersonHeader({ person, labels }) {
   return (
     <Section gutter="md">
       <Stack gap="sm">
@@ -14,7 +14,7 @@ export function PersonHeader({ person, types, labels }) {
           <PersonName name={person.display_name} role={person.role} org={person.orgs} />
           <WarmthDots value={person.warmth} />
         </Inline>
-        <PersonChips types={types} labels={labels} />
+        <PersonChips labels={labels} />
       </Stack>
       <Divider gutter={6} />
     </Section>
