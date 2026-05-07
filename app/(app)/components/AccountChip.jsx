@@ -1,10 +1,5 @@
-import { chipStyle, dotStyle } from './AccountChip.styles'
+import { IdentityChip } from '@/ui/IdentityChip'
 
 export function AccountChip({ email }) {
-  return (
-    <div style={chipStyle} title={email}>
-      <span style={dotStyle} aria-hidden />
-      {email}
-    </div>
-  )
+  return <IdentityChip label={email} />
 }

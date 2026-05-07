@@ -1,6 +1,6 @@
-import { space } from '@/ui/tokens/space'
+import { space } from './tokens/space'
 
-export const footerStyle = {
+export const sidebarFooterStyle = {
   marginTop: 'auto',
   display: 'flex',
   flexDirection: 'column',

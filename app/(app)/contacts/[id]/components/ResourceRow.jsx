@@ -1,18 +1,18 @@
+import { GridRow } from '@/ui/GridRow'
+import { ExternalLink } from '@/ui/ExternalLink'
+import { Text } from '@/ui/Text'
 import { ResourceKindGlyph } from './ResourceKindGlyph'
-import { rowStyle, linkStyle, noteStyle } from './ResourceRow.styles'
 import { RemoveResourceForm } from './RemoveResourceForm'
 
 export function ResourceRow({ contactId, resource }) {
   return (
-    <div style={rowStyle}>
+    <GridRow template="glyph-content-meta" align="start">
       <ResourceKindGlyph kind={resource.kind} />
       <div>
-        <a href={resource.url} target="_blank" rel="noreferrer" style={linkStyle}>
-          {resource.label || resource.url}
-        </a>
-        {resource.note && <div style={noteStyle}>{resource.note}</div>}
+        <ExternalLink href={resource.url}>{resource.label || resource.url}</ExternalLink>
+        {resource.note && <Text tone="muted" size="sm">{resource.note}</Text>}
       </div>
       <RemoveResourceForm contactId={contactId} resourceId={resource.id} />
-    </div>
+    </GridRow>
   )
 }

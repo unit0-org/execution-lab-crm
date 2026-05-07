@@ -1,7 +1,7 @@
-import { space } from '@/ui/tokens/space'
-import { color } from '@/ui/tokens/color'
+import { space } from './tokens/space'
+import { color } from './tokens/color'
 
-export const sidebarStyle = {
+export const sidebarShellStyle = {
   borderRight: `1px solid ${color.border.default}`,
   padding: `${space[6]} ${space[3]}`,
   display: 'flex',

@@ -1,10 +1,5 @@
-import { layoutStyle } from './PersonLayout.styles'
+import { TwoColumn } from '@/ui/TwoColumn'
 
 export function PersonLayout({ left, right }) {
-  return (
-    <div style={layoutStyle}>
-      <div>{left}</div>
-      <aside>{right}</aside>
-    </div>
-  )
+  return <TwoColumn left={left} right={right} />
 }

@@ -1,7 +1,7 @@
-import { space } from '@/ui/tokens/space'
-import { radius } from '@/ui/tokens/radius'
+import { space } from './tokens/space'
+import { radius } from './tokens/radius'
 
-export const colorOptionStyle = {
+export const colorRadioStyle = {
   display: 'inline-flex',
   alignItems: 'center',
   gap: space[1],

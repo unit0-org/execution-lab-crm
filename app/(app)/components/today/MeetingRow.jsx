@@ -1,4 +1,5 @@
-import { rowStyle, titleStyle, metaStyle } from './MeetingRow.styles'
+import { GridRow } from '@/ui/GridRow'
+import { Text } from '@/ui/Text'
 import { MeetingTime } from './MeetingTime'
 
 const participantPreview = (parts = []) =>
@@ -6,12 +7,12 @@ const participantPreview = (parts = []) =>
 
 export function MeetingRow({ meeting }) {
   return (
-    <div style={rowStyle}>
+    <GridRow template="content-meta">
       <div>
-        <div style={titleStyle}>{meeting.title || 'Untitled meeting'}</div>
-        <div style={metaStyle}>{participantPreview(meeting.meeting_participants)}</div>
+        <Text>{meeting.title || 'Untitled meeting'}</Text>
+        <Text tone="muted" size="sm">{participantPreview(meeting.meeting_participants)}</Text>
       </div>
       <MeetingTime iso={meeting.started_at} />
-    </div>
+    </GridRow>
   )
 }

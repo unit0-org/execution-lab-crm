@@ -1,16 +1,18 @@
+import { GridRow } from '@/ui/GridRow'
 import { AppLink } from '@/ui/AppLink'
-import { rowStyle, reasonStyle } from './FollowUpRow.styles'
+import { Text } from '@/ui/Text'
 import { DueLabel } from './DueLabel'
 
 export function FollowUpRow({ flag }) {
   const c = flag.contacts
+
   return (
-    <div style={rowStyle}>
+    <GridRow template="content-meta">
       <div>
         <AppLink href={`/contacts/${c?.id}`}>{c?.display_name || 'Unknown contact'}</AppLink>
-        {flag.reason && <div style={reasonStyle}>{flag.reason}</div>}
+        {flag.reason && <Text tone="muted" size="sm">{flag.reason}</Text>}
       </div>
       <DueLabel due={flag.due_date} />
-    </div>
+    </GridRow>
   )
 }

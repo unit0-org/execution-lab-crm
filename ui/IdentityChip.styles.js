@@ -1,9 +1,9 @@
-import { space } from '@/ui/tokens/space'
-import { color } from '@/ui/tokens/color'
-import { radius } from '@/ui/tokens/radius'
-import { fontSize } from '@/ui/tokens/typography'
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { radius } from './tokens/radius'
+import { fontSize } from './tokens/typography'
 
-export const chipStyle = {
+export const identityChipStyle = {
   display: 'flex',
   alignItems: 'center',
   gap: space[2],
@@ -16,7 +16,7 @@ export const chipStyle = {
   whiteSpace: 'nowrap',
 }
 
-export const dotStyle = {
+export const identityDotStyle = {
   width: 8,
   height: 8,
   borderRadius: '50%',
