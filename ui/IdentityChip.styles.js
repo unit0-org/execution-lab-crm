@@ -3,7 +3,7 @@ import { color } from './tokens/color'
 import { radius } from './tokens/radius'
 import { fontSize } from './tokens/typography'
 
-export const identityChipStyle = {
+export const identityChipStyle = (interactive) => ({
   display: 'flex',
   alignItems: 'center',
   gap: space[2],
@@ -11,10 +11,9 @@ export const identityChipStyle = {
   borderRadius: radius.sm,
   fontSize: fontSize.xs,
   color: color.text.muted,
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-}
+  cursor: interactive ? 'pointer' : 'default',
+  transition: 'background var(--motion-quick) var(--motion-ease), color var(--motion-quick) var(--motion-ease)',
+})
 
 export const identityDotStyle = {
   width: 8,

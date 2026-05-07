@@ -1,12 +1,11 @@
 import { identityChipStyle, identityDotStyle } from './IdentityChip.styles'
 
-// Compact "who" chip — used for connected accounts in the sidebar
-// and anywhere we want a dot + truncated identifier.
-export function IdentityChip({ label }) {
+export function IdentityChip({ label, interactive }) {
+  const props = interactive ? { 'data-chip-interactive': '' } : {}
   return (
-    <div style={identityChipStyle} title={label}>
+    <div style={identityChipStyle(interactive)} title={label} {...props}>
       <span style={identityDotStyle} aria-hidden />
-      {label}
+      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
     </div>
   )
 }

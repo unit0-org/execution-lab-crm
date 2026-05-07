@@ -10,7 +10,7 @@ export function BulkActionBar({ selection, labels, onApplied }) {
   if (selection.count === 0) return null
   const onSuccess = () => { onApplied(); selection.clear() }
   return (
-    <Toolbar>
+    <Toolbar variant="floating">
       <SelectionCount count={selection.count} />
       <Inline gap="sm">
         <BulkLabelPicker selectedIds={selection.ids} labels={labels} onApplied={onSuccess} />

@@ -10,7 +10,7 @@ export function AccountChips() {
 
   return (
     <Stack gap="sm">
-      {accounts.map((a) => <AccountChip key={a.id} email={a.email} />)}
+      {accounts.map((a) => <AccountChip key={a.id} id={a.id} email={a.email} />)}
     </Stack>
   )
 }

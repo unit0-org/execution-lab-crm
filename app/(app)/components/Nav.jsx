@@ -6,7 +6,6 @@ const ITEMS = [
   { href: '/follow-ups',    label: 'Follow-ups' },
   { href: '/contacts',      label: 'All people' },
   { href: '/labels',        label: 'Labels' },
-  { href: '/contact-types', label: 'Types' },
 ]
 
 export function Nav() {

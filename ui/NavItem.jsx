@@ -9,6 +9,10 @@ const isActiveFor = (current, href) =>
 
 export function NavItem({ href, children }) {
   const current = usePathname()
-
-  return <Link href={href} style={navItemStyle(isActiveFor(current, href))}>{children}</Link>
+  const active = isActiveFor(current, href)
+  return (
+    <Link href={href} prefetch style={navItemStyle(active)} data-nav-item data-active={active || undefined}>
+      {children}
+    </Link>
+  )
 }

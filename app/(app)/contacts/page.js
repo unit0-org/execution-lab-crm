@@ -8,11 +8,12 @@ export const dynamic = 'force-dynamic'
 export default async function ContactsPage({ searchParams }) {
   const params = await searchParams
   const activeTag = params?.tag || ''
+  const activeAccount = params?.account || ''
   return (
     <Page width="wide">
       <ContactsHeader activeTag={activeTag} />
       <ContactsNotices connected={params?.connected === '1'} error={params?.error} />
-      <ContactsBoard activeTag={activeTag} />
+      <ContactsBoard activeTag={activeTag} activeAccount={activeAccount} />
     </Page>
   )
 }

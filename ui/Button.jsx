@@ -1,8 +1,8 @@
 import { buttonStyle } from './Button.styles'
 
-export function Button({ tone, size, block, type = 'button', children, ...rest }) {
+export function Button({ tone = 'default', size, block, type = 'button', children, ...rest }) {
   return (
-    <button {...rest} type={type} style={buttonStyle({ tone, size, block })}>
+    <button {...rest} type={type} data-tone={tone} style={buttonStyle({ tone, size, block })}>
       {children}
     </button>
   )
