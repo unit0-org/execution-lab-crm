@@ -2,23 +2,24 @@ import { createClient } from '@/lib/supabase/server'
 import { Page } from '@/ui/Page'
 import { Heading } from '@/ui/Heading'
 import { Stack } from '@/ui/Stack'
-import { useEnvironment } from './hooks/useEnvironment'
-import { StatusList } from './components/StatusList'
-import { ContactsLink } from './components/ContactsLink'
+import { getTodayPageData } from './queries/getTodayPageData'
+import { TodayFollowUps } from './components/today/TodayFollowUps'
+import { UpcomingMeetings } from './components/today/UpcomingMeetings'
+import { RecentActivity } from './components/today/RecentActivity'
 
 export const dynamic = 'force-dynamic'
 
-export default async function Home() {
+export default async function TodayPage() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  const { name: env, version } = useEnvironment()
+  const { flags, meetings, activity } = await getTodayPageData(supabase)
 
   return (
-    <Page>
-      <Heading gutter="lg">Execution Lab CRM — baseline OK</Heading>
+    <Page width="wide">
+      <Heading gutter="lg">Today</Heading>
       <Stack gap="lg">
-        <StatusList env={env} version={version} user={user} />
-        <ContactsLink />
+        <TodayFollowUps flags={flags} />
+        <UpcomingMeetings meetings={meetings} />
+        <RecentActivity entries={activity} />
       </Stack>
     </Page>
   )
