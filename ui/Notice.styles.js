@@ -12,7 +12,7 @@ const base = {
 
 const tones = {
   success: { background: color.status.successBg, color: color.status.successText },
-  error:   { background: color.status.errorBg,   color: color.status.errorText },
+  error: { background: color.status.errorBg, color: color.status.errorText },
 }
 
 export const noticeStyle = (tone = 'success') => ({ ...base, ...tones[tone] })

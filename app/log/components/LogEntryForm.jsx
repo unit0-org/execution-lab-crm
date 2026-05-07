@@ -12,6 +12,7 @@ import { LogStatus } from './LogStatus'
 
 export function LogEntryForm() {
   const { action, state } = useLogEntry()
+
   return (
     <>
       <LogStatus state={state} />

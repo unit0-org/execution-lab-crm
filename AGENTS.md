@@ -31,3 +31,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
    `actions.js`. No `queries/` folder.
 8. **Every iteration ships via pull request.** Ask before opening it.
 9. **Never push directly to `main`.**
+10. **Blank line before `return`.** When `return` is preceded by other
+    statements in a block, leave one blank line above it. Exception:
+    `return` as the only / first statement of a function body — no
+    blank line needed.
+11. **Single space between tokens.** Never align `=`, object keys, or
+    anything else with extra spaces. Bad: `const has      = ...` /
+    `applied:   labels.filter(...)`. Good: `const has = ...` /
+    `applied: labels.filter(...)`. Indentation at line start is
+    untouched; this rule applies only to spacing between tokens
+    inside a line.

@@ -9,6 +9,7 @@ import { runBulkApplyLabel } from '@/lib/contacts/actions/bulkLabelActions'
 const guarded = (fn) => async (formData) => {
   const supabase = await authedClient()
   if (!supabase) return { ok: false, error: 'not signed in' }
+
   return fn(supabase, formData)
 }
 

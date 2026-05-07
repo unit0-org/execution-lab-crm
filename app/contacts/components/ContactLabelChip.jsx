@@ -13,6 +13,7 @@ const wrapInTransition = (fn, after, start) => (formData) =>
 export function ContactLabelChip({ contactId, label, onMutate }) {
   const [, start] = useTransition()
   const onRemove = wrapInTransition(removeContactLabel, onMutate, start)
+
   return (
     <Inline gap="sm">
       <Chip color={label.color}>{label.name}</Chip>

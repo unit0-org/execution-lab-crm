@@ -1,7 +1,7 @@
 import { Badge } from '@/ui/Badge'
 import { Text } from '@/ui/Text'
 
-const TONE  = { null: 'neutral', true: 'success', false: 'error' }
+const TONE = { null: 'neutral', true: 'success', false: 'error' }
 const LABEL = { null: 'checking…', true: 'connected', false: 'unreachable' }
 
 export function SupabaseStatusBadge({ status }) {

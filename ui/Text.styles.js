@@ -4,8 +4,8 @@ import { fontSize } from './tokens/typography'
 
 const tones = {
   default: { color: color.text.primary },
-  muted:   { color: color.text.muted },
-  danger:  { color: color.status.errorText },
+  muted: { color: color.text.muted },
+  danger: { color: color.status.errorText },
 }
 
 const sizes = { sm: { fontSize: fontSize.sm }, md: { fontSize: fontSize.md } }

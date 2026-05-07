@@ -3,12 +3,13 @@ import { ContactLabelChip } from './ContactLabelChip'
 import { AddLabelPicker } from './AddLabelPicker'
 
 const splitLabels = (labels, appliedIds) => ({
-  applied:   labels.filter((l) => appliedIds.includes(l.id)),
+  applied: labels.filter((l) => appliedIds.includes(l.id)),
   available: labels.filter((l) => !appliedIds.includes(l.id)),
 })
 
 export function ContactLabels({ contactId, allLabels, appliedIds, onMutate }) {
   const { applied, available } = splitLabels(allLabels, appliedIds)
+
   return (
     <Inline gap="sm" align="center">
       {applied.map((l) => (

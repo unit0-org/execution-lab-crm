@@ -5,5 +5,6 @@ import { SupabaseStatusBadge } from './SupabaseStatusBadge'
 
 export function SupabaseStatusRow() {
   const status = useSupabaseStatus()
+
   return <SupabaseStatusBadge status={status} />
 }

@@ -7,6 +7,7 @@ import { ContactOption } from './ContactOption'
 
 export function ContactPicker() {
   const { contacts } = useContacts()
+
   return (
     <Field htmlFor="contact_id" label="Contact">
       <Select id="contact_id" name="contact_id" required defaultValue="">

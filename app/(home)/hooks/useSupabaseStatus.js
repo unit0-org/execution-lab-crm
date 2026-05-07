@@ -11,5 +11,6 @@ export function useSupabaseStatus() {
   useEffect(() => {
     probeSupabase(createClient()).then(setStatus)
   }, [])
+
   return status
 }

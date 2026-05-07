@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
-import { exchangeCode } from '@/lib/google/tokens'
-import { fetchUserInfo } from '@/lib/google/userinfo'
 import { siteOrigin } from '@/lib/google/origin'
-import { upsertGoogleAccount } from '@/lib/google/storeAccount'
 import { redirectWithError } from '@/lib/google/redirects'
 import { validateCallback } from '@/lib/google/validateCallback'
+import { persistConnection } from '@/lib/google/persistConnection'
 
 export async function GET(request) {
   const url = new URL(request.url)
@@ -19,10 +17,9 @@ export async function GET(request) {
 
   try {
     const origin = siteOrigin(await headers())
-    const tokens = await exchangeCode({ origin, code: v.code })
-    const info = await fetchUserInfo(tokens.access_token)
-    const error = await upsertGoogleAccount(supabase, { tokens, info })
+    const { error } = await persistConnection(supabase, { origin, code: v.code })
     if (error) return redirectWithError(url.origin, error.message)
+
     return NextResponse.redirect(new URL('/contacts?connected=1', url.origin))
   } catch (err) {
     return redirectWithError(url.origin, err.message)

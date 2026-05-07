@@ -14,6 +14,7 @@ const onChangeSubmit = (after, start) => (e) => {
 
 export function BulkLabelPicker({ selectedIds, labels, onApplied }) {
   const [, start] = useTransition()
+
   return (
     <InlineForm action={bulkApplyLabel}>
       <HiddenContactIds ids={selectedIds} />

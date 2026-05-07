@@ -11,6 +11,7 @@ export function ContactsBoard({ activeTag }) {
   const { accounts, contacts, labels, contactTagMap, refresh } = useContactsBoardData()
   const selection = useSelection()
   const visible = filterByTagName(contacts, contactTagMap, labels, activeTag)
+
   return (
     <>
       <AccountsSection accounts={accounts} onMutate={refresh} />

@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic'
 export default async function ContactsPage({ searchParams }) {
   const params = await searchParams
   const activeTag = params?.tag || ''
+
   return (
     <Page width="wide">
       <ContactsHeader activeTag={activeTag} />

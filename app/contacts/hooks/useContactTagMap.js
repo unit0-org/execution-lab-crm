@@ -7,6 +7,7 @@ async function fetchMap(supabase) {
   const { data } = await supabase.from('contact_tags').select('contact_id, tag_id')
   const map = {}
   for (const r of data || []) (map[r.contact_id] ||= []).push(r.tag_id)
+
   return map
 }
 
@@ -16,5 +17,6 @@ export function useContactTagMap() {
     fetchMap(createClient()).then(setMap)
   }, [])
   useEffect(() => { refresh() }, [refresh])
+
   return { map, refresh }
 }

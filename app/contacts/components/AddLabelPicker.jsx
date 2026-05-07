@@ -14,6 +14,7 @@ const submitOnChange = (fn, after, start) => (e) => {
 export function AddLabelPicker({ contactId, available, onMutate }) {
   const [, start] = useTransition()
   if (!available.length) return null
+
   return (
     <InlineForm action={applyLabel}>
       <input type="hidden" name="contact_id" value={contactId} />

@@ -15,6 +15,7 @@ export async function createLabel(_prev, formData) {
   if (error) return { ok: false, error: error.message }
 
   revalidatePath('/labels')
+
   return { ok: true }
 }
 

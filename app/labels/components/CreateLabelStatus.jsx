@@ -6,5 +6,6 @@ function Failed({ message }) { return <Notice tone="error">{message}</Notice> }
 export function CreateLabelStatus({ state }) {
   if (!state) return null
   if (state.ok) return <Created />
+
   return <Failed message={state.error} />
 }

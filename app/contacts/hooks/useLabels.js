@@ -15,5 +15,6 @@ export function useLabels() {
     fetchLabels(createClient()).then(setLabels)
   }, [])
   useEffect(() => { refresh() }, [refresh])
+
   return { labels, refresh }
 }

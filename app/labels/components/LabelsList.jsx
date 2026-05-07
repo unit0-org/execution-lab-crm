@@ -5,6 +5,7 @@ import { LabelRow } from './LabelRow'
 
 export function LabelsList({ labels }) {
   if (!labels.length) return <EmptyState>No labels yet.</EmptyState>
+
   return (
     <Table>
       <LabelsTableHead />

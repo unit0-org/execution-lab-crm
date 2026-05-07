@@ -10,6 +10,7 @@ import { CreateLabelStatus } from './CreateLabelStatus'
 
 export function CreateLabelForm() {
   const { action, state } = useCreateLabel()
+
   return (
     <>
       <CreateLabelStatus state={state} />

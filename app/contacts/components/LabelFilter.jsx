@@ -8,6 +8,7 @@ import { LabelFilterOption } from './LabelFilterOption'
 export function LabelFilter({ activeTag = '' }) {
   const { labels } = useLabels()
   const onChange = useLabelFilterNav()
+
   return (
     <Select name="tag" value={activeTag} onChange={onChange}>
       <LabelFilterOption value="">All contacts</LabelFilterOption>

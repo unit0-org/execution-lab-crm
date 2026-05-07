@@ -11,6 +11,7 @@ export const dynamic = 'force-dynamic'
 export default async function LabelsPage() {
   const supabase = await createClient()
   const labels = await fetchLabels(supabase)
+
   return (
     <Page width="wide">
       <LabelsHeader />

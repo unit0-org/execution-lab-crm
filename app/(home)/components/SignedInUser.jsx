@@ -18,5 +18,6 @@ function SignedOut() {
 
 export function SignedInUser({ user }) {
   if (!user) return <SignedOut />
+
   return <SignedIn email={user.email} />
 }

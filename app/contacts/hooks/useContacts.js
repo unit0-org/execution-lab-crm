@@ -16,5 +16,6 @@ export function useContacts() {
     fetchContacts(createClient()).then(setContacts)
   }, [])
   useEffect(() => { refresh() }, [refresh])
+
   return { contacts, refresh }
 }

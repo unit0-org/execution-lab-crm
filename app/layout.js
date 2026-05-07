@@ -11,6 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const fontVars = `${geistSans.variable} ${geistMono.variable}`
+
   return (
     <html lang="en" className={fontVars}>
       <body>{children}</body>

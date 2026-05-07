@@ -5,6 +5,7 @@ import { AccountRow } from './AccountRow'
 
 export function AccountsList({ accounts, onMutate }) {
   if (!accounts.length) return <EmptyState>No accounts connected yet.</EmptyState>
+
   return (
     <Table>
       <AccountsTableHead />

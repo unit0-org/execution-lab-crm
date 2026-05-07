@@ -12,5 +12,6 @@ export function LogStatus({ state }) {
   if (!state) return null
   if (state.ok) return <SuccessNotice />
   if (state.error) return <ErrorNotice message={state.error} />
+
   return null
 }

@@ -6,6 +6,7 @@ function labelFor(contact) {
   const email = pickEmail(contact.contact_emails)
   if (!contact.display_name) return email || 'Unnamed contact'
   if (!email) return contact.display_name
+
   return `${contact.display_name} — ${email}`
 }
 

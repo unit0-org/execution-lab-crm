@@ -3,6 +3,7 @@ const SIZES = { sm: 8, md: 10, lg: 14 }
 
 export function ColorDot({ color, size = 'md' }) {
   const px = SIZES[size]
+
   return (
     <span style={{
       display: 'inline-block',

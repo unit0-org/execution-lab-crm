@@ -7,5 +7,6 @@ import { logEntry } from '../actions'
 // form, the latest result state, and whether a submission is pending.
 export function useLogEntry() {
   const [state, action, pending] = useActionState(logEntry, null)
+
   return { action, state, pending }
 }

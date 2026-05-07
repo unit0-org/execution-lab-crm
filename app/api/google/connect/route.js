@@ -13,5 +13,6 @@ export async function GET(request) {
   const origin = siteOrigin(await headers())
   const state = crypto.randomUUID()
   await setOAuthState(state, { secure: origin.startsWith('https://') })
+
   return NextResponse.redirect(buildAuthUrl({ origin, state }))
 }

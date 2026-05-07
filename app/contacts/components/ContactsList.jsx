@@ -10,6 +10,7 @@ export function ContactsList({ contacts, accountById, allLabels, contactTagMap, 
   if (!contacts.length) {
     return <EmptyState>No contacts match. Connect an account, sync, or clear the filter.</EmptyState>
   }
+
   return (
     <Table>
       <ContactsTableHead contacts={contacts} selection={selection} />

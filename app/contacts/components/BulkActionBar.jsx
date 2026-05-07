@@ -9,6 +9,7 @@ import { BulkLabelPicker } from './BulkLabelPicker'
 export function BulkActionBar({ selection, labels, onApplied }) {
   if (selection.count === 0) return null
   const onSuccess = () => { onApplied(); selection.clear() }
+
   return (
     <Toolbar>
       <SelectionCount count={selection.count} />

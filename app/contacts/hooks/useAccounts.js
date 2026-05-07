@@ -15,5 +15,6 @@ export function useAccounts() {
     fetchAccounts(createClient()).then(setAccounts)
   }, [])
   useEffect(() => { refresh() }, [refresh])
+
   return { accounts, refresh }
 }
