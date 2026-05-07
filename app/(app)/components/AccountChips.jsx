@@ -5,12 +5,12 @@ import { useAccounts } from '../contacts/hooks/useAccounts'
 import { AccountChip } from './AccountChip'
 
 export function AccountChips() {
-  const { accounts } = useAccounts()
+  const { accounts, refresh } = useAccounts()
   if (!accounts.length) return null
 
   return (
     <Stack gap="sm">
-      {accounts.map((a) => <AccountChip key={a.id} id={a.id} email={a.email} />)}
+      {accounts.map((a) => <AccountChip key={a.id} id={a.id} email={a.email} onMutate={refresh} />)}
     </Stack>
   )
 }
