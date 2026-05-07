@@ -2,7 +2,7 @@
 
 import { Field } from '@/ui/Field'
 import { Select } from '@/ui/Select'
-import { useContacts } from '@/app/contacts/hooks/useContacts'
+import { useContacts } from '../../contacts/hooks/useContacts'
 import { ContactOption } from './ContactOption'
 
 export function ContactPicker() {
