@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
 import { isAuthorizedCron } from '@/lib/auth/cron'
 import { createServiceClient } from '@/lib/supabase/serviceClient'
-import { syncAllMeetAccounts } from '@/lib/sync/meet/syncAllAccounts'
+import { syncAllSources } from '@/lib/sync/syncAllSources'
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 60 // seconds — Vercel Hobby cap. Sync is resumable via meet_synced_at.
+export const maxDuration = 60 // Hobby cap; sources resume via per-source watermarks.
 
 export async function GET(request) {
   if (!isAuthorizedCron(request)) {
@@ -12,7 +12,7 @@ export async function GET(request) {
   }
 
   const supabase = createServiceClient()
-  const report = await syncAllMeetAccounts(supabase)
+  const report = await syncAllSources(supabase)
 
   return NextResponse.json({ ok: true, report })
 }
