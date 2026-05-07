@@ -1,7 +1,16 @@
-import { IconButton } from '@/ui/IconButton'
+'use client'
 
-// In Phase 8 this opens the Integrations slide-in panel.
-// For now it's an inert placeholder.
+import { IconButton } from '@/ui/IconButton'
+import { useDrawer } from '../integrations/hooks/useDrawer'
+import { IntegrationsPanel } from '../integrations/components/IntegrationsPanel'
+
 export function SettingsButton() {
-  return <IconButton label="Settings">⚙</IconButton>
+  const { open, openDrawer, closeDrawer } = useDrawer()
+
+  return (
+    <>
+      <IconButton onClick={openDrawer} label="Settings">⚙</IconButton>
+      <IntegrationsPanel open={open} onClose={closeDrawer} />
+    </>
+  )
 }
