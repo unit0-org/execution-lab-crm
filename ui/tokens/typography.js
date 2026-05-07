@@ -1,6 +1,7 @@
 // Font family + size + weight tokens.
 export const font = {
   sans: 'var(--font-sans)',
+  serif: 'var(--font-serif)',
   mono: 'var(--font-mono)',
 }
 
@@ -14,8 +15,8 @@ export const fontSize = {
 }
 
 export const fontWeight = {
-  regular:  400,
-  medium:   500,
+  regular: 400,
+  medium: 500,
   semibold: 600,
 }
 
