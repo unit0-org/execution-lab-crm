@@ -9,6 +9,7 @@ export function ContactsTableHead({ contacts, selection }) {
         <TableHeader><SelectAllCheckbox contacts={contacts} selection={selection} /></TableHeader>
         <TableHeader>Name</TableHeader>
         <TableHeader>Email</TableHeader>
+        <TableHeader>Types</TableHeader>
         <TableHeader>Labels</TableHeader>
         <TableHeader>Source account</TableHeader>
       </TableRow>
