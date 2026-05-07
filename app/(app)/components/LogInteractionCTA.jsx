@@ -1,11 +1,16 @@
-import { LinkButton } from '@/ui/LinkButton'
+'use client'
 
-// In Phase 7 this becomes a Ctrl+K modal trigger; for now it's a
-// hard link to /log so the existing flow stays intact.
+import { Button } from '@/ui/Button'
+import { useCtrlK } from '../log-modal/hooks/useCtrlK'
+import { LogInteractionModal } from '../log-modal/components/LogInteractionModal'
+
 export function LogInteractionCTA() {
+  const { open, openModal, closeModal } = useCtrlK()
+
   return (
-    <LinkButton href="/log" tone="primary" size="sm">
-      + Log interaction
-    </LinkButton>
+    <>
+      <Button tone="primary" size="sm" onClick={openModal}>+ Log interaction</Button>
+      <LogInteractionModal open={open} onClose={closeModal} />
+    </>
   )
 }
