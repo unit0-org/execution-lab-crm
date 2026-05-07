@@ -1,7 +1,7 @@
-import { Prose } from '@/ui/Prose'
+import { BriefingCard } from '@/ui/BriefingCard'
 
 export function AIBriefing({ briefing }) {
   if (!briefing?.body) return null
 
-  return <Prose variant="briefing">{briefing.body}</Prose>
+  return <BriefingCard>{briefing.body}</BriefingCard>
 }

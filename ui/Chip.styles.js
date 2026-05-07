@@ -2,15 +2,21 @@ import { space } from './tokens/space'
 import { radius } from './tokens/radius'
 import { fontSize, fontWeight } from './tokens/typography'
 
-export const chipStyle = (color) => ({
+const tones = {
+  default: { background: 'var(--color-bg-subtle)', color: 'var(--color-text-secondary)', border: '1px solid var(--color-border-soft)' },
+  accent:  { background: 'var(--color-accent-tint)', color: 'var(--color-accent-deep)', border: '1px solid var(--color-accent-soft)' },
+}
+
+export const chipStyle = (color, tone = 'default') => ({
   display: 'inline-flex',
   alignItems: 'center',
   gap: space[2],
-  padding: `${space[1]} ${space[3]}`,
+  padding: `2px ${space[2]}`,
   borderRadius: radius.pill,
-  fontSize: fontSize.xs,
-  fontWeight: fontWeight.medium,
-  background: 'var(--color-bg-subtle)',
-  color: 'var(--color-text-primary)',
-  border: `1px solid ${color}33`, // 33 = ~20% alpha
+  fontSize: '11.5px',
+  fontWeight: fontWeight.regular,
+  whiteSpace: 'nowrap',
+  ...(color && tone === 'default'
+    ? { background: 'var(--color-bg-subtle)', color: 'var(--color-text-secondary)', border: `1px solid ${color}33` }
+    : tones[tone]),
 })

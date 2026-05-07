@@ -5,13 +5,15 @@ import { font, fontSize, lineHeight } from './tokens/typography'
 
 const variants = {
   briefing: {
-    padding: `${space[4]} ${space[5]}`,
-    borderRadius: radius.lg,
-    background: color.bg.surface,
+    padding: space[8],
+    borderRadius: radius.xl,
+    background: `linear-gradient(180deg, ${color.accent.tint} 0%, ${color.bg.surface} 100%)`,
     border: `1px solid ${color.border.default}`,
     fontFamily: font.serif,
-    fontSize: fontSize.lg,
-    lineHeight: lineHeight.relaxed,
+    fontSize: '22px',
+    lineHeight: 1.35,
+    letterSpacing: '-0.01em',
+    maxWidth: '64ch',
   },
   body: {
     fontFamily: font.sans,

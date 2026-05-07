@@ -1,13 +1,6 @@
-import { Dot } from '@/ui/Dot'
-import { Inline } from '@/ui/Inline'
+import { WarmthBar } from '@/ui/WarmthBar'
 
-const LEVELS = [1, 2, 3, 4, 5]
-
-// Read-only for now; Phase 4 follow-up adds the click-to-set action.
+// Renders the editorial 5-tick warmth bar from the design prototype.
 export function WarmthDots({ value }) {
-  return (
-    <Inline gap="sm">
-      {LEVELS.map((n) => <Dot key={n} size="sm" filled={value >= n} />)}
-    </Inline>
-  )
+  return <WarmthBar value={value} />
 }

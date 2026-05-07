@@ -3,10 +3,10 @@ import { color } from './tokens/color'
 import { radius } from './tokens/radius'
 
 const base = {
-  borderRadius: radius.md,
+  borderRadius: radius.lg,
   border: `1px solid ${color.border.default}`,
   background: color.bg.surface,
-  padding: space[4],
+  padding: space[5],
   display: 'flex',
   flexDirection: 'column',
   gap: space[2],
@@ -15,6 +15,7 @@ const base = {
 const tones = {
   default: {},
   paper:   { background: color.bg.surface, border: `1px solid ${color.border.default}` },
+  lift:    { transition: 'transform var(--motion-soft) var(--motion-ease), box-shadow var(--motion-soft) var(--motion-ease), border-color var(--motion-quick) var(--motion-ease)', cursor: 'pointer' },
 }
 
 const sizes = {

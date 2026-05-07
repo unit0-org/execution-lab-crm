@@ -7,7 +7,7 @@ const participantPreview = (parts = []) =>
 
 export function MeetingRow({ meeting }) {
   return (
-    <GridRow template="content-meta">
+    <GridRow template="content-meta" variant="card">
       <div>
         <Text>{meeting.title || 'Untitled meeting'}</Text>
         <Text tone="muted" size="sm">{participantPreview(meeting.meeting_participants)}</Text>

@@ -1,45 +1,53 @@
-/* Lab CRM design tokens — Claude Design system, dusty cobalt accent. */
+/* Lab CRM design tokens — Claude Design system, clay accent. */
 
 :root {
   color-scheme: light;
 
-  /* Type */
   --font-sans:  var(--font-inter), "Söhne", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-serif: var(--font-source-serif), "Tiempos Headline", Georgia, "Times New Roman", serif;
   --font-mono:  ui-monospace, "JetBrains Mono", Menlo, monospace;
 
-  /* Surface — warm cream paper */
   --color-bg-canvas:   #f7f5ee;
   --color-bg-surface:  #fbfaf5;
   --color-bg-subtle:   #efece2;
   --color-bg-sunken:   #e9e5d8;
   --color-bg-code:     #efece2;
 
-  /* Ink */
   --color-text-primary:    #1a1915;
   --color-text-secondary:  #3d3a32;
   --color-text-muted:      #6b675c;
   --color-text-subtle:     #98948a;
 
-  /* Hairlines */
   --color-border-default:  #e3dfd2;
   --color-border-soft:     #ece9dd;
   --color-border-strong:   #d4d2c8;
 
-  /* Accent — dusty cobalt */
-  --color-accent:        #4A6FA5;
-  --color-accent-hover:  #3D5E8E;
+  --color-accent:        #c96f3f;
+  --color-accent-hover:  #b85f33;
   --color-accent-text:   #FFFFFF;
-  --color-accent-soft:   #C4D1E5;
-  --color-accent-tint:   #E4EBF3;
+  --color-accent-soft:   #e8d5c4;
+  --color-accent-tint:   #f3e3d4;
+  --color-accent-deep:   #8b4a26;
 
-  /* Status — muted, paper-friendly */
+  --color-warm: #b08a4a;
+  --color-cool: #8a9a8d;
+  --color-cold: #a89e8f;
+
   --color-success-bg:    #DDE7DC;
   --color-success-text:  #4A6B43;
   --color-error-bg:      #F0DCD8;
   --color-error-text:    #8B3A36;
   --color-neutral-bg:    #efece2;
   --color-neutral-text:  #6b675c;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+
+  --motion-quick: 120ms;
+  --motion-soft:  240ms;
+  --motion-ease:  cubic-bezier(.2, .6, .2, 1);
 }
 
 html, body {
@@ -56,3 +64,20 @@ html, body {
 
 code, pre { font-family: var(--font-mono); }
 ::selection { background: var(--color-accent-tint); color: var(--color-text-primary); }
+
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes slideInRight { from { transform: translateX(100%) } to { transform: translateX(0) } }
+@keyframes slideDown { from { transform: translateY(-8px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@keyframes quietRise { from { transform: translateY(4px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@keyframes pulseClay { 0%,100% { opacity: .4; transform: scale(1) } 50% { opacity: 1; transform: scale(1.25) } }
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 6px) } to { opacity: 1; transform: translate(-50%, 0) } }
+
+::-webkit-scrollbar { width: 8px; height: 8px }
+::-webkit-scrollbar-thumb { background: var(--color-border-default); border-radius: 4px }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle) }
+::-webkit-scrollbar-track { background: transparent }
+
+a, button { transition: color var(--motion-quick) var(--motion-ease); }
+
+[data-card-lift]:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -14px rgba(26,25,21,0.18); border-color: var(--color-border-default) !important; }
+[data-row-hover]:hover { background: var(--color-bg-subtle); }

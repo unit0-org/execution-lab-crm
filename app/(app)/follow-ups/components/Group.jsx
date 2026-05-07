@@ -1,5 +1,6 @@
 import { Section } from '@/ui/Section'
 import { Heading } from '@/ui/Heading'
+import { Stack } from '@/ui/Stack'
 import { FollowUpRow } from './FollowUpRow'
 
 export function Group({ title, flags }) {
@@ -8,7 +9,7 @@ export function Group({ title, flags }) {
   return (
     <Section gutter="lg">
       <Heading level={2} gutter="md">{title} ({flags.length})</Heading>
-      {flags.map((f) => <FollowUpRow key={f.id} flag={f} />)}
+      <Stack gap="sm">{flags.map((f) => <FollowUpRow key={f.id} flag={f} />)}</Stack>
     </Section>
   )
 }
