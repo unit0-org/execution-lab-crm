@@ -9,7 +9,7 @@ export function FollowUpRow({ flag }) {
   const c = flag.contacts
 
   return (
-    <GridRow template="content-actions">
+    <GridRow template="content-actions" variant="card">
       <div>
         <AppLink href={`/contacts/${c?.id}`}>{c?.display_name || 'Unknown contact'}</AppLink>
         {flag.reason && <Text tone="muted" size="sm">{flag.reason}</Text>}
