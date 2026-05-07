@@ -1,6 +1,6 @@
 import { TableRow } from '@/ui/Table'
 import { TableCell } from '@/ui/TableCell'
-import { ContactName } from './ContactName'
+import { ContactNameLink } from './ContactNameLink'
 import { PrimaryEmail } from './PrimaryEmail'
 import { AccountEmail } from './AccountEmail'
 import { ContactLabels } from './ContactLabels'
@@ -11,7 +11,7 @@ export function ContactRow({ contact, accountEmail, allLabels, appliedLabelIds, 
   return (
     <TableRow>
       <TableCell><RowCheckbox contact={contact} selection={selection} /></TableCell>
-      <TableCell><ContactName name={contact.display_name} /></TableCell>
+      <TableCell><ContactNameLink contact={contact} /></TableCell>
       <TableCell><PrimaryEmail emails={contact.contact_emails} /></TableCell>
       <TableCell>
         <ContactTypes contactId={contact.id} allTypes={allTypes} appliedIds={appliedTypeIds} onMutate={onMutate} />
