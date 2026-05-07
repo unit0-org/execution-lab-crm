@@ -4,16 +4,20 @@ import { ContactName } from './ContactName'
 import { PrimaryEmail } from './PrimaryEmail'
 import { AccountEmail } from './AccountEmail'
 import { ContactLabels } from './ContactLabels'
+import { ContactTypes } from './ContactTypes'
 import { RowCheckbox } from './RowCheckbox'
 
-export function ContactRow({ contact, accountEmail, allLabels, appliedIds, onMutate, selection }) {
+export function ContactRow({ contact, accountEmail, allLabels, appliedLabelIds, allTypes, appliedTypeIds, onMutate, selection }) {
   return (
     <TableRow>
       <TableCell><RowCheckbox contact={contact} selection={selection} /></TableCell>
       <TableCell><ContactName name={contact.display_name} /></TableCell>
       <TableCell><PrimaryEmail emails={contact.contact_emails} /></TableCell>
       <TableCell>
-        <ContactLabels contactId={contact.id} allLabels={allLabels} appliedIds={appliedIds} onMutate={onMutate} />
+        <ContactTypes contactId={contact.id} allTypes={allTypes} appliedIds={appliedTypeIds} onMutate={onMutate} />
+      </TableCell>
+      <TableCell>
+        <ContactLabels contactId={contact.id} allLabels={allLabels} appliedIds={appliedLabelIds} onMutate={onMutate} />
       </TableCell>
       <TableCell tone="muted"><AccountEmail email={accountEmail} /></TableCell>
     </TableRow>
