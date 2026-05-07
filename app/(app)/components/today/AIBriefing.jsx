@@ -1,7 +1,7 @@
-import { briefingStyle } from './AIBriefing.styles'
+import { Prose } from '@/ui/Prose'
 
 export function AIBriefing({ briefing }) {
   if (!briefing?.body) return null
 
-  return <p style={briefingStyle}>{briefing.body}</p>
+  return <Prose variant="briefing">{briefing.body}</Prose>
 }

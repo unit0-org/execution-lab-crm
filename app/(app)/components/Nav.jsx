@@ -1,5 +1,5 @@
-import { NavLink } from './NavLink'
-import { navStyle } from './Nav.styles'
+import { NavList } from '@/ui/NavList'
+import { NavItem } from '@/ui/NavItem'
 
 const ITEMS = [
   { href: '/',              label: 'Today' },
@@ -11,10 +11,8 @@ const ITEMS = [
 
 export function Nav() {
   return (
-    <nav style={navStyle}>
-      {ITEMS.map((item) => (
-        <NavLink key={item.href} href={item.href}>{item.label}</NavLink>
-      ))}
-    </nav>
+    <NavList>
+      {ITEMS.map((i) => <NavItem key={i.href} href={i.href}>{i.label}</NavItem>)}
+    </NavList>
   )
 }

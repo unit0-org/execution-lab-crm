@@ -1,6 +1,6 @@
-import { space } from '@/ui/tokens/space'
-import { color } from '@/ui/tokens/color'
-import { font, fontSize, fontWeight } from '@/ui/tokens/typography'
+import { space } from './tokens/space'
+import { color } from './tokens/color'
+import { font, fontSize, fontWeight } from './tokens/typography'
 
 export const brandStyle = {
   display: 'flex',

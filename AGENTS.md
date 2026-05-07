@@ -14,7 +14,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
    component. Short-circuit `&&` is fine, but prefer named components.
 4. **Functionality, structure, and style live in separate files.**
    `Component.jsx` for markup, `Component.styles.js` for styles,
-   `useThing.js` for logic/data.
+   `useThing.js` for logic/data. **Visual styling lives only inside
+   `ui/`.** App-level components compose `ui/` primitives — they
+   should not own `.styles.js` files unless absolutely unavoidable.
+   If you'd reach for one, add the missing primitive to `ui/`
+   instead.
 5. **No custom styling at the call site.** Components must accept props
    (`tone`, `align`, `size`). Bad: `<td style={{ ...td, color: '#666' }}>`.
    Good: `<TableCell tone="muted">`.

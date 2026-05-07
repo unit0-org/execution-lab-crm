@@ -1,19 +1,19 @@
-import { sidebarStyle } from './Sidebar.styles'
-import { Brand } from './Brand'
+import { SidebarShell } from '@/ui/SidebarShell'
+import { SidebarGroup } from '@/ui/SidebarGroup'
+import { Brand } from '@/ui/Brand'
 import { Nav } from './Nav'
-import { SidebarSection } from './SidebarSection'
 import { AccountChips } from './AccountChips'
 import { SignedInFooter } from './SignedInFooter'
 
 export function Sidebar({ userEmail }) {
   return (
-    <aside style={sidebarStyle}>
+    <SidebarShell>
       <Brand />
       <Nav />
-      <SidebarSection label="Connected accounts">
+      <SidebarGroup label="Connected accounts">
         <AccountChips />
-      </SidebarSection>
+      </SidebarGroup>
       <SignedInFooter email={userEmail} />
-    </aside>
+    </SidebarShell>
   )
 }

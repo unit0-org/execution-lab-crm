@@ -1,12 +1,12 @@
-import { topBarStyle } from './TopBar.styles'
+import { PageBar } from '@/ui/PageBar'
 import { LogInteractionCTA } from './LogInteractionCTA'
 import { SettingsButton } from './SettingsButton'
 
 export function TopBar() {
   return (
-    <header style={topBarStyle}>
+    <PageBar>
       <LogInteractionCTA />
       <SettingsButton />
-    </header>
+    </PageBar>
   )
 }

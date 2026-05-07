@@ -1,7 +1,7 @@
-import { space } from '@/ui/tokens/space'
-import { color } from '@/ui/tokens/color'
+import { space } from './tokens/space'
+import { color } from './tokens/color'
 
-export const topBarStyle = {
+export const pageBarStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
