@@ -1,16 +1,25 @@
 'use client'
 
-import { InlineForm } from '@/ui/InlineForm'
+import { useTransition } from 'react'
 import { IconButton } from '@/ui/IconButton'
+import { Spinner } from '@/ui/Spinner'
+import { useToast } from '@/ui/Toaster'
 import { syncAccount } from '../contacts/actions'
-import { useTransitionAction } from '../contacts/hooks/useTransitionAction'
+import { runSync } from './runSync'
 
 export function SidebarSyncButton({ accountId, onMutate }) {
-  const onSync = useTransitionAction(syncAccount, onMutate)
+  const [pending, start] = useTransition()
+  const toast = useToast()
+
+  const onClick = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    start(() => runSync(syncAccount, accountId, toast, onMutate))
+  }
+
   return (
-    <InlineForm action={onSync}>
-      <input type="hidden" name="account_id" value={accountId} />
-      <IconButton type="submit" label="Sync this account">↻</IconButton>
-    </InlineForm>
+    <IconButton onClick={onClick} disabled={pending} label="Sync this account">
+      {pending ? <Spinner size={12} /> : '↻'}
+    </IconButton>
   )
 }

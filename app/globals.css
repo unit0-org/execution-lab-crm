@@ -74,6 +74,7 @@ code, pre { font-family: var(--font-mono); }
 @keyframes quietRise { from { transform: translateY(4px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
 @keyframes pulseClay { 0%,100% { opacity: .4; transform: scale(1) } 50% { opacity: 1; transform: scale(1.25) } }
 @keyframes skeletonPulse { 0%,100% { opacity: .6 } 50% { opacity: 1 } }
+@keyframes spin { to { transform: rotate(360deg) } }
 @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 6px) } to { opacity: 1; transform: translate(-50%, 0) } }
 
 ::-webkit-scrollbar { width: 8px; height: 8px }
