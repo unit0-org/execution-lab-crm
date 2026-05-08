@@ -88,14 +88,17 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
 [data-card-lift]:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -14px rgba(26,25,21,0.18); border-color: var(--color-border-default) !important; }
 [data-row-hover]:hover { background: var(--color-bg-subtle); }
 
-[data-nav-item]:hover:not([data-active]) { background: var(--color-bg-subtle); color: var(--color-text-primary); }
-[data-chip-interactive]:hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
+[data-nav-item]:not([data-active]) { color: var(--color-text-secondary); }
+[data-nav-item]:not([data-active]):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
+[data-nav-item][data-active] [data-nav-icon] { color: var(--color-accent); }
+[data-chip-interactive]:hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
 
-button[data-tone="default"]:not(:disabled):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
-button[data-tone="primary"]:not(:disabled):hover { background: var(--color-text-secondary); border-color: var(--color-text-secondary); }
-button[data-tone="accent"]:not(:disabled):hover  { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
-button[data-tone="ghost"]:not(:disabled):hover   { background: var(--color-bg-subtle); color: var(--color-text-primary); }
-button[data-tone="danger"]:not(:disabled):hover  { background: var(--color-error-bg); }
+button[data-tone="default"]:not(:disabled):hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
+button[data-tone="primary"]:not(:disabled):hover { background: var(--color-text-secondary) !important; border-color: var(--color-text-secondary) !important; }
+button[data-tone="accent"]:not(:disabled):hover  { background: var(--color-accent-hover) !important; border-color: var(--color-accent-hover) !important; }
+button[data-tone="ghost"]:not(:disabled):hover   { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
+button[data-tone="danger"]:not(:disabled):hover  { background: var(--color-error-bg) !important; }
+button[data-tone="danger"]:not(:disabled):hover  { color: var(--color-error-text) !important; }
 
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 0; box-shadow: 0 0 0 3px var(--color-accent-tint); border-color: var(--color-accent) !important;
