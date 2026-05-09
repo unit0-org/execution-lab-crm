@@ -3,7 +3,7 @@
   "crons": [
     {
       "path": "/api/cron/sync-google",
-      "schedule": "0 7 * * *"
+      "schedule": "0 * * * *"
     }
   ]
 }
