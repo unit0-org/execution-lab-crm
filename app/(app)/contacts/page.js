@@ -4,7 +4,7 @@ import { ContactsNotices } from './components/ContactsNotices'
 import { ContactsBoard } from './components/ContactsBoard'
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 60
+export const maxDuration = 300
 
 export default async function ContactsPage({ searchParams }) {
   const params = await searchParams
