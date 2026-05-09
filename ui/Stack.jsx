@@ -1,6 +1,6 @@
 import { space } from './tokens/space'
 
-const GAPS = { sm: space[2], md: space[4], lg: space[8] }
+const GAPS = { xs: space[1], sm: space[2], md: space[4], lg: space[8] }
 
 export function Stack({ gap = 'md', children }) {
   return (
