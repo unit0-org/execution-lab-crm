@@ -16,7 +16,10 @@
 -- ---------------------------------------------------------------
 -- 1. Drop manual_entries and rebuild timeline_entries view.
 -- ---------------------------------------------------------------
-DROP VIEW IF EXISTS timeline_entries;
+-- contact_status depends on timeline_entries, so drop it CASCADE.
+-- It is recreated unchanged below once the new timeline_entries exists.
+DROP VIEW IF EXISTS contact_status CASCADE;
+DROP VIEW IF EXISTS timeline_entries CASCADE;
 DROP TABLE IF EXISTS manual_entries;
 
 CREATE OR REPLACE VIEW timeline_entries AS
@@ -75,15 +78,40 @@ SELECT
 FROM follow_up_flags ff
 WHERE ff.resolved_at IS NOT NULL;
 
+-- Recreate contact_status verbatim (it depended on timeline_entries).
+CREATE OR REPLACE VIEW contact_status AS
+SELECT c.id AS contact_id,
+  CASE
+    WHEN EXISTS (
+      SELECT 1 FROM stripe_customers sc
+      JOIN purchases p ON p.stripe_customer_id = sc.id
+      WHERE sc.contact_id = c.id
+    ) THEN 'customer'
+    WHEN EXISTS (
+      SELECT 1 FROM timeline_entries te
+      WHERE te.contact_id = c.id
+        AND te.entry_type = 'meeting_call'::entry_type
+        AND te.occurred_at > NOW() - INTERVAL '60 days'
+    ) THEN 'active'
+    WHEN EXISTS (
+      SELECT 1 FROM luma_registrations lr WHERE lr.contact_id = c.id
+      UNION ALL
+      SELECT 1 FROM luma_page_followers lpf WHERE lpf.contact_id = c.id
+    ) THEN 'engaged'
+    WHEN EXISTS (SELECT 1 FROM timeline_entries te WHERE te.contact_id = c.id) THEN 'known'
+    ELSE 'cold'
+  END AS status
+FROM contacts c;
+
 -- ---------------------------------------------------------------
 -- 2. Extend meetings — every column the new flow needs.
 -- ---------------------------------------------------------------
 CREATE TYPE meeting_doc_status   AS ENUM ('pending', 'documented', 'dismissed', 'snoozed', 'missed');
 CREATE TYPE interaction_origin   AS ENUM ('calendar', 'meet', 'manual');
 
+-- meetings.summary already exists from migration 004 (Meet sync).
 ALTER TABLE meetings
   ADD COLUMN location                     TEXT,
-  ADD COLUMN summary                      TEXT,
   ADD COLUMN organizer_email              TEXT,
   ADD COLUMN owner_account_id             UUID REFERENCES google_accounts(id) ON DELETE SET NULL,
   ADD COLUMN is_recurring                 BOOLEAN NOT NULL DEFAULT FALSE,
