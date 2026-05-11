@@ -8,10 +8,11 @@ import { confirmAndRoute } from '@/lib/cards/confirmAndRoute'
 const guarded = (fn) => async (formData) => {
   const supabase = await authedClient()
   if (!supabase) return { ok: false, error: 'not signed in' }
-  const result = await fn(supabase, formData)
+  try { await fn(supabase, formData) }
+  catch (e) { return { ok: false, error: e.message } }
   revalidatePath('/')
 
-  return result || { ok: true }
+  return { ok: true }
 }
 
 export const confirmCardAction  = guarded((s, fd) => confirmAndRoute(s, fd.get('card_id')))
