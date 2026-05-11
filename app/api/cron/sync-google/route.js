@@ -6,7 +6,9 @@ import { runDailyBriefing } from '@/lib/briefings/runDailyBriefing'
 import { createDormantCards } from '@/lib/dormant/createDormantCards'
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 60
+// Vercel's platform default is 300s; the previous 60s was too tight
+// for accounts with thousands of calendar events on a cold cursor.
+export const maxDuration = 300
 
 export async function GET(request) {
   if (!isAuthorizedCron(request)) {
