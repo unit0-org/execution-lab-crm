@@ -9,7 +9,8 @@ import { runExtraction } from '@/lib/extraction/runExtraction'
 const guarded = (fn) => async (formData) => {
   const supabase = await authedClient()
   if (!supabase) return { ok: false, error: 'not signed in' }
-  await fn(supabase, formData)
+  try { await fn(supabase, formData) }
+  catch (e) { return { ok: false, error: e.message } }
   revalidatePath('/')
 
   return { ok: true }

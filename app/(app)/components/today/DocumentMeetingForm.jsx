@@ -1,29 +1,30 @@
 import { Stack } from '@/ui/Stack'
 import { Inline } from '@/ui/Inline'
-import { Form } from '@/ui/Form'
-import { InlineForm } from '@/ui/InlineForm'
+import { FeedbackForm } from '@/ui/FeedbackForm'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { Textarea } from '@/ui/Textarea'
-import { Button } from '@/ui/Button'
 import { SnoozeMenu } from './SnoozeMenu'
 import { submitMeetingNotes, dismissMeetingDocumentation, snoozeMeetingDocumentation } from '../../actions/documentMeeting'
 
+const HiddenId = ({ value }) => <input type="hidden" name="meeting_id" value={value} />
+
 export function DocumentMeetingForm({ meetingId }) {
   return (
-    <Form action={submitMeetingNotes}>
-      <input type="hidden" name="meeting_id" value={meetingId} />
-      <Stack gap="sm">
-        <Textarea name="notes" rows={4} required />
-        <Inline gap="md" justify="space-between">
-          <Inline gap="md">
-            <Button type="submit" tone="primary" size="sm">Save</Button>
-            <InlineForm action={dismissMeetingDocumentation}>
-              <input type="hidden" name="meeting_id" value={meetingId} />
-              <Button type="submit" size="sm">Skip</Button>
-            </InlineForm>
-          </Inline>
-          <SnoozeMenu action={snoozeMeetingDocumentation} idValue={meetingId} />
-        </Inline>
-      </Stack>
-    </Form>
+    <Stack gap="sm">
+      <FeedbackForm action={submitMeetingNotes} success="Notes saved.">
+        <Stack gap="sm">
+          <HiddenId value={meetingId} />
+          <Textarea name="notes" rows={4} required />
+          <SubmitButton tone="primary" size="sm">Save</SubmitButton>
+        </Stack>
+      </FeedbackForm>
+      <Inline gap="md" justify="space-between">
+        <FeedbackForm action={dismissMeetingDocumentation} success="Skipped." display="inline">
+          <HiddenId value={meetingId} />
+          <SubmitButton size="sm">Skip</SubmitButton>
+        </FeedbackForm>
+        <SnoozeMenu action={snoozeMeetingDocumentation} idValue={meetingId} />
+      </Inline>
+    </Stack>
   )
 }

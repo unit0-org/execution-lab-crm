@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { TextButton } from '@/ui/TextButton'
 import { Textarea } from '@/ui/Textarea'
 import { Stack } from '@/ui/Stack'
-import { Button } from '@/ui/Button'
+import { SubmitButton } from '@/ui/SubmitButton'
+import { FeedbackForm } from '@/ui/FeedbackForm'
 import { editCardAction } from '../../../actions/cards'
 
 const editField = (payload) => payload.text || payload.body || payload.reason || payload.name || ''
@@ -15,14 +16,14 @@ export function CardEditButton({ card, fieldName = 'text' }) {
   if (!open) return <TextButton type="button" onClick={() => setOpen(true)}>Edit</TextButton>
 
   return (
-    <form action={async (fd) => { await editCardAction(fd); setOpen(false) }}>
+    <FeedbackForm action={editCardAction} success="Edited.">
       <input type="hidden" name="card_id" value={card.id} />
       <input type="hidden" name="edited_payload"
              value={JSON.stringify({ ...card.payload, [fieldName]: value })} />
       <Stack gap="sm">
         <Textarea name={fieldName} defaultValue={value} rows={3} />
-        <Button type="submit" size="sm">Save edit</Button>
+        <SubmitButton size="sm">Save edit</SubmitButton>
       </Stack>
-    </form>
+    </FeedbackForm>
   )
 }
