@@ -1,10 +1,10 @@
 import { Timeline } from './Timeline'
 import { NotesPanel } from './NotesPanel'
 
-export function PersonLeft({ contactId, timeline, notes }) {
+export function PersonLeft({ contactId, timeline, linkable, notes }) {
   return (
     <>
-      <Timeline entries={timeline} />
+      <Timeline contactId={contactId} entries={timeline} linkable={linkable} />
       <NotesPanel contactId={contactId} notes={notes} />
     </>
   )
