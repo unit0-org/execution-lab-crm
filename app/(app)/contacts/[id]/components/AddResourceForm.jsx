@@ -1,7 +1,7 @@
 import { Form } from '@/ui/Form'
 import { Field } from '@/ui/Field'
 import { Input } from '@/ui/Input'
-import { Button } from '@/ui/Button'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { addResource } from '../actions'
 
 export function AddResourceForm({ contactId }) {
@@ -17,7 +17,7 @@ export function AddResourceForm({ contactId }) {
       <Field htmlFor="note" label="Note (optional)">
         <Input id="note" name="note" />
       </Field>
-      <Button type="submit" tone="primary" size="sm">Add resource</Button>
+      <SubmitButton tone="primary" size="sm">Add resource</SubmitButton>
     </Form>
   )
 }

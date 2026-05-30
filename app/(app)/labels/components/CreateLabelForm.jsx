@@ -3,7 +3,7 @@
 import { Form } from '@/ui/Form'
 import { Field } from '@/ui/Field'
 import { Input } from '@/ui/Input'
-import { Button } from '@/ui/Button'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { useCreateLabel } from '../hooks/useCreateLabel'
 import { ColorPicker } from './ColorPicker'
 import { CreateLabelStatus } from './CreateLabelStatus'
@@ -18,7 +18,7 @@ export function CreateLabelForm() {
           <Input id="name" name="name" required />
         </Field>
         <ColorPicker />
-        <Button type="submit" tone="primary">Create label</Button>
+        <SubmitButton tone="primary">Create label</SubmitButton>
       </Form>
     </>
   )

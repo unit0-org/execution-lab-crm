@@ -1,36 +1,22 @@
 'use client'
 
-import { useTransition } from 'react'
-import { Button } from '@/ui/Button'
 import { Inline } from '@/ui/Inline'
-import { Spinner } from '@/ui/Spinner'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { ConfirmInlineForm } from '@/ui/ConfirmInlineForm'
-import { useToast } from '@/ui/Toaster'
-import { syncAccount, disconnectAccount } from '../actions'
-import { useTransitionAction } from '../hooks/useTransitionAction'
+import { disconnectAccount } from '../actions'
 import { DISCONNECT_CONFIRM } from './disconnectMessage'
-import { kickoffSync } from '../../components/kickoffSync'
-import { useSyncProgress } from '../hooks/useSyncProgress'
+import { AccountSyncButton } from './AccountSyncButton'
 
 const HiddenAccountId = ({ value }) => <input type="hidden" name="account_id" value={value} />
+const disconnector = (after) => async (fd) => { await disconnectAccount(fd); after?.() }
 
 export function AccountActions({ accountId, onMutate }) {
-  const [pending, start] = useTransition()
-  const toast = useToast()
-  const progress = useSyncProgress(accountId)
-  const running = progress?.sync_status === 'running'
-  const onDisconnect = useTransitionAction(disconnectAccount, onMutate)
-  const onSync = () => start(() => kickoffSync(syncAccount, accountId, toast))
-  const busy = pending || running
-
   return (
     <Inline gap="sm" justify="flex-end">
-      <Button type="button" size="sm" onClick={onSync} disabled={busy}>
-        {busy ? <Spinner size={12} /> : 'Sync'}
-      </Button>
-      <ConfirmInlineForm message={DISCONNECT_CONFIRM} action={onDisconnect}>
+      <AccountSyncButton accountId={accountId} />
+      <ConfirmInlineForm message={DISCONNECT_CONFIRM} action={disconnector(onMutate)}>
         <HiddenAccountId value={accountId} />
-        <Button type="submit" size="sm" tone="danger">Disconnect</Button>
+        <SubmitButton size="sm" tone="danger">Disconnect</SubmitButton>
       </ConfirmInlineForm>
     </Inline>
   )

@@ -3,6 +3,7 @@
 import { useTransition } from 'react'
 import { InlineForm } from '@/ui/InlineForm'
 import { Select } from '@/ui/Select'
+import { Spinner } from '@/ui/Spinner'
 import { applyLabel } from '../actions'
 import { AddLabelOption } from './AddLabelOption'
 
@@ -12,8 +13,9 @@ const submitOnChange = (fn, after, start) => (e) => {
 }
 
 export function AddLabelPicker({ contactId, available, onMutate }) {
-  const [, start] = useTransition()
+  const [pending, start] = useTransition()
   if (!available.length) return null
+  if (pending) return <Spinner size={14} />
   return (
     <InlineForm action={applyLabel}>
       <input type="hidden" name="contact_id" value={contactId} />

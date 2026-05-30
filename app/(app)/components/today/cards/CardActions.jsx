@@ -1,5 +1,5 @@
 import { Inline } from '@/ui/Inline'
-import { Button } from '@/ui/Button'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { InlineForm } from '@/ui/InlineForm'
 import { SnoozeMenu } from '../SnoozeMenu'
 import { confirmCardAction, dismissCardAction, snoozeCardAction } from '../../../actions/cards'
@@ -12,11 +12,11 @@ export function CardActions({ cardId, confirmLabel = 'Yes' }) {
       <Inline gap="sm">
         <InlineForm action={confirmCardAction}>
           <HiddenId value={cardId} />
-          <Button type="submit" tone="primary" size="sm">{confirmLabel}</Button>
+          <SubmitButton tone="primary" size="sm">{confirmLabel}</SubmitButton>
         </InlineForm>
         <InlineForm action={dismissCardAction}>
           <HiddenId value={cardId} />
-          <Button type="submit" size="sm">No</Button>
+          <SubmitButton size="sm">No</SubmitButton>
         </InlineForm>
       </Inline>
       <SnoozeMenu action={snoozeCardAction} idValue={cardId} idName="card_id" />

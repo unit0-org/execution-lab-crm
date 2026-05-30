@@ -3,6 +3,7 @@
 import { useTransition } from 'react'
 import { InlineForm } from '@/ui/InlineForm'
 import { Select } from '@/ui/Select'
+import { Spinner } from '@/ui/Spinner'
 import { bulkApplyLabel } from '../actions'
 import { HiddenContactIds } from './HiddenContactIds'
 import { AddLabelOption } from './AddLabelOption'
@@ -13,7 +14,8 @@ const onChangeSubmit = (after, start) => (e) => {
 }
 
 export function BulkLabelPicker({ selectedIds, labels, onApplied }) {
-  const [, start] = useTransition()
+  const [pending, start] = useTransition()
+  if (pending) return <Spinner size={14} />
   return (
     <InlineForm action={bulkApplyLabel}>
       <HiddenContactIds ids={selectedIds} />

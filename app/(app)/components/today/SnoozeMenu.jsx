@@ -1,4 +1,4 @@
-import { TextButton } from '@/ui/TextButton'
+import { SubmitTextButton } from '@/ui/SubmitTextButton'
 import { InlineForm } from '@/ui/InlineForm'
 import { Inline } from '@/ui/Inline'
 import { Text } from '@/ui/Text'
@@ -8,7 +8,7 @@ const PresetButton = ({ preset, action, idValue, idName }) => (
   <InlineForm action={action}>
     <input type="hidden" name={idName} value={idValue} />
     <input type="hidden" name="until" value={preset.value()} />
-    <TextButton>{preset.label}</TextButton>
+    <SubmitTextButton>{preset.label}</SubmitTextButton>
   </InlineForm>
 )
 

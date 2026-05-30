@@ -1,7 +1,7 @@
 import { Form } from '@/ui/Form'
 import { Field } from '@/ui/Field'
 import { Textarea } from '@/ui/Textarea'
-import { Button } from '@/ui/Button'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { Inline } from '@/ui/Inline'
 import { addNote } from '../actions'
 
@@ -14,7 +14,7 @@ export function AddNoteForm({ contactId }) {
       </Field>
       <Inline gap="md" align="center">
         <label><input type="checkbox" name="pinned" /> Pin</label>
-        <Button type="submit" tone="primary" size="sm">Add note</Button>
+        <SubmitButton tone="primary" size="sm">Add note</SubmitButton>
       </Inline>
     </Form>
   )
