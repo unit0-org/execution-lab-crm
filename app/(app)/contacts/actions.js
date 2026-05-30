@@ -2,6 +2,7 @@
 
 import { authedClient } from '@/lib/auth/authedClient'
 import { runSyncAccountAction } from '@/lib/contacts/actions/syncAccountAction'
+import { runAutoSyncStale } from '@/lib/contacts/actions/autoSyncStaleAction'
 import { runDisconnectAccountAction } from '@/lib/contacts/actions/disconnectAccountAction'
 import { runApplyLabel, runRemoveLabel } from '@/lib/contacts/actions/labelActions'
 import { runBulkApplyLabel } from '@/lib/contacts/actions/bulkLabelActions'
@@ -14,6 +15,7 @@ const guarded = (fn) => async (formData) => {
 }
 
 export const syncAccount = guarded((s, fd) => runSyncAccountAction(s, fd.get('account_id')))
+export const autoSync = guarded((s) => runAutoSyncStale(s))
 export const disconnectAccount = guarded((s, fd) => runDisconnectAccountAction(s, fd.get('account_id')))
 export const applyLabel = guarded((s, fd) => runApplyLabel(s, fd))
 export const removeContactLabel = guarded((s, fd) => runRemoveLabel(s, fd))
