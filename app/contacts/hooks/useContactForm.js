@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState } from 'react'
-import { createContactAction } from '../actions'
+import { createContactAction } from '../actions/createContact'
 
 const adapt = (prev, formData) => createContactAction(formData)
 

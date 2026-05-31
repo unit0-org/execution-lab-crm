@@ -6,7 +6,7 @@ import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { Inline } from '@/ui/layout/Inline'
 import { Text } from '@/ui/atoms/Text'
 import { useConfirm } from '../hooks/useConfirm'
-import { deleteContactAction } from '../actions'
+import { deleteContactAction } from '../actions/deleteContact'
 
 export function DeleteContact({ contactId }) {
   const { confirming, ask, cancel } = useConfirm()

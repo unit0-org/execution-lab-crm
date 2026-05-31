@@ -17,8 +17,10 @@ them (so adding one never renumbers the rest).
 - **Atomic design.** Build UI from atoms → molecules → organisms.
 - **All UI components live in `ui/`**, in a **2-level-max** folder structure,
   e.g. `ui/atoms/Button.jsx`.
-- **Module layout for app code:** `[module]/{pages,components,hooks}/File.jsx`.
+- **Module layout for app code:** `[module]/{pages,components,hooks,actions}/`.
   Anything that doesn't fit this structure — **ask first.**
+- **One server action per file** in `[module]/actions/` (e.g.
+  `actions/createContact.js`). No shared `actions.js` barrel.
 - **Separate structure, style, and behavior** into different files:
   `Thing.jsx` (markup), `Thing.styles.js` (style), `useThing.js` (behavior).
 - **Encapsulate look & feel inside `ui/`.** UI components receive **props**

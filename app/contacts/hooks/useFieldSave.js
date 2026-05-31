@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState, useEffect } from 'react'
-import { updateContactAction } from '../actions'
+import { updateContactAction } from '../actions/updateContact'
 
 const run = (prev, formData) => updateContactAction(formData)
 

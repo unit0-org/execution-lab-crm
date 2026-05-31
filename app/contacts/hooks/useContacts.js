@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { listContactsAction } from '../data'
+import { listContactsAction } from '../actions/listContacts'
 
 export function useContacts() {
   const [contacts, setContacts] = useState([])
