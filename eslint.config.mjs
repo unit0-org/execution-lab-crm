@@ -29,6 +29,12 @@ const promiseSelectors = [
 
 const common = [...jsx(NO_JSX), memo("Callback"), memo("Memo")];
 
+const blankBefore = {
+  blankLine: "always",
+  prev: "*",
+  next: ["if", "for", "while", "switch", "return", "try"],
+};
+
 const eslintConfig = defineConfig([
   ...nextVitals,
   globalIgnores([
@@ -40,22 +46,24 @@ const eslintConfig = defineConfig([
       "max-len": ["error", { code: 80, tabWidth: 2, ignoreUrls: true }],
       "max-lines": ["error", { max: 30 }],
       "comma-dangle": ["error", "never"],
-      "padding-line-between-statements": [
-        "error",
-        { blankLine: "always", prev: "*", next: "return" },
-      ],
+      "padding-line-between-statements": ["error", blankBefore],
       "no-restricted-syntax": ["error", ...common],
     },
   },
   {
-    // Hooks: the function itself is synchronous (no async/await); a 3rd-party
-    // promise may be consumed inside useEffect to set React state.
+    // Hooks: function stays synchronous (no async/await); a 3rd-party promise
+    // may be consumed inside useEffect to set React state.
     files: ["app/**/hooks/**/*.{js,jsx}"],
     rules: { "no-restricted-syntax": ["error", ...common, ...asyncSelectors] },
   },
   {
-    // Components & ui primitives: fully synchronous — no Promises at all.
-    files: ["ui/**/*.{js,jsx}", "app/**/components/**/*.{js,jsx}"],
+    // Components, ui primitives, and pages: fully synchronous — no Promises.
+    files: [
+      "ui/**/*.{js,jsx}",
+      "app/**/components/**/*.{js,jsx}",
+      "app/**/page.js",
+      "app/**/layout.js",
+    ],
     rules: {
       "no-restricted-syntax": [
         "error", ...common, ...asyncSelectors, ...promiseSelectors,

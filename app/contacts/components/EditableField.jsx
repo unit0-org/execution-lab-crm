@@ -1,24 +1,26 @@
 'use client'
 
-import { Form } from '@/ui/molecules/Form'
-import { TextField } from '@/ui/atoms/TextField'
-import { Stack } from '@/ui/layout/Stack'
-import { useDraft } from '../hooks/useDraft'
-import { SaveSlot } from './SaveSlot'
-import { updateContactAction } from '../actions'
+import { useState } from 'react'
+import { FieldDisplay } from './FieldDisplay'
+import { FieldEdit } from './FieldEdit'
 
 export function EditableField({ contactId, field, label, value }) {
-  const { draft, dirty, change } = useDraft(value)
+  const [editing, setEditing] = useState(false)
+  const [current, setCurrent] = useState(value ?? '')
+
+  const onSaved = (saved) => {
+    setCurrent(saved)
+    setEditing(false)
+  }
+
+  if (!editing) {
+    const edit = () => setEditing(true)
+
+    return <FieldDisplay label={label} value={current} onEdit={edit} />
+  }
 
   return (
-    <Form action={updateContactAction}>
-      <input type="hidden" name="id" value={contactId} />
-      <input type="hidden" name="field" value={field} />
-      <Stack gap="sm">
-        <TextField label={label} name="value" value={draft}
-          onChange={change} />
-        <SaveSlot dirty={dirty} />
-      </Stack>
-    </Form>
+    <FieldEdit contactId={contactId} field={field} label={label}
+      value={current} onSaved={onSaved} />
   )
 }

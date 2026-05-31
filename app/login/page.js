@@ -1,29 +1,7 @@
-import { Page } from '@/ui/layout/Page'
-import { Heading } from '@/ui/atoms/Heading'
-import { Text } from '@/ui/atoms/Text'
-import { Stack } from '@/ui/layout/Stack'
-import { SignInForm } from './components/SignInForm'
-import { LoginError } from './components/LoginError'
+import { LoginView } from './components/LoginView'
 
 export const dynamic = 'force-dynamic'
 
-function View({ params }) {
-  const next = params?.next || '/'
-
-  return (
-    <Page>
-      <Heading gutter="sm">Execution Lab CRM</Heading>
-      <Text tone="muted" gutter="lg">Sign in to continue.</Text>
-      <Stack gap="md">
-        <SignInForm next={next} />
-        <LoginError message={params?.error} />
-      </Stack>
-    </Page>
-  )
-}
-
-export default async function LoginPage({ searchParams }) {
-  const params = await searchParams
-
-  return <View params={params} />
+export default function LoginPage() {
+  return <LoginView />
 }

@@ -33,22 +33,22 @@ them (so adding one never renumbers the rest).
 - **All behavior lives in hooks.** Components stay presentational. Hooks are
   synchronous: they return state immediately and update via `useState` +
   `useEffect`.
-- **Our code is synchronous — no Promises.** Components, hooks, and plain
-  functions never use `async`/`await`/`.then`/`new Promise`. **[lint]**
-  Encapsulate async 3rd-party libraries: on the **client**, in a hook
-  (`useState` + `useEffect`) that consumes the promise and returns plain
-  state, so callers stay sync. The **Next.js server boundary** — server
-  actions, route handlers, server components, middleware — is async by
-  framework requirement; it's the only async place. Keep it thin and push
-  logic into sync helpers.
+- **Components and pages are synchronous — no Promises.** They never use
+  `async`/`await`/`.then`/`new Promise`, and **never call an async function
+  directly** — that's the smell. **[lint]** Route data through a **hook**: the
+  hook stays sync (no `async`/`await`) but may `.then()` a promise inside
+  `useEffect` to set state. The async boundary is **server actions, route
+  handlers, middleware, and the `lib/` data layer they call** — never a
+  component or page body. Pages are thin sync shells; client views fetch via
+  hooks.
 - **No conditionals inside JSX** — no ternaries, no `&&`. Use an early return
   or a named component. **[lint]**
 - **Avoid `useCallback`/`useMemo`** unless absolutely necessary. **[lint]**
 - **Avoid clever/"weird" JS.** Clean Code: boring, obvious, readable wins.
 - **Files ≤ 30 lines, lines ≤ 80 chars.** **[lint]** Exceptions: lockfiles,
   generated files, `*.md`, config. Compose aggressively to stay under. Also
-  **[lint]**: a blank line before any `return` that follows other code; no
-  trailing comma on the last array/object element.
+  **[lint]**: a blank line before any `if`/`for`/`while`/`switch`/`return`/`try`
+  that follows other code; no trailing comma on the last array/object element.
 - **Every action gives feedback:** an on-screen mutation (the UI changes) or,
   when there's nothing to show, a toast. Never a dead click.
 - **Responsive, always.** Every screen looks and works perfectly on mobile and
@@ -64,6 +64,18 @@ them (so adding one never renumbers the rest).
 - **Naming:** `snake_case`, **singular** table names (`contact`,
   `contact_email`); `snake_case` columns; **UUID v4** primary keys.
 - **Show the ERD on every structural change** before/with the change.
+
+## Database — Sequelize (ORM)
+
+- **Sequelize is the only way to touch application tables.** No raw SQL in app
+  code; `supabase-js` is for Auth only, never for data.
+- **Models live in `lib/db/models/`** (one file per model); associations are
+  wired in `lib/db/models/index.js`; the instance is `lib/db/sequelize.js`.
+- **Encapsulate behind a repo.** Feature code calls `lib/[domain]/*` functions
+  that return **plain objects** (`.toJSON()`), never Sequelize instances — so
+  results are safe to pass through server actions to client components.
+- **Connection:** `SUPABASE_DB_URL` (Supavisor **session pooler**), reused
+  across invocations via a global singleton. (More rules to be added.)
 
 ## Process
 

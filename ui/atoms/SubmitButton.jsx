@@ -8,6 +8,7 @@ import { Spinner } from './Spinner'
 // disabled + spinner while the action runs. No per-call-site wiring.
 export function SubmitButton({ children, ...rest }) {
   const { pending } = useFormStatus()
+
   if (pending) {
     return (
       <Button {...rest} type="submit" disabled>

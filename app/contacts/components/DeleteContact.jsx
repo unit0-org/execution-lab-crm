@@ -10,6 +10,7 @@ import { deleteContactAction } from '../actions'
 
 export function DeleteContact({ contactId }) {
   const { confirming, ask, cancel } = useConfirm()
+
   if (!confirming) {
     return <Button tone="danger" onClick={ask}>Delete</Button>
   }
