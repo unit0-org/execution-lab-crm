@@ -1,4 +1,4 @@
-import { Text } from '@/ui/Text'
+import { Text } from '@/ui/atoms/Text'
 
 export function LoginError({ message }) {
   if (!message) return null

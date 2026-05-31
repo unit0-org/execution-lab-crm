@@ -1,4 +1,4 @@
-import { fontWeight } from './tokens/typography'
+import { fontWeight } from '../tokens/typography'
 import { tones } from './Button.tones'
 import { sizes } from './Button.sizes'
 

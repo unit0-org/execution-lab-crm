@@ -1,6 +1,6 @@
-import { space } from './tokens/space'
-import { color } from './tokens/color'
-import { fontSize } from './tokens/typography'
+import { space } from '../tokens/space'
+import { color } from '../tokens/color'
+import { fontSize } from '../tokens/typography'
 
 const tones = {
   default: { color: color.text.primary },

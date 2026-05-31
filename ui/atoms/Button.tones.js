@@ -1,4 +1,4 @@
-import { color } from './tokens/color'
+import { color } from '../tokens/color'
 
 const border = (c) => `1px solid ${c}`
 

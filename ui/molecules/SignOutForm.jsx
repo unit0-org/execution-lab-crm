@@ -1,5 +1,5 @@
 import { InlineForm } from './InlineForm'
-import { TextButton } from './TextButton'
+import { TextButton } from '../atoms/TextButton'
 
 // Inline sign-out form that POSTs to /auth/signout.
 export function SignOutForm({ children = 'sign out' }) {

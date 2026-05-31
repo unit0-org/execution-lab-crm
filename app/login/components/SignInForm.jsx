@@ -1,4 +1,4 @@
-import { SubmitButton } from '@/ui/SubmitButton'
+import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { signInWithGoogle } from '../actions'
 
 export function SignInForm({ next }) {

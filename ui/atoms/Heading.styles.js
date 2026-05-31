@@ -1,6 +1,6 @@
-import { space } from './tokens/space'
-import { color } from './tokens/color'
-import { font, fontWeight, lineHeight } from './tokens/typography'
+import { space } from '../tokens/space'
+import { color } from '../tokens/color'
+import { font, fontWeight, lineHeight } from '../tokens/typography'
 
 const sizes = {
   1: {
