@@ -1,5 +1,5 @@
 import { readdir, readFile } from 'node:fs/promises'
-import pg from 'pg'
+import { connect } from './connect.mjs'
 import { applyOne } from './applyMigration.mjs'
 
 const DIR = new URL('../supabase/migrations/', import.meta.url)
@@ -10,8 +10,7 @@ async function main() {
   const connectionString = process.env.SUPABASE_DB_URL
   if (!connectionString)
     return console.warn('migrate: SUPABASE_DB_URL unset — skipping')
-  const db = new pg.Client({ connectionString })
-  await db.connect()
+  const db = await connect(connectionString)
   const { rows } = await db.query('select name from supabase_migrations.schema_migrations')
   const done = new Set(rows.map((r) => r.name))
   const files = (await readdir(DIR)).filter((f) => f.endsWith('.sql')).sort()
