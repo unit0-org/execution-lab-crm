@@ -5,10 +5,14 @@ import { listContactsAction } from '../actions/listContacts'
 
 export function useContacts() {
   const [contacts, setContacts] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    listContactsAction().then(setContacts)
+    listContactsAction().then((rows) => {
+      setContacts(rows)
+      setLoading(false)
+    })
   }, [])
 
-  return { contacts }
+  return { contacts, loading }
 }
