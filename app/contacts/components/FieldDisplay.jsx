@@ -1,6 +1,6 @@
 import { Stack } from '@/ui/layout/Stack'
 import { Text } from '@/ui/atoms/Text'
-import { TextButton } from '@/ui/atoms/TextButton'
+import { EditableText } from '@/ui/atoms/EditableText'
 
 export function FieldDisplay({ label, value, onEdit }) {
   const shown = value || 'Add…'
@@ -8,7 +8,7 @@ export function FieldDisplay({ label, value, onEdit }) {
   return (
     <Stack gap="xs">
       <Text size="sm" tone="muted">{label}</Text>
-      <TextButton type="button" onClick={onEdit}>{shown}</TextButton>
+      <EditableText value={shown} onClick={onEdit} />
     </Stack>
   )
 }

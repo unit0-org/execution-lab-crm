@@ -1,5 +1,12 @@
-import { Text } from '@/ui/atoms/Text'
+import { Stack } from '@/ui/layout/Stack'
+import { Skeleton } from '@/ui/atoms/Skeleton'
 
 export function Loading() {
-  return <Text tone="muted">Loading…</Text>
+  return (
+    <Stack gap="md">
+      <Skeleton height={28} />
+      <Skeleton height={40} />
+      <Skeleton height={40} />
+    </Stack>
+  )
 }

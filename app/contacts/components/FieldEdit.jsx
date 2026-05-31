@@ -2,24 +2,28 @@
 
 import { Form } from '@/ui/molecules/Form'
 import { TextField } from '@/ui/atoms/TextField'
-import { Stack } from '@/ui/layout/Stack'
-import { useDraft } from '../hooks/useDraft'
-import { useFieldSave } from '../hooks/useFieldSave'
+import { Button } from '@/ui/atoms/Button'
+import { Inline } from '@/ui/layout/Inline'
+import { HiddenFields } from './HiddenFields'
+import { FormError } from './FormError'
 import { SaveSlot } from './SaveSlot'
+import { useDraft } from '../hooks/useDraft'
+import { useFormAction } from '../hooks/useFormAction'
 
-export function FieldEdit({ contactId, field, label, value, onSaved }) {
+export function FieldEdit({ label, value, action, hidden, onSaved, onCancel }) {
   const { draft, dirty, change } = useDraft(value)
-  const { action } = useFieldSave(() => onSaved(draft))
+  const save = useFormAction(action, () => onSaved(draft))
 
   return (
-    <Form action={action}>
-      <input type="hidden" name="id" value={contactId} />
-      <input type="hidden" name="field" value={field} />
-      <Stack gap="sm">
-        <TextField label={label} name="value" value={draft}
-          onChange={change} autoFocus />
+    <Form action={save.action}>
+      <HiddenFields fields={hidden} />
+      <TextField label={label} name="value" value={draft}
+        onChange={change} autoFocus />
+      <FormError message={save.error} />
+      <Inline gap="sm">
         <SaveSlot dirty={dirty} />
-      </Stack>
+        <Button type="button" size="sm" onClick={onCancel}>Cancel</Button>
+      </Inline>
     </Form>
   )
 }
