@@ -8,7 +8,9 @@ import { confirmAndRoute } from '@/lib/cards/confirmAndRoute'
 const guarded = (fn) => async (formData) => {
   const supabase = await authedClient()
   if (!supabase) return { ok: false, error: 'not signed in' }
-  const result = await fn(supabase, formData)
+  let result
+  try { result = await fn(supabase, formData) }
+  catch (e) { return { ok: false, error: e.message } }
   revalidatePath('/')
 
   return result || { ok: true }

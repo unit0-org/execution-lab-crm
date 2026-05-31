@@ -1,15 +1,15 @@
-import { SubmitTextButton } from '@/ui/SubmitTextButton'
-import { InlineForm } from '@/ui/InlineForm'
 import { Inline } from '@/ui/Inline'
 import { Text } from '@/ui/Text'
+import { FeedbackForm } from '@/ui/FeedbackForm'
+import { SubmitTextButton } from '@/ui/SubmitTextButton'
 import { SNOOZE_PRESETS } from '@/lib/util/snoozePresets'
 
 const PresetButton = ({ preset, action, idValue, idName }) => (
-  <InlineForm action={action}>
+  <FeedbackForm action={action} success="Snoozed" display="inline">
     <input type="hidden" name={idName} value={idValue} />
     <input type="hidden" name="until" value={preset.value()} />
     <SubmitTextButton>{preset.label}</SubmitTextButton>
-  </InlineForm>
+  </FeedbackForm>
 )
 
 export function SnoozeMenu({ action, idValue, idName = 'meeting_id' }) {

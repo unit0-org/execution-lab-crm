@@ -5,6 +5,7 @@ import { TextButton } from '@/ui/TextButton'
 import { Textarea } from '@/ui/Textarea'
 import { Stack } from '@/ui/Stack'
 import { SubmitButton } from '@/ui/SubmitButton'
+import { FeedbackForm } from '@/ui/FeedbackForm'
 import { editCardAction } from '../../../actions/cards'
 
 const editField = (payload) => payload.text || payload.body || payload.reason || payload.name || ''
@@ -15,7 +16,7 @@ export function CardEditButton({ card, fieldName = 'text' }) {
   if (!open) return <TextButton type="button" onClick={() => setOpen(true)}>Edit</TextButton>
 
   return (
-    <form action={async (fd) => { await editCardAction(fd); setOpen(false) }}>
+    <FeedbackForm action={editCardAction} success="Saved" onSuccess={() => setOpen(false)}>
       <input type="hidden" name="card_id" value={card.id} />
       <input type="hidden" name="edited_payload"
              value={JSON.stringify({ ...card.payload, [fieldName]: value })} />
@@ -23,6 +24,6 @@ export function CardEditButton({ card, fieldName = 'text' }) {
         <Textarea name={fieldName} defaultValue={value} rows={3} />
         <SubmitButton size="sm">Save edit</SubmitButton>
       </Stack>
-    </form>
+    </FeedbackForm>
   )
 }
