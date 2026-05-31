@@ -17,8 +17,9 @@ function Home({ email }) {
   )
 }
 
-export default function HomePage() {
-  return createClient()
-    .then((s) => s.auth.getUser())
-    .then(({ data }) => <Home email={data.user?.email} />)
+export default async function HomePage() {
+  const supabase = await createClient()
+  const { data } = await supabase.auth.getUser()
+
+  return <Home email={data.user?.email} />
 }

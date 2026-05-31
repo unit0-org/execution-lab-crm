@@ -9,6 +9,7 @@ export const dynamic = 'force-dynamic'
 
 function View({ params }) {
   const next = params?.next || '/'
+
   return (
     <Page>
       <Heading gutter="sm">Execution Lab CRM</Heading>
@@ -21,8 +22,8 @@ function View({ params }) {
   )
 }
 
-const render = (params) => <View params={params} />
+export default async function LoginPage({ searchParams }) {
+  const params = await searchParams
 
-export default function LoginPage({ searchParams }) {
-  return Promise.resolve(searchParams).then(render)
+  return <View params={params} />
 }

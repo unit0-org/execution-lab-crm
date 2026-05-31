@@ -15,5 +15,6 @@ export function SubmitButton({ children, ...rest }) {
       </Button>
     )
   }
+
   return <Button {...rest} type="submit">{children}</Button>
 }

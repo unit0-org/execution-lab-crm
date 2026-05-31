@@ -7,11 +7,11 @@ const transition = `background ${ease}, border-color ${ease}, color ${ease}`
 
 const base = {
   cursor: 'pointer', font: 'inherit', fontWeight: fontWeight.medium,
-  textDecoration: 'none', display: 'inline-block', transition,
+  textDecoration: 'none', display: 'inline-block', transition
 }
 
 const full = (block) => (block ? { width: '100%' } : null)
 
 export const buttonStyle = ({ tone = 'default', size = 'md', block } = {}) => ({
-  ...base, ...tones[tone], ...sizes[size], ...full(block),
+  ...base, ...tones[tone], ...sizes[size], ...full(block)
 })

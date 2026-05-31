@@ -7,5 +7,5 @@ export const spinnerStyle = (size) => ({
   border: `2px solid ${color.border.default}`,
   borderTopColor: color.accent.solid,
   borderRadius: '50%',
-  animation: 'spin 700ms linear infinite',
+  animation: 'spin 700ms linear infinite'
 })

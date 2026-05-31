@@ -4,12 +4,12 @@ import "./globals.css"
 const sans = Inter({ variable: "--font-inter", subsets: ["latin"] })
 const serif = Source_Serif_4({
   variable: "--font-source-serif",
-  subsets: ["latin"],
+  subsets: ["latin"]
 })
 
 export const metadata = {
   title: "Execution Lab CRM",
-  description: "Internal CRM for The Execution Lab",
+  description: "Internal CRM for The Execution Lab"
 }
 
 export default function RootLayout({ children }) {

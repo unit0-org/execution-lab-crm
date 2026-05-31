@@ -6,11 +6,11 @@ export const tones = {
   default: {
     background: color.bg.surface,
     color: color.text.secondary,
-    border: border(color.border.default),
+    border: border(color.border.default)
   },
   primary: {
     background: color.text.primary,
     color: color.bg.canvas,
-    border: border(color.text.primary),
-  },
+    border: border(color.text.primary)
+  }
 }

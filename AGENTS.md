@@ -32,14 +32,22 @@ Auto-enforced rules are marked **[lint]**.
 8. **All behavior lives in hooks.** Components stay presentational. Hooks are
    synchronous: they return state immediately and update via `useState` +
    `useEffect`.
-9. **No `await`.** Use `.then()` chains. **[lint]** (`eslint-disable` only for a
-   genuinely unavoidable case, with a reason.)
+9. **Our code is synchronous — no Promises.** Components, hooks, and plain
+   functions never use `async`/`await`/`.then`/`new Promise`. **[lint]**
+   Encapsulate async 3rd-party libraries: on the **client**, in a hook
+   (`useState` + `useEffect`) that consumes the promise and returns plain
+   state, so callers stay sync. The **Next.js server boundary** — server
+   actions, route handlers, server components, middleware — is async by
+   framework requirement; it's the only async place. Keep it thin and push
+   logic into sync helpers.
 10. **No conditionals inside JSX** — no ternaries, no `&&`. Use an early return
     or a named component. **[lint]**
 11. **Avoid `useCallback`/`useMemo`** unless absolutely necessary. **[lint]**
 12. **Avoid clever/"weird" JS.** Clean Code: boring, obvious, readable wins.
 13. **Files ≤ 30 lines, lines ≤ 80 chars.** **[lint]** Exceptions: lockfiles,
     generated files, `*.md`, config. Compose aggressively to stay under.
+    Also **[lint]**: a blank line before any `return` that follows other code;
+    no trailing comma on the last array/object element.
 14. **Every action gives feedback:** an on-screen mutation (the UI changes) or,
     when there's nothing to show, a toast. Never a dead click.
 
