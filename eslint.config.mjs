@@ -9,11 +9,11 @@ const jsx = (m) => [
 
 const memo = (n) => ({
   selector: `CallExpression[callee.name='use${n}']`,
-  message: `Avoid use${n} unless absolutely necessary (rule 11).`,
+  message: `Avoid use${n} unless absolutely necessary.`,
 });
 
 const NO_JSX = "No conditionals in JSX — early-return or extract a component.";
-const NO_ASYNC = "Synchronous code only — encapsulate async in a hook (rule 9).";
+const NO_ASYNC = "Synchronous code only — encapsulate async in a hook.";
 
 const asyncSelectors = [
   "AwaitExpression",
