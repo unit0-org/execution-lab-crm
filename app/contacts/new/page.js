@@ -2,15 +2,15 @@ import { Page } from '@/ui/layout/Page'
 import { Heading } from '@/ui/atoms/Heading'
 import { Stack } from '@/ui/layout/Stack'
 import { Link } from '@/ui/atoms/Link'
-import { SignOutForm } from '@/ui/molecules/SignOutForm'
+import { ContactForm } from '../components/ContactForm'
 
-export default function HomePage() {
+export default function NewContactPage() {
   return (
     <Page>
-      <Heading gutter="sm">Execution Lab CRM</Heading>
       <Stack gap="md">
-        <Link href="/contacts">Contacts →</Link>
-        <SignOutForm>Sign out</SignOutForm>
+        <Link href="/contacts">← Back to contacts</Link>
+        <Heading>New contact</Heading>
+        <ContactForm />
       </Stack>
     </Page>
   )
