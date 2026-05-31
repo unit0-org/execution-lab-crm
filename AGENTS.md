@@ -4,34 +4,56 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
-# House rules
+# Development rules
 
-1. **30-line file limit.** No source file may exceed 30 lines without explicit
-   approval. Compose aggressively. Standing exceptions: lockfiles
-   (`pnpm-lock.yaml`), SQL migrations, generated files, `README.md`.
-2. **Clarity over complexity, always.** Boring, obvious code wins.
-3. **No ternary conditionals in JSX.** Use early returns or extract a
-   component. Short-circuit `&&` is fine, but prefer named components.
-4. **Functionality, structure, and style live in separate files.**
-   `Component.jsx` for markup, `Component.styles.js` for styles,
-   `useThing.js` for logic/data. **Visual styling lives only inside
-   `ui/`.** App-level components compose `ui/` primitives — they
-   should not own `.styles.js` files unless absolutely unavoidable.
-   If you'd reach for one, add the missing primitive to `ui/`
-   instead.
-5. **No custom styling at the call site.** Components must accept props
-   (`tone`, `align`, `size`). Bad: `<td style={{ ...td, color: '#666' }}>`.
-   Good: `<TableCell tone="muted">`.
-6. **UI library first.** Build reusable primitives in `ui/` and use them
-   everywhere. Avoid raw HTML elements in pages — wrap them.
-7. **Module layout.** Each feature module follows
-   `[module]/{components,hooks,page.js,actions.js}`. Components use
-   `.jsx`. Hooks live in `hooks/` and **must be synchronous functions**:
-   they return state immediately. If a hook exposes async data, it
-   manages it internally with `useState` + `useEffect` — first render
-   returns the default state, subsequent renders update when the async
-   work resolves. Hooks expose a `refresh()` callback when callers may
-   need to re-fetch (e.g. after a mutation). Server actions stay in
-   `actions.js`. No `queries/` folder.
-8. **Every iteration ships via pull request.** Ask before opening it.
-9. **Never push directly to `main`.**
+This is the rules file. **A PR cannot merge unless it satisfies every rule
+here.** Mechanical rules are enforced by ESLint + CI (`.github/workflows/ci.yml`);
+the rest are enforced in review (see `.github/pull_request_template.md`).
+Auto-enforced rules are marked **[lint]**.
+
+## Frontend — structure
+
+1. **Atomic design.** Build UI from atoms → molecules → organisms.
+2. **All UI components live in `ui/`**, in a **2-level-max** folder
+   structure, e.g. `ui/input/TextField.jsx`.
+3. **Module layout for app code:** `[module]/{pages,components,hooks}/File.jsx`.
+   Anything that doesn't fit this structure — **ask first.**
+4. **Separate structure, style, and behavior** into different files:
+   `Thing.jsx` (markup), `Thing.styles.js` (style), `useThing.js` (behavior).
+5. **Encapsulate look & feel inside `ui/`.** UI components receive **props**
+   (states, data, handlers) — never raw CSS/style. No custom styling at call
+   sites; add/extend a `ui/` primitive instead.
+6. **Reuse** components and code as much as possible. Composition is critical.
+7. **Encapsulate every 3rd-party library** behind our own module before use;
+   never import a vendor lib directly from feature code.
+
+## Frontend — behavior & code
+
+8. **All behavior lives in hooks.** Components stay presentational. Hooks are
+   synchronous: they return state immediately and update via `useState` +
+   `useEffect`.
+9. **No `await`.** Use `.then()` chains. **[lint]** (`eslint-disable` only for a
+   genuinely unavoidable case, with a reason.)
+10. **No conditionals inside JSX** — no ternaries, no `&&`. Use an early return
+    or a named component. **[lint]**
+11. **Avoid `useCallback`/`useMemo`** unless absolutely necessary. **[lint]**
+12. **Avoid clever/"weird" JS.** Clean Code: boring, obvious, readable wins.
+13. **Files ≤ 30 lines, lines ≤ 80 chars.** **[lint]** Exceptions: lockfiles,
+    generated files, `*.md`, config. Compose aggressively to stay under.
+14. **Every action gives feedback:** an on-screen mutation (the UI changes) or,
+    when there's nothing to show, a toast. Never a dead click.
+
+## Database
+
+15. **Always normalized.** No data ambiguity; no `status`/flag columns standing
+    in for relations.
+16. **Stupidly simple.** Prefer the obvious schema.
+17. **Naming:** `snake_case`, **singular** table names (`contact`,
+    `contact_email`); `snake_case` columns; **UUID v4** primary keys.
+18. **Show the ERD on every structural change** before/with the change.
+
+## Process
+
+19. **Every change ships via a small, easy-to-review PR.** Ask before opening.
+20. **Never push directly to `main`.**
+21. CI (lint + build) must be green; that check gates merging.

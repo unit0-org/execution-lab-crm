@@ -7,10 +7,8 @@ import { LoginError } from './components/LoginError'
 
 export const dynamic = 'force-dynamic'
 
-export default async function LoginPage({ searchParams }) {
-  const params = await searchParams
+function View({ params }) {
   const next = params?.next || '/'
-
   return (
     <Page>
       <Heading gutter="sm">Execution Lab CRM</Heading>
@@ -21,4 +19,10 @@ export default async function LoginPage({ searchParams }) {
       </Stack>
     </Page>
   )
+}
+
+const render = (params) => <View params={params} />
+
+export default function LoginPage({ searchParams }) {
+  return Promise.resolve(searchParams).then(render)
 }
