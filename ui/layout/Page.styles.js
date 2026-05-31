@@ -8,8 +8,7 @@ const base = {
   lineHeight: lineHeight.normal,
   color: color.text.primary,
   margin: '0 auto',
-  width: '100%',
-  animation: 'quietRise 280ms var(--motion-ease) both'
+  width: '100%'
 }
 
 const widths = { narrow: { maxWidth: 640 }, wide: { maxWidth: 1180 } }
