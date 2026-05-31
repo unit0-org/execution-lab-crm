@@ -50,18 +50,22 @@ Auto-enforced rules are marked **[lint]**.
     no trailing comma on the last array/object element.
 14. **Every action gives feedback:** an on-screen mutation (the UI changes) or,
     when there's nothing to show, a toast. Never a dead click.
+15. **Responsive, always.** Every screen looks and works perfectly on mobile
+    and desktop (and in between). Mobile-first; no horizontal scroll, no
+    clipped or unreachable controls, touch-friendly targets. Encapsulate
+    responsive behavior in `ui/` primitives.
 
 ## Database
 
-15. **Always normalized.** No data ambiguity; no `status`/flag columns standing
+16. **Always normalized.** No data ambiguity; no `status`/flag columns standing
     in for relations.
-16. **Stupidly simple.** Prefer the obvious schema.
-17. **Naming:** `snake_case`, **singular** table names (`contact`,
+17. **Stupidly simple.** Prefer the obvious schema.
+18. **Naming:** `snake_case`, **singular** table names (`contact`,
     `contact_email`); `snake_case` columns; **UUID v4** primary keys.
-18. **Show the ERD on every structural change** before/with the change.
+19. **Show the ERD on every structural change** before/with the change.
 
 ## Process
 
-19. **Every change ships via a small, easy-to-review PR.** Ask before opening.
-20. **Never push directly to `main`.**
-21. CI (lint + build) must be green; that check gates merging.
+20. **Every change ships via a small, easy-to-review PR.** Ask before opening.
+21. **Never push directly to `main`.**
+22. CI (lint + build) must be green; that check gates merging.
