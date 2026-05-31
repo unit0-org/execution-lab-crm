@@ -1,12 +1,12 @@
 import { updateSession } from '@/lib/supabase/proxy'
 
 export async function proxy(request) {
-  return await updateSession(request)
+  return updateSession(request)
 }
 
 export const config = {
   matcher: [
-    // Match everything except static assets and image optimization.
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
+    // eslint-disable-next-line max-len -- single unavoidable matcher regex
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'
+  ]
 }

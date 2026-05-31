@@ -6,5 +6,5 @@ export const textButtonStyle = {
   color: 'inherit',
   textDecoration: 'underline',
   font: 'inherit',
-  padding: 0,
+  padding: 0
 }

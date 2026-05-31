@@ -5,5 +5,5 @@ export const statusColors = {
   errorBg:     'var(--color-error-bg)',
   errorText:   'var(--color-error-text)',
   neutralBg:   'var(--color-neutral-bg)',
-  neutralText: 'var(--color-neutral-text)',
+  neutralText: 'var(--color-neutral-text)'
 }

@@ -9,7 +9,7 @@ const base = {
   color: color.text.primary,
   margin: '0 auto',
   width: '100%',
-  animation: 'quietRise 280ms var(--motion-ease) both',
+  animation: 'quietRise 280ms var(--motion-ease) both'
 }
 
 const widths = { narrow: { maxWidth: 640 }, wide: { maxWidth: 1180 } }

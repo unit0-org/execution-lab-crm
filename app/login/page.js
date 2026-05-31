@@ -7,8 +7,7 @@ import { LoginError } from './components/LoginError'
 
 export const dynamic = 'force-dynamic'
 
-export default async function LoginPage({ searchParams }) {
-  const params = await searchParams
+function View({ params }) {
   const next = params?.next || '/'
 
   return (
@@ -21,4 +20,10 @@ export default async function LoginPage({ searchParams }) {
       </Stack>
     </Page>
   )
+}
+
+export default async function LoginPage({ searchParams }) {
+  const params = await searchParams
+
+  return <View params={params} />
 }
