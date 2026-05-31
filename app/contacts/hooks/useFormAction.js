@@ -10,5 +10,5 @@ export function useFormAction(serverAction, onDone) {
     if (state?.ok) onDone()
   }, [state, onDone])
 
-  return { action }
+  return { action, error: state?.error }
 }

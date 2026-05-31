@@ -5,6 +5,7 @@ import { TextField } from '@/ui/atoms/TextField'
 import { Button } from '@/ui/atoms/Button'
 import { Inline } from '@/ui/layout/Inline'
 import { HiddenFields } from './HiddenFields'
+import { FormError } from './FormError'
 import { SaveSlot } from './SaveSlot'
 import { useDraft } from '../hooks/useDraft'
 import { useFormAction } from '../hooks/useFormAction'
@@ -18,6 +19,7 @@ export function FieldEdit({ label, value, action, hidden, onSaved, onCancel }) {
       <HiddenFields fields={hidden} />
       <TextField label={label} name="value" value={draft}
         onChange={change} autoFocus />
+      <FormError message={save.error} />
       <Inline gap="sm">
         <SaveSlot dirty={dirty} />
         <Button type="button" size="sm" onClick={onCancel}>Cancel</Button>
