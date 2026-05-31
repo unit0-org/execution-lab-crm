@@ -21,10 +21,15 @@ Visit http://localhost:3000 — the root page reports environment, version, and 
 
 ## Database migrations
 
-Migrations live in `supabase/migrations/` as plain SQL. Apply via the Supabase dashboard SQL editor or the [Supabase CLI](https://supabase.com/docs/guides/cli):
+Migrations live in `supabase/migrations/` as plain SQL. They are applied
+**separately from deploys** — the Vercel build does not touch the database.
+Apply via the Supabase dashboard SQL editor, the [Supabase CLI](https://supabase.com/docs/guides/cli),
+or the in-repo runner:
 
 ```bash
 supabase db push
+# or, with SUPABASE_DB_URL set to the session pooler URI:
+pnpm migrate
 ```
 
 ## Project layout
