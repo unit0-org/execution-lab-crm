@@ -12,5 +12,10 @@ export const tones = {
     background: color.text.primary,
     color: color.bg.canvas,
     border: border(color.text.primary)
+  },
+  danger: {
+    background: color.bg.surface,
+    color: color.status.errorText,
+    border: border(color.border.default)
   }
 }
