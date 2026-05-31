@@ -1,4 +1,4 @@
-import { color } from './tokens/color'
+import { color } from '../tokens/color'
 
 export const spinnerStyle = (size) => ({
   display: 'inline-block',

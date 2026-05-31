@@ -1,8 +1,8 @@
-import { Page } from '@/ui/Page'
-import { Heading } from '@/ui/Heading'
-import { Text } from '@/ui/Text'
-import { Stack } from '@/ui/Stack'
-import { SignOutForm } from '@/ui/SignOutForm'
+import { Page } from '@/ui/layout/Page'
+import { Heading } from '@/ui/atoms/Heading'
+import { Text } from '@/ui/atoms/Text'
+import { Stack } from '@/ui/layout/Stack'
+import { SignOutForm } from '@/ui/molecules/SignOutForm'
 import { createClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'

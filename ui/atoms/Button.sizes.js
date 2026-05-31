@@ -1,6 +1,6 @@
-import { space } from './tokens/space'
-import { radius } from './tokens/radius'
-import { fontSize } from './tokens/typography'
+import { space } from '../tokens/space'
+import { radius } from '../tokens/radius'
+import { fontSize } from '../tokens/typography'
 
 const pad = (a, b) => `${space[a]} ${space[b]}`
 
