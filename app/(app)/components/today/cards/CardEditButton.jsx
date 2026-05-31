@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { TextButton } from '@/ui/TextButton'
 import { Textarea } from '@/ui/Textarea'
 import { Stack } from '@/ui/Stack'
-import { Button } from '@/ui/Button'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { editCardAction } from '../../../actions/cards'
 
 const editField = (payload) => payload.text || payload.body || payload.reason || payload.name || ''
@@ -21,7 +21,7 @@ export function CardEditButton({ card, fieldName = 'text' }) {
              value={JSON.stringify({ ...card.payload, [fieldName]: value })} />
       <Stack gap="sm">
         <Textarea name={fieldName} defaultValue={value} rows={3} />
-        <Button type="submit" size="sm">Save edit</Button>
+        <SubmitButton size="sm">Save edit</SubmitButton>
       </Stack>
     </form>
   )

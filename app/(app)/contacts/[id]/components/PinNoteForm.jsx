@@ -1,5 +1,5 @@
 import { InlineForm } from '@/ui/InlineForm'
-import { IconButton } from '@/ui/IconButton'
+import { SubmitIconButton } from '@/ui/SubmitIconButton'
 import { pinNote } from '../actions'
 
 const labelFor = (pinned) => pinned ? 'Unpin' : 'Pin'
@@ -11,7 +11,7 @@ export function PinNoteForm({ contactId, noteId, pinned }) {
       <input type="hidden" name="contact_id" value={contactId} />
       <input type="hidden" name="note_id" value={noteId} />
       <input type="hidden" name="pinned" value={String(!pinned)} />
-      <IconButton type="submit" label={labelFor(pinned)}>{glyphFor(pinned)}</IconButton>
+      <SubmitIconButton label={labelFor(pinned)}>{glyphFor(pinned)}</SubmitIconButton>
     </InlineForm>
   )
 }

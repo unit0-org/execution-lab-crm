@@ -1,5 +1,5 @@
 import { ConfirmInlineForm } from '@/ui/ConfirmInlineForm'
-import { IconButton } from '@/ui/IconButton'
+import { SubmitIconButton } from '@/ui/SubmitIconButton'
 import { removeResource } from '../actions'
 
 export function RemoveResourceForm({ contactId, resourceId }) {
@@ -7,7 +7,7 @@ export function RemoveResourceForm({ contactId, resourceId }) {
     <ConfirmInlineForm message="Remove this resource?" action={removeResource}>
       <input type="hidden" name="contact_id" value={contactId} />
       <input type="hidden" name="resource_id" value={resourceId} />
-      <IconButton type="submit" label="Remove resource">×</IconButton>
+      <SubmitIconButton label="Remove resource">×</SubmitIconButton>
     </ConfirmInlineForm>
   )
 }

@@ -1,7 +1,7 @@
 import { Form } from '@/ui/Form'
 import { Field } from '@/ui/Field'
 import { Select } from '@/ui/Select'
-import { Button } from '@/ui/Button'
+import { SubmitButton } from '@/ui/SubmitButton'
 import { linkMeeting } from '../actions'
 
 const optionLabel = (m) =>
@@ -21,7 +21,7 @@ export function LinkMeetingForm({ contactId, meetings }) {
           ))}
         </Select>
       </Field>
-      <Button type="submit" tone="primary" size="sm">Link meeting</Button>
+      <SubmitButton tone="primary" size="sm">Link meeting</SubmitButton>
     </Form>
   )
 }
