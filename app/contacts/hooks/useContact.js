@@ -5,10 +5,11 @@ import { getContactAction } from '../actions/getContact'
 
 export function useContact(id) {
   const [contact, setContact] = useState(undefined)
+  const [n, setN] = useState(0)
 
   useEffect(() => {
     getContactAction(id).then(setContact)
-  }, [id])
+  }, [id, n])
 
-  return { contact }
+  return { contact, refresh: () => setN((x) => x + 1) }
 }

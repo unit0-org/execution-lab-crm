@@ -57,6 +57,9 @@ them (so adding one never renumbers the rest).
   desktop (and in between). Mobile-first; no horizontal scroll, no clipped or
   unreachable controls, touch-friendly targets. Encapsulate responsive
   behavior in `ui/` primitives.
+- **No layout shift (CLS).** Content must never jump. Loading states reserve
+  the final dimensions (skeletons sized to the real content); view↔edit
+  toggles keep elements in the same place.
 
 ## Database
 

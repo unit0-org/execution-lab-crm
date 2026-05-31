@@ -8,11 +8,11 @@ import { NotFound } from './NotFound'
 
 export function ContactDetailView() {
   const { id } = useParams()
-  const { contact } = useContact(id)
+  const { contact, refresh } = useContact(id)
 
   if (contact === undefined) return <Loading />
 
   if (contact === null) return <NotFound />
 
-  return <ContactDetail contact={contact} />
+  return <ContactDetail contact={contact} onChanged={refresh} />
 }

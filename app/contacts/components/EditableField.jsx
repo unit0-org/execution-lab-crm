@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { FieldDisplay } from './FieldDisplay'
 import { FieldEdit } from './FieldEdit'
 
-export function EditableField({ contactId, field, label, value }) {
+export function EditableField({ label, value, action, hidden }) {
   const [editing, setEditing] = useState(false)
   const [current, setCurrent] = useState(value ?? '')
 
@@ -20,7 +20,7 @@ export function EditableField({ contactId, field, label, value }) {
   }
 
   return (
-    <FieldEdit contactId={contactId} field={field} label={label}
-      value={current} onSaved={onSaved} />
+    <FieldEdit label={label} value={current} action={action} hidden={hidden}
+      onSaved={onSaved} onCancel={() => setEditing(false)} />
   )
 }
