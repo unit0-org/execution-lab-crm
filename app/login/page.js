@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function LoginPage({ searchParams }) {
   const params = await searchParams
-  const next = params?.next || '/contacts'
+  const next = params?.next || '/'
 
   return (
     <Page>

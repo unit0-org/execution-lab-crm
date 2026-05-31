@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 export async function signInWithGoogle(formData) {
-  const next = formData.get('next') || '/contacts'
+  const next = formData.get('next') || '/'
   const supabase = await createClient()
 
   const h = await headers()
