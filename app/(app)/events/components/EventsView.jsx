@@ -5,9 +5,9 @@ import { EventsTable } from './EventsTable'
 import { EventsSkeleton } from './EventsSkeleton'
 
 export function EventsView() {
-  const { events, loading } = useEvents()
+  const { events, loading, reload } = useEvents()
 
   if (loading) return <EventsSkeleton />
 
-  return <EventsTable events={events} />
+  return <EventsTable events={events} onChanged={reload} />
 }
