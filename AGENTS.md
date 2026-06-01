@@ -12,6 +12,16 @@ the rest are enforced in review (see `.github/pull_request_template.md`).
 Auto-enforced rules are marked **[lint]**. Rules are unordered — never number
 them (so adding one never renumbers the rest).
 
+## Naming
+
+- **Name things properly — Clean Code.** A name reveals intent so the code
+  reads without a comment. **Functions are verb phrases** for what they do
+  (`addEmailIfMissing`, `findContactIdByEmail`, `parseAmountCents`) — never a
+  bare noun for something that acts (`participant()` → `buildParticipant()`),
+  never vague (`merge`, `handle`, `data`, `doStuff`). Booleans read as
+  predicates (`isActive`, `hasEmail`). No cryptic abbreviations. If a name
+  needs a comment to explain it, rename it.
+
 ## Frontend — structure
 
 - **Atomic design.** Build UI from atoms → molecules → organisms.
