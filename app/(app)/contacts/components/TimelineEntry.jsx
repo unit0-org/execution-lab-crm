@@ -7,7 +7,7 @@ export function TimelineEntry({ entry }) {
   return (
     <Inline gap="sm">
       <Text tone="muted" size="sm"><DateText value={entry.date} /></Text>
-      <Badge>{entry.status}</Badge>
+      <Badge tone={entry.statusTone}>{entry.status}</Badge>
       <Text size="sm">{entry.title}</Text>
     </Inline>
   )
