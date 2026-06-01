@@ -6,7 +6,7 @@ import { EventsView } from './components/EventsView'
 
 export default function EventsPage() {
   return (
-    <Page>
+    <Page width="wide">
       <Stack gap="md">
         <Heading>Events</Heading>
         <Link href="/events/import">Import CSV</Link>

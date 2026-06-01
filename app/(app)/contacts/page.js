@@ -6,7 +6,7 @@ import { ContactsView } from './components/ContactsView'
 
 export default function ContactsPage() {
   return (
-    <Page>
+    <Page width="wide">
       <Stack gap="md">
         <Heading>Contacts</Heading>
         <Link href="/contacts/new">+ New contact</Link>

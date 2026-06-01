@@ -103,6 +103,20 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
 /* App shell — left sidebar on desktop, hamburger drawer on mobile. */
 [data-hamburger] { display: none; }
 [data-scrim] { display: none; }
+/* Sidebar stays put while the main content scrolls. */
+[data-sidebar] { position: sticky; top: 0; align-self: flex-start; height: 100vh; }
+
+/* Brand the native file picker button. */
+input[type="file"] { color: var(--color-text-secondary); font-size: 13px; }
+input[type="file"]::file-selector-button {
+  margin-right: 12px; padding: 8px 16px; font: inherit; font-size: 11px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--color-text-primary); background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md); cursor: pointer;
+  transition: background var(--motion-quick) var(--motion-ease);
+}
+input[type="file"]::file-selector-button:hover { background: var(--color-bg-subtle); }
 
 @media (max-width: 768px) {
   [data-hamburger] { display: inline-flex; align-items: center; justify-content: center; }
