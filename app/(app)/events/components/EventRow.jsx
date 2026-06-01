@@ -1,29 +1,18 @@
-'use client'
-
 import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
-import { Inline } from '@/ui/layout/Inline'
 import { DateText } from '@/ui/atoms/DateText'
-import { RowDelete } from '@/ui/molecules/RowDelete'
-import { RowUpload } from './RowUpload'
-import { EditEvent } from './EditEvent'
-import { useDeleteEvent } from '../hooks/useDeleteEvent'
+import { EventRowActions } from './EventRowActions'
 
 export function EventRow({ event, onChanged }) {
-  const remove = useDeleteEvent(event.id, onChanged)
+  const type = event.type || '—'
 
   return (
     <Tr>
       <Td>{event.title}</Td>
       <Td><DateText value={event.date} /></Td>
+      <Td>{type}</Td>
       <Td>{event.checked_in}/{event.registered}</Td>
-      <Td>
-        <Inline gap="sm">
-          <EditEvent event={event} onSaved={onChanged} />
-          <RowUpload eventId={event.id} onUpdated={onChanged} />
-          <RowDelete onConfirm={remove} />
-        </Inline>
-      </Td>
+      <Td><EventRowActions event={event} onChanged={onChanged} /></Td>
     </Tr>
   )
 }
