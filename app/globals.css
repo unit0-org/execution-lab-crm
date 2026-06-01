@@ -100,15 +100,15 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
 [data-nav-item][data-active] [data-nav-icon] { color: var(--color-accent); }
 [data-chip-interactive]:hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
 
-/* App shell — right sidebar on desktop, hamburger drawer on mobile. */
+/* App shell — left sidebar on desktop, hamburger drawer on mobile. */
 [data-hamburger] { display: none; }
 [data-scrim] { display: none; }
 
 @media (max-width: 768px) {
   [data-hamburger] { display: inline-flex; align-items: center; justify-content: center; }
   [data-sidebar] {
-    position: fixed; top: 0; right: 0; height: 100dvh; z-index: 25;
-    transform: translateX(100%);
+    position: fixed; top: 0; left: 0; height: 100dvh; z-index: 25;
+    transform: translateX(-100%);
     transition: transform var(--motion-soft) var(--motion-ease);
   }
   [data-sidebar][data-open] { transform: translateX(0); }

@@ -4,7 +4,7 @@ import { radius } from '../tokens/radius'
 export const hamburgerStyle = {
   position: 'fixed',
   top: '16px',
-  right: '16px',
+  left: '16px',
   zIndex: 30,
   padding: '8px 10px',
   fontSize: '18px',
