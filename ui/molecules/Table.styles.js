@@ -18,3 +18,8 @@ const cell = {
 
 export const thStyle = { ...cell, color: color.text.muted }
 export const tdStyle = cell
+
+export const sortButtonStyle = {
+  font: 'inherit', color: 'inherit', background: 'none', border: 'none',
+  padding: 0, cursor: 'pointer', textTransform: 'uppercase'
+}
