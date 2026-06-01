@@ -89,6 +89,7 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.99); }
 
 [data-card-lift]:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -14px rgba(26,25,21,0.18); border-color: var(--color-border-default) !important; }
 [data-row-hover]:hover { background: var(--color-bg-subtle); }
+[data-editable]:hover { background: var(--color-bg-subtle); }
 
 [data-nav-item]:not([data-active]) { color: var(--color-text-secondary); }
 [data-nav-item]:not([data-active]):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
