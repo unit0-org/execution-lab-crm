@@ -1,27 +1,27 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from '../atoms/Button'
 import { IconButton } from '../atoms/IconButton'
 import { Icon } from '../atoms/Icon'
-import { Inline } from '../layout/Inline'
+import { ConfirmDialog } from './ConfirmDialog'
 
-// A trash icon that asks to confirm before firing onConfirm.
-export function RowDelete({ onConfirm }) {
-  const [confirming, setConfirming] = useState(false)
+// A trash icon that opens a confirm dialog before firing onConfirm.
+export function RowDelete({ onConfirm, title = 'Delete' }) {
+  const [open, setOpen] = useState(false)
+  const close = () => setOpen(false)
 
-  if (confirming) {
-    return (
-      <Inline gap="sm">
-        <Button tone="danger" size="sm" onClick={onConfirm}>Delete</Button>
-        <Button size="sm" onClick={() => setConfirming(false)}>Cancel</Button>
-      </Inline>
-    )
+  const confirm = () => {
+    close()
+    onConfirm()
   }
 
   return (
-    <IconButton label="Delete" onClick={() => setConfirming(true)}>
-      <Icon name="trash" size={16} />
-    </IconButton>
+    <>
+      <IconButton tone="danger" label={title} onClick={() => setOpen(true)}>
+        <Icon name="trash" size={16} />
+      </IconButton>
+      <ConfirmDialog open={open} title={title} onConfirm={confirm}
+        onCancel={close} />
+    </>
   )
 }
