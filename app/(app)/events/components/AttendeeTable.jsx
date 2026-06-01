@@ -1,12 +1,16 @@
-import { Table } from '@/ui/molecules/Table'
-import { AttendeeRow } from './AttendeeRow'
+'use client'
 
-const COLS = ['Name', 'Email', 'Status']
+import { Table } from '@/ui/molecules/Table'
+import { useTableSort } from '@/ui/molecules/useTableSort'
+import { AttendeeRow } from './AttendeeRow'
+import { columns } from './attendeeColumns'
 
 export function AttendeeTable({ attendees }) {
+  const { sorted, sort, toggle } = useTableSort(attendees, columns, 'name')
+
   return (
-    <Table cols={COLS}>
-      {attendees.map((a) => <AttendeeRow key={a.id} attendee={a} />)}
+    <Table cols={columns} sort={sort} onSort={toggle}>
+      {sorted.map((a) => <AttendeeRow key={a.id} attendee={a} />)}
     </Table>
   )
 }

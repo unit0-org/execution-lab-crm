@@ -1,18 +1,11 @@
-import { wrapStyle, tableStyle, thStyle } from './Table.styles'
+import { wrapStyle, tableStyle } from './Table.styles'
+import { SortHeader } from './SortHeader'
 
-const Head = ({ cols }) => (
-  <thead>
-    <tr>
-      {cols.map((c) => <th key={c} style={thStyle}>{c}</th>)}
-    </tr>
-  </thead>
-)
-
-export function Table({ cols, children }) {
+export function Table({ cols, sort, onSort, children }) {
   return (
     <div style={wrapStyle}>
       <table style={tableStyle}>
-        <Head cols={cols} />
+        <SortHeader cols={cols} sort={sort} onSort={onSort} />
         <tbody>{children}</tbody>
       </table>
     </div>
