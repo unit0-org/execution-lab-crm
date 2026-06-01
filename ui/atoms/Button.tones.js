@@ -9,9 +9,9 @@ export const tones = {
     border: border(color.border.default)
   },
   primary: {
-    background: color.text.primary,
-    color: color.bg.canvas,
-    border: border(color.text.primary)
+    background: color.accent.solid,
+    color: color.accent.text,
+    border: border(color.accent.solid)
   },
   danger: {
     background: color.bg.surface,

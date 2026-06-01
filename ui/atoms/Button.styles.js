@@ -6,7 +6,8 @@ const ease = 'var(--motion-quick) var(--motion-ease)'
 const transition = `background ${ease}, border-color ${ease}, color ${ease}`
 
 const base = {
-  cursor: 'pointer', font: 'inherit', fontWeight: fontWeight.medium,
+  cursor: 'pointer', font: 'inherit', fontWeight: fontWeight.bold,
+  textTransform: 'uppercase', letterSpacing: '0.08em',
   textDecoration: 'none', display: 'inline-block', transition
 }
 
