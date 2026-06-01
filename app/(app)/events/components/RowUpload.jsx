@@ -1,7 +1,7 @@
 'use client'
 
 import { Spinner } from '@/ui/atoms/Spinner'
-import { UploadButton } from '@/ui/molecules/UploadButton'
+import { IconUpload } from '@/ui/molecules/IconUpload'
 import { useReimport } from '../hooks/useReimport'
 
 // Upload an updated Luma CSV for this event; re-imports in place.
@@ -10,5 +10,8 @@ export function RowUpload({ eventId, onUpdated }) {
 
   if (busy) return <Spinner size={12} />
 
-  return <UploadButton label="Update" onPick={onPick} />
+  return (
+    <IconUpload label="Upload CSV" title="Upload a new CSV file"
+      onPick={onPick} />
+  )
 }

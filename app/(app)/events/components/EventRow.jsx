@@ -6,6 +6,7 @@ import { Inline } from '@/ui/layout/Inline'
 import { DateText } from '@/ui/atoms/DateText'
 import { RowDelete } from '@/ui/molecules/RowDelete'
 import { RowUpload } from './RowUpload'
+import { EditEvent } from './EditEvent'
 import { useDeleteEvent } from '../hooks/useDeleteEvent'
 
 export function EventRow({ event, onChanged }) {
@@ -18,6 +19,7 @@ export function EventRow({ event, onChanged }) {
       <Td>{event.checked_in}/{event.registered}</Td>
       <Td>
         <Inline gap="sm">
+          <EditEvent event={event} onSaved={onChanged} />
           <RowUpload eventId={event.id} onUpdated={onChanged} />
           <RowDelete onConfirm={remove} />
         </Inline>
