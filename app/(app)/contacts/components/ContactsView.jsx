@@ -5,9 +5,9 @@ import { ContactList } from './ContactList'
 import { ContactListSkeleton } from './ContactListSkeleton'
 
 export function ContactsView() {
-  const { contacts, loading } = useContacts()
+  const { contacts, loading, reload } = useContacts()
 
   if (loading) return <ContactListSkeleton />
 
-  return <ContactList contacts={contacts} />
+  return <ContactList contacts={contacts} onChanged={reload} />
 }
