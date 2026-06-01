@@ -4,7 +4,12 @@ import { editableTextStyle } from './EditableText.styles'
 // TextField in the same place, with no layout shift.
 export function EditableText({ value, onClick }) {
   return (
-    <button type="button" onClick={onClick} style={editableTextStyle}>
+    <button
+      type="button"
+      data-editable
+      onClick={onClick}
+      style={editableTextStyle}
+    >
       {value}
     </button>
   )
