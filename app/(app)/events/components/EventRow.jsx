@@ -9,7 +9,9 @@ export function EventRow({ event, onChanged }) {
 
   return (
     <Tr>
-      <Td><Link href={`/events/${event.id}`}>{event.title}</Link></Td>
+      <Td truncate>
+        <Link href={`/events/${event.id}`}>{event.title}</Link>
+      </Td>
       <Td><DateText value={event.date} /></Td>
       <Td>{type}</Td>
       <Td>{event.checked_in}/{event.registered}</Td>
