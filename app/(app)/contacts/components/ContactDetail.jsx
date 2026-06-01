@@ -3,6 +3,7 @@ import { Columns } from '@/ui/layout/Columns'
 import { Heading } from '@/ui/atoms/Heading'
 import { EditableField } from './EditableField'
 import { EmailEditor } from './EmailEditor'
+import { Timeline } from './Timeline'
 import { DeleteContact } from './DeleteContact'
 import { ContactName } from './ContactName'
 import { updateContactAction } from '../actions/updateContact'
@@ -22,6 +23,7 @@ export function ContactDetail({ contact, onChanged }) {
           action={updateContactAction} hidden={at('last_name')} />
       </Columns>
       <EmailEditor contactId={id} emails={emails} onChanged={onChanged} />
+      <Timeline contactId={id} />
       <DeleteContact contactId={id} />
     </Stack>
   )
