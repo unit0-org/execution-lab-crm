@@ -7,7 +7,7 @@ export function AttendeeRow({ attendee }) {
     <Tr>
       <Td>{attendee.name}</Td>
       <Td>{attendee.email}</Td>
-      <Td><Badge>{attendee.status}</Badge></Td>
+      <Td><Badge tone={attendee.statusTone}>{attendee.status}</Badge></Td>
     </Tr>
   )
 }

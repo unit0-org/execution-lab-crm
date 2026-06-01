@@ -10,7 +10,7 @@ export function EventRowActions({ event, onChanged }) {
   const remove = useDeleteEvent(event.id, onChanged)
 
   return (
-    <Inline gap="sm">
+    <Inline gap="sm" nowrap>
       <EditEvent event={event} onSaved={onChanged} />
       <RowUpload eventId={event.id} onUpdated={onChanged} />
       <RowDelete onConfirm={remove} />

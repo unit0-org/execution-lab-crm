@@ -1,5 +1,5 @@
 import { badgeStyle } from './Badge.styles'
 
-export function Badge({ children }) {
-  return <span style={badgeStyle}>{children}</span>
+export function Badge({ tone = 'accent', children }) {
+  return <span style={badgeStyle(tone)}>{children}</span>
 }
