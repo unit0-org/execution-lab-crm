@@ -1,10 +1,14 @@
-import { fieldStyle, inputStyle } from './TextField.styles'
+import { fieldStyle, inputStyle, wrapStyle } from './TextField.styles'
+import { TrailingSlot } from './TrailingSlot'
 
-export function TextField({ label, ...rest }) {
+export function TextField({ label, trailing, ...rest }) {
   return (
     <label style={fieldStyle}>
       {label}
-      <input style={inputStyle} {...rest} />
+      <span style={wrapStyle}>
+        <input style={inputStyle({ trailing })} {...rest} />
+        <TrailingSlot>{trailing}</TrailingSlot>
+      </span>
     </label>
   )
 }

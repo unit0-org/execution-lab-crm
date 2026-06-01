@@ -7,7 +7,7 @@ export function EventRow({ event }) {
     <Tr>
       <Td>{event.title}</Td>
       <Td><DateText value={event.date} /></Td>
-      <Td>{event.attendees}</Td>
+      <Td>{event.checked_in}/{event.registered}</Td>
     </Tr>
   )
 }

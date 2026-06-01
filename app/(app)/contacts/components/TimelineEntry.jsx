@@ -6,9 +6,9 @@ import { Badge } from '@/ui/atoms/Badge'
 export function TimelineEntry({ entry }) {
   return (
     <Inline gap="sm">
+      <Text tone="muted" size="sm"><DateText value={entry.date} /></Text>
       <Badge>{entry.status}</Badge>
       <Text size="sm">{entry.title}</Text>
-      <Text tone="muted" size="sm"><DateText value={entry.date} /></Text>
     </Inline>
   )
 }

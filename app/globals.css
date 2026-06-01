@@ -103,6 +103,9 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
 /* App shell — left sidebar on desktop, hamburger drawer on mobile. */
 [data-hamburger] { display: none; }
 [data-scrim] { display: none; }
+[data-sidebar] {
+  position: sticky; top: 0; align-self: flex-start; height: 100vh;
+}
 
 @media (max-width: 768px) {
   [data-hamburger] { display: inline-flex; align-items: center; justify-content: center; }
@@ -129,3 +132,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 tbody tr[data-row-hover]:hover { background: var(--color-bg-subtle); cursor: pointer; }
 tbody tr { transition: background var(--motion-quick) var(--motion-ease); }
 tbody tr:hover { background: var(--color-bg-subtle); }
+
+@keyframes progress-indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
