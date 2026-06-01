@@ -143,3 +143,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 tbody tr[data-row-hover]:hover { background: var(--color-bg-subtle); cursor: pointer; }
 tbody tr { transition: background var(--motion-quick) var(--motion-ease); }
 tbody tr:hover { background: var(--color-bg-subtle); }
+
+@keyframes progress-indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}

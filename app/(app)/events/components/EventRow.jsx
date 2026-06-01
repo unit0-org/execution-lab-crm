@@ -15,7 +15,7 @@ export function EventRow({ event, onChanged }) {
     <Tr>
       <Td>{event.title}</Td>
       <Td><DateText value={event.date} /></Td>
-      <Td>{event.attendees}</Td>
+      <Td>{event.checked_in}/{event.registered}</Td>
       <Td>
         <Inline gap="sm">
           <RowUpload eventId={event.id} onUpdated={onChanged} />
