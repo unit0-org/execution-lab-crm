@@ -3,5 +3,10 @@
 import { listContacts } from '@/lib/contacts/list'
 
 export async function listContactsAction() {
-  return listContacts()
+  try {
+    return await listContacts()
+  } catch (e) {
+    console.error('[contacts] list failed:', e)
+    throw e
+  }
 }
