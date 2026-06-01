@@ -1,7 +1,7 @@
 import { Table } from '@/ui/molecules/Table'
 import { AttendeeRow } from './AttendeeRow'
 
-const COLS = ['Name', 'Email', 'Status']
+const COLS = ['Name', 'Email']
 
 export function AttendeeTable({ attendees }) {
   return (
