@@ -4,8 +4,11 @@ import { Stack } from '@/ui/layout/Stack'
 
 const TYPES = ['online', 'in-person']
 
+const dateInputValue = (value) =>
+  value ? new Date(value).toISOString().slice(0, 10) : ''
+
 export function EventFields({ event }) {
-  const date = (event.date || '').slice(0, 10)
+  const date = dateInputValue(event.date)
   const type = event.type || TYPES[0]
 
   return (
