@@ -2,10 +2,11 @@
 
 import { useState } from 'react'
 import { Button } from '../atoms/Button'
+import { IconButton } from '../atoms/IconButton'
+import { Icon } from '../atoms/Icon'
 import { Inline } from '../layout/Inline'
-import { TrashIcon } from '../atoms/TrashIcon'
 
-// A trash button that asks to confirm before firing onConfirm.
+// A trash icon that asks to confirm before firing onConfirm.
 export function RowDelete({ onConfirm }) {
   const [confirming, setConfirming] = useState(false)
 
@@ -19,9 +20,8 @@ export function RowDelete({ onConfirm }) {
   }
 
   return (
-    <Button tone="danger" size="sm" aria-label="Delete"
-      onClick={() => setConfirming(true)}>
-      <TrashIcon />
-    </Button>
+    <IconButton label="Delete" onClick={() => setConfirming(true)}>
+      <Icon name="trash" size={16} />
+    </IconButton>
   )
 }
