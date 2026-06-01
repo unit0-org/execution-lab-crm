@@ -4,5 +4,6 @@ export const paths = {
   close: 'M6 6l12 12M18 6 6 18',
   pencil: 'M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4',
   trash: 'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13',
-  chevron: 'M6 9l6 6 6-6'
+  chevron: 'M6 9l6 6 6-6',
+  upload: 'M12 16V4M7 9l5-5 5 5M5 20h14'
 }
