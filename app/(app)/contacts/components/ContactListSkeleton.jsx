@@ -9,7 +9,7 @@ export function ContactListSkeleton() {
   return (
     <Table cols={['Name', 'Emails', '']}>
       {ROWS.map((i) => (
-        <Tr key={i}>
+        <Tr key={i} plain>
           <Td><Skeleton height={16} /></Td>
           <Td><Skeleton height={16} /></Td>
           <Td><Skeleton height={16} /></Td>
