@@ -2,15 +2,15 @@ import { Page } from '@/ui/layout/Page'
 import { Heading } from '@/ui/atoms/Heading'
 import { Stack } from '@/ui/layout/Stack'
 import { Link } from '@/ui/atoms/Link'
-import { EventsView } from './components/EventsView'
+import { ImportView } from '../components/ImportView'
 
-export default function EventsPage() {
+export default function ImportPage() {
   return (
     <Page>
       <Stack gap="md">
-        <Heading>Events</Heading>
-        <Link href="/events/import">Import CSV</Link>
-        <EventsView />
+        <Heading>Import guests</Heading>
+        <Link href="/events">← Events</Link>
+        <ImportView />
       </Stack>
     </Page>
   )
