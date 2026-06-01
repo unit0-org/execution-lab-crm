@@ -7,7 +7,7 @@ export function EventStats({ event }) {
 
   return (
     <Inline gap="md">
-      <StatCard label="Checked in / Registered"
+      <StatCard label="Attended / Registered"
         value={`${event.checked_in}/${reg}`} />
       <StatCard label="Attendance rate" value={`${rate}%`} />
       <StatCard label="Returning attendees" value={event.returning} />
