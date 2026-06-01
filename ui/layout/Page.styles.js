@@ -13,4 +13,4 @@ const base = {
 
 const widths = { narrow: { maxWidth: 640 }, wide: { maxWidth: 1180 } }
 
-export const pageStyle = (width = 'narrow') => ({ ...base, ...widths[width] })
+export const pageStyle = (width = 'wide') => ({ ...base, ...widths[width] })

@@ -13,7 +13,7 @@ export function LoginView() {
   const next = params.get('next') || '/'
 
   return (
-    <Page>
+    <Page width="narrow">
       <Heading gutter="sm">Execution Lab CRM</Heading>
       <Text tone="muted" gutter="lg">Sign in to continue.</Text>
       <Stack gap="md">
