@@ -29,6 +29,14 @@ them (so adding one never renumbers the rest).
 - **Reuse** components and code as much as possible. Composition is critical.
 - **Encapsulate every 3rd-party library** behind our own module before use;
   never import a vendor lib directly from feature code.
+- **Follow The Execution Lab design system.** All visual styling — colors,
+  type, spacing, radii, components — derives from the tokens in `ui/tokens/`
+  + `app/globals.css`, which encode the design system bundle:
+  https://api.anthropic.com/v1/design/h/aWKmjs3m1rZn8Gf0XnYWGw
+  (dark-first, Montserrat + JetBrains Mono, neon accents, uppercase headings
+  and labels). **Every new component must match it.** Never hardcode an
+  off-system color, font, or size at a call site — add/extend a token or a
+  `ui/` primitive instead.
 
 ## Frontend — behavior & code
 

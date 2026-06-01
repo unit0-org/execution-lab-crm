@@ -13,6 +13,8 @@ export const inputStyle = {
   width: '100%',
   padding: `${space[2]} ${space[3]}`,
   border: `1px solid ${color.border.default}`,
-  borderRadius: radius.sm,
+  borderRadius: radius.md,
+  background: color.bg.sunken,
+  color: color.text.primary,
   font: 'inherit'
 }

@@ -1,53 +1,54 @@
-/* Lab CRM design tokens — Claude Design system, clay accent. */
+/* The Execution Lab — design tokens. Dark-first, neon accents. */
+/* Reference: design system bundle (see AGENTS.md). */
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  --font-sans:  var(--font-inter), "Söhne", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: var(--font-source-serif), "Tiempos Headline", Georgia, "Times New Roman", serif;
-  --font-mono:  ui-monospace, "JetBrains Mono", Menlo, monospace;
+  --font-sans:  var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-montserrat), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:  var(--font-jetbrains), ui-monospace, "JetBrains Mono", Menlo, monospace;
 
-  --color-bg-canvas:   #f7f5ee;
-  --color-bg-surface:  #fbfaf5;
-  --color-bg-subtle:   #efece2;
-  --color-bg-sunken:   #e9e5d8;
-  --color-bg-code:     #efece2;
+  --color-bg-canvas:   #1d2a33;
+  --color-bg-surface:  #243340;
+  --color-bg-subtle:   #2a3a46;
+  --color-bg-sunken:   #1a2730;
+  --color-bg-code:     #1a2730;
 
-  --color-text-primary:    #1a1915;
-  --color-text-secondary:  #3d3a32;
-  --color-text-muted:      #6b675c;
-  --color-text-subtle:     #98948a;
+  --color-text-primary:    #ffffff;
+  --color-text-secondary:  #dcdcdc;
+  --color-text-muted:      rgba(255, 255, 255, 0.58);
+  --color-text-subtle:     rgba(255, 255, 255, 0.40);
 
-  --color-border-default:  #e3dfd2;
-  --color-border-soft:     #ece9dd;
-  --color-border-strong:   #d4d2c8;
+  --color-border-default:  rgba(255, 255, 255, 0.12);
+  --color-border-soft:     rgba(255, 255, 255, 0.07);
+  --color-border-strong:   rgba(255, 255, 255, 0.20);
 
-  --color-accent:        #c96f3f;
-  --color-accent-hover:  #b85f33;
-  --color-accent-text:   #FFFFFF;
-  --color-accent-soft:   #e8d5c4;
-  --color-accent-tint:   #f3e3d4;
-  --color-accent-deep:   #8b4a26;
+  --color-accent:        #5e7cff;
+  --color-accent-hover:  #7689ff;
+  --color-accent-text:   #ffffff;
+  --color-accent-soft:   rgba(94, 124, 255, 0.16);
+  --color-accent-tint:   rgba(94, 124, 255, 0.22);
+  --color-accent-deep:   #3d5ae0;
 
-  --color-warm: #b08a4a;
-  --color-cool: #8a9a8d;
-  --color-cold: #a89e8f;
+  --color-warm: #ffa15e;
+  --color-cool: #5effb7;
+  --color-cold: #5ee4ff;
 
-  --color-success-bg:    #DDE7DC;
-  --color-success-text:  #4A6B43;
-  --color-error-bg:      #F0DCD8;
-  --color-error-text:    #8B3A36;
-  --color-neutral-bg:    #efece2;
-  --color-neutral-text:  #6b675c;
+  --color-success-bg:    rgba(94, 255, 110, 0.12);
+  --color-success-text:  #5eff6e;
+  --color-error-bg:      rgba(255, 94, 97, 0.13);
+  --color-error-text:    #ff7173;
+  --color-neutral-bg:    rgba(220, 220, 220, 0.10);
+  --color-neutral-text:  #dcdcdc;
 
   --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
-  --radius-xl: 14px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 16px;
 
   --motion-quick: 120ms;
-  --motion-soft:  240ms;
-  --motion-ease:  cubic-bezier(.2, .6, .2, 1);
+  --motion-soft:  200ms;
+  --motion-ease:  cubic-bezier(.16, 1, .3, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -68,6 +69,8 @@ html, body {
 code, pre { font-family: var(--font-mono); }
 ::selection { background: var(--color-accent-tint); color: var(--color-text-primary); }
 
+input::placeholder, textarea::placeholder { color: var(--color-text-subtle); }
+
 @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
 @keyframes slideInRight { from { transform: translateX(100%) } to { transform: translateX(0) } }
 @keyframes slideDown { from { transform: translateY(-8px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
@@ -78,16 +81,16 @@ code, pre { font-family: var(--font-mono); }
 @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 6px) } to { opacity: 1; transform: translate(-50%, 0) } }
 
 ::-webkit-scrollbar { width: 8px; height: 8px }
-::-webkit-scrollbar-thumb { background: var(--color-border-default); border-radius: 4px }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 4px }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle) }
 ::-webkit-scrollbar-track { background: transparent }
 
-a, button { transition: color var(--motion-quick) var(--motion-ease), background var(--motion-quick) var(--motion-ease), border-color var(--motion-quick) var(--motion-ease), transform var(--motion-quick) var(--motion-ease); }
+a, button { transition: color var(--motion-quick) var(--motion-ease), background var(--motion-quick) var(--motion-ease), border-color var(--motion-quick) var(--motion-ease), transform var(--motion-quick) var(--motion-ease), filter var(--motion-quick) var(--motion-ease); }
 
-button:disabled { cursor: not-allowed; opacity: 0.55; }
-button:not(:disabled):active { transform: translateY(0.5px) scale(0.99); }
+button:disabled { cursor: not-allowed; opacity: 0.35; }
+button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter: brightness(0.92); }
 
-[data-card-lift]:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -14px rgba(26,25,21,0.18); border-color: var(--color-border-default) !important; }
+[data-card-lift]:hover { transform: translateY(-1px); box-shadow: 0 8px 24px -16px rgba(0,0,0,0.6); border-color: var(--color-border-strong) !important; }
 [data-row-hover]:hover { background: var(--color-bg-subtle); }
 [data-editable]:hover { background: var(--color-bg-subtle); }
 
@@ -97,7 +100,7 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.99); }
 [data-chip-interactive]:hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
 
 button[data-tone="default"]:not(:disabled):hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
-button[data-tone="primary"]:not(:disabled):hover { background: var(--color-text-secondary) !important; border-color: var(--color-text-secondary) !important; }
+button[data-tone="primary"]:not(:disabled):hover { background: var(--color-accent-hover) !important; border-color: var(--color-accent-hover) !important; }
 button[data-tone="accent"]:not(:disabled):hover  { background: var(--color-accent-hover) !important; border-color: var(--color-accent-hover) !important; }
 button[data-tone="ghost"]:not(:disabled):hover   { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
 button[data-tone="danger"]:not(:disabled):hover  { background: var(--color-error-bg) !important; }

@@ -17,7 +17,10 @@ export const fontSize = {
 export const fontWeight = {
   regular: 400,
   medium: 500,
-  semibold: 600
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+  black: 900
 }
 
 export const lineHeight = { tight: 1.2, normal: 1.5, relaxed: 1.65 }
