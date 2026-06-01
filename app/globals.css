@@ -103,8 +103,6 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
 /* App shell — left sidebar on desktop, hamburger drawer on mobile. */
 [data-hamburger] { display: none; }
 [data-scrim] { display: none; }
-/* Sidebar stays put while the main content scrolls. */
-[data-sidebar] { position: sticky; top: 0; align-self: flex-start; height: 100vh; }
 
 /* Brand the native file picker button. */
 input[type="file"] { color: var(--color-text-secondary); font-size: 13px; }
