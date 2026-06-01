@@ -70,17 +70,30 @@ them (so adding one never renumbers the rest).
   `contact_email`); `snake_case` columns; **UUID v4** primary keys.
 - **Show the ERD on every structural change** before/with the change.
 
+## Backend — structure
+
+- **Module layout for backend code:** `lib/[module]/{models,controllers}/`
+  (e.g. `lib/contact/models/`, `lib/contact/controllers/`). The shared
+  Sequelize instance stays in `lib/db/sequelize.js`.
+- **Sequelize models live in `lib/[module]/models/`** — one model per file.
+- **Keep model files short.** When a model gets long, move its column
+  definitions into a sibling `*.fields.js` (e.g. `user.fields.js`) and import
+  them — the same way components split structure/style/behavior.
+- **Logic lives in the models, not the controllers.** Prefer Sequelize hooks,
+  scopes, validations, getters/setters, and class/instance methods over
+  procedural code. A model owns its own behaviour and its associations
+  (declare them in a static `associate(models)`).
+- **Controllers stay light.** They orchestrate models and shape output —
+  holding as little logic as possible — and **return plain objects**
+  (`.toJSON()`), never Sequelize instances, so results are safe to pass
+  through server actions to client components.
+
 ## Database — Sequelize (ORM)
 
 - **Sequelize is the only way to touch application tables.** No raw SQL in app
   code; `supabase-js` is for Auth only, never for data.
-- **Models live in `lib/db/models/`** (one file per model); associations are
-  wired in `lib/db/models/index.js`; the instance is `lib/db/sequelize.js`.
-- **Encapsulate behind a repo.** Feature code calls `lib/[domain]/*` functions
-  that return **plain objects** (`.toJSON()`), never Sequelize instances — so
-  results are safe to pass through server actions to client components.
 - **Connection:** `SUPABASE_DB_URL` (Supavisor **session pooler**), reused
-  across invocations via a global singleton. (More rules to be added.)
+  across invocations via a global singleton.
 
 ## Process
 
