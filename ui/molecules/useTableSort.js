@@ -11,9 +11,9 @@ const valueGetter = (columns, key) => {
   return col?.sortBy || ((row) => row[key])
 }
 
-export function useTableSort(rows, columns, initialKey) {
+export function useTableSort(rows, columns, initialKey, initialDir = 'asc') {
   const [key, setKey] = useState(initialKey)
-  const [dir, setDir] = useState('asc')
+  const [dir, setDir] = useState(initialDir)
   const get = valueGetter(columns, key)
   const factor = dir === 'asc' ? 1 : -1
 
