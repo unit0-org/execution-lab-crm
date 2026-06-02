@@ -18,9 +18,9 @@ export function useMeetingSync(onSynced) {
     syncMeetingsAction(true).then(apply).finally(() => setSyncing(false))
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     syncMeetingsAction(false).then(apply).finally(() => setSyncing(false))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return { lastSyncedAt, syncing, force }
