@@ -21,7 +21,7 @@ export function ContactRow({ contact, onChanged }) {
         </Link>
       </Td>
       <Td>{emails(contact)}</Td>
-      <Td><RowDelete onConfirm={remove} /></Td>
+      <Td><RowDelete onConfirm={remove} title="Delete contact" /></Td>
     </Tr>
   )
 }
