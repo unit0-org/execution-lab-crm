@@ -4,7 +4,7 @@ import { Td } from '@/ui/molecules/Td'
 import { Skeleton } from '@/ui/atoms/Skeleton'
 
 const ROWS = [0, 1, 2]
-const COLS = ['Event', 'Date', 'Type', 'Checked in / Registered', '']
+const COLS = ['Event', 'Date', 'Type', 'Attended / Registered', '']
 
 export function EventsSkeleton() {
   return (
