@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { rememberGoogleToken } from '@/lib/google/controllers/rememberToken'
 
 const back = (url, to) => NextResponse.redirect(new URL(to, url.origin))
 
@@ -15,9 +16,11 @@ export async function GET(request) {
   if (!code) return back(url, '/login?error=missing_code')
 
   const supabase = await createClient()
-  const { error } = await supabase.auth.exchangeCodeForSession(code)
+  const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
   if (error) return back(url, errUrl(error))
+
+  await rememberGoogleToken(data.session)
 
   return back(url, next)
 }
