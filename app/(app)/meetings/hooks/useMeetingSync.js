@@ -5,7 +5,7 @@ import { syncMeetingsAction } from '../actions/syncMeetings'
 
 export function useMeetingSync(onSynced) {
   const [lastSyncedAt, setLastSyncedAt] = useState(null)
-  const [syncing, setSyncing] = useState(false)
+  const [syncing, setSyncing] = useState(true)
 
   const apply = (r) => {
     setLastSyncedAt(r?.lastSyncedAt || null)
@@ -19,7 +19,9 @@ export function useMeetingSync(onSynced) {
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { syncMeetingsAction(false).then(apply) }, [])
+  useEffect(() => {
+    syncMeetingsAction(false).then(apply).finally(() => setSyncing(false))
+  }, [])
 
   return { lastSyncedAt, syncing, force }
 }
