@@ -8,7 +8,8 @@ import { useCurrentUser } from '../hooks/useCurrentUser'
 
 const NAV = [
   { href: '/contacts', label: 'Contacts' },
-  { href: '/events', label: 'Events' }
+  { href: '/events', label: 'Events' },
+  { href: '/meetings', label: 'Meetings' }
 ]
 
 export function AppShell({ children }) {
