@@ -2,10 +2,16 @@
 
 import { sortButtonStyle } from './Table.styles'
 import { SortArrow } from './SortArrow'
+import { Checkbox } from '../atoms/Checkbox'
 
 const text = (col) => (typeof col === 'string' ? col : col.label)
 
 export function SortLabel({ col, sort, onSort }) {
+  if (col?.select) {
+    return <Checkbox checked={col.checked} onChange={col.onToggle}
+      label="Select all" />
+  }
+
   if (typeof col === 'string' || !col.key || !onSort) {
     return <>{text(col)}</>
   }
