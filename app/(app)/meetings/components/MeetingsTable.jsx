@@ -6,7 +6,8 @@ import { MeetingRow } from './MeetingRow'
 import { columns } from './meetingColumns'
 
 export function MeetingsTable({ meetings }) {
-  const { sorted, sort, toggle } = useTableSort(meetings, columns, 'date')
+  const { sorted, sort, toggle } =
+    useTableSort(meetings, columns, 'date', 'desc')
 
   return (
     <Table cols={columns} sort={sort} onSort={toggle}>
