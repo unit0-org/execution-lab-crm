@@ -9,7 +9,7 @@ const text = (col) => (typeof col === 'string' ? col : col.label)
 export function SortLabel({ col, sort, onSort }) {
   if (col?.select) {
     return <Checkbox checked={col.checked} onChange={col.onToggle}
-      label="Select all" />
+      indeterminate={col.indeterminate} label="Select all" />
   }
 
   if (typeof col === 'string' || !col.key || !onSort) {

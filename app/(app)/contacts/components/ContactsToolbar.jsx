@@ -1,5 +1,6 @@
 'use client'
 
+import { StickyBar } from '@/ui/layout/StickyBar'
 import { BulkActions } from './BulkActions'
 import { MergeModal } from './MergeModal'
 import { useBulkDelete } from '../hooks/useBulkDelete'
@@ -10,15 +11,15 @@ export function ContactsToolbar({ contacts, selection, onChanged }) {
   const remove = useBulkDelete(refresh)
   const merge = useMergeFlow(refresh)
   const chosen = contacts.filter((c) => selection.ids.has(c.id))
-
-  if (selection.ids.size === 0) return null
+  const count = selection.ids.size
 
   return (
     <>
-      <BulkActions count={selection.ids.size}
-        canMerge={selection.ids.size > 1}
-        onDelete={() => remove(chosen)}
-        onMerge={() => merge.start(chosen)} />
+      <StickyBar active={count > 0}>
+        <BulkActions key={count > 0} count={count} canMerge={count > 1}
+          onDelete={() => remove(chosen)}
+          onMerge={() => merge.start(chosen)} />
+      </StickyBar>
       <MergeModal contacts={merge.review} onConfirm={merge.confirm}
         onCancel={merge.cancel} />
     </>
