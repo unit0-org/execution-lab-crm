@@ -12,7 +12,9 @@ const cell = {
   borderBottom: `1px solid ${color.border.soft}`, whiteSpace: 'nowrap'
 }
 
-export const thStyle = { ...cell, color: color.text.muted }
+export const thStyle = {
+  ...cell, color: color.text.muted, textTransform: 'uppercase'
+}
 export const tdStyle = cell
 
 export const truncateStyle = {
