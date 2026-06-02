@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { contactTimelineAction } from '../actions/contactTimeline'
+import { contactActivityAction } from '../actions/contactActivity'
 
 export function useTimeline(contactId) {
   const [entries, setEntries] = useState(undefined)
 
   useEffect(() => {
-    contactTimelineAction(contactId).then(setEntries)
+    contactActivityAction(contactId).then(setEntries)
   }, [contactId])
 
   return entries

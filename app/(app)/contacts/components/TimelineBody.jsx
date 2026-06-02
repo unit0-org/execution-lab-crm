@@ -6,7 +6,7 @@ export function TimelineBody({ entries }) {
   if (entries === undefined) return <TimelineSkeleton />
 
   if (!entries.length) {
-    return <Text tone="muted" size="sm">No events yet.</Text>
+    return <Text tone="muted" size="sm">No activity yet.</Text>
   }
 
   return <TimelineList entries={entries} />
