@@ -3,10 +3,10 @@
 import { Table } from '@/ui/molecules/Table'
 import { useTableSort } from '@/ui/molecules/useTableSort'
 import { ContactRow } from './ContactRow'
-import { buildColumns } from './buildColumns'
+import { useContactColumns } from '../hooks/useContactColumns'
 
 export function ContactList({ contacts, selection, onChanged }) {
-  const cols = buildColumns(selection)
+  const cols = useContactColumns(selection)
   const { sorted, sort, toggle } = useTableSort(contacts, cols, 'name')
 
   return (
