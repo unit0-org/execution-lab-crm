@@ -5,23 +5,20 @@ import { Shell } from '@/ui/layout/Shell'
 import { Sidebar } from '@/ui/organisms/Sidebar'
 import { useSidebar } from '../hooks/useSidebar'
 import { useCurrentUser } from '../hooks/useCurrentUser'
-
-const NAV = [
-  { href: '/contacts', label: 'Contacts' },
-  { href: '/events', label: 'Events' },
-  { href: '/meetings', label: 'Meetings' }
-]
+import { NAV } from './nav'
 
 export function AppShell({ children }) {
-  const { open, toggle, close } = useSidebar()
+  const { open, collapsed, toggle, close, toggleCollapse } = useSidebar()
   const email = useCurrentUser()
   const path = usePathname()
   const sidebar = (
-    <Sidebar items={NAV} currentPath={path} email={email} />
+    <Sidebar items={NAV} currentPath={path} email={email}
+      collapsed={collapsed} onToggleCollapse={toggleCollapse} />
   )
 
   return (
-    <Shell sidebar={sidebar} open={open} onToggle={toggle} onClose={close}>
+    <Shell sidebar={sidebar} open={open} collapsed={collapsed}
+      onToggle={toggle} onClose={close}>
       {children}
     </Shell>
   )

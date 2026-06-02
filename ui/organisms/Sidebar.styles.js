@@ -8,6 +8,12 @@ export const sidebarStyle = {
   height: '100%'
 }
 
+export const toggleStyle = (collapsed) => ({
+  display: 'flex',
+  justifyContent: collapsed ? 'center' : 'flex-end',
+  padding: space[2]
+})
+
 export const footerStyle = {
   padding: space[4],
   borderTop: `1px solid ${color.border.default}`

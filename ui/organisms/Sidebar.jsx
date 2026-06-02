@@ -1,19 +1,18 @@
 import { Nav } from './Nav'
-import { UserEmail } from './UserEmail'
-import { SignOutForm } from '../molecules/SignOutForm'
-import { Stack } from '../layout/Stack'
-import { sidebarStyle, footerStyle } from './Sidebar.styles'
+import { CollapseToggle } from './CollapseToggle'
+import { SidebarFooter } from './SidebarFooter'
+import { sidebarStyle } from './Sidebar.styles'
 
-export function Sidebar({ items, currentPath, email }) {
+export function Sidebar(props) {
+  const { items, currentPath, email, collapsed, onToggleCollapse } = props
+
   return (
     <div style={sidebarStyle}>
-      <Nav items={items} currentPath={currentPath} />
-      <div style={footerStyle}>
-        <Stack gap="xs">
-          <UserEmail value={email} />
-          <SignOutForm>Log out</SignOutForm>
-        </Stack>
+      <div>
+        <CollapseToggle collapsed={collapsed} onClick={onToggleCollapse} />
+        <Nav items={items} currentPath={currentPath} collapsed={collapsed} />
       </div>
+      <SidebarFooter email={email} collapsed={collapsed} />
     </div>
   )
 }
