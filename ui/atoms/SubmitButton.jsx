@@ -2,20 +2,18 @@
 
 import { useFormStatus } from 'react-dom'
 import { Button } from './Button'
-import { Spinner } from './Spinner'
+import { Pending } from './Pending'
 
 // Drop-in <Button type="submit"> that reflects its form's pending state:
-// disabled + spinner while the action runs. No per-call-site wiring.
+// disabled + spinner while the action runs, without changing the
+// button's size (the label's footprint is preserved). No call-site wiring.
 export function SubmitButton({ children, ...rest }) {
   const { pending } = useFormStatus()
+  const content = pending ? <Pending>{children}</Pending> : children
 
-  if (pending) {
-    return (
-      <Button {...rest} type="submit" disabled>
-        <Spinner size={12} />
-      </Button>
-    )
-  }
-
-  return <Button {...rest} type="submit">{children}</Button>
+  return (
+    <Button {...rest} type="submit" disabled={pending} aria-busy={pending}>
+      {content}
+    </Button>
+  )
 }
