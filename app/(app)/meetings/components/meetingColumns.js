@@ -1,6 +1,6 @@
 const title = (m) => m.title || ''
 
-const attendees = (m) => Number(m.attendees) || 0
+const attendees = (m) => (m.attendees || []).length
 
 export const columns = [
   { label: 'Meeting', key: 'title', sortBy: title },
