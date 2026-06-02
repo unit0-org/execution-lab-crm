@@ -10,7 +10,7 @@ export function Timeline({ contactId }) {
 
   return (
     <Stack gap="sm">
-      <Heading level={3}>Events</Heading>
+      <Heading level={3}>Activity</Heading>
       <TimelineBody entries={entries} />
     </Stack>
   )
