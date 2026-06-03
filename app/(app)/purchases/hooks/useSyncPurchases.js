@@ -5,11 +5,18 @@ import { syncPurchasesAction } from '../actions/syncPurchases'
 
 export function useSyncPurchases(onSynced) {
   const [syncing, setSyncing] = useState(false)
+  const [error, setError] = useState(null)
 
   const sync = () => {
     setSyncing(true)
-    syncPurchasesAction().then(onSynced).finally(() => setSyncing(false))
+    setError(null)
+    syncPurchasesAction()
+      .then((result) => {
+        if (result?.error) setError(result.error)
+        else onSynced()
+      })
+      .finally(() => setSyncing(false))
   }
 
-  return { sync, syncing }
+  return { sync, syncing, error }
 }
