@@ -104,6 +104,20 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
 [data-hamburger] { display: none; }
 [data-scrim] { display: none; }
 
+/* Sidebar collapse — the class is set before paint by an inline script,
+   so the collapsed width is already correct on first render (no flash). */
+[data-sidebar] {
+  width: 260px;
+  transition: width var(--motion-soft) var(--motion-ease);
+}
+.sidebar-collapsed [data-sidebar] { width: 68px; }
+.sidebar-collapsed [data-nav-item] { justify-content: center; }
+.sidebar-collapsed [data-nav-label] { display: none; }
+.sidebar-collapsed [data-collapse-toggle] { justify-content: center; }
+[data-sidebar-when-collapsed] { display: none; }
+.sidebar-collapsed [data-sidebar-when-expanded] { display: none; }
+.sidebar-collapsed [data-sidebar-when-collapsed] { display: block; }
+
 /* Brand the native file picker button. */
 input[type="file"] { color: var(--color-text-secondary); font-size: 13px; }
 input[type="file"]::file-selector-button {
@@ -129,8 +143,13 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
   }
   [data-sidebar][data-open] { transform: translateX(0); }
   [data-scrim][data-open] { display: block; }
-  /* The drawer is hamburger-driven on mobile; no collapse control. */
+  /* The drawer is hamburger-driven on mobile; ignore the collapse state. */
   [data-collapse-toggle] { display: none; }
+  .sidebar-collapsed [data-sidebar] { width: 260px; }
+  .sidebar-collapsed [data-nav-item] { justify-content: flex-start; }
+  .sidebar-collapsed [data-nav-label] { display: inline; }
+  .sidebar-collapsed [data-sidebar-when-expanded] { display: block; }
+  .sidebar-collapsed [data-sidebar-when-collapsed] { display: none; }
 }
 
 button[data-tone="default"]:not(:disabled):hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }

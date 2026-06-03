@@ -1,20 +1,15 @@
 'use client'
 
-import { useState, useSyncExternalStore } from 'react'
-import { readCollapsed, subscribeCollapsed, writeCollapsed }
-  from './collapseStore'
+import { useState } from 'react'
+import { toggleCollapsed } from './collapseStore'
 
 export function useSidebar() {
   const [open, setOpen] = useState(false)
-  const collapsed = useSyncExternalStore(
-    subscribeCollapsed, readCollapsed, () => false
-  )
 
   return {
     open,
-    collapsed,
     toggle: () => setOpen((value) => !value),
     close: () => setOpen(false),
-    toggleCollapse: () => writeCollapsed(!collapsed)
+    toggleCollapse: toggleCollapsed
   }
 }

@@ -2,13 +2,16 @@ import { IconButton } from '../atoms/IconButton'
 import { Icon } from '../atoms/Icon'
 import { toggleStyle } from './Sidebar.styles'
 
-export function CollapseToggle({ collapsed, onClick }) {
-  const icon = collapsed ? 'chevronRight' : 'chevronLeft'
-
+export function CollapseToggle({ onClick }) {
   return (
-    <div data-collapse-toggle style={toggleStyle(collapsed)}>
+    <div data-collapse-toggle style={toggleStyle}>
       <IconButton label="Toggle sidebar" onClick={onClick}>
-        <Icon name={icon} size={18} />
+        <span data-sidebar-when-expanded>
+          <Icon name="chevronLeft" size={18} />
+        </span>
+        <span data-sidebar-when-collapsed>
+          <Icon name="chevronRight" size={18} />
+        </span>
       </IconButton>
     </div>
   )

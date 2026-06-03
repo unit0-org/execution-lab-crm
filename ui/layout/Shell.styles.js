@@ -14,10 +14,8 @@ export const mainStyle = {
   overflowY: 'auto'
 }
 
-export const asideStyle = (collapsed) => ({
-  width: collapsed ? '68px' : '260px',
+export const asideStyle = {
   flexShrink: 0,
   borderRight: `1px solid ${color.border.default}`,
-  background: color.bg.surface,
-  transition: 'width var(--motion-soft) var(--motion-ease)'
-})
+  background: color.bg.surface
+}

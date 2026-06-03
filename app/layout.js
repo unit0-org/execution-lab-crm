@@ -1,5 +1,6 @@
 import { Montserrat, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
+import { collapseScript } from "./collapseScript"
 
 const sans = Montserrat({ variable: "--font-montserrat", subsets: ["latin"] })
 const mono = JetBrains_Mono({
@@ -17,7 +18,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" className={fontVars}>
-      <body>{children}</body>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: collapseScript }} />
+        {children}
+      </body>
     </html>
   )
 }
