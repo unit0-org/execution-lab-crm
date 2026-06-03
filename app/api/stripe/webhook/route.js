@@ -1,9 +1,9 @@
 import { verifyWebhook } from '@/lib/stripe/verifyWebhook'
-import { importSession } from '@/lib/purchase/controllers/importSession'
+import { importPayment } from '@/lib/purchase/controllers/importPayment'
 
-const PAID = 'checkout.session.completed'
+const PAID = 'payment_intent.succeeded'
 
-// Stripe calls this on new purchases; verify, then record the session.
+// Stripe calls this on new payments; verify, then record the payment.
 export async function POST(request) {
   const body = await request.text()
   const signature = request.headers.get('stripe-signature')
@@ -11,7 +11,7 @@ export async function POST(request) {
   try {
     const event = verifyWebhook(body, signature)
 
-    if (event.type === PAID) await importSession(event.data.object)
+    if (event.type === PAID) await importPayment(event.data.object)
   } catch (e) {
     return new Response(e.message, { status: 400 })
   }
