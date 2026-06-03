@@ -1,7 +1,7 @@
 'use server'
 
-import { contactAnswers } from '@/lib/event/controllers/contactAnswers'
+import { contactNuggets } from '@/lib/contacts/contactNuggets'
 
 export async function contactAnswersAction(contactId) {
-  return contactAnswers(contactId)
+  return contactNuggets(contactId)
 }

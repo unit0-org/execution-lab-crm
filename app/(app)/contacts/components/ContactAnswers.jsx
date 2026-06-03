@@ -1,19 +1,28 @@
 'use client'
 
 import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
 import { useContactAnswers } from '../hooks/useContactAnswers'
+import { useReveal } from '../hooks/useReveal'
+import { KnowHeader } from './KnowHeader'
+import { AddNuggetSlot } from './AddNuggetSlot'
 import { NuggetList } from './NuggetList'
 
 export function ContactAnswers({ contactId }) {
-  const nuggets = useContactAnswers(contactId)
+  const { nuggets, reload } = useContactAnswers(contactId)
+  const add = useReveal()
+  const items = nuggets || []
 
-  if (!nuggets || !nuggets.length) return null
+  const saved = () => {
+    reload()
+    add.hide()
+  }
 
   return (
     <Stack gap="sm">
-      <Heading level={3}>What we know</Heading>
-      <NuggetList nuggets={nuggets} />
+      <KnowHeader onAdd={add.show} />
+      <AddNuggetSlot shown={add.shown} contactId={contactId}
+        onSaved={saved} onCancel={add.hide} />
+      <NuggetList nuggets={items} />
     </Stack>
   )
 }
