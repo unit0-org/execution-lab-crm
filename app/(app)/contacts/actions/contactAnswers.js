@@ -3,5 +3,5 @@
 import { contactNuggets } from '@/lib/contacts/contactNuggets'
 
 export async function contactAnswersAction(contactId) {
-  return contactNuggets(contactId)
+  return await contactNuggets(contactId)
 }

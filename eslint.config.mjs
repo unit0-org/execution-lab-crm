@@ -48,6 +48,9 @@ const eslintConfig = defineConfig([
       "comma-dangle": ["error", "never"],
       "padding-line-between-statements": ["error", blankBefore],
       "no-restricted-syntax": ["error", ...common],
+      // An `async` function must contain an `await`. Server actions, which
+      // Next.js forces to be async, satisfy this with `return await call()`.
+      "require-await": "error",
     },
   },
   {
@@ -69,13 +72,6 @@ const eslintConfig = defineConfig([
         "error", ...common, ...asyncSelectors, ...promiseSelectors,
       ],
     },
-  },
-  {
-    // Data layer: no gratuitous `async`. A function that never `await`s
-    // must not be `async`. Server actions (which Next.js forces to be
-    // async) live under app/**/actions and are intentionally excluded.
-    files: ["lib/**/*.{js,jsx}"],
-    rules: { "require-await": "error" },
   },
 ]);
 

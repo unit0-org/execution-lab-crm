@@ -61,14 +61,15 @@ them (so adding one never renumbers the rest).
   handlers, middleware, and the `lib/` data layer they call** — never a
   component or page body. Pages are thin sync shells; client views fetch via
   hooks.
-- **`async` only where you `await` — except server actions.** Don't mark a
-  function `async` if its body never `await`s; return the promise directly.
-  The one exception: a `'use server'` action **must** be `async` even as a
-  one-line passthrough — Next.js fails the build otherwise (`Server Actions
-  must be async functions`). So actions like `listX` stay `async` with no
-  `await` (return the call's promise, don't `await` it only to return it);
-  everywhere else (lib, hooks, helpers) drop the `async` keyword when there's
-  no `await`.
+- **An `async` function MUST contain an `await` — no exceptions.** **[lint]**
+  (`require-await`, everywhere.) If a function never `await`s, it must not be
+  `async` — return the promise directly. **Server actions are not exempt:**
+  Next.js forces a `'use server'` export to be `async` (it fails the build
+  otherwise — `Server Actions must be async functions`), so a passthrough
+  action writes **`return await theCall()`** — the `await` is mandatory, and
+  it's not gratuitous because the `async` is mandatory too. Never an `async`
+  with no `await`; never an `await` whose result you discard then return a
+  constant.
 - **No conditionals inside JSX** — no ternaries, no `&&`. Use an early return
   or a named component. **[lint]**
 - **Avoid `useCallback`/`useMemo`** unless absolutely necessary. **[lint]**

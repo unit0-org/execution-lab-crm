@@ -3,5 +3,5 @@
 import { getMeetingDetail } from '@/lib/meeting/controllers/getMeetingDetail'
 
 export async function getMeetingAction(id) {
-  return getMeetingDetail(id)
+  return await getMeetingDetail(id)
 }

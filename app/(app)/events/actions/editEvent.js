@@ -5,7 +5,7 @@ import { updateEvent } from '@/lib/event/controllers/updateEvent'
 export async function editEventAction(_prev, formData) {
   const id = formData.get('id')
 
-  return updateEvent(id, {
+  return await updateEvent(id, {
     title: formData.get('title'),
     date: formData.get('date') || null,
     type: formData.get('type'),

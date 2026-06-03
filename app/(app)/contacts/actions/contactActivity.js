@@ -3,5 +3,5 @@
 import { contactActivity } from '@/lib/activity/controllers/contactActivity'
 
 export async function contactActivityAction(contactId) {
-  return contactActivity(contactId)
+  return await contactActivity(contactId)
 }
