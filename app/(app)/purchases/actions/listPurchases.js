@@ -3,5 +3,5 @@
 import { listPurchases } from '@/lib/purchase/controllers/listPurchases'
 
 export async function listPurchasesAction() {
-  return listPurchases()
+  return await listPurchases()
 }
