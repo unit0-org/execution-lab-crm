@@ -1,17 +1,14 @@
-// Persists the sidebar's collapsed state in localStorage and notifies
-// subscribers, so useSyncExternalStore reads it without a hydration flash.
+// Source of truth for the sidebar collapse: a class on <html>, set
+// before paint by the inline script. Toggling flips it and localStorage.
 const KEY = 'sidebar-collapsed'
-const listeners = new Set()
 
-export const readCollapsed = () => localStorage.getItem(KEY) === '1'
+const root = () => document.documentElement
 
-export const subscribeCollapsed = (callback) => {
-  listeners.add(callback)
+const isCollapsed = () => root().classList.contains(KEY)
 
-  return () => listeners.delete(callback)
-}
+export function toggleCollapsed() {
+  const next = !isCollapsed()
 
-export const writeCollapsed = (value) => {
-  localStorage.setItem(KEY, value ? '1' : '0')
-  listeners.forEach((callback) => callback())
+  root().classList.toggle(KEY, next)
+  localStorage.setItem(KEY, next ? '1' : '0')
 }

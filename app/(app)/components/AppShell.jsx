@@ -8,17 +8,16 @@ import { useCurrentUser } from '../hooks/useCurrentUser'
 import { NAV } from './nav'
 
 export function AppShell({ children }) {
-  const { open, collapsed, toggle, close, toggleCollapse } = useSidebar()
+  const { open, toggle, close, toggleCollapse } = useSidebar()
   const email = useCurrentUser()
   const path = usePathname()
   const sidebar = (
     <Sidebar items={NAV} currentPath={path} email={email}
-      collapsed={collapsed} onToggleCollapse={toggleCollapse} />
+      onToggleCollapse={toggleCollapse} />
   )
 
   return (
-    <Shell sidebar={sidebar} open={open} collapsed={collapsed}
-      onToggle={toggle} onClose={close}>
+    <Shell sidebar={sidebar} open={open} onToggle={toggle} onClose={close}>
       {children}
     </Shell>
   )

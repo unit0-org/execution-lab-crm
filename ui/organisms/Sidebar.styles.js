@@ -8,11 +8,11 @@ export const sidebarStyle = {
   height: '100%'
 }
 
-export const toggleStyle = (collapsed) => ({
+export const toggleStyle = {
   display: 'flex',
-  justifyContent: collapsed ? 'center' : 'flex-end',
+  justifyContent: 'flex-end',
   padding: space[2]
-})
+}
 
 export const footerStyle = {
   padding: space[4],
