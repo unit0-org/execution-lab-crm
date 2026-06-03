@@ -70,6 +70,13 @@ const eslintConfig = defineConfig([
       ],
     },
   },
+  {
+    // Data layer: no gratuitous `async`. A function that never `await`s
+    // must not be `async`. Server actions (which Next.js forces to be
+    // async) live under app/**/actions and are intentionally excluded.
+    files: ["lib/**/*.{js,jsx}"],
+    rules: { "require-await": "error" },
+  },
 ]);
 
 export default eslintConfig;
