@@ -4,7 +4,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { useContactAnswers } from '../hooks/useContactAnswers'
 import { useReveal } from '../hooks/useReveal'
 import { KnowHeader } from './KnowHeader'
-import { AddNuggetSlot } from './AddNuggetSlot'
+import { AddNuggetModal } from './AddNuggetModal'
 import { NuggetList } from './NuggetList'
 
 export function ContactAnswers({ contactId }) {
@@ -20,8 +20,8 @@ export function ContactAnswers({ contactId }) {
   return (
     <Stack gap="sm">
       <KnowHeader onAdd={add.show} />
-      <AddNuggetSlot shown={add.shown} contactId={contactId}
-        onSaved={saved} onCancel={add.hide} />
+      <AddNuggetModal open={add.shown} contactId={contactId}
+        onSaved={saved} onClose={add.hide} />
       <NuggetList nuggets={items} />
     </Stack>
   )

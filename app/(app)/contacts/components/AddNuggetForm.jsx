@@ -3,6 +3,7 @@
 import { Form } from '@/ui/molecules/Form'
 import { TextField } from '@/ui/atoms/TextField'
 import { Stack } from '@/ui/layout/Stack'
+import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from './FormError'
 import { DialogActions } from './DialogActions'
 import { useFormAction } from '../hooks/useFormAction'
@@ -14,12 +15,13 @@ export function AddNuggetForm({ contactId, onSaved, onCancel }) {
   return (
     <Form action={action}>
       <input type="hidden" name="contact_id" value={contactId} />
-      <Stack gap="sm">
+      <Stack gap="md">
+        <Heading level={3}>Add nugget</Heading>
         <TextField name="label" autoFocus
           placeholder="Question or label (optional)" />
         <TextField name="value" placeholder="Value" required />
-        <DialogActions label="Add" onCancel={onCancel} />
         <FormError message={error} />
+        <DialogActions label="Add" onCancel={onCancel} />
       </Stack>
     </Form>
   )
