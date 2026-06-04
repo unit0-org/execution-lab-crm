@@ -116,7 +116,9 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
 .sidebar-collapsed [data-collapse-toggle] { justify-content: center; }
 [data-sidebar-when-collapsed] { display: none; }
 .sidebar-collapsed [data-sidebar-when-expanded] { display: none; }
-.sidebar-collapsed [data-sidebar-when-collapsed] { display: block; }
+.sidebar-collapsed [data-sidebar-when-collapsed] {
+  display: block; text-align: center;
+}
 
 /* Brand the native file picker button. */
 input[type="file"] { color: var(--color-text-secondary); font-size: 13px; }
