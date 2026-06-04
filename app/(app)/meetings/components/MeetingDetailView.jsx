@@ -8,11 +8,11 @@ import { MeetingNotFound } from './MeetingNotFound'
 
 export function MeetingDetailView() {
   const { id } = useParams()
-  const meeting = useMeeting(id)
+  const { meeting, refresh } = useMeeting(id)
 
   if (meeting === undefined) return <MeetingLoading />
 
   if (meeting === null) return <MeetingNotFound />
 
-  return <MeetingDetail meeting={meeting} />
+  return <MeetingDetail meeting={meeting} onChanged={refresh} />
 }
