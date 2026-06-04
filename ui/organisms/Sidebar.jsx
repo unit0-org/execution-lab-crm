@@ -4,7 +4,7 @@ import { SidebarFooter } from './SidebarFooter'
 import { sidebarStyle } from './Sidebar.styles'
 
 export function Sidebar(props) {
-  const { items, currentPath, email, onToggleCollapse } = props
+  const { items, settings, currentPath, email, onToggleCollapse } = props
 
   return (
     <div style={sidebarStyle}>
@@ -12,7 +12,10 @@ export function Sidebar(props) {
         <CollapseToggle onClick={onToggleCollapse} />
         <Nav items={items} currentPath={currentPath} />
       </div>
-      <SidebarFooter email={email} />
+      <div>
+        <Nav items={settings} currentPath={currentPath} />
+        <SidebarFooter email={email} />
+      </div>
     </div>
   )
 }
