@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
 import { Heading } from '@/ui/atoms/Heading'
 import { Stack } from '@/ui/layout/Stack'
@@ -10,7 +11,9 @@ export default function ContactsPage() {
       <Stack gap="md">
         <Heading>Contacts</Heading>
         <Link href="/contacts/new">+ New contact</Link>
-        <ContactsView />
+        <Suspense>
+          <ContactsView />
+        </Suspense>
       </Stack>
     </Page>
   )
