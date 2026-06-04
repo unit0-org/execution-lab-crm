@@ -1,5 +1,6 @@
 import { Stack } from '@/ui/layout/Stack'
 import { ContactHeader } from './ContactHeader'
+import { TotalSpent } from './TotalSpent'
 import { ContactEmails } from './ContactEmails'
 import { ContactPhones } from './ContactPhones'
 import { ContactAnswers } from './ContactAnswers'
@@ -13,8 +14,11 @@ export function ContactDetail({ contact, onChanged }) {
   return (
     <Stack gap="lg">
       <ContactHeader contact={contact} onChanged={onChanged} />
-      <ContactEmails contactId={id} emails={emails} onChanged={onChanged} />
-      <ContactPhones contactId={id} phones={phones} onChanged={onChanged} />
+      <TotalSpent contactId={id} />
+      <Stack gap="sm">
+        <ContactEmails contactId={id} emails={emails} onChanged={onChanged} />
+        <ContactPhones contactId={id} phones={phones} onChanged={onChanged} />
+      </Stack>
       <ContactAnswers contactId={id} />
       <Timeline contactId={id} />
     </Stack>

@@ -3,6 +3,7 @@
 import { Modal } from '@/ui/organisms/Modal'
 import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
+import { Button } from '@/ui/atoms/Button'
 import { CategoryRow } from './CategoryRow'
 import { CategoryList } from './CategoryList'
 import { AddCategoryForm } from './AddCategoryForm'
@@ -20,6 +21,7 @@ export function CategoryModal({ open, onClose, currentId, onAssign }) {
         <CategoryList categories={categories} currentId={currentId}
           onAssign={onAssign} onToggle={toggle} />
         <AddCategoryForm onAdd={create} />
+        <Button onClick={onClose}>Close</Button>
       </Stack>
     </Modal>
   )
