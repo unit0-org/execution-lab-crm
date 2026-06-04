@@ -1,7 +1,7 @@
 'use server'
 
-import { listContacts } from '@/lib/contacts/list'
+import { listFilteredContacts } from '@/lib/contacts/listFiltered'
 
-export async function listContactsAction() {
-  return listContacts()
+export async function listContactsAction(filter) {
+  return listFilteredContacts(filter)
 }
