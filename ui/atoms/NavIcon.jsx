@@ -1,9 +1,9 @@
 import { Icon } from './Icon'
-import { EmojiIcon } from './EmojiIcon'
+import { GearIcon } from './GearIcon'
 
-// A nav glyph: an emoji when one is given, otherwise a line icon.
-export function NavIcon({ icon, emoji }) {
-  if (emoji) return <EmojiIcon glyph={emoji} size={18} />
+// A nav glyph: the cog for Settings, otherwise a line icon.
+export function NavIcon({ icon }) {
+  if (icon === 'gear') return <GearIcon size={18} />
 
   return <Icon name={icon} size={18} />
 }

@@ -6,7 +6,7 @@ export const NAV = [
   { href: '/purchases', label: 'Purchases', icon: 'card' }
 ]
 
-const SETTINGS = { href: '/settings', label: 'Settings', emoji: '⚙️' }
+const SETTINGS = { href: '/settings', label: 'Settings', icon: 'gear' }
 
 // The main nav (everyone). Settings lives separately, at the bottom.
 export function navFor() {
