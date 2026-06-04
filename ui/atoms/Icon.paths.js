@@ -24,5 +24,6 @@ export const paths = {
     + 'M3 10h18',
   grid: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
   copy: 'M9 9h10v10H9zM5 15H4V4h10v1',
-  check: 'M5 12l5 5 9-11'
+  check: 'M5 12l5 5 9-11',
+  paperclip: 'M16 8v8a4 4 0 0 1-8 0V7a2 2 0 0 1 4 0v8a1 1 0 0 1-2 0V9'
 }
