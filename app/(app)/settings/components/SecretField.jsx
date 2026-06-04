@@ -5,11 +5,12 @@ import { TextField } from '@/ui/atoms/TextField'
 import { GrowRow } from '@/ui/layout/GrowRow'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
+import { FieldError } from '@/ui/atoms/FieldError'
 import { useFormAction } from '../hooks/useFormAction'
 import { setSecretAction } from '../actions/setSecret'
 
 export function SecretField({ kind, label, configured, onSaved }) {
-  const { action } = useFormAction(setSecretAction, onSaved)
+  const { action, error } = useFormAction(setSecretAction, onSaved)
   const state = configured ? '✓ set' : 'not set'
 
   return (
@@ -22,6 +23,7 @@ export function SecretField({ kind, label, configured, onSaved }) {
           <Icon name="check" size={16} />
         </IconButton>
       </GrowRow>
+      <FieldError message={error} />
     </Form>
   )
 }
