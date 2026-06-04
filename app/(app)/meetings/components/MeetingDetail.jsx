@@ -4,6 +4,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { EditMeeting } from './EditMeeting'
 import { MeetingInfo } from './MeetingInfo'
 import { MeetingParticipants } from './MeetingParticipants'
+import { MeetingNotes } from './MeetingNotes'
 import { MeetingResources } from './MeetingResources'
 
 export function MeetingDetail({ meeting, onChanged }) {
@@ -14,7 +15,10 @@ export function MeetingDetail({ meeting, onChanged }) {
         <EditMeeting meeting={meeting} onSaved={onChanged} />
       </Inline>
       <MeetingInfo meeting={meeting} />
-      <MeetingParticipants participants={meeting.participants} />
+      <MeetingParticipants participants={meeting.participants}
+        meetingId={meeting.id} onChanged={onChanged} />
+      <MeetingNotes notes={meeting.notes} meetingId={meeting.id}
+        onChanged={onChanged} />
       <MeetingResources resources={meeting.resources} />
     </Stack>
   )
