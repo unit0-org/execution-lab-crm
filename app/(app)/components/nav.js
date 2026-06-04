@@ -6,11 +6,14 @@ export const NAV = [
   { href: '/purchases', label: 'Purchases', icon: 'card' }
 ]
 
-const SETTINGS = { href: '/settings', label: 'Settings', icon: 'gear' }
+const SETTINGS = { href: '/settings', label: 'Settings', emoji: '⚙️' }
 
-// Nav items for the role; admins also get Settings (user management).
-export function navFor(role) {
-  if (role === 'admin') return [...NAV, SETTINGS]
-
+// The main nav (everyone). Settings lives separately, at the bottom.
+export function navFor() {
   return NAV
+}
+
+// Settings nav (admin only) — rendered at the bottom of the sidebar.
+export function settingsNav(role) {
+  return role === 'admin' ? [SETTINGS] : []
 }
