@@ -18,6 +18,7 @@ export function PurchasesView() {
       <SyncPurchases onSynced={reload} />
       <FilterBar options={PURCHASE_FILTERS} active={range}
         basePath="/purchases" param="window" />
+      <PurchasesChart window={range} />
       <PurchasesList loading={loading} purchases={purchases} />
     </Stack>
   )
