@@ -1,9 +1,6 @@
 'use client'
 
-import { EndRow } from '@/ui/layout/EndRow'
-import { Text } from '@/ui/atoms/Text'
-import { IconButton } from '@/ui/atoms/IconButton'
-import { SyncIcon } from './SyncIcon'
+import { SyncControl } from '@/ui/molecules/SyncControl'
 import { timeAgo } from '@/ui/atoms/timeAgo'
 
 export function SyncStatus({ lastSyncedAt, syncing, onForce }) {
@@ -12,11 +9,6 @@ export function SyncStatus({ lastSyncedAt, syncing, onForce }) {
     : `Last synced ${timeAgo(lastSyncedAt)}`
 
   return (
-    <EndRow>
-      <Text size="sm" tone="muted">{label}</Text>
-      <IconButton label="Sync now" onClick={onForce} disabled={syncing}>
-        <SyncIcon syncing={syncing} />
-      </IconButton>
-    </EndRow>
+    <SyncControl label={label} syncing={syncing} onSync={onForce} />
   )
 }
