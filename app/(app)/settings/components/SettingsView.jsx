@@ -3,7 +3,7 @@
 import { Stack } from '@/ui/layout/Stack'
 import { useMembership } from '../../hooks/useMembership'
 import { useMembers } from '../hooks/useMembers'
-import { MemberRow } from './MemberRow'
+import { MembersTable } from './MembersTable'
 import { AddMember } from './AddMember'
 
 export function SettingsView() {
@@ -13,9 +13,7 @@ export function SettingsView() {
 
   return (
     <Stack gap="sm">
-      {members.map((member) => (
-        <MemberRow key={member.id} member={member} onChanged={reload} />
-      ))}
+      <MembersTable members={members} onChanged={reload} />
       <AddMember organizationId={orgId} onChanged={reload} />
     </Stack>
   )
