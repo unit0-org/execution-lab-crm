@@ -8,6 +8,10 @@ export async function setSecretAction(formData) {
 
   if (member?.role !== 'admin') return { error: 'Forbidden' }
 
-  return setOrgSecret(member.organizationId, formData.get('kind'),
-    formData.get('value'))
+  try {
+    return await setOrgSecret(member.organizationId, formData.get('kind'),
+      formData.get('value'))
+  } catch (e) {
+    return { error: e.message }
+  }
 }
