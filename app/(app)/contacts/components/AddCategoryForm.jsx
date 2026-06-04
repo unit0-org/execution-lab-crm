@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Inline } from '@/ui/layout/Inline'
+import { GrowRow } from '@/ui/layout/GrowRow'
 import { TextField } from '@/ui/atoms/TextField'
 import { Button } from '@/ui/atoms/Button'
 
@@ -14,10 +14,10 @@ export function AddCategoryForm({ onAdd }) {
   }
 
   return (
-    <Inline gap="sm">
-      <TextField label="New category" value={name}
+    <GrowRow align="end">
+      <TextField name="category" value={name} placeholder="New category"
         onChange={(e) => setName(e.target.value)} />
-      <Button onClick={add}>Add</Button>
-    </Inline>
+      <Button tone="primary" onClick={add}>Add</Button>
+    </GrowRow>
   )
 }
