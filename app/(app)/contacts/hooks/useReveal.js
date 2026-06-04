@@ -8,6 +8,7 @@ export function useReveal() {
   return {
     shown,
     show: () => setShown(true),
-    hide: () => setShown(false)
+    hide: () => setShown(false),
+    toggle: () => setShown((on) => !on)
   }
 }
