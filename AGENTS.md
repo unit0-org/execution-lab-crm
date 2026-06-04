@@ -79,6 +79,11 @@ them (so adding one never renumbers the rest).
   that follows other code; no trailing comma on the last array/object element.
 - **Every action gives feedback:** an on-screen mutation (the UI changes) or,
   when there's nothing to show, a toast. Never a dead click.
+- **Create actions: `+` by the heading → modal.** A list/section's "add"
+  action is a `+` `IconButton` next to that section's heading (via
+  `SectionHeader`) that opens the create form in a `Modal` — never an inline
+  form sitting at the bottom of the list. Close the modal on success and
+  reflect the new row.
 - **Responsive, always.** Every screen looks and works perfectly on mobile and
   desktop (and in between). Mobile-first; no horizontal scroll, no clipped or
   unreachable controls, touch-friendly targets. Encapsulate responsive
