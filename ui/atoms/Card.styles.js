@@ -1,8 +1,9 @@
 import { color } from '../tokens/color'
 import { space } from '../tokens/space'
 import { radius } from '../tokens/radius'
+import { toneColor } from '../tokens/tone'
 
-export const cardStyle = {
+const base = {
   border: `1px solid ${color.border.soft}`,
   borderRadius: radius.lg,
   padding: space[4],
@@ -12,3 +13,8 @@ export const cardStyle = {
   minWidth: 0,
   overflowWrap: 'break-word'
 }
+
+export const cardStyle = (tone) => ({
+  ...base,
+  ...(toneColor[tone] ? { borderTop: `3px solid ${toneColor[tone]}` } : {})
+})
