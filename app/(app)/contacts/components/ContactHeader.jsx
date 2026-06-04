@@ -5,6 +5,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
 import { ContactName } from './ContactName'
+import { ContactCategory } from './ContactCategory'
 import { EditNameModal } from './EditNameModal'
 import { DeleteContact } from './DeleteContact'
 import { useReveal } from '../hooks/useReveal'
@@ -19,6 +20,7 @@ export function ContactHeader({ contact, onChanged }) {
         <Icon name="pencil" />
       </IconButton>
       <DeleteContact contactId={contact.id} />
+      <ContactCategory contact={contact} onChanged={onChanged} />
       <EditNameModal contact={contact} open={edit.shown}
         onClose={edit.hide} onChanged={onChanged} />
     </Inline>
