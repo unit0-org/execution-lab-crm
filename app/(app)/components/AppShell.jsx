@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { Shell } from '@/ui/layout/Shell'
 import { Sidebar } from '@/ui/organisms/Sidebar'
+import { Toaster } from '@/ui/organisms/Toaster'
 import { useSidebar } from '../hooks/useSidebar'
 import { useCurrentUser } from '../hooks/useCurrentUser'
 import { NAV } from './nav'
@@ -17,8 +18,11 @@ export function AppShell({ children }) {
   )
 
   return (
-    <Shell sidebar={sidebar} open={open} onToggle={toggle} onClose={close}>
-      {children}
-    </Shell>
+    <>
+      <Shell sidebar={sidebar} open={open} onToggle={toggle} onClose={close}>
+        {children}
+      </Shell>
+      <Toaster />
+    </>
   )
 }

@@ -1,9 +1,9 @@
 import { Text } from '@/ui/atoms/Text'
+import { CopyList } from '@/ui/molecules/CopyList'
 
-// The contact's emails as one comma-separated line (or a hint if none).
+// The contact's emails, comma-separated and each click-to-copy.
 export function EmailSummary({ emails }) {
-  const list = emails.map((e) => e.email).join(', ')
-  const text = list || 'No emails yet'
+  if (!emails.length) return <Text size="sm">No emails yet</Text>
 
-  return <Text size="sm">{text}</Text>
+  return <CopyList values={emails.map((e) => e.email)} />
 }

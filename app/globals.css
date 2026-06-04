@@ -91,6 +91,9 @@ input::placeholder, textarea::placeholder { color: var(--color-text-subtle); }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle) }
 ::-webkit-scrollbar-track { background: transparent }
 
+/* Comma-separate click-to-copy lists without a trailing comma. */
+[data-comma-list] > * + *::before { content: ", "; }
+
 a, button { transition: color var(--motion-quick) var(--motion-ease), background var(--motion-quick) var(--motion-ease), border-color var(--motion-quick) var(--motion-ease), transform var(--motion-quick) var(--motion-ease), filter var(--motion-quick) var(--motion-ease); }
 
 button:disabled { cursor: not-allowed; opacity: 0.35; }
