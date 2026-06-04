@@ -1,4 +1,3 @@
-// Stroked 24x24 icon path data, drawn with currentColor.
 export const paths = {
   plus: 'M12 5v14M5 12h14',
   close: 'M6 6l12 12M18 6 6 18',
@@ -26,5 +25,6 @@ export const paths = {
   copy: 'M9 9h10v10H9zM5 15H4V4h10v1',
   check: 'M5 12l5 5 9-11',
   paperclip: 'M16 8v8a4 4 0 0 1-8 0V7a2 2 0 0 1 4 0v8a1 1 0 0 1-2 0V9',
-  gear: 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6M12 2v3M12 19v3M2 12h3M19 12h3'
+  gear: 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6M12 2v2M12 20v2M2 12h2M20 12h2' +
+    'M5 5l2 2M17 17l2 2M19 5l-2 2M5 19l2-2'
 }
