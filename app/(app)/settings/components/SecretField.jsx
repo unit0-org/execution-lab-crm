@@ -16,7 +16,7 @@ export function SecretField({ kind, label, configured, onSaved }) {
   return (
     <Form action={action}>
       <input type="hidden" name="kind" value={kind} />
-      <GrowRow>
+      <GrowRow align="end">
         <TextField label={`${label} (${state})`} name="value"
           type="password" placeholder="Paste to set or replace" />
         <IconButton type="submit" tone="primary" label="Save">
