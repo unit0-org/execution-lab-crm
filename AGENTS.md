@@ -126,3 +126,7 @@ them (so adding one never renumbers the rest).
 - **Every change ships via a small, easy-to-review PR.** Ask before opening.
 - **Never push directly to `main`.**
 - CI (lint + build) must be green; that check gates merging.
+- **Offer it to the MCP.** Whenever you add an operation — a new `lib/`
+  controller or server action that reads or writes data — ask whether it
+  should also be exposed as an MCP tool in `lib/mcp/tools/`. Don't add the
+  tool silently; confirm first.
