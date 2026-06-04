@@ -6,6 +6,7 @@ import { FilterBar } from '@/ui/molecules/FilterBar'
 import { PURCHASE_FILTERS } from './purchaseFilters'
 import { usePurchases } from '../hooks/usePurchases'
 import { SyncPurchases } from './SyncPurchases'
+import { PurchasesChart } from './PurchasesChart'
 import { PurchasesList } from './PurchasesList'
 
 export function PurchasesView() {
