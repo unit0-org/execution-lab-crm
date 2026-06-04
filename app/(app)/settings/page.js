@@ -10,10 +10,7 @@ export default function SettingsPage() {
     <Page width="wide">
       <AdminOnly>
         <Stack gap="lg">
-          <Stack gap="md">
-            <Heading>Members</Heading>
-            <SettingsView />
-          </Stack>
+          <SettingsView />
           <Stack gap="md">
             <Heading>Integrations</Heading>
             <IntegrationsView />
