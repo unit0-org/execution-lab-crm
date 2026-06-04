@@ -21,5 +21,8 @@ export const paths = {
   logout: 'M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9',
   card:
     'M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z'
-    + 'M3 10h18'
+    + 'M3 10h18',
+  grid: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
+  copy: 'M9 9h10v10H9zM5 15H4V4h10v1',
+  check: 'M5 12l5 5 9-11'
 }
