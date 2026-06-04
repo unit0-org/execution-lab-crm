@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
 import { Heading } from '@/ui/atoms/Heading'
 import { Stack } from '@/ui/layout/Stack'
@@ -8,7 +9,9 @@ export default function PurchasesPage() {
     <Page width="wide">
       <Stack gap="md">
         <Heading>Purchases</Heading>
-        <PurchasesView />
+        <Suspense>
+          <PurchasesView />
+        </Suspense>
       </Stack>
     </Page>
   )
