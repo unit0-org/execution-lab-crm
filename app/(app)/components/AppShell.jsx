@@ -1,28 +1,17 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
-import { Shell } from '@/ui/layout/Shell'
-import { Sidebar } from '@/ui/organisms/Sidebar'
-import { Toaster } from '@/ui/organisms/Toaster'
-import { useSidebar } from '../hooks/useSidebar'
-import { useCurrentUser } from '../hooks/useCurrentUser'
-import { NAV } from './nav'
+import { ExclusiveAccess } from './ExclusiveAccess'
+import { AppFrame } from './AppFrame'
+import { useMembership } from '../hooks/useMembership'
 
+// Gate the app on org membership: blank while loading, the WIP notice
+// for non-members, otherwise the full app frame.
 export function AppShell({ children }) {
-  const { open, toggle, close, toggleCollapse } = useSidebar()
-  const email = useCurrentUser()
-  const path = usePathname()
-  const sidebar = (
-    <Sidebar items={NAV} currentPath={path} email={email}
-      onToggleCollapse={toggleCollapse} />
-  )
+  const membership = useMembership()
 
-  return (
-    <>
-      <Shell sidebar={sidebar} open={open} onToggle={toggle} onClose={close}>
-        {children}
-      </Shell>
-      <Toaster />
-    </>
-  )
+  if (membership === undefined) return null
+
+  if (membership === null) return <ExclusiveAccess />
+
+  return <AppFrame role={membership.role}>{children}</AppFrame>
 }

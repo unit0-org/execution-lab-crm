@@ -1,0 +1,20 @@
+'use client'
+
+import { Form } from '@/ui/molecules/Form'
+import { IconButton } from '@/ui/atoms/IconButton'
+import { Icon } from '@/ui/atoms/Icon'
+import { useFormAction } from '../hooks/useFormAction'
+import { removeMemberAction } from '../actions/removeMember'
+
+export function RemoveMember({ id, onChanged }) {
+  const { action } = useFormAction(removeMemberAction, onChanged)
+
+  return (
+    <Form action={action}>
+      <input type="hidden" name="id" value={id} />
+      <IconButton type="submit" tone="danger" label="Remove member">
+        <Icon name="trash" size={14} />
+      </IconButton>
+    </Form>
+  )
+}
