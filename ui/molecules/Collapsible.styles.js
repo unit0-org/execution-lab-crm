@@ -20,5 +20,5 @@ export const bodyStyle = (open) => ({
 export const chevronStyle = (open) => ({
   display: 'inline-flex', color: color.text.muted,
   transition: 'transform var(--motion-quick) var(--motion-ease)',
-  transform: open ? 'rotate(0deg)' : 'rotate(-90deg)'
+  transform: open ? 'rotate(180deg)' : 'rotate(0deg)'
 })
