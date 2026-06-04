@@ -1,6 +1,5 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
 import { useContacts } from '../hooks/useContacts'
 import { useContactSelection } from '../hooks/useContactSelection'
 import { FilterBar } from '@/ui/molecules/FilterBar'
@@ -8,9 +7,8 @@ import { CONTACT_FILTERS } from './contactFilters'
 import { ContactsToolbar } from './ContactsToolbar'
 import { ContactsBody } from './ContactsBody'
 
-export function ContactsView() {
-  const filter = useSearchParams().get('filter')
-  const { contacts, loading, reload } = useContacts(filter)
+export function ContactsView({ filter, initialContacts }) {
+  const { contacts, loading, reload } = useContacts(filter, initialContacts)
   const selection = useContactSelection(contacts)
 
   return (

@@ -3,16 +3,17 @@ import { Page } from '@/ui/layout/Page'
 import { Heading } from '@/ui/atoms/Heading'
 import { Stack } from '@/ui/layout/Stack'
 import { Link } from '@/ui/atoms/Link'
-import { ContactsView } from './components/ContactsView'
+import { ContactsServer } from './ContactsServer'
+import { ContactListSkeleton } from './components/ContactListSkeleton'
 
-export default function ContactsPage() {
+export default function ContactsPage({ searchParams }) {
   return (
     <Page width="wide">
       <Stack gap="md">
         <Heading>Contacts</Heading>
         <Link href="/contacts/new">+ New contact</Link>
-        <Suspense>
-          <ContactsView />
+        <Suspense fallback={<ContactListSkeleton />}>
+          <ContactsServer searchParams={searchParams} />
         </Suspense>
       </Stack>
     </Page>
