@@ -1,14 +1,16 @@
 'use client'
 
 import { SyncControl } from '@/ui/molecules/SyncControl'
-import { syncLabel } from './syncLabel'
-import { useSyncPurchases } from '../hooks/useSyncPurchases'
+import { timeAgo } from '@/ui/atoms/timeAgo'
+import { usePurchaseSync } from '../hooks/usePurchaseSync'
 
 export function SyncPurchases({ onSynced }) {
-  const state = useSyncPurchases(onSynced)
+  const { lastSyncedAt, syncing, force } = usePurchaseSync(onSynced)
+  const label = syncing
+    ? 'Syncing…'
+    : `Last synced ${timeAgo(lastSyncedAt)}`
 
   return (
-    <SyncControl label={syncLabel(state)} syncing={state.syncing}
-      onSync={state.sync} />
+    <SyncControl label={label} syncing={syncing} onSync={force} />
   )
 }
