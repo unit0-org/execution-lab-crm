@@ -20,6 +20,9 @@ export function InvoicingView() {
       <InvoicingForm setting={data} />
       <SecretField kind="resend_api_key" label="Resend API key"
         configured={status.resend_api_key} onSaved={reload} />
+      <SecretField kind="google_service_account_json"
+        label="Google service account JSON (Drive)"
+        configured={status.google_service_account_json} onSaved={reload} />
     </Stack>
   )
 }
