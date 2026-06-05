@@ -2,8 +2,9 @@
 
 import { Card } from '@/ui/atoms/Card'
 import { Stack } from '@/ui/layout/Stack'
-import { Text } from '@/ui/atoms/Text'
 import { NuggetHead } from './NuggetHead'
+import { NuggetLead } from './NuggetLead'
+import { NuggetBody } from './NuggetBody'
 import { NuggetDetails } from './NuggetDetails'
 import { useDisclosure } from '../hooks/useDisclosure'
 
@@ -13,8 +14,10 @@ export function AnswerNugget({ nugget }) {
   return (
     <Card>
       <Stack gap="xs">
-        <NuggetHead question={nugget.question} open={open} onToggle={toggle} />
-        <Text gutter="none">{nugget.answer}</Text>
+        <NuggetHead open={open} onToggle={toggle}>
+          <NuggetLead question={nugget.question} answer={nugget.answer} />
+        </NuggetHead>
+        <NuggetBody question={nugget.question} answer={nugget.answer} />
         <NuggetDetails nugget={nugget} open={open} />
       </Stack>
     </Card>
