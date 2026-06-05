@@ -1,7 +1,7 @@
 'use client'
 
 import { Form } from '@/ui/molecules/Form'
-import { TextField } from '@/ui/atoms/TextField'
+import { TextArea } from '@/ui/atoms/TextArea'
 import { GrowRow } from '@/ui/layout/GrowRow'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
@@ -14,8 +14,8 @@ export function AddNoteForm({ meetingId, onChanged }) {
   return (
     <Form action={action}>
       <input type="hidden" name="meeting_id" value={meetingId} />
-      <GrowRow>
-        <TextField name="body" placeholder="Add a note" />
+      <GrowRow align="end">
+        <TextArea name="body" rows={2} placeholder="Add a note" />
         <IconButton type="submit" tone="primary" label="Add note">
           <Icon name="plus" size={16} />
         </IconButton>
