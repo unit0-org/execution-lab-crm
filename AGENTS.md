@@ -128,7 +128,8 @@ them (so adding one never renumbers the rest).
 
 ## Process
 
-- **Every change ships via a small, easy-to-review PR.** Ask before opening.
+- **Every change ships via a small, easy-to-review PR.** Open it as soon as
+  the feature or request is complete — don't wait to be asked.
 - **Never push directly to `main`.**
 - CI (lint + build) must be green; that check gates merging.
 - **Offer it to the MCP.** Whenever you add an operation — a new `lib/`
