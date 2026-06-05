@@ -22,7 +22,7 @@ export function ContactAnswers({ contactId }) {
       <KnowHeader onAdd={add.show} />
       <AddNuggetModal open={add.shown} contactId={contactId}
         onSaved={saved} onClose={add.hide} />
-      <NuggetList nuggets={items} />
+      <NuggetList nuggets={items} onChanged={reload} />
     </Stack>
   )
 }
