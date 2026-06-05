@@ -7,9 +7,10 @@ import { currentMembership } from '@/lib/org/controllers/currentMembership'
 export async function syncPurchasesAction(force) {
   try {
     const member = await currentMembership()
-    const key = member ? await orgStripeKey(member.organizationId) : null
+    const org = member?.organizationId
+    const key = org ? await orgStripeKey(org) : null
 
-    return await syncPurchases(force, key)
+    return await syncPurchases(force, key, org)
   } catch (e) {
     return { error: e.message }
   }

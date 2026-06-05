@@ -1,17 +1,19 @@
-import { verifyWebhook } from '@/lib/stripe/verifyWebhook'
-import { importCharge } from '@/lib/purchase/controllers/importCharge'
+import { resolveWebhookEvent } from '@/lib/stripe/resolveWebhookEvent'
+import { handlePaidCharge } from '@/lib/purchase/controllers/handlePaidCharge'
 
 const PAID = 'charge.succeeded'
 
-// Stripe calls this on new charges; verify, then record the charge.
+// Stripe calls this on new charges; identify the org by its webhook
+// secret, then record the charge and invoice it.
 export async function POST(request) {
   const body = await request.text()
   const signature = request.headers.get('stripe-signature')
 
   try {
-    const event = verifyWebhook(body, signature)
+    const found = await resolveWebhookEvent(body, signature)
 
-    if (event.type === PAID) await importCharge(event.data.object)
+    if (found.event.type === PAID)
+      await handlePaidCharge(found.event.data.object, found.organizationId)
   } catch (e) {
     return new Response(e.message, { status: 400 })
   }
