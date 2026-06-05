@@ -10,7 +10,7 @@ export function NuggetTools({ nugget, onChanged }) {
   const edit = useReveal()
   const remove = useReveal()
 
-  if (!nugget.id.startsWith('fact:')) return null
+  if (nugget.origin !== 'manual') return null
 
   return (
     <>
