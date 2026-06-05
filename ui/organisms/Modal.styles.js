@@ -9,7 +9,11 @@ export const overlayStyle = {
 }
 
 export const panelStyle = {
-  width: '100%', maxWidth: '420px', padding: space[6],
+  position: 'relative', width: '100%', maxWidth: '420px', padding: space[6],
   background: color.bg.surface, borderRadius: radius.lg,
   border: `1px solid ${color.border.default}`
+}
+
+export const closeStyle = {
+  position: 'absolute', top: space[3], right: space[3]
 }
