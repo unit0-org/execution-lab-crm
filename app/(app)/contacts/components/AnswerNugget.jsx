@@ -12,7 +12,7 @@ export function AnswerNugget({ nugget, onChanged }) {
   const { open, toggle } = useDisclosure()
 
   return (
-    <Card>
+    <Card hoverHost>
       <Stack gap="xs">
         <NuggetHead nugget={nugget} open={open} onToggle={toggle}
           onChanged={onChanged}>

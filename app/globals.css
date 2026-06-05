@@ -103,6 +103,12 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
 [data-row-hover]:hover { background: var(--color-bg-subtle); }
 [data-editable]:hover { background: var(--color-bg-subtle); }
 
+@media (hover: hover) {
+  [data-hover-host] [data-hover-reveal] { opacity: 0; transition: opacity 120ms ease; }
+  [data-hover-host]:hover [data-hover-reveal],
+  [data-hover-host] [data-hover-reveal]:focus-within { opacity: 1; }
+}
+
 [data-nav-item]:not([data-active]) { color: var(--color-text-secondary); }
 [data-nav-item]:not([data-active]):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
 [data-nav-item][data-active] { color: var(--color-accent); background: var(--color-accent-soft); }
