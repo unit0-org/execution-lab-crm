@@ -1,21 +1,15 @@
+import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
-import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
 import { AdminOnly } from './components/AdminOnly'
-import { SettingsView } from './components/SettingsView'
-import { IntegrationsView } from './components/IntegrationsView'
+import { SettingsTabsView } from './components/SettingsTabsView'
 
 export default function SettingsPage() {
   return (
     <Page width="wide">
       <AdminOnly>
-        <Stack gap="lg">
-          <SettingsView />
-          <Stack gap="md">
-            <Heading>Integrations</Heading>
-            <IntegrationsView />
-          </Stack>
-        </Stack>
+        <Suspense>
+          <SettingsTabsView />
+        </Suspense>
       </AdminOnly>
     </Page>
   )

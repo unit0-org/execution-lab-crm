@@ -3,7 +3,8 @@ export const NAV = [
   { href: '/contacts', label: 'Contacts', icon: 'users' },
   { href: '/events', label: 'Events', icon: 'calendar' },
   { href: '/meetings', label: 'Meetings', icon: 'video' },
-  { href: '/purchases', label: 'Purchases', icon: 'card' }
+  { href: '/purchases', label: 'Purchases', icon: 'card' },
+  { href: '/invoices', label: 'Invoices', icon: 'file' }
 ]
 
 const SETTINGS = { href: '/settings', label: 'Settings', icon: 'gear' }

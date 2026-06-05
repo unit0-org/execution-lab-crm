@@ -12,6 +12,7 @@ export async function secretsStatusAction() {
 
   return {
     stripe_secret_key: await hasOrgSecret(org, 'stripe_secret_key'),
-    stripe_webhook_secret: await hasOrgSecret(org, 'stripe_webhook_secret')
+    stripe_webhook_secret: await hasOrgSecret(org, 'stripe_webhook_secret'),
+    resend_api_key: await hasOrgSecret(org, 'resend_api_key')
   }
 }
