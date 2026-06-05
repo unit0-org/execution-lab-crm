@@ -1,8 +1,7 @@
 'use client'
 
-import { IconButton } from '@/ui/atoms/IconButton'
-import { Icon } from '@/ui/atoms/Icon'
 import { useReveal } from '../hooks/useReveal'
+import { NuggetButtons } from './NuggetButtons'
 import { EditNuggetModal } from './EditNuggetModal'
 import { DeleteNuggetModal } from './DeleteNuggetModal'
 
@@ -14,12 +13,7 @@ export function NuggetTools({ nugget, onChanged }) {
 
   return (
     <>
-      <IconButton label="Edit nugget" onClick={edit.show}>
-        <Icon name="pencil" size={16} />
-      </IconButton>
-      <IconButton label="Delete nugget" tone="danger" onClick={remove.show}>
-        <Icon name="trash" size={16} />
-      </IconButton>
+      <NuggetButtons onEdit={edit.show} onDelete={remove.show} />
       <EditNuggetModal open={edit.shown} nugget={nugget}
         onSaved={onChanged} onClose={edit.hide} />
       <DeleteNuggetModal open={remove.shown} nugget={nugget}
