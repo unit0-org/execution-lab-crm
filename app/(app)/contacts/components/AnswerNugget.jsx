@@ -7,13 +7,14 @@ import { NuggetHead } from './NuggetHead'
 import { NuggetDetails } from './NuggetDetails'
 import { useDisclosure } from '../hooks/useDisclosure'
 
-export function AnswerNugget({ nugget }) {
+export function AnswerNugget({ nugget, onChanged }) {
   const { open, toggle } = useDisclosure()
 
   return (
     <Card>
       <Stack gap="xs">
-        <NuggetHead question={nugget.question} open={open} onToggle={toggle} />
+        <NuggetHead nugget={nugget} open={open} onToggle={toggle}
+          onChanged={onChanged} />
         <Text gutter="none">{nugget.answer}</Text>
         <NuggetDetails nugget={nugget} open={open} />
       </Stack>
