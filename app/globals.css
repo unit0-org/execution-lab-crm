@@ -185,6 +185,14 @@ tbody tr { transition: background var(--motion-quick) var(--motion-ease); }
 tbody tr:hover { background: var(--color-bg-subtle); }
 tbody tr[data-plain]:hover { background: transparent; }
 
+details[data-collapsible] > summary { list-style: none; }
+details[data-collapsible] > summary::-webkit-details-marker { display: none; }
+details[data-collapsible] summary svg {
+  color: var(--color-text-muted);
+  transition: transform var(--motion-quick) var(--motion-ease);
+}
+details[data-collapsible][open] summary svg { transform: rotate(180deg); }
+
 @keyframes progress-indeterminate {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(350%); }

@@ -3,7 +3,6 @@
 import { Card } from '@/ui/atoms/Card'
 import { Stack } from '@/ui/layout/Stack'
 import { Collapsible } from '@/ui/molecules/Collapsible'
-import { useToggle } from '@/ui/molecules/useToggle'
 import { ChartBody } from './ChartBody'
 import { GrainSelect } from './GrainSelect'
 import { toChartData } from './toChartData'
@@ -12,13 +11,12 @@ import { usePurchaseTotals } from '../hooks/usePurchaseTotals'
 
 // Total spend over the active window, re-bucketed by the chosen grain.
 export function PurchasesChart({ window }) {
-  const panel = useToggle(true)
   const { grain, setGrain } = useGrain()
   const { buckets, loading } = usePurchaseTotals(window, grain)
 
   return (
     <Card>
-      <Collapsible title="Spend" open={panel.open} onToggle={panel.toggle}>
+      <Collapsible title="Spend">
         <Stack gap="sm">
           <GrainSelect value={grain} onChange={setGrain} />
           <ChartBody loading={loading} data={toChartData(buckets)} />

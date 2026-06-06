@@ -1,12 +1,16 @@
-import { CollapsibleHeader } from './CollapsibleHeader'
-import { CollapsibleBody } from './CollapsibleBody'
+import { Icon } from '../atoms/Icon'
+import { summaryStyle, titleStyle, bodyStyle } from './Collapsible.styles'
 
-// A titled section that expands/collapses its children in place.
-export function Collapsible({ title, open, onToggle, children }) {
+// A titled card section that expands/collapses in place. Native
+// <details> owns the open state — no JS, no wiring; open by default.
+export function Collapsible({ title, children }) {
   return (
-    <div>
-      <CollapsibleHeader title={title} open={open} onToggle={onToggle} />
-      <CollapsibleBody open={open}>{children}</CollapsibleBody>
-    </div>
+    <details open data-collapsible>
+      <summary style={summaryStyle}>
+        <span style={titleStyle}>{title}</span>
+        <Icon name="chevron" size={16} />
+      </summary>
+      <div style={bodyStyle}>{children}</div>
+    </details>
   )
 }
