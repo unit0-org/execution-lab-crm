@@ -7,7 +7,7 @@ const transition = `background ${ease}, border-color ${ease}, color ${ease}`
 
 const base = {
   cursor: 'pointer', font: 'inherit', fontWeight: fontWeight.bold,
-  textTransform: 'uppercase', letterSpacing: '0.08em',
+  textTransform: 'uppercase', letterSpacing: '0.08em', alignSelf: 'flex-start',
   textDecoration: 'none', display: 'inline-block', transition
 }
 
