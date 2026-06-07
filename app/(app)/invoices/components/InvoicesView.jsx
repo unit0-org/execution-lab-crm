@@ -1,24 +1,21 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Stack } from '@/ui/layout/Stack'
 import { SectionHeader } from '@/ui/molecules/SectionHeader'
-import { useToggle } from '@/ui/molecules/useToggle'
 import { useInvoices } from '../hooks/useInvoices'
 import { InvoicesList } from './InvoicesList'
-import { CreateInvoiceModal } from './CreateInvoiceModal'
 
 export function InvoicesView() {
-  const { invoices, loading, reload } = useInvoices()
-  const modal = useToggle()
-  const onCreated = () => { reload(); modal.hide() }
+  const { invoices, loading } = useInvoices()
+  const router = useRouter()
+  const onAdd = () => router.push('/invoices/new')
 
   return (
     <Stack gap="md">
       <SectionHeader title="Invoices" addLabel="New invoice"
-        onAdd={modal.show} />
+        onAdd={onAdd} />
       <InvoicesList loading={loading} invoices={invoices} />
-      <CreateInvoiceModal open={modal.open} onClose={modal.hide}
-        onCreated={onCreated} />
     </Stack>
   )
 }

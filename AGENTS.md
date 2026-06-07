@@ -24,6 +24,12 @@ them (so adding one never renumbers the rest).
 
 ## Frontend — structure
 
+- **Check the catalog before building any UI.** Before creating a frontend
+  component, read `ui/COMPONENTS.md` to find which existing `ui/` components
+  fit the need and pick the best one — never re-create what already exists.
+  If no existing primitive fits and a **new `ui/` component is genuinely
+  required, ask first** before building it; once added, update
+  `ui/COMPONENTS.md` in the same change.
 - **Atomic design.** Build UI from atoms → molecules → organisms.
 - **All UI components live in `ui/`**, in a **2-level-max** folder structure,
   e.g. `ui/atoms/Button.jsx`.
