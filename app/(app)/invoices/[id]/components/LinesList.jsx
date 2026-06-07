@@ -1,17 +1,18 @@
 'use client'
 
-import { Stack } from '@/ui/layout/Stack'
 import { Text } from '@/ui/atoms/Text'
+import { Table } from '@/ui/molecules/Table'
 import { LineRow } from './LineRow'
+import { lineColumns } from './lineColumns'
 
 export function LinesList({ lines }) {
   if (!lines.length) return <Text tone="muted">No items yet.</Text>
 
   return (
-    <Stack gap="xs">
+    <Table cols={lineColumns}>
       {lines.map((line) => (
         <LineRow key={line.id} line={line} />
       ))}
-    </Stack>
+    </Table>
   )
 }

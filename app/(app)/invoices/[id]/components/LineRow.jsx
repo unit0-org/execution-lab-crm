@@ -1,16 +1,13 @@
-'use client'
-
-import { GrowRow } from '@/ui/layout/GrowRow'
-import { Text } from '@/ui/atoms/Text'
-
-const label = (line) =>
-  `${line.description} · ${line.quantity} × ${line.unitAmount}`
+import { Tr } from '@/ui/molecules/Tr'
+import { Td } from '@/ui/molecules/Td'
 
 export function LineRow({ line }) {
   return (
-    <GrowRow align="center">
-      <Text>{label(line)}</Text>
-      <Text>{line.amount}</Text>
-    </GrowRow>
+    <Tr plain>
+      <Td truncate>{line.description}</Td>
+      <Td>{line.quantity}</Td>
+      <Td>{line.unitAmount}</Td>
+      <Td>{line.amount}</Td>
+    </Tr>
   )
 }
