@@ -6,8 +6,8 @@ import { triggerStyle } from './SwatchSelect.styles'
 export function SwatchTrigger({ value, onClick }) {
   return (
     <button type="button" onClick={onClick} style={triggerStyle}>
-      <LabelDot color={value} size={12} />
-      <Icon name="chevron" size={14} />
+      <LabelDot color={value} size={14} />
+      <Icon name="chevron" size={16} />
     </button>
   )
 }
