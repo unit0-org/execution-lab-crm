@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { listContactsAction } from
-  '@/app/(app)/contacts/actions/listContacts'
+import { listContactsAction } from '../actions/listContacts'
 import { matchContacts } from './matchContacts'
 
 export function useContactOptions(query) {

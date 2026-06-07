@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { useContactOptions } from './useContactOptions'
 import { useQuickContact } from './useQuickContact'
 
-export function useClientField(client, onChange) {
-  const [query, setQuery] = useState(client.name)
+export function useContactAutocomplete(value, onChange) {
+  const [query, setQuery] = useState(value.name)
 
-  const onType = (value) => {
-    setQuery(value)
-    onChange({ contactId: null, name: value, email: '' })
+  const onType = (text) => {
+    setQuery(text)
+    onChange({ contactId: null, name: text, email: '' })
   }
   const select = (option) => {
     setQuery(option.label)
