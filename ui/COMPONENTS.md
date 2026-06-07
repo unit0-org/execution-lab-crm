@@ -25,6 +25,7 @@ Conventions (from `AGENTS.md`):
 |---|---|---|
 | `Badge` | `tone='accent'`, `children` | Small static status/label pill |
 | `Button` | `tone='default'`, `size`, `block`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones` |
+| `ButtonLink` | `href`, `tone='default'`, `size`, `children` | Navigation link styled as a Button (shares `buttonStyle`) |
 | `Card` | `tone`, `hoverHost`, `children` | Surface container for grouped content |
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`) |
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square |
