@@ -41,6 +41,16 @@
   --color-neutral-bg:    rgba(220, 220, 220, 0.10);
   --color-neutral-text:  #dcdcdc;
 
+  /* Label palette — solid (dot/text) + soft (pill background) pairs. */
+  --label-blue:      #5e7cff;  --label-blue-bg:   rgba(94, 124, 255, 0.16);
+  --label-green:     #5eff6e;  --label-green-bg:  rgba(94, 255, 110, 0.13);
+  --label-cyan:      #5ee4ff;  --label-cyan-bg:   rgba(94, 228, 255, 0.14);
+  --label-amber:     #ffa15e;  --label-amber-bg:  rgba(255, 161, 94, 0.14);
+  --label-pink:      #ff7ad1;  --label-pink-bg:   rgba(255, 122, 209, 0.14);
+  --label-purple:    #b58cff;  --label-purple-bg: rgba(181, 140, 255, 0.16);
+  --label-red:       #ff7173;  --label-red-bg:    rgba(255, 94, 97, 0.14);
+  --label-gray:      #dcdcdc;  --label-gray-bg:   rgba(220, 220, 220, 0.10);
+
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;

@@ -9,5 +9,6 @@ const displayName = (c) => fullName(c) || firstEmail(c)
 export const columns = [
   { label: 'Name', key: 'name', sortBy: displayName },
   { label: 'Emails', key: 'emails', sortBy: firstEmail },
+  { label: 'Labels', key: 'labels' },
   { label: '' }
 ]

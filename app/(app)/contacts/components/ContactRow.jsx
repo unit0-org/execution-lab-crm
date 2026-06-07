@@ -2,10 +2,10 @@
 
 import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
-import { Link } from '@/ui/atoms/Link'
 import { RowDelete } from '@/ui/molecules/RowDelete'
 import { CopyList } from '@/ui/molecules/CopyList'
-import { ContactName } from './ContactName'
+import { ContactNameLink } from './ContactNameLink'
+import { ContactLabels } from './ContactLabels'
 import { SelectCell } from './SelectCell'
 import { useDeleteContact } from '../hooks/useDeleteContact'
 
@@ -17,12 +17,9 @@ export function ContactRow({ contact, selected, onToggle, onChanged }) {
   return (
     <Tr>
       <SelectCell checked={selected} onToggle={() => onToggle(contact.id)} />
-      <Td>
-        <Link href={`/contacts/${contact.id}`}>
-          <ContactName contact={contact} />
-        </Link>
-      </Td>
+      <Td><ContactNameLink contact={contact} /></Td>
       <Td><CopyList values={emailsOf(contact)} /></Td>
+      <Td><ContactLabels contact={contact} /></Td>
       <Td><RowDelete onConfirm={remove} title="Delete contact" /></Td>
     </Tr>
   )
