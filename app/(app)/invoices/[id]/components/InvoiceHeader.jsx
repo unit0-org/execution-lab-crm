@@ -1,18 +1,13 @@
-import { Stack } from '@/ui/layout/Stack'
-import { Inline } from '@/ui/layout/Inline'
-import { Heading } from '@/ui/atoms/Heading'
-import { Text } from '@/ui/atoms/Text'
-import { StatusBadge } from '../../components/StatusBadge'
+import { GrowRow } from '@/ui/layout/GrowRow'
+import { InvoiceTitle } from './InvoiceTitle'
+import { InvoiceLinks } from './InvoiceLinks'
 
+// Title + status on the left, Edit / Download buttons on the right.
 export function InvoiceHeader({ invoice }) {
   return (
-    <Stack gap="xs">
-      <Inline gap="sm">
-        <Heading gutter="none">{invoice.number}</Heading>
-        <StatusBadge status={invoice.status} />
-      </Inline>
-      <Text>{invoice.bill_to_name}</Text>
-      <Text tone="muted">{invoice.bill_to_email}</Text>
-    </Stack>
+    <GrowRow align="start">
+      <InvoiceTitle invoice={invoice} />
+      <InvoiceLinks id={invoice.id} />
+    </GrowRow>
   )
 }

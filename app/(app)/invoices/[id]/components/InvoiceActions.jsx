@@ -2,7 +2,6 @@
 
 import { Inline } from '@/ui/layout/Inline'
 import { Button } from '@/ui/atoms/Button'
-import { Link } from '@/ui/atoms/Link'
 import { useInvoiceActions } from '../../hooks/useInvoiceActions'
 import { actionsForStatus } from './actionsForStatus'
 
@@ -17,8 +16,6 @@ export function InvoiceActions({ invoice, onChanged }) {
           {b.label}
         </Button>
       ))}
-      <Link href={`/invoices/${invoice.id}/edit`}>Edit</Link>
-      <Link href={`/api/invoices/${invoice.id}/pdf`}>Download PDF</Link>
     </Inline>
   )
 }
