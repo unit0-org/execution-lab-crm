@@ -120,6 +120,7 @@ Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`.
 |---|---|---|
 | `Modal` | `open`, `onClose`, `children` | Centered dialog (Esc / outside / X to close, auto-focus) |
 | `Nav` / `Sidebar` / `SidebarFooter` / `CollapseToggle` | `items`,`currentPath` / `email` | App navigation chrome |
+| `ThemeToggle` | `onClick` | Light/dark theme switch (sidebar) |
 | `Toaster` | — | Toast outlet — mount once at the root |
 | `UserEmail` | `value` | Signed-in user email display |
 

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { toggleCollapsed } from './collapseStore'
+import { toggleTheme } from './themeStore'
 
 export function useSidebar() {
   const [open, setOpen] = useState(false)
@@ -10,6 +11,7 @@ export function useSidebar() {
     open,
     toggle: () => setOpen((value) => !value),
     close: () => setOpen(false),
-    toggleCollapse: toggleCollapsed
+    toggleCollapse: toggleCollapsed,
+    toggleTheme
   }
 }
