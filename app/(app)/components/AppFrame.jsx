@@ -14,7 +14,7 @@ export function AppFrame({ role, children }) {
   const path = usePathname()
   const sidebar = (
     <Sidebar items={navFor()} settings={settingsNav(role)}
-      currentPath={path} email={email}
+      currentPath={path} email={email} onToggleTheme={nav.toggleTheme}
       onToggleCollapse={nav.toggleCollapse} />
   )
 
