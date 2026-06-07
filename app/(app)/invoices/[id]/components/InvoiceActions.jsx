@@ -17,6 +17,7 @@ export function InvoiceActions({ invoice, onChanged }) {
           {b.label}
         </Button>
       ))}
+      <Link href={`/invoices/${invoice.id}/edit`}>Edit</Link>
       <Link href={`/api/invoices/${invoice.id}/pdf`}>Download PDF</Link>
     </Inline>
   )

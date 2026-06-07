@@ -11,7 +11,7 @@ export function InvoiceDetail({ invoice, onChanged }) {
     <Stack gap="lg">
       <InvoiceHeader invoice={invoice} />
       <InvoiceActions invoice={invoice} onChanged={onChanged} />
-      <InvoiceLines invoice={invoice} onChanged={onChanged} />
+      <InvoiceLines invoice={invoice} />
       <InvoiceTotals invoice={invoice} />
     </Stack>
   )

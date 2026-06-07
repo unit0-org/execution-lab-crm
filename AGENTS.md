@@ -24,6 +24,12 @@ them (so adding one never renumbers the rest).
 
 ## Frontend — structure
 
+- **Check the catalog before building any UI.** Before creating a frontend
+  component, read `ui/COMPONENTS.md` to find which existing `ui/` components
+  fit the need and pick the best one — never re-create what already exists.
+  If no existing primitive fits and a **new `ui/` component is genuinely
+  required, ask first** before building it; once added, update
+  `ui/COMPONENTS.md` in the same change.
 - **Atomic design.** Build UI from atoms → molecules → organisms.
 - **All UI components live in `ui/`**, in a **2-level-max** folder structure,
   e.g. `ui/atoms/Button.jsx`.
@@ -79,11 +85,14 @@ them (so adding one never renumbers the rest).
   that follows other code; no trailing comma on the last array/object element.
 - **Every action gives feedback:** an on-screen mutation (the UI changes) or,
   when there's nothing to show, a toast. Never a dead click.
-- **Create actions: `+` by the heading → modal.** A list/section's "add"
-  action is a `+` `IconButton` next to that section's heading (via
-  `SectionHeader`) that opens the create form in a `Modal` — never an inline
-  form sitting at the bottom of the list. Close the modal on success and
-  reflect the new row.
+- **Create actions: `+` by the heading.** A list/section's "add" action is
+  always a `+` `IconButton` next to that section's heading (via
+  `SectionHeader`) — never an inline form sitting at the bottom of the list.
+  **Where the create/edit form opens depends on the operation's
+  complexity:** simple forms open in a `Modal` (close on success, reflect
+  the new row); complex operations (many fields, line items, multi-step —
+  e.g. invoices) open a dedicated page (`[module]/new`,
+  `[module]/[id]/edit`). When unsure, prefer a modal.
 - **Responsive, always.** Every screen looks and works perfectly on mobile and
   desktop (and in between). Mobile-first; no horizontal scroll, no clipped or
   unreachable controls, touch-friendly targets. Encapsulate responsive

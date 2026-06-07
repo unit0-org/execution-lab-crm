@@ -1,15 +1,15 @@
 'use server'
 
 import { currentMembership } from '@/lib/org/controllers/currentMembership'
-import { createInvoice } from '@/lib/invoice/controllers/createInvoice'
+import { updateInvoice } from '@/lib/invoice/controllers/updateInvoice'
 
-export async function createInvoiceAction(data) {
+export async function updateInvoiceAction(id, data) {
   const member = await currentMembership()
 
   if (!member) return { error: 'Forbidden' }
 
   try {
-    const invoice = await createInvoice(member.organizationId, data)
+    const invoice = await updateInvoice(id, data)
 
     return { ok: true, id: invoice.id }
   } catch (e) {
