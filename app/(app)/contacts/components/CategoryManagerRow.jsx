@@ -1,23 +1,22 @@
 import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
+import { Checkbox } from '@/ui/atoms/Checkbox'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
-import { LabelColorPicker } from './LabelColorPicker'
-import { LeadToggle } from './LeadToggle'
+import { SwatchSelect } from '@/ui/molecules/SwatchSelect'
 
 export function CategoryManagerRow({ category, onColor, onLeads, onDelete }) {
   const id = category.id
+  const lead = category.include_in_leads
 
   return (
     <Tr>
       <Td>{category.name}</Td>
+      <Td><SwatchSelect value={category.color}
+        onPick={(color) => onColor(id, color)} /></Td>
       <Td>
-        <LabelColorPicker value={category.color}
-          onPick={(color) => onColor(id, color)} />
-      </Td>
-      <Td>
-        <LeadToggle on={category.include_in_leads}
-          onToggle={() => onLeads(id, !category.include_in_leads)} />
+        <Checkbox checked={lead} label="Count toward leads"
+          onChange={() => onLeads(id, !lead)} />
       </Td>
       <Td>
         <IconButton tone="danger" label="Delete label"
