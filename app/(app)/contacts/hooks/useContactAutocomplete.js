@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useContactOptions } from './useContactOptions'
 import { useQuickContact } from './useQuickContact'
 
-export function useContactAutocomplete(value, onChange) {
+export function useContactAutocomplete(value, onChange, allowCreate) {
   const [query, setQuery] = useState(value.name)
 
   const onType = (text) => {
@@ -19,7 +19,8 @@ export function useContactAutocomplete(value, onChange) {
   const onCreated = (res) =>
     select({ value: res.id, label: res.name, email: res.email })
   const quick = useQuickContact(onCreated)
-  const options = useContactOptions(query)
+  const options = useContactOptions()
+  const onCreate = allowCreate ? quick.open : undefined
 
-  return { query, options, onType, onPick: select, quick }
+  return { query, options, onType, onPick: select, onCreate, quick }
 }

@@ -10,7 +10,8 @@ export function QuickContactForm({ quick }) {
     <Modal open={quick.modal.open} onClose={quick.modal.hide}>
       <Stack gap="sm">
         <Heading level={3} gutter="none">New contact</Heading>
-        <QuickContactFields onSubmit={quick.create} />
+        <QuickContactFields onSubmit={quick.create}
+          initialFirst={quick.name} />
       </Stack>
     </Modal>
   )

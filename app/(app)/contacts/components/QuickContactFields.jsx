@@ -5,8 +5,9 @@ import { TextField } from '@/ui/atoms/TextField'
 import { Button } from '@/ui/atoms/Button'
 import { useQuickContactForm } from '../hooks/useQuickContactForm'
 
-export function QuickContactFields({ onSubmit }) {
-  const { fields, set, submit } = useQuickContactForm(onSubmit)
+export function QuickContactFields({ onSubmit, initialFirst }) {
+  const form = useQuickContactForm(onSubmit, initialFirst)
+  const { fields, set, submit } = form
 
   return (
     <Stack gap="sm">

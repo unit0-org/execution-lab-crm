@@ -1,19 +1,18 @@
 'use client'
 
-import { Inline } from '@/ui/layout/Inline'
-import { Combobox } from '@/ui/molecules/Combobox'
+import { Autocomplete } from '@/ui/molecules/Autocomplete'
 import { useContactAutocomplete } from '../hooks/useContactAutocomplete'
-import { QuickCreateControl } from './QuickCreateControl'
+import { QuickContactForm } from './QuickContactForm'
 
 export function ContactAutocomplete({ label, value, onChange, allowCreate }) {
-  const field = useContactAutocomplete(value, onChange)
+  const field = useContactAutocomplete(value, onChange, allowCreate)
 
   return (
-    <Inline gap="sm">
-      <Combobox label={label} value={field.query} hint="Search contacts"
-        onChange={field.onType} options={field.options}
-        onPick={field.onPick} />
-      <QuickCreateControl allowCreate={allowCreate} quick={field.quick} />
-    </Inline>
+    <>
+      <Autocomplete label={label} value={field.query} hint="Search contacts"
+        onType={field.onType} options={field.options} onPick={field.onPick}
+        onCreate={field.onCreate} createLabel="contact" />
+      <QuickContactForm quick={field.quick} />
+    </>
   )
 }

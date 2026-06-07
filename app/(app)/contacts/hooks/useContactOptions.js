@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import { listContactsAction } from '../actions/listContacts'
-import { matchContacts } from './matchContacts'
+import { toContactOptions } from './toContactOptions'
 
-export function useContactOptions(query) {
+export function useContactOptions() {
   const [contacts, setContacts] = useState([])
 
   useEffect(() => {
     listContactsAction().then(setContacts)
   }, [])
 
-  return matchContacts(contacts, query)
+  return toContactOptions(contacts)
 }

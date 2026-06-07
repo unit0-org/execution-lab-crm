@@ -79,7 +79,8 @@ Conventions (from `AGENTS.md`):
 | Component | Props | Use for |
 |---|---|---|
 | `SectionHeader` | `title`, `addLabel`, `onAdd` | Section heading with optional `+` create action |
-| `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Autocomplete field (`onChange`→typed string; `options`=`[{value,label}]`; `onPick`→option) |
+| `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick`, `onCreate`, `createLabel`, `hint` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). `options`=`[{value,label}]` |
+| `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Lower-level field that just renders the `options` you pass (no filtering/create). Prefer `Autocomplete` |
 | `SuggestionList` / `SuggestionItem` | `open`, `options`, `onPick` | Dropdown list used by `Combobox` |
 | `Form` | `action`, `children` | Form bound to a server action |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form |
@@ -103,6 +104,9 @@ Conventions (from `AGENTS.md`):
 | `SyncControl` / `SyncIcon` | `label`, `syncing`, `onSync` | Sync action + status |
 | `Toast` + `showToast(message)` | `message` | Transient feedback (use `showToast` for action feedback) |
 | `SignOutForm` | `children` | Sign-out form |
+
+Helpers: `matchOptions(options, query, limit=5)` and
+`hasExactLabel(options, query)` back `Autocomplete`'s filtering.
 
 Hooks: `useToggle(initial)`, `useOutsideClose(ref, onClose, open)`,
 `useEscClose(onClose, open)`, `useAutoFocus(open)`, `useClipboard()`,
