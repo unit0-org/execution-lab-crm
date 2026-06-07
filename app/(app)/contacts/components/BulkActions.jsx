@@ -5,9 +5,11 @@ import { Inline } from '@/ui/layout/Inline'
 import { Button } from '@/ui/atoms/Button'
 import { Text } from '@/ui/atoms/Text'
 import { MergeButton } from './MergeButton'
+import { BulkLabelMenu } from './BulkLabelMenu'
 import { ConfirmBulkDelete } from './ConfirmBulkDelete'
 
-export function BulkActions({ count, canMerge, onDelete, onMerge }) {
+export function BulkActions({ count, canMerge, chosen, cats, onLabeled,
+  onDelete, onMerge }) {
   const [confirming, setConfirming] = useState(false)
 
   if (confirming) {
@@ -18,6 +20,7 @@ export function BulkActions({ count, canMerge, onDelete, onMerge }) {
   return (
     <Inline gap="md">
       <Text size="sm">{count} selected</Text>
+      <BulkLabelMenu chosen={chosen} cats={cats} onChanged={onLabeled} />
       <MergeButton show={canMerge} onMerge={onMerge} />
       <Button tone="danger" size="sm"
         onClick={() => setConfirming(true)}>Delete</Button>

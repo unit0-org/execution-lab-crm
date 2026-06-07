@@ -25,5 +25,6 @@ export const paths = {
   copy: 'M9 9h10v10H9zM5 15H4V4h10v1',
   check: 'M5 12l5 5 9-11',
   paperclip: 'M16 8v8a4 4 0 0 1-8 0V7a2 2 0 0 1 4 0v8a1 1 0 0 1-2 0V9',
+  tag: 'M3 3h8l10 10-8 8L3 11V3zM7 7h.01',
   file: 'M6 2h8l4 4v16H6zM14 2v4h4M9 13h6M9 17h6'
 }

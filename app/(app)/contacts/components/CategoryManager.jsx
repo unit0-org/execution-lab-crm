@@ -6,16 +6,16 @@ import { Table } from '@/ui/molecules/Table'
 import { CategoryManagerRow } from './CategoryManagerRow'
 import { AddCategoryForm } from './AddCategoryForm'
 
-const COLS = ['Category', 'In leads', '']
+const COLS = ['Label', 'Color', 'In leads', '']
 
-// Manage the category list: add, delete, toggle each one's lead setting.
+// Manage labels: add, recolor, delete, toggle each one's lead setting.
 export function CategoryManager({ cats }) {
   return (
     <Stack gap="md">
-      <Heading level={3} gutter="none">Manage categories</Heading>
+      <Heading level={3} gutter="none">Manage labels</Heading>
       <Table cols={COLS}>
         {cats.categories.map((c) => (
-          <CategoryManagerRow key={c.id} category={c}
+          <CategoryManagerRow key={c.id} category={c} onColor={cats.setColor}
             onLeads={cats.toggle} onDelete={cats.remove} />
         ))}
       </Table>

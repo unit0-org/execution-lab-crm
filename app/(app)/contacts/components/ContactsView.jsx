@@ -1,28 +1,29 @@
 'use client'
 
-import { useContacts } from '../hooks/useContacts'
-import { useContactSelection } from '../hooks/useContactSelection'
-import { useContactSearch } from '../hooks/useContactSearch'
 import { FilterBar } from '@/ui/molecules/FilterBar'
+import { Inline } from '@/ui/layout/Inline'
 import { CONTACT_FILTERS } from './contactFilters'
 import { ContactSearch } from './ContactSearch'
+import { LabelFilter } from './LabelFilter'
 import { ContactsToolbar } from './ContactsToolbar'
 import { ContactsBody } from './ContactsBody'
+import { useContactsView } from '../hooks/useContactsView'
 
 export function ContactsView({ filter, initialContacts }) {
-  const { contacts, loading, reload } = useContacts(filter, initialContacts)
-  const selection = useContactSelection(contacts)
-  const search = useContactSearch(contacts)
+  const v = useContactsView(filter, initialContacts)
 
   return (
     <>
       <FilterBar options={CONTACT_FILTERS} active={filter}
         basePath="/contacts" param="filter" />
-      <ContactSearch value={search.query} onChange={search.setQuery} />
-      <ContactsToolbar contacts={contacts} selection={selection}
-        onChanged={reload} />
-      <ContactsBody loading={loading} contacts={search.results}
-        selection={selection} onChanged={reload} />
+      <Inline gap="sm">
+        <ContactSearch value={v.search.query} onChange={v.search.setQuery} />
+        <LabelFilter options={v.cats.categories} filter={v.labelFilter} />
+      </Inline>
+      <ContactsToolbar contacts={v.contacts} selection={v.selection}
+        cats={v.cats} onChanged={v.reload} />
+      <ContactsBody loading={false} contacts={v.search.results}
+        selection={v.selection} onChanged={v.reload} />
     </>
   )
 }

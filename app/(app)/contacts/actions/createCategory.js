@@ -2,6 +2,6 @@
 
 import { createCategory } from '@/lib/contacts/createCategory'
 
-export async function createCategoryAction(name) {
-  return createCategory(name)
+export async function createCategoryAction(name, color) {
+  return createCategory(name, color)
 }
