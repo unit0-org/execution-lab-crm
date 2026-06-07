@@ -7,7 +7,7 @@ import { useInvoices } from '../hooks/useInvoices'
 import { InvoicesList } from './InvoicesList'
 
 export function InvoicesView() {
-  const { invoices, loading } = useInvoices()
+  const { invoices, loading, reload } = useInvoices()
   const router = useRouter()
   const onAdd = () => router.push('/invoices/new')
 
@@ -15,7 +15,8 @@ export function InvoicesView() {
     <Stack gap="md">
       <SectionHeader title="Invoices" addLabel="New invoice"
         onAdd={onAdd} />
-      <InvoicesList loading={loading} invoices={invoices} />
+      <InvoicesList loading={loading} invoices={invoices}
+        onChanged={reload} />
     </Stack>
   )
 }

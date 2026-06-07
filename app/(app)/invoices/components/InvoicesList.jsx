@@ -3,8 +3,8 @@
 import { InvoicesTable } from './InvoicesTable'
 import { InvoicesSkeleton } from './InvoicesSkeleton'
 
-export function InvoicesList({ loading, invoices }) {
+export function InvoicesList({ loading, invoices, onChanged }) {
   if (loading) return <InvoicesSkeleton />
 
-  return <InvoicesTable invoices={invoices} />
+  return <InvoicesTable invoices={invoices} onChanged={onChanged} />
 }
