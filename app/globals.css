@@ -35,8 +35,10 @@
   --color-cool: #5effb7;
   --color-cold: #5ee4ff;
 
-  --color-success-bg:    rgba(94, 255, 110, 0.14);
-  --color-success-text:  #5eff6e;
+  /* Light surfaces: neon green is unreadable as text, so use the
+     design system's "dark text on colored surface" treatment. */
+  --color-success-bg:    #5eff6e;
+  --color-success-text:  #1d2a33;
   --color-error-bg:      rgba(255, 94, 97, 0.13);
   --color-error-text:    #ff5e61;
   --color-neutral-bg:    rgba(29, 42, 51, 0.08);
