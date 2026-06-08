@@ -18,7 +18,7 @@ export function ContactsView({ filter, initialContacts }) {
         basePath="/contacts" param="filter" />
       <Inline gap="sm">
         <ContactSearch value={v.search.query} onChange={v.search.setQuery} />
-        <LabelFilter options={v.cats.categories} filter={v.labelFilter} />
+        <LabelFilter options={v.labelOptions} filter={v.labelFilter} />
       </Inline>
       <ContactsToolbar contacts={v.contacts} selection={v.selection}
         cats={v.cats} onChanged={v.reload} />
