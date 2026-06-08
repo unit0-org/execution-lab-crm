@@ -8,38 +8,39 @@
   --font-serif: var(--font-montserrat), -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono:  var(--font-jetbrains), ui-monospace, "JetBrains Mono", Menlo, monospace;
 
-  --color-bg-canvas:   #f4f6fa;
+  --color-bg-canvas:   #fbfbf9;
   --color-bg-surface:  #ffffff;
-  --color-bg-subtle:   #eef1f6;
-  --color-bg-sunken:   #e9edf3;
-  --color-bg-code:     #eef1f6;
+  --color-bg-subtle:   #f1f2ee;
+  --color-bg-sunken:   #ecede8;
+  --color-bg-code:     #f1f2ee;
 
   --color-text-primary:    #1d2a33;
   --color-text-secondary:  #3a4753;
-  --color-text-muted:      rgba(29, 42, 51, 0.62);
-  --color-text-subtle:     rgba(29, 42, 51, 0.45);
+  --color-text-muted:      #5a6b77;
+  --color-text-subtle:     rgba(29, 42, 51, 0.40);
 
-  --color-border-default:  rgba(29, 42, 51, 0.14);
+  --color-border-default:  rgba(29, 42, 51, 0.12);
   --color-border-soft:     rgba(29, 42, 51, 0.08);
-  --color-border-strong:   rgba(29, 42, 51, 0.22);
+  --color-border-strong:   rgba(29, 42, 51, 0.20);
 
   --color-accent:        #5e7cff;
-  --color-accent-hover:  #4f6bff;
+  --color-accent-hover:  #7689ff;
   --color-accent-text:   #ffffff;
   --color-accent-soft:   rgba(94, 124, 255, 0.12);
   --color-accent-tint:   rgba(94, 124, 255, 0.20);
   --color-accent-deep:   #3d5ae0;
 
-  --color-warm: #d97706;
-  --color-cool: #0f9d6b;
-  --color-cold: #0ea5b7;
+  /* Brand accents — constant across themes (design system) */
+  --color-warm: #ffa15e;
+  --color-cool: #5effb7;
+  --color-cold: #5ee4ff;
 
-  --color-success-bg:    rgba(34, 197, 94, 0.14);
-  --color-success-text:  #15803d;
-  --color-error-bg:      rgba(220, 38, 38, 0.12);
-  --color-error-text:    #dc2626;
+  --color-success-bg:    rgba(94, 255, 110, 0.14);
+  --color-success-text:  #5eff6e;
+  --color-error-bg:      rgba(255, 94, 97, 0.13);
+  --color-error-text:    #ff5e61;
   --color-neutral-bg:    rgba(29, 42, 51, 0.08);
-  --color-neutral-text:  #3a4753;
+  --color-neutral-text:  #5a6b77;
 
   /* Label palette — solid (dot/text) + soft (pill background) pairs. */
   --label-blue:      #4f6bff;  --label-blue-bg:   rgba(94, 124, 255, 0.14);
@@ -76,7 +77,7 @@
   --color-text-muted:      rgba(255, 255, 255, 0.58);
   --color-text-subtle:     rgba(255, 255, 255, 0.40);
 
-  --color-border-default:  rgba(255, 255, 255, 0.12);
+  --color-border-default:  rgba(255, 255, 255, 0.10);
   --color-border-soft:     rgba(255, 255, 255, 0.07);
   --color-border-strong:   rgba(255, 255, 255, 0.20);
 
@@ -94,7 +95,7 @@
   --color-success-bg:    rgba(94, 255, 110, 0.12);
   --color-success-text:  #5eff6e;
   --color-error-bg:      rgba(255, 94, 97, 0.13);
-  --color-error-text:    #ff7173;
+  --color-error-text:    #ff5e61;
   --color-neutral-bg:    rgba(220, 220, 220, 0.10);
   --color-neutral-text:  #dcdcdc;
 
