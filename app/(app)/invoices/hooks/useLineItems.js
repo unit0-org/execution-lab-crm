@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 
-const EMPTY = { description: '', quantity: '1', unitAmount: '' }
+const EMPTY =
+  { description: '', detail: '', quantity: '1', unitAmount: '' }
 
 export function useLineItems(initial) {
   const [lines, setLines] = useState(initial)
