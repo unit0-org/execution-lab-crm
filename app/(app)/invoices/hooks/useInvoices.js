@@ -1,19 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { listInvoicesAction } from '../actions/listInvoices'
 
-export function useInvoices() {
-  const [invoices, setInvoices] = useState([])
-  const [loading, setLoading] = useState(true)
+// Seeded with the server-rendered first load; only refetches on reload.
+export function useInvoices(initialInvoices) {
+  const [invoices, setInvoices] = useState(initialInvoices)
   const [tick, setTick] = useState(0)
+  const hydrated = useRef(false)
 
   useEffect(() => {
-    listInvoicesAction().then((rows) => {
-      setInvoices(rows)
-      setLoading(false)
-    })
+    if (!hydrated.current) {
+      hydrated.current = true
+
+      return
+    }
+
+    listInvoicesAction().then(setInvoices)
   }, [tick])
 
-  return { invoices, loading, reload: () => setTick((n) => n + 1) }
+  return { invoices, loading: false, reload: () => setTick((n) => n + 1) }
 }

@@ -1,19 +1,22 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { listPurchasesAction } from '../actions/listPurchases'
 
-export function usePurchases(range) {
-  const [purchases, setPurchases] = useState([])
-  const [loading, setLoading] = useState(true)
+export function usePurchases(range, initialPurchases) {
+  const [purchases, setPurchases] = useState(initialPurchases)
   const [tick, setTick] = useState(0)
+  const hydrated = useRef(false)
 
   useEffect(() => {
-    listPurchasesAction(range).then((rows) => {
-      setPurchases(rows)
-      setLoading(false)
-    })
+    if (!hydrated.current) {
+      hydrated.current = true
+
+      return
+    }
+
+    listPurchasesAction(range).then(setPurchases)
   }, [tick, range])
 
-  return { purchases, loading, reload: () => setTick((n) => n + 1) }
+  return { purchases, loading: false, reload: () => setTick((n) => n + 1) }
 }

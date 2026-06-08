@@ -1,16 +1,12 @@
 'use client'
 
-import { useParams } from 'next/navigation'
 import { useContact } from '../hooks/useContact'
 import { ContactDetail } from './ContactDetail'
-import { Loading } from './Loading'
 import { NotFound } from './NotFound'
 
-export function ContactDetailView() {
-  const { id } = useParams()
-  const { contact, refresh } = useContact(id)
-
-  if (contact === undefined) return <Loading />
+export function ContactDetailView({ initialContact }) {
+  const seed = initialContact
+  const { contact, refresh } = useContact(seed?.id, seed)
 
   if (contact === null) return <NotFound />
 

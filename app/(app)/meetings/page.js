@@ -1,10 +1,16 @@
+import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
-import { MeetingsView } from './components/MeetingsView'
+import { MeetingsServer } from './MeetingsServer'
+import { MeetingsSkeleton } from './components/MeetingsSkeleton'
+
+export const dynamic = 'force-dynamic'
 
 export default function MeetingsPage() {
   return (
     <Page width="wide">
-      <MeetingsView />
+      <Suspense fallback={<MeetingsSkeleton />}>
+        <MeetingsServer />
+      </Suspense>
     </Page>
   )
 }
