@@ -5,6 +5,7 @@ const dollars = (formatted) =>
 export function toEditorLine(line) {
   return {
     description: line.description || '',
+    detail: line.detail || '',
     quantity: String(line.quantity || 1),
     unitAmount: dollars(line.unitAmount)
   }

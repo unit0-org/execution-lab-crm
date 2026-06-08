@@ -1,6 +1,7 @@
 import { buildInvoiceCode } from '@/lib/invoice/controllers/buildInvoiceCode'
 
-const EMPTY_LINE = { description: '', quantity: '1', unitAmount: '' }
+const EMPTY_LINE =
+  { description: '', detail: '', quantity: '1', unitAmount: '' }
 
 const EMPTY_CLIENT = { contactId: null, name: '', email: '' }
 
