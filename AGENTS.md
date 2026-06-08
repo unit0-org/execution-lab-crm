@@ -47,12 +47,20 @@ them (so adding one never renumbers the rest).
   never import a vendor lib directly from feature code.
 - **Follow The Execution Lab design system.** All visual styling — colors,
   type, spacing, radii, components — derives from the tokens in `ui/tokens/`
-  + `app/globals.css`, which encode the design system bundle:
-  https://api.anthropic.com/v1/design/h/aWKmjs3m1rZn8Gf0XnYWGw
-  (dark-first, Montserrat + JetBrains Mono, neon accents, uppercase headings
-  and labels). **Every new component must match it.** Never hardcode an
-  off-system color, font, or size at a call site — add/extend a token or a
-  `ui/` primitive instead.
+  + `app/globals.css`, which mirror the **Claude Design** bundle (Montserrat
+  + JetBrains Mono, neon accents, uppercase headings/labels; ships both a
+  dark and a light theme — neutrals flip, brand accents stay constant).
+  **Every new component must match it, and you may not introduce components
+  or token values that aren't in the design system** — pull it and check
+  before building or restyling UI.
+- **Pull the design system live (no API key, free).** The user exports a
+  "hand off to Claude Code" link from Claude Design; it's a public, gzipped
+  bundle. To read it on demand: `WebFetch` the handoff URL (it saves a
+  `.bin`), then `tar xzf <bin> -C /tmp/ds` and read
+  `project/colors_and_type.css` + `project/_ds_manifest.json` +
+  `project/preview/*.html`. Current handoff URL (ask the user to re-export
+  if it 404s — the hash changes per export):
+  https://api.anthropic.com/v1/design/h/1NabkD8v0SlFSIZ5o6ybhA
 
 ## Frontend — behavior & code
 
