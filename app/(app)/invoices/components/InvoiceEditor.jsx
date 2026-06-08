@@ -3,6 +3,7 @@
 import { Stack } from '@/ui/layout/Stack'
 import { ContactAutocomplete } from
   '@/app/(app)/contacts/components/ContactAutocomplete'
+import { InvoiceNumberField } from './InvoiceNumberField'
 import { InvoiceDateFields } from './InvoiceDateFields'
 import { InvoiceLineItems } from './InvoiceLineItems'
 import { GstCheckbox } from './GstCheckbox'
@@ -16,6 +17,7 @@ export function InvoiceEditor({ mode, initial }) {
 
   return (
     <Stack gap="md">
+      <InvoiceNumberField fields={fields} />
       <ContactAutocomplete label="Client" value={fields.client}
         onChange={fields.setClient} allowCreate />
       <InvoiceDateFields fields={fields} />

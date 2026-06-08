@@ -6,6 +6,7 @@ import { toDateInput } from './toDateInput'
 export function toEditorInitial(invoice) {
   return {
     id: invoice.id,
+    number: invoice.number,
     client: toEditorClient(invoice),
     issuedAt: toDateInput(invoice.issued_at),
     dueAt: toDateInput(invoice.due_at),

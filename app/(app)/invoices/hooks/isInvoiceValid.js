@@ -5,9 +5,10 @@ const lineReady = (line) =>
 
 // The Save button is enabled only once every required field is filled.
 export function isInvoiceValid(fields, lines) {
+  const hasNumber = !!fields.number.trim()
   const hasClient = !!fields.client.name.trim()
   const hasDates = !!fields.issuedAt && !!fields.dueAt
 
-  return hasClient && hasDates && lines.length > 0
+  return hasNumber && hasClient && hasDates && lines.length > 0
     && lines.every(lineReady)
 }
