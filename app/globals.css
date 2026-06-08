@@ -193,8 +193,10 @@ button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter:
   display: block; text-align: center;
 }
 
-/* Theme toggle — show the icon for the mode you'd switch to. */
-.sidebar-collapsed [data-theme-toggle] { justify-content: center; }
+/* Floating theme toggle — dim when idle, solid on hover. The icon shows
+   the mode you'd switch to. */
+[data-theme-toggle] { opacity: 0.4; transition: opacity var(--motion-quick) var(--motion-ease); }
+[data-theme-toggle]:hover { opacity: 1; }
 [data-theme-when-dark] { display: none; }
 :root[data-theme="dark"] [data-theme-when-light] { display: none; }
 :root[data-theme="dark"] [data-theme-when-dark] { display: inline-flex; }
