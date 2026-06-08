@@ -54,7 +54,7 @@ Conventions (from `AGENTS.md`):
 | `TextArea` | `label`, `rows=4`, `...rest` | Multi-line text input |
 | `TextButton` | `type='submit'`, `children`, `...rest` | Link-styled button |
 | `TextField` | `label`, `trailing`, `...rest` | Text/email/number/date input (pass `type`, `value`, `onChange`, `placeholder`) |
-| `Text` | `tone`, `size`, `gutter`, `children` | Body/paragraph text |
+| `Text` | `tone`, `size`, `gutter`, `strike`, `children` | Body/paragraph text (`strike` for line-through) |
 | `ToggleBadge` | `tone`, `onClick`, `label`, `children` | Clickable badge toggle |
 | `timeAgo(value)` | — | Helper → relative time string |
 
