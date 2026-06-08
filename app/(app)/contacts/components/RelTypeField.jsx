@@ -1,14 +1,18 @@
 'use client'
 
-import { Autocomplete } from '@/ui/molecules/Autocomplete'
-import { useRelTypeField } from '../hooks/useRelTypeField'
+import { Select } from '@/ui/atoms/Select'
+import { CustomRelInput } from './CustomRelInput'
+import { useRelTypeSelect } from '../hooks/useRelTypeSelect'
 
 export function RelTypeField({ value, onChange }) {
-  const field = useRelTypeField(value, onChange)
+  const f = useRelTypeSelect(value, onChange)
 
   return (
-    <Autocomplete label="Relationship" value={field.query}
-      hint="Type or pick (e.g. married to)" onType={field.onType}
-      options={field.options} onPick={field.onPick} />
+    <>
+      <Select label="Relationship" options={f.names} value={f.current}
+        onChange={f.select} />
+      <CustomRelInput show={f.custom} value={value.label}
+        onChange={f.typeCustom} />
+    </>
   )
 }
