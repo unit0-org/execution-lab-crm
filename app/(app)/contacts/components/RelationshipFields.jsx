@@ -10,9 +10,9 @@ export function RelationshipFields(props) {
 
   return (
     <Stack gap="md">
+      <RelTypeField value={rel} onChange={onRel} />
       <ContactAutocomplete label="Related contact" value={contact}
         onChange={onContact} allowCreate />
-      <RelTypeField value={rel} onChange={onRel} />
       <RelHiddenInputs contactId={contactId} contact={contact} rel={rel} />
     </Stack>
   )
