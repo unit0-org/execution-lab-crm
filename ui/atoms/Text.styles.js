@@ -11,9 +11,14 @@ const tones = {
 const sizes = { sm: { fontSize: fontSize.sm }, md: { fontSize: fontSize.md } }
 const gutters = { none: 0, sm: space[2], md: space[4], lg: space[8] }
 
-export const textStyle = ({ tone = 'default', size = 'md', gutter } = {}) => ({
-  margin: 0,
-  marginBottom: gutters[gutter] ?? 0,
-  ...tones[tone],
-  ...sizes[size]
-})
+export const textStyle = (props = {}) => {
+  const { tone = 'default', size = 'md', gutter, strike } = props
+
+  return {
+    margin: 0,
+    marginBottom: gutters[gutter] ?? 0,
+    textDecoration: strike ? 'line-through' : 'none',
+    ...tones[tone],
+    ...sizes[size]
+  }
+}
