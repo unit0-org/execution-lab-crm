@@ -8,9 +8,9 @@ import { MeetingsList } from './MeetingsList'
 import { MergeSuggestions } from './MergeSuggestions'
 import { NewMeetingModal } from './NewMeetingModal'
 
-export function MeetingsView() {
+export function MeetingsView({ initialMeetings }) {
   const { meetings, sync, suggestions, modal, onCreated, onMerged } =
-    useMeetingsView()
+    useMeetingsView(initialMeetings)
 
   return (
     <Stack gap="md">

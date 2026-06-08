@@ -11,9 +11,9 @@ import { PurchasesChart } from './PurchasesChart'
 import { PurchasesList } from './PurchasesList'
 import { RefundFilter } from './RefundFilter'
 
-export function PurchasesView() {
+export function PurchasesView({ initialPurchases }) {
   const range = useSearchParams().get('window')
-  const { purchases, loading, reload } = usePurchases(range)
+  const { purchases, loading, reload } = usePurchases(range, initialPurchases)
   const refund = useRefundFilter(purchases)
 
   return (

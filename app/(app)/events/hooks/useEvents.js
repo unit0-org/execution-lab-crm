@@ -1,19 +1,22 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { listEventsAction } from '../actions/listEvents'
 
-export function useEvents() {
-  const [events, setEvents] = useState([])
-  const [loading, setLoading] = useState(true)
+export function useEvents(initialEvents) {
+  const [events, setEvents] = useState(initialEvents)
   const [tick, setTick] = useState(0)
+  const hydrated = useRef(false)
 
   useEffect(() => {
-    listEventsAction().then((rows) => {
-      setEvents(rows)
-      setLoading(false)
-    })
+    if (!hydrated.current) {
+      hydrated.current = true
+
+      return
+    }
+
+    listEventsAction().then(setEvents)
   }, [tick])
 
-  return { events, loading, reload: () => setTick((n) => n + 1) }
+  return { events, loading: false, reload: () => setTick((n) => n + 1) }
 }

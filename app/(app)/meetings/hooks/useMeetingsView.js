@@ -6,8 +6,8 @@ import { useMeetings } from './useMeetings'
 import { useMeetingSync } from './useMeetingSync'
 import { useMergeSuggestions } from './useMergeSuggestions'
 
-export function useMeetingsView() {
-  const meetings = useMeetings()
+export function useMeetingsView(initialMeetings) {
+  const meetings = useMeetings(initialMeetings)
   const sync = useMeetingSync(meetings.reload)
   const suggestions = useMergeSuggestions()
   const modal = useToggle()

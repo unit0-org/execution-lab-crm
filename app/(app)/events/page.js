@@ -1,8 +1,12 @@
+import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
 import { Heading } from '@/ui/atoms/Heading'
 import { Stack } from '@/ui/layout/Stack'
 import { Link } from '@/ui/atoms/Link'
-import { EventsView } from './components/EventsView'
+import { EventsServer } from './EventsServer'
+import { EventsSkeleton } from './components/EventsSkeleton'
+
+export const dynamic = 'force-dynamic'
 
 export default function EventsPage() {
   return (
@@ -10,7 +14,9 @@ export default function EventsPage() {
       <Stack gap="md">
         <Heading>Events</Heading>
         <Link href="/events/import">Import CSV</Link>
-        <EventsView />
+        <Suspense fallback={<EventsSkeleton />}>
+          <EventsServer />
+        </Suspense>
       </Stack>
     </Page>
   )
