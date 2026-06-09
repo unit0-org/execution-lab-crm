@@ -10,7 +10,7 @@ import { LoginError } from './LoginError'
 
 export function LoginView() {
   const params = useSearchParams()
-  const next = params.get('next') || '/'
+  const next = params.get('next') || '/dashboard'
 
   return (
     <Page width="narrow">

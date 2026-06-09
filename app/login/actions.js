@@ -12,7 +12,7 @@ const cbUrl = (h, next) =>
   `${origin(h)}/auth/callback?next=${encodeURIComponent(next)}`
 
 export async function signInWithGoogle(formData) {
-  const next = formData.get('next') || '/'
+  const next = formData.get('next') || '/dashboard'
   const supabase = await createClient()
   const h = await headers()
   const opts = {

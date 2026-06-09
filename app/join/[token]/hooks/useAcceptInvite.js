@@ -12,7 +12,7 @@ export function useAcceptInvite() {
   const [state, action] = useActionState(run, null)
 
   useEffect(() => {
-    if (state?.ok) router.push('/')
+    if (state?.ok) router.push('/dashboard')
   }, [state, router])
 
   return { action, error: state?.error }
