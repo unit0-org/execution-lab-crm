@@ -1,12 +1,9 @@
 'use server'
 
 import { listCategories } from '@/lib/contacts/listCategories'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function listCategoriesAction() {
-  const m = await currentMembership()
-
-  if (!m) return []
-
-  return listCategories(m.organizationId)
-}
+export const listCategoriesAction = withOrg(
+  (organizationId) => listCategories(organizationId),
+  []
+)

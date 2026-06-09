@@ -1,12 +1,9 @@
 'use server'
 
 import { contactNuggets } from '@/lib/contacts/contactNuggets'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function contactAnswersAction(contactId) {
-  const m = await currentMembership()
-
-  if (!m) return []
-
-  return contactNuggets(m.organizationId, contactId)
-}
+export const contactAnswersAction = withOrg(
+  (organizationId, contactId) => contactNuggets(organizationId, contactId),
+  []
+)

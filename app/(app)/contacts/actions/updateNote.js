@@ -1,14 +1,10 @@
 'use server'
 
 import { updateNote } from '@/lib/contacts/updateNote'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function updateNoteAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
+export const updateNoteAction = withOrg((organizationId, formData) => {
   const id = formData.get('id')
 
-  return updateNote(m.organizationId, id, formData.get('body'))
-}
+  return updateNote(organizationId, id, formData.get('body'))
+})

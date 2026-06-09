@@ -1,4 +1,4 @@
-import { listFilteredContacts } from '@/lib/contacts/listFiltered'
+import { listContactsAction } from './actions/listContacts'
 import { ContactsView } from './components/ContactsView'
 
 // Server-side initial load for the contacts list (perf experiment):
@@ -8,7 +8,7 @@ export async function ContactsServer({ searchParams }) {
   const { filter } = await searchParams
   const active = filter || null
   const viewKey = filter || 'all'
-  const contacts = await listFilteredContacts(filter)
+  const contacts = await listContactsAction(filter)
 
   return (
     <ContactsView key={viewKey} filter={active}

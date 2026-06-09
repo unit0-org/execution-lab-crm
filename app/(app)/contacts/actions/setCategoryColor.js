@@ -1,12 +1,9 @@
 'use server'
 
 import { setCategoryColor } from '@/lib/contacts/setCategoryColor'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function setCategoryColorAction(id, color) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return setCategoryColor(m.organizationId, id, color)
-}
+export const setCategoryColorAction = withOrg(
+  (organizationId, id, color) =>
+    setCategoryColor(organizationId, id, color)
+)

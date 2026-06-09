@@ -1,13 +1,10 @@
 'use server'
 
 import { listContacts } from '@/lib/contacts/list'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
 // Contacts for the attendee autocomplete (names + emails).
-export async function listContactsAction() {
-  const m = await currentMembership()
-
-  if (!m) return []
-
-  return listContacts(m.organizationId)
-}
+export const listContactsAction = withOrg(
+  (organizationId) => listContacts(organizationId),
+  []
+)

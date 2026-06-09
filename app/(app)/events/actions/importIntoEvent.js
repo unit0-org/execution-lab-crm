@@ -2,20 +2,18 @@
 
 import { parseCsv } from '@/lib/luma/controllers/parseCsv'
 import { importIntoEvent } from '@/lib/luma/controllers/importIntoEvent'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function importIntoEventAction(formData) {
-  const m = await currentMembership()
+export const importIntoEventAction = withOrg(
+  async (organizationId, formData) => {
+    const file = formData.get('file')
+    const eventId = formData.get('eventId')
 
-  if (!m) return { error: 'Not allowed' }
+    if (!file || !file.name) return { error: 'Choose a CSV file.' }
 
-  const file = formData.get('file')
-  const eventId = formData.get('eventId')
+    const text = await file.text()
+    const rows = parseCsv(text)
 
-  if (!file || !file.name) return { error: 'Choose a CSV file.' }
-
-  const text = await file.text()
-  const rows = parseCsv(text)
-
-  return importIntoEvent(m.organizationId, eventId, rows)
-}
+    return importIntoEvent(organizationId, eventId, rows)
+  }
+)

@@ -1,14 +1,10 @@
 'use server'
 
 import { addPhone } from '@/lib/contacts/addPhone'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function addPhoneAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
+export const addPhoneAction = withOrg((organizationId, formData) => {
   const contactId = formData.get('contact_id')
 
-  return addPhone(m.organizationId, contactId, formData.get('phone'))
-}
+  return addPhone(organizationId, contactId, formData.get('phone'))
+})

@@ -1,12 +1,9 @@
 'use server'
 
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 import { getCompanyProfile } from '@/lib/company/controllers/getCompanyProfile'
 
-export async function getCompanyProfileAction() {
-  const member = await currentMembership()
-
-  if (!member) return null
-
-  return getCompanyProfile(member.organizationId)
-}
+export const getCompanyProfileAction = withOrg(
+  (organizationId) => getCompanyProfile(organizationId),
+  null
+)

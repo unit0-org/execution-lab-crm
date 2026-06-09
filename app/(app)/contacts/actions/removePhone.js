@@ -1,12 +1,9 @@
 'use server'
 
 import { removePhone } from '@/lib/contacts/removePhone'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removePhoneAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return removePhone(m.organizationId, formData.get('id'))
-}
+export const removePhoneAction = withOrg(
+  (organizationId, formData) =>
+    removePhone(organizationId, formData.get('id'))
+)

@@ -1,19 +1,17 @@
 'use server'
 
 import { createContact } from '@/lib/contacts/create'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
 const fullName = (first, last) =>
   [first, last].filter(Boolean).join(' ')
 
-export async function quickCreateContactAction({ first, last, email }) {
-  const m = await currentMembership()
+export const quickCreateContactAction = withOrg(
+  async (organizationId, { first, last, email }) => {
+    const res = await createContact(organizationId, first, last, [email])
 
-  if (!m) return { error: 'Not allowed' }
+    if (res.error) return { error: res.error }
 
-  const res = await createContact(m.organizationId, first, last, [email])
-
-  if (res.error) return { error: res.error }
-
-  return { ok: true, id: res.id, name: fullName(first, last), email }
-}
+    return { ok: true, id: res.id, name: fullName(first, last), email }
+  }
+)

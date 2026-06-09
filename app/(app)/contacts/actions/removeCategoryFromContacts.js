@@ -2,12 +2,9 @@
 
 import { removeCategoryFromContacts }
   from '@/lib/contacts/removeCategoryFromContacts'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removeCategoryFromContactsAction(contactIds, categoryId) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return removeCategoryFromContacts(m.organizationId, contactIds, categoryId)
-}
+export const removeCategoryFromContactsAction = withOrg(
+  (organizationId, contactIds, categoryId) =>
+    removeCategoryFromContacts(organizationId, contactIds, categoryId)
+)

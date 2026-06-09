@@ -1,12 +1,8 @@
 'use server'
 
 import { removeMeetingNote } from '@/lib/meeting/controllers/removeMeetingNote'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removeMeetingNoteAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return removeMeetingNote(formData.get('id'))
-}
+export const removeMeetingNoteAction = withOrg(
+  (_organizationId, formData) => removeMeetingNote(formData.get('id'))
+)

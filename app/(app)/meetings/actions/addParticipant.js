@@ -1,14 +1,10 @@
 'use server'
 
 import { addParticipant } from '@/lib/meeting/controllers/addParticipant'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function addParticipantAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
+export const addParticipantAction = withOrg((organizationId, formData) => {
   const meetingId = formData.get('meeting_id')
 
-  return addParticipant(m.organizationId, meetingId, formData.get('email'))
-}
+  return addParticipant(organizationId, meetingId, formData.get('email'))
+})

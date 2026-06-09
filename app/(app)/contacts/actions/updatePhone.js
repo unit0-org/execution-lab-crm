@@ -1,13 +1,10 @@
 'use server'
 
 import { updatePhone } from '@/lib/contacts/updatePhone'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function updatePhoneAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return updatePhone(m.organizationId, formData.get('id'),
-    formData.get('value'))
-}
+export const updatePhoneAction = withOrg(
+  (organizationId, formData) =>
+    updatePhone(organizationId, formData.get('id'),
+      formData.get('value'))
+)

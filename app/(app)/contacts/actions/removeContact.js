@@ -1,14 +1,12 @@
 'use server'
 
 import { deleteContact } from '@/lib/contacts/remove'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removeContactAction(id) {
-  const m = await currentMembership()
+export const removeContactAction = withOrg(
+  async (organizationId, id) => {
+    await deleteContact(organizationId, id)
 
-  if (!m) return { error: 'Not allowed' }
-
-  await deleteContact(m.organizationId, id)
-
-  return { ok: true }
-}
+    return { ok: true }
+  }
+)

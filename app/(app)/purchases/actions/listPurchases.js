@@ -1,12 +1,9 @@
 'use server'
 
 import { listPurchases } from '@/lib/purchase/controllers/listPurchases'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function listPurchasesAction(window) {
-  const member = await currentMembership()
-
-  if (!member) return []
-
-  return listPurchases(member.organizationId, window)
-}
+export const listPurchasesAction = withOrg(
+  (organizationId, window) => listPurchases(organizationId, window),
+  []
+)

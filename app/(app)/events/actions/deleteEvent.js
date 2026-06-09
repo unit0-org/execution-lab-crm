@@ -1,12 +1,8 @@
 'use server'
 
 import { deleteEvent } from '@/lib/event/controllers/deleteEvent'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function deleteEventAction(id) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return deleteEvent(m.organizationId, id)
-}
+export const deleteEventAction = withOrg(
+  (organizationId, id) => deleteEvent(organizationId, id)
+)

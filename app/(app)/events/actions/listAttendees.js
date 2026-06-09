@@ -2,16 +2,15 @@
 
 import { listAttendees } from '@/lib/event/controllers/listAttendees'
 import { getEventDetail } from '@/lib/event/controllers/getEventDetail'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function listAttendeesAction(id) {
-  const m = await currentMembership()
+export const listAttendeesAction = withOrg(
+  async (organizationId, id) => {
+    const event = await getEventDetail(organizationId, id)
 
-  if (!m) return []
+    if (!event) return []
 
-  const event = await getEventDetail(m.organizationId, id)
-
-  if (!event) return []
-
-  return listAttendees(id)
-}
+    return listAttendees(id)
+  },
+  []
+)

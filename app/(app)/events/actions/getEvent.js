@@ -1,12 +1,9 @@
 'use server'
 
 import { getEventDetail } from '@/lib/event/controllers/getEventDetail'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function getEventAction(id) {
-  const m = await currentMembership()
-
-  if (!m) return null
-
-  return getEventDetail(m.organizationId, id)
-}
+export const getEventAction = withOrg(
+  (organizationId, id) => getEventDetail(organizationId, id),
+  null
+)

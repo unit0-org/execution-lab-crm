@@ -2,13 +2,11 @@
 
 import { redirect } from 'next/navigation'
 import { deleteContact } from '@/lib/contacts/remove'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function deleteContactAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  await deleteContact(m.organizationId, formData.get('id'))
-  redirect('/contacts')
-}
+export const deleteContactAction = withOrg(
+  async (organizationId, formData) => {
+    await deleteContact(organizationId, formData.get('id'))
+    redirect('/contacts')
+  }
+)

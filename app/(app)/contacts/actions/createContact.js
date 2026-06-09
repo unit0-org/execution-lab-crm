@@ -3,17 +3,15 @@
 import { redirect } from 'next/navigation'
 import { createContact } from '@/lib/contacts/create'
 import { readContactForm } from '@/lib/contacts/form'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function createContactAction(formData) {
-  const m = await currentMembership()
+export const createContactAction = withOrg(
+  async (organizationId, formData) => {
+    const { first, last, emails } = readContactForm(formData)
+    const res = await createContact(organizationId, first, last, emails)
 
-  if (!m) return { error: 'Not allowed' }
+    if (res.error) return { error: res.error }
 
-  const { first, last, emails } = readContactForm(formData)
-  const res = await createContact(m.organizationId, first, last, emails)
-
-  if (res.error) return { error: res.error }
-
-  redirect(`/contacts/${res.id}`)
-}
+    redirect(`/contacts/${res.id}`)
+  }
+)

@@ -1,15 +1,11 @@
 'use server'
 
 import { updateFact } from '@/lib/contacts/updateFact'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function updateNuggetAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
+export const updateNuggetAction = withOrg((organizationId, formData) => {
   const id = formData.get('id')
   const label = formData.get('label')
 
-  return updateFact(m.organizationId, id, label, formData.get('value'))
-}
+  return updateFact(organizationId, id, label, formData.get('value'))
+})

@@ -1,12 +1,9 @@
 'use server'
 
 import { removeFact } from '@/lib/contacts/removeFact'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removeNuggetAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return removeFact(m.organizationId, formData.get('id'))
-}
+export const removeNuggetAction = withOrg(
+  (organizationId, formData) =>
+    removeFact(organizationId, formData.get('id'))
+)

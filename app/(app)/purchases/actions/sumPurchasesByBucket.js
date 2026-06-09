@@ -1,13 +1,11 @@
 'use server'
 
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 import { sumPurchasesByBucket }
   from '@/lib/purchase/controllers/sumPurchasesByBucket'
 
-export async function sumPurchasesByBucketAction(window, grain) {
-  const member = await currentMembership()
-
-  if (!member) return []
-
-  return sumPurchasesByBucket(member.organizationId, window, grain)
-}
+export const sumPurchasesByBucketAction = withOrg(
+  (organizationId, window, grain) =>
+    sumPurchasesByBucket(organizationId, window, grain),
+  []
+)

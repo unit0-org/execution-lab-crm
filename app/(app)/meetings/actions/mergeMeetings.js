@@ -1,16 +1,14 @@
 'use server'
 
 import { mergeMeetings } from '@/lib/meeting/controllers/mergeMeetings'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function mergeMeetingsAction(winnerId, loserId) {
-  const m = await currentMembership()
+export const mergeMeetingsAction = withOrg(
+  async (organizationId, winnerId, loserId) => {
+    const result = await mergeMeetings(organizationId, winnerId, loserId)
 
-  if (!m) return { error: 'Not allowed' }
+    if (result?.error) return result
 
-  const result = await mergeMeetings(m.organizationId, winnerId, loserId)
-
-  if (result?.error) return result
-
-  return { ok: true }
-}
+    return { ok: true }
+  }
+)

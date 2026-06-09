@@ -1,12 +1,9 @@
 'use server'
 
 import { setCategoryLeads } from '@/lib/contacts/setCategoryLeads'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function setCategoryLeadsAction(id, includeInLeads) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
-  return setCategoryLeads(m.organizationId, id, includeInLeads)
-}
+export const setCategoryLeadsAction = withOrg(
+  (organizationId, id, includeInLeads) =>
+    setCategoryLeads(organizationId, id, includeInLeads)
+)

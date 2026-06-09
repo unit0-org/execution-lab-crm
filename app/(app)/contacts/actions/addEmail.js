@@ -1,14 +1,10 @@
 'use server'
 
 import { addEmail } from '@/lib/contacts/addEmail'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function addEmailAction(formData) {
-  const m = await currentMembership()
-
-  if (!m) return { error: 'Not allowed' }
-
+export const addEmailAction = withOrg((organizationId, formData) => {
   const contactId = formData.get('contact_id')
 
-  return addEmail(m.organizationId, contactId, formData.get('email'))
-}
+  return addEmail(organizationId, contactId, formData.get('email'))
+})
