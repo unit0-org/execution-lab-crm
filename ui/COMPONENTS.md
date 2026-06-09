@@ -23,6 +23,7 @@ Conventions (from `AGENTS.md`):
 
 | Component | Props | Use for |
 |---|---|---|
+| `Avatar` | `src`, `name`, `size=40` | Circular profile photo, or tokened initials fallback |
 | `Badge` | `tone='accent'`, `children` | Small static status/label pill |
 | `Button` | `tone='default'`, `size`, `block`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones` |
 | `ButtonLink` | `href`, `tone='default'`, `size`, `target`, `children` | Navigation link styled as a Button (`target="_blank"` opens a new tab) |
@@ -80,6 +81,7 @@ Conventions (from `AGENTS.md`):
 | Component | Props | Use for |
 |---|---|---|
 | `SectionHeader` | `title`, `addLabel`, `onAdd` | Section heading with optional `+` create action |
+| `BirthdayField` | `day`, `month`, `year` | Day/month/year inputs for a Form (`birth_day`/`birth_month`/`birth_year`) |
 | `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick`, `onCreate`, `createLabel`, `hint` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). `options`=`[{value,label}]` |
 | `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Lower-level field that just renders the `options` you pass (no filtering/create). Prefer `Autocomplete` |
 | `SuggestionList` / `SuggestionItem` | `open`, `options`, `onPick` | Dropdown list used by `Combobox` |

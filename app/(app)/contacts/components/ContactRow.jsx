@@ -4,7 +4,7 @@ import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
 import { RowDelete } from '@/ui/molecules/RowDelete'
 import { CopyList } from '@/ui/molecules/CopyList'
-import { ContactNameLink } from './ContactNameLink'
+import { ContactNameCell } from './ContactNameCell'
 import { ContactLabels } from './ContactLabels'
 import { SelectCell } from './SelectCell'
 import { useDeleteContact } from '../hooks/useDeleteContact'
@@ -17,7 +17,7 @@ export function ContactRow({ contact, selected, onToggle, onChanged }) {
   return (
     <Tr>
       <SelectCell checked={selected} onToggle={() => onToggle(contact.id)} />
-      <Td><ContactNameLink contact={contact} /></Td>
+      <Td><ContactNameCell contact={contact} /></Td>
       <Td><CopyList values={emailsOf(contact)} /></Td>
       <Td><ContactLabels contact={contact} /></Td>
       <Td><RowDelete onConfirm={remove} title="Delete contact" /></Td>
