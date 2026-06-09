@@ -52,6 +52,7 @@ Conventions (from `AGENTS.md`):
 | `Skeleton` | `height` | Loading placeholder sized to final content |
 | `Spinner` | `size=14` | Inline loading spinner |
 | `SubmitButton` | `children`, `...rest` | Submit button that reflects form pending state |
+| `SyncBadge` | `href` | Soft pill marking a contact as synced with Google; links out to Google Contacts (new tab) when `href` is set |
 | `TextArea` | `label`, `rows=4`, `...rest` | Multi-line text input |
 | `TextButton` | `type='submit'`, `children`, `...rest` | Link-styled button |
 | `TextField` | `label`, `trailing`, `...rest` | Text/email/number/date input (pass `type`, `value`, `onChange`, `placeholder`) |

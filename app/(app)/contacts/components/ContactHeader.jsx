@@ -4,6 +4,7 @@ import { Inline } from '@/ui/layout/Inline'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
 import { ContactHeading } from './ContactHeading'
+import { ContactGoogleSync } from './ContactGoogleSync'
 import { ContactCategory } from './ContactCategory'
 import { EditNameModal } from './EditNameModal'
 import { DeleteContact } from './DeleteContact'
@@ -15,6 +16,7 @@ export function ContactHeader({ contact, onChanged }) {
   return (
     <Inline gap="sm">
       <ContactHeading contact={contact} />
+      <ContactGoogleSync contactId={contact.id} />
       <IconButton label="Edit name" onClick={edit.show}>
         <Icon name="pencil" />
       </IconButton>

@@ -1,5 +1,7 @@
 import { SettingsView } from './SettingsView'
 import { IntegrationsView } from './IntegrationsView'
+import { GoogleContactsView } from './GoogleContactsView'
+import { ConflictsView } from './ConflictsView'
 import { CompanyView } from './CompanyView'
 import { InvoicingView } from './InvoicingView'
 import { InvitationsView } from './InvitationsView'
@@ -7,6 +9,8 @@ import { InvitationsView } from './InvitationsView'
 const PANELS = {
   members: SettingsView,
   integrations: IntegrationsView,
+  google: GoogleContactsView,
+  conflicts: ConflictsView,
   company: CompanyView,
   invoicing: InvoicingView,
   invitations: InvitationsView
