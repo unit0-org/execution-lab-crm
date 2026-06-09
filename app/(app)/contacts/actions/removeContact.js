@@ -1,9 +1,12 @@
 'use server'
 
 import { deleteContact } from '@/lib/contacts/remove'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removeContactAction(id) {
-  await deleteContact(id)
+export const removeContactAction = withOrg(
+  async (organizationId, id) => {
+    await deleteContact(organizationId, id)
 
-  return { ok: true }
-}
+    return { ok: true }
+  }
+)

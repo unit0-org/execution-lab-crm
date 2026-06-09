@@ -13,7 +13,7 @@ export function NoteCard({ note, onChanged }) {
         <NoteHead note={note} onChanged={onChanged}>
           <Text gutter="none">{note.body}</Text>
         </NoteHead>
-        <DateText value={note.date} />
+        <DateText value={note.date} withTime />
       </Stack>
     </Card>
   )

@@ -1,19 +1,17 @@
 'use server'
 
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withOrg } from '@/lib/auth/withOrg'
 import { updateInvoice } from '@/lib/invoice/controllers/updateInvoice'
 import { invoiceSaveError } from '@/lib/invoice/controllers/invoiceSaveError'
 
-export async function updateInvoiceAction(id, data) {
-  const member = await currentMembership()
+export const updateInvoiceAction = withOrg(
+  async (_organizationId, id, data) => {
+    try {
+      const invoice = await updateInvoice(id, data)
 
-  if (!member) return { error: 'Forbidden' }
-
-  try {
-    const invoice = await updateInvoice(id, data)
-
-    return { ok: true, id: invoice.id }
-  } catch (e) {
-    return { error: invoiceSaveError(e) }
+      return { ok: true, id: invoice.id }
+    } catch (e) {
+      return { error: invoiceSaveError(e) }
+    }
   }
-}
+)

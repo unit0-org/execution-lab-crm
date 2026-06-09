@@ -1,9 +1,11 @@
 'use server'
 
 import { addNote } from '@/lib/contacts/addNote'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function addNoteAction(formData) {
+export const addNoteAction = withOrg((organizationId, formData) => {
   const contactId = formData.get('contact_id')
+  const notedAt = formData.get('noted_at') || null
 
-  return addNote(contactId, formData.get('body'))
-}
+  return addNote(organizationId, contactId, formData.get('body'), notedAt)
+})

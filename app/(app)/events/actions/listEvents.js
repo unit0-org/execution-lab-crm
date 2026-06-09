@@ -1,7 +1,9 @@
 'use server'
 
 import { listEvents } from '@/lib/event/controllers/listEvents'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function listEventsAction() {
-  return listEvents()
-}
+export const listEventsAction = withOrg(
+  (organizationId) => listEvents(organizationId),
+  []
+)

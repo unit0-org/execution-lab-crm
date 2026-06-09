@@ -1,7 +1,9 @@
 'use server'
 
 import { listRelationshipTypes } from '@/lib/contacts/listRelationshipTypes'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function listRelationshipTypesAction() {
-  return listRelationshipTypes()
-}
+export const listRelationshipTypesAction = withOrg(
+  (organizationId) => listRelationshipTypes(organizationId),
+  []
+)

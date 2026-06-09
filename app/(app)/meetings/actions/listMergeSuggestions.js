@@ -1,7 +1,9 @@
 'use server'
 
 import { listSuggestions } from '@/lib/meeting/controllers/listSuggestions'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function listMergeSuggestionsAction() {
-  return listSuggestions()
-}
+export const listMergeSuggestionsAction = withOrg(
+  (organizationId) => listSuggestions(organizationId),
+  []
+)

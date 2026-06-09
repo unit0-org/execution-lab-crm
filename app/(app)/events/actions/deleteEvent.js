@@ -1,7 +1,8 @@
 'use server'
 
 import { deleteEvent } from '@/lib/event/controllers/deleteEvent'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function deleteEventAction(id) {
-  return deleteEvent(id)
-}
+export const deleteEventAction = withOrg(
+  (organizationId, id) => deleteEvent(organizationId, id)
+)

@@ -1,20 +1,17 @@
 'use server'
 
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withAdmin } from '@/lib/auth/withAdmin'
 import { hasOrgSecret } from '@/lib/org/controllers/hasOrgSecret'
 
-export async function secretsStatusAction() {
-  const member = await currentMembership()
-
-  if (member?.role !== 'admin') return {}
-
-  const org = member.organizationId
-
-  return {
-    stripe_secret_key: await hasOrgSecret(org, 'stripe_secret_key'),
-    stripe_webhook_secret: await hasOrgSecret(org, 'stripe_webhook_secret'),
-    resend_api_key: await hasOrgSecret(org, 'resend_api_key'),
+export const secretsStatusAction = withAdmin(
+  async (organizationId) => ({
+    stripe_secret_key:
+      await hasOrgSecret(organizationId, 'stripe_secret_key'),
+    stripe_webhook_secret:
+      await hasOrgSecret(organizationId, 'stripe_webhook_secret'),
+    resend_api_key: await hasOrgSecret(organizationId, 'resend_api_key'),
     google_service_account_json:
-      await hasOrgSecret(org, 'google_service_account_json')
-  }
-}
+      await hasOrgSecret(organizationId, 'google_service_account_json')
+  }),
+  {}
+)

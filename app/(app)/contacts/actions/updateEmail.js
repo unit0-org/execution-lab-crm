@@ -1,7 +1,10 @@
 'use server'
 
 import { updateEmail } from '@/lib/contacts/updateEmail'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function updateEmailAction(formData) {
-  return updateEmail(formData.get('id'), formData.get('value'))
-}
+export const updateEmailAction = withOrg(
+  (organizationId, formData) =>
+    updateEmail(organizationId, formData.get('id'),
+      formData.get('value'))
+)

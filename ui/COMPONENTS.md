@@ -29,7 +29,7 @@ Conventions (from `AGENTS.md`):
 | `Card` | `tone`, `hoverHost`, `children` | Surface container for grouped content |
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`) |
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square |
-| `DateText` | `value` | Display-only calendar date (UTC-safe) |
+| `DateText` | `value`, `withTime` | Display-only date, UTC-safe (`withTime` adds the time) |
 | `EditableText` | `value`, `onClick` | View-mode text that opens an editor on click |
 | `ExternalLink` | `href`, `children` | Link to an external URL (new tab) |
 | `FieldError` | `message` | Inline field error (renders nothing if empty) |
@@ -83,7 +83,7 @@ Conventions (from `AGENTS.md`):
 | `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick`, `onCreate`, `createLabel`, `hint` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). `options`=`[{value,label}]` |
 | `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Lower-level field that just renders the `options` you pass (no filtering/create). Prefer `Autocomplete` |
 | `SuggestionList` / `SuggestionItem` | `open`, `options`, `onPick` | Dropdown list used by `Combobox` |
-| `Form` | `action`, `children` | Form bound to a server action |
+| `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form |
 | `FormError` | `message` | Form-level error message |
 | `Table` / `Tr` / `Td` | `cols`,`sort`,`onSort` / `plain` / `truncate` | Data tables |

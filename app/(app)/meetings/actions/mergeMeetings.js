@@ -1,9 +1,14 @@
 'use server'
 
 import { mergeMeetings } from '@/lib/meeting/controllers/mergeMeetings'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function mergeMeetingsAction(winnerId, loserId) {
-  await mergeMeetings(winnerId, loserId)
+export const mergeMeetingsAction = withOrg(
+  async (organizationId, winnerId, loserId) => {
+    const result = await mergeMeetings(organizationId, winnerId, loserId)
 
-  return { ok: true }
-}
+    if (result?.error) return result
+
+    return { ok: true }
+  }
+)

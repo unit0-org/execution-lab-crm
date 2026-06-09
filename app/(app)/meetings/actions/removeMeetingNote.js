@@ -1,7 +1,8 @@
 'use server'
 
 import { removeMeetingNote } from '@/lib/meeting/controllers/removeMeetingNote'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removeMeetingNoteAction(formData) {
-  return removeMeetingNote(formData.get('id'))
-}
+export const removeMeetingNoteAction = withOrg(
+  (_organizationId, formData) => removeMeetingNote(formData.get('id'))
+)

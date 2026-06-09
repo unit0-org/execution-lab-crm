@@ -1,17 +1,15 @@
 'use server'
 
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withAdmin } from '@/lib/auth/withAdmin'
 import { setOrgSecret } from '@/lib/org/controllers/setOrgSecret'
 
-export async function setSecretAction(formData) {
-  const member = await currentMembership()
-
-  if (member?.role !== 'admin') return { error: 'Forbidden' }
-
-  try {
-    return await setOrgSecret(member.organizationId, formData.get('kind'),
-      formData.get('value'))
-  } catch (e) {
-    return { error: e.message }
+export const setSecretAction = withAdmin(
+  async (organizationId, formData) => {
+    try {
+      return await setOrgSecret(organizationId, formData.get('kind'),
+        formData.get('value'))
+    } catch (e) {
+      return { error: e.message }
+    }
   }
-}
+)
