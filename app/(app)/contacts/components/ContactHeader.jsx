@@ -1,10 +1,9 @@
 'use client'
 
 import { Inline } from '@/ui/layout/Inline'
-import { Heading } from '@/ui/atoms/Heading'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
-import { ContactName } from './ContactName'
+import { ContactHeading } from './ContactHeading'
 import { ContactCategory } from './ContactCategory'
 import { EditNameModal } from './EditNameModal'
 import { DeleteContact } from './DeleteContact'
@@ -15,7 +14,7 @@ export function ContactHeader({ contact, onChanged }) {
 
   return (
     <Inline gap="sm">
-      <Heading gutter="none"><ContactName contact={contact} /></Heading>
+      <ContactHeading contact={contact} />
       <IconButton label="Edit name" onClick={edit.show}>
         <Icon name="pencil" />
       </IconButton>
