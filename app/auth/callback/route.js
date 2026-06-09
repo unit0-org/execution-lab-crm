@@ -11,7 +11,7 @@ const errUrl = (error) =>
 export async function GET(request) {
   const url = new URL(request.url)
   const code = url.searchParams.get('code')
-  const next = url.searchParams.get('next') || '/'
+  const next = url.searchParams.get('next') || '/dashboard'
 
   if (!code) return back(url, '/login?error=missing_code')
 

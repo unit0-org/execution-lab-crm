@@ -2,8 +2,8 @@ import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
 import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
-import { DashboardServer } from './dashboard/DashboardServer'
-import { DashboardSkeleton } from './dashboard/components/DashboardSkeleton'
+import { DashboardServer } from './DashboardServer'
+import { DashboardSkeleton } from './components/DashboardSkeleton'
 
 export const dynamic = 'force-dynamic'
 
