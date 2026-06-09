@@ -1,11 +1,14 @@
 'use server'
 
 import { updateContact } from '@/lib/contacts/update'
+import { currentMembership } from '@/lib/org/controllers/currentMembership'
 
 export async function updateContactNameAction(formData) {
-  const id = formData.get('id')
+  const m = await currentMembership()
 
-  return updateContact(id, {
+  if (!m) return { error: 'Not allowed' }
+
+  return updateContact(m.organizationId, formData.get('id'), {
     first_name: formData.get('first_name') || null,
     last_name: formData.get('last_name') || null
   })

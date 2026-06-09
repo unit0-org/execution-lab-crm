@@ -2,8 +2,13 @@
 
 import { parseCsv } from '@/lib/luma/controllers/parseCsv'
 import { importIntoEvent } from '@/lib/luma/controllers/importIntoEvent'
+import { currentMembership } from '@/lib/org/controllers/currentMembership'
 
 export async function importIntoEventAction(formData) {
+  const m = await currentMembership()
+
+  if (!m) return { error: 'Not allowed' }
+
   const file = formData.get('file')
   const eventId = formData.get('eventId')
 
@@ -12,5 +17,5 @@ export async function importIntoEventAction(formData) {
   const text = await file.text()
   const rows = parseCsv(text)
 
-  return importIntoEvent(eventId, rows)
+  return importIntoEvent(m.organizationId, eventId, rows)
 }

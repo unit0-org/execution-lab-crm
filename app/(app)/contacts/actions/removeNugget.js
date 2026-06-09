@@ -1,7 +1,12 @@
 'use server'
 
 import { removeFact } from '@/lib/contacts/removeFact'
+import { currentMembership } from '@/lib/org/controllers/currentMembership'
 
 export async function removeNuggetAction(formData) {
-  return removeFact(formData.get('id'))
+  const m = await currentMembership()
+
+  if (!m) return { error: 'Not allowed' }
+
+  return removeFact(m.organizationId, formData.get('id'))
 }

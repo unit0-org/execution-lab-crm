@@ -1,7 +1,12 @@
 'use server'
 
 import { removeEmail } from '@/lib/contacts/removeEmail'
+import { currentMembership } from '@/lib/org/controllers/currentMembership'
 
 export async function removeEmailAction(formData) {
-  return removeEmail(formData.get('id'))
+  const m = await currentMembership()
+
+  if (!m) return { error: 'Not allowed' }
+
+  return removeEmail(m.organizationId, formData.get('id'))
 }
