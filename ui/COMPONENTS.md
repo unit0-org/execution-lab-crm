@@ -29,7 +29,7 @@ Conventions (from `AGENTS.md`):
 | `Card` | `tone`, `hoverHost`, `children` | Surface container for grouped content |
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`) |
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square |
-| `DateText` | `value` | Display-only calendar date (UTC-safe) |
+| `DateText` | `value`, `withTime` | Display-only date, UTC-safe (`withTime` adds the time) |
 | `EditableText` | `value`, `onClick` | View-mode text that opens an editor on click |
 | `ExternalLink` | `href`, `children` | Link to an external URL (new tab) |
 | `FieldError` | `message` | Inline field error (renders nothing if empty) |
