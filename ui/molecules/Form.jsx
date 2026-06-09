@@ -1,3 +1,11 @@
+'use client'
+
+import { useSubmitFormOnCtrlEnter } from './useSubmitFormOnCtrlEnter'
+
 export function Form({ action, children }) {
-  return <form action={action}>{children}</form>
+  const onKeyDown = useSubmitFormOnCtrlEnter()
+
+  return (
+    <form action={action} onKeyDown={onKeyDown}>{children}</form>
+  )
 }
