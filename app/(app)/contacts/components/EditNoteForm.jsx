@@ -17,7 +17,7 @@ export function EditNoteForm({ note, onSaved, onCancel }) {
       <input type="hidden" name="id" value={note.id} />
       <Stack gap="md">
         <Heading level={3}>Edit note</Heading>
-        <NoteFields body={note.body} />
+        <NoteFields body={note.body} notedAt={note.date} />
         <FormError message={error} />
         <DialogActions label="Save" onCancel={onCancel} />
       </Stack>

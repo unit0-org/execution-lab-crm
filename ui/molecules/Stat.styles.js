@@ -1,7 +1,7 @@
 import { color } from '../tokens/color'
 import { space } from '../tokens/space'
 import { font, fontSize, fontWeight } from '../tokens/typography'
-import { toneColor } from '../tokens/tone'
+import { toneTextColor } from '../tokens/tone'
 
 export const statLabel = {
   fontSize: '11px',
@@ -16,7 +16,7 @@ export const statValue = (tone) => ({
   fontFamily: font.mono,
   fontSize: fontSize['2xl'],
   fontWeight: fontWeight.bold,
-  color: toneColor[tone] || color.text.primary,
+  color: toneTextColor[tone] || color.text.primary,
   lineHeight: 1.1
 })
 
