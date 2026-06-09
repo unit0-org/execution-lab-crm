@@ -1,13 +1,7 @@
 'use server'
 
-import { currentUser } from '@/lib/auth/currentUser'
-import { isPlatformOwner } from '@/lib/org/controllers/isPlatformOwner'
+import { withOwner } from '@/lib/auth/withOwner'
 import { createFounderInvite } from '@/lib/org/controllers/createFounderInvite'
 
-export async function createFounderInviteAction(formData) {
-  const user = await currentUser()
-
-  if (!isPlatformOwner(user?.email)) return { error: 'Not allowed' }
-
-  return createFounderInvite(formData.get('email'), user.email)
-}
+export const createFounderInviteAction = withOwner((user, formData) =>
+  createFounderInvite(formData.get('email'), user.email))

@@ -1,15 +1,15 @@
 'use client'
 
-import { Text } from '@/ui/atoms/Text'
+import { Forbidden } from '../../components/Forbidden'
 import { usePlatformOwner } from '../hooks/usePlatformOwner'
 
-// Renders children only for the platform owner; nothing while loading.
+// Renders children only for the platform owner; a 403 for anyone else.
 export function OwnerOnly({ children }) {
   const isOwner = usePlatformOwner()
 
   if (isOwner === undefined) return null
 
-  if (!isOwner) return <Text>Owner only.</Text>
+  if (!isOwner) return <Forbidden message="Platform owner only." />
 
   return children
 }
