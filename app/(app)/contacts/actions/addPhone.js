@@ -1,9 +1,10 @@
 'use server'
 
 import { addPhone } from '@/lib/contacts/addPhone'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function addPhoneAction(formData) {
+export const addPhoneAction = withOrg((organizationId, formData) => {
   const contactId = formData.get('contact_id')
 
-  return addPhone(contactId, formData.get('phone'))
-}
+  return addPhone(organizationId, contactId, formData.get('phone'))
+})

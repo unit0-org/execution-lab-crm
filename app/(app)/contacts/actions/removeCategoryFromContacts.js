@@ -2,7 +2,9 @@
 
 import { removeCategoryFromContacts }
   from '@/lib/contacts/removeCategoryFromContacts'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removeCategoryFromContactsAction(contactIds, categoryId) {
-  return removeCategoryFromContacts(contactIds, categoryId)
-}
+export const removeCategoryFromContactsAction = withOrg(
+  (organizationId, contactIds, categoryId) =>
+    removeCategoryFromContacts(organizationId, contactIds, categoryId)
+)

@@ -1,7 +1,8 @@
 'use server'
 
 import { deleteCategory } from '@/lib/contacts/deleteCategory'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function deleteCategoryAction(id) {
-  return deleteCategory(id)
-}
+export const deleteCategoryAction = withOrg(
+  (organizationId, id) => deleteCategory(organizationId, id)
+)

@@ -2,8 +2,11 @@
 
 import { redirect } from 'next/navigation'
 import { deleteContact } from '@/lib/contacts/remove'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function deleteContactAction(formData) {
-  await deleteContact(formData.get('id'))
-  redirect('/contacts')
-}
+export const deleteContactAction = withOrg(
+  async (organizationId, formData) => {
+    await deleteContact(organizationId, formData.get('id'))
+    redirect('/contacts')
+  }
+)

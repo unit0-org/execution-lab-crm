@@ -1,7 +1,9 @@
 'use server'
 
 import { getContact } from '@/lib/contacts/get'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function getContactAction(id) {
-  return getContact(id)
-}
+export const getContactAction = withOrg(
+  (organizationId, id) => getContact(organizationId, id),
+  null
+)

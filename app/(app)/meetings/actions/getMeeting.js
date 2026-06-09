@@ -1,7 +1,9 @@
 'use server'
 
 import { getMeetingDetail } from '@/lib/meeting/controllers/getMeetingDetail'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function getMeetingAction(id) {
-  return getMeetingDetail(id)
-}
+export const getMeetingAction = withOrg(
+  (organizationId, id) => getMeetingDetail(organizationId, id),
+  null
+)

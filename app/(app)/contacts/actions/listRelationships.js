@@ -1,7 +1,10 @@
 'use server'
 
 import { listRelationships } from '@/lib/contacts/listRelationships'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function listRelationshipsAction(contactId) {
-  return listRelationships(contactId)
-}
+export const listRelationshipsAction = withOrg(
+  (organizationId, contactId) =>
+    listRelationships(organizationId, contactId),
+  []
+)

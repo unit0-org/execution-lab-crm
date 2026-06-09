@@ -1,7 +1,9 @@
 'use server'
 
 import { addCategoryToContacts } from '@/lib/contacts/addCategoryToContacts'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function addCategoryToContactsAction(contactIds, categoryId) {
-  return addCategoryToContacts(contactIds, categoryId)
-}
+export const addCategoryToContactsAction = withOrg(
+  (organizationId, contactIds, categoryId) =>
+    addCategoryToContacts(organizationId, contactIds, categoryId)
+)

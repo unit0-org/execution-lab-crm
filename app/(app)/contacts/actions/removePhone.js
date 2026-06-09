@@ -1,7 +1,9 @@
 'use server'
 
 import { removePhone } from '@/lib/contacts/removePhone'
+import { withOrg } from '@/lib/auth/withOrg'
 
-export async function removePhoneAction(formData) {
-  return removePhone(formData.get('id'))
-}
+export const removePhoneAction = withOrg(
+  (organizationId, formData) =>
+    removePhone(organizationId, formData.get('id'))
+)
