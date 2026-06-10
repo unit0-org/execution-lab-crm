@@ -86,7 +86,7 @@ Conventions (from `AGENTS.md`):
 | `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick`, `onCreate`, `createLabel`, `hint` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). `options`=`[{value,label}]` |
 | `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Lower-level field that just renders the `options` you pass (no filtering/create). Prefer `Autocomplete` |
 | `SuggestionList` / `SuggestionItem` | `open`, `options`, `onPick` | Dropdown list used by `Combobox` |
-| `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field |
+| `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field; keeps fields' typed values on a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate automatically) |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form |
 | `FormError` | `message` | Form-level error message |
 | `Table` / `Tr` / `Td` | `cols`,`sort`,`onSort` / `plain` / `truncate` | Data tables |
