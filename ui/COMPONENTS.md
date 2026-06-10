@@ -34,6 +34,7 @@ Conventions (from `AGENTS.md`):
 | `EditableText` | `value`, `onClick` | View-mode text that opens an editor on click |
 | `ExternalLink` | `href`, `children` | Link to an external URL (new tab) |
 | `FieldError` | `message` | Inline field error (renders nothing if empty) |
+| `FieldLabel` (+`RequiredMark`) | `label`, `required` | Field label with a `*` when required; used inside `TextField`/`Select` |
 | `FileField` | `label`, `...rest` | File input field |
 | `GearIcon` | `size=18` | Settings gear glyph |
 | `Heading` | `level=1`, `gutter='md'`, `children` | Section headings h1–h3 (uppercase) |

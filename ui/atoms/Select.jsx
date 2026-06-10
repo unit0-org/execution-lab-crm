@@ -4,6 +4,7 @@ import { fieldStyle, wrapStyle } from './TextField.styles'
 import { selectStyle, chevronStyle } from './Select.styles'
 import { Icon } from './Icon'
 import { toSelectOption } from './toSelectOption'
+import { FieldLabel } from './FieldLabel'
 import { useRestoredField } from './useRestoredField'
 
 export function Select({ label, options, ...rest }) {
@@ -12,7 +13,7 @@ export function Select({ label, options, ...rest }) {
 
   return (
     <label style={fieldStyle}>
-      {label}
+      <FieldLabel label={label} required={rest.required} />
       <span style={wrapStyle}>
         <select style={selectStyle} {...rest} {...field}>
           {items.map((item) => (
