@@ -2,10 +2,11 @@
 
 import { Stack } from '@/ui/layout/Stack'
 import { ButtonLink } from '@/ui/atoms/ButtonLink'
+import { portalUrl } from '@/lib/portal/portalUrl'
 import { CohortHeader } from './CohortHeader'
 import { RegistrationsTable } from './RegistrationsTable'
 
-const registerHref = (id) => `/portal/register/${id}`
+const registerHref = (id) => portalUrl(`/register/${id}`)
 
 // A cohort's header, a link to its public registration page, and
 // everyone registered for it.
