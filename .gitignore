@@ -50,3 +50,5 @@ next-env.d.ts
 
 # agent skills (reproducible from skills-lock.json)
 .agents/
+
+.backup/
