@@ -1,6 +1,6 @@
 const TEXT_FIELDS = [
   'label', 'start_date', 'description', 'stripe_price_id',
-  'stripe_early_bird_price_id', 'early_bird_deadline'
+  'stripe_early_bird_price_id', 'early_bird_deadline', 'promo_code'
 ]
 
 // Collect the cohort form fields into a plain object, coercing capacity

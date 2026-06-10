@@ -7,6 +7,8 @@ export function CohortPricingFields({ values }) {
       <TextField label="Stripe price ID" name="stripe_price_id"
         defaultValue={values.stripe_price_id} />
       <CohortEarlyBird values={values} />
+      <TextField label="Promo code (auto-applied at checkout)"
+        name="promo_code" defaultValue={values.promo_code} />
     </>
   )
 }
