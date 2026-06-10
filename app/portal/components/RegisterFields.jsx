@@ -1,4 +1,5 @@
 import { TextField } from '@/ui/atoms/TextField'
+import { ReferralField } from './ReferralField'
 
 const BLANK = { first_name: '', last_name: '', email: '' }
 
@@ -16,8 +17,7 @@ export function RegisterFields({ defaults = BLANK }) {
       <TextField label="Phone" name="phone" type="tel" required />
       <TextField label="Company" name="company" required />
       <TextField label="Role" name="role" required />
-      <TextField label="How did you hear about us?"
-        name="referral_source" required />
+      <ReferralField />
     </>
   )
 }

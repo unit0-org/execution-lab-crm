@@ -1,6 +1,7 @@
+import { resolveReferralSource } from './resolveReferralSource'
+
 const FIELDS = [
-  'first_name', 'last_name', 'email', 'phone', 'company',
-  'role', 'referral_source'
+  'first_name', 'last_name', 'email', 'phone', 'company', 'role'
 ]
 
 // Collect the register form into a plain object; null if any is blank
@@ -15,6 +16,10 @@ export function formToRegistration(formData) {
 
     data[field] = value
   }
+
+  data.referral_source = resolveReferralSource(formData)
+
+  if (!data.referral_source) return null
 
   return data
 }
