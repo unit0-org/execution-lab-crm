@@ -1,24 +1,28 @@
 import { portalOrganizationId } from '@/lib/portal/portalOrganizationId'
 import { openCohort } from '@/lib/portal/openCohort'
 import { cohortIsFull } from '@/lib/portal/cohortIsFull'
+import { hasValidInvite } from './hasValidInvite'
 import { formToRegistration } from './formToRegistration'
 
 // Resolve the org, open cohort and validated form for a checkout attempt,
-// or an early result (error / waitlist) the action returns verbatim.
+// or an early result (error / waitlist). A valid invite skips the
+// full-cohort diversion so its holder can claim the freed seat (3.2).
 export async function resolveCheckout(cohortId, formData) {
-  const organizationId = portalOrganizationId()
+  const orgId = portalOrganizationId()
 
-  if (!organizationId) return { error: 'Registration is unavailable.' }
+  if (!orgId) return { error: 'Registration is unavailable.' }
 
-  const cohort = await openCohort(organizationId, cohortId)
+  const cohort = await openCohort(orgId, cohortId)
 
   if (!cohort) return { error: 'This cohort is not open.' }
 
-  if (await cohortIsFull(organizationId, cohort)) return { waitlist: true }
+  const invited = await hasValidInvite(orgId, cohortId, formData)
+
+  if (!invited && await cohortIsFull(orgId, cohort)) return { waitlist: true }
 
   const data = formToRegistration(formData)
 
   if (!data) return { error: 'Please complete all required fields.' }
 
-  return { organizationId, cohort, data }
+  return { organizationId: orgId, cohort, data }
 }
