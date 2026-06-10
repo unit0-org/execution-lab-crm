@@ -48,7 +48,7 @@ Conventions (from `AGENTS.md`):
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`) |
 | `ProgressBar` | — | Indeterminate top-of-page progress |
 | `Radio` | `checked`, `onChange`, `label` | Single radio option |
-| `Select` | `label`, `options`, `...rest` | Native dropdown select (fixed option set) |
+| `Select` | `label`, `options`, `...rest` | Native dropdown select; `options` are strings or `{value,label}` |
 | `Skeleton` | `height` | Loading placeholder sized to final content |
 | `Spinner` | `size=14` | Inline loading spinner |
 | `SubmitButton` | `children`, `...rest` | Submit button that reflects form pending state |
