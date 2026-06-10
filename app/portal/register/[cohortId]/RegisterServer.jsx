@@ -1,9 +1,6 @@
 import { portalOrganizationId } from '@/lib/portal/portalOrganizationId'
 import { openCohort } from '@/lib/portal/openCohort'
 import { cohortIsFull } from '@/lib/portal/cohortIsFull'
-import { cohortPricing } from '@/lib/cohort/controllers'
-import { stripeApiKey } from '@/lib/stripe/stripeApiKey'
-import { todayIso } from '@/lib/portal/todayIso'
 import { resolveInvite } from './resolveInvite'
 import { RegisterClosed } from '../../components/RegisterClosed'
 import { RegisterFull } from '../../components/RegisterFull'
@@ -22,8 +19,5 @@ export async function RegisterServer({ params, searchParams }) {
 
   if (!invite && await cohortIsFull(orgId, cohort)) return <RegisterFull />
 
-  const apiKey = stripeApiKey()
-  const pricing = await cohortPricing(cohort, apiKey, todayIso())
-
-  return <RegisterView cohort={cohort} pricing={pricing} invite={invite} />
+  return <RegisterView cohort={cohort} invite={invite} />
 }

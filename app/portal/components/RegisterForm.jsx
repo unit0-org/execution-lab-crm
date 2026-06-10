@@ -19,7 +19,7 @@ export function RegisterForm({ cohortId, invite }) {
       <Stack gap="md">
         <input type="hidden" name="invite" value={defaults.token} />
         <RegisterFields defaults={defaults} />
-        <Button tone="primary" type="submit">Pay now</Button>
+        <Button tone="primary" type="submit">Continue to payment</Button>
         <FormError message={error} />
       </Stack>
     </Form>

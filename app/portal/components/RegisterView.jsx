@@ -8,12 +8,12 @@ import { RegisterForm } from './RegisterForm'
 
 // The full register screen: order summary + payment form (Stories 2.2–2.3).
 // An invite prefills the form and lets the holder claim a freed seat (3.2).
-export function RegisterView({ cohort, pricing, invite }) {
+export function RegisterView({ cohort, invite }) {
   return (
     <Card>
       <Stack gap="md">
         <Heading level={1} gutter="none">{cohort.label}</Heading>
-        <OrderSummary cohort={cohort} pricing={pricing} />
+        <OrderSummary cohort={cohort} />
         <RegisterForm cohortId={cohort.id} invite={invite} />
       </Stack>
     </Card>
