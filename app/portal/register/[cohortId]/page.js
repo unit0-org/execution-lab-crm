@@ -6,10 +6,10 @@ import { RegisterServer } from './RegisterServer'
 // time, and pricing is fetched fresh from Stripe.
 export const dynamic = 'force-dynamic'
 
-export default function RegisterPage({ params }) {
+export default function RegisterPage({ params, searchParams }) {
   return (
     <Suspense fallback={<PortalFallback />}>
-      <RegisterServer params={params} />
+      <RegisterServer params={params} searchParams={searchParams} />
     </Suspense>
   )
 }
