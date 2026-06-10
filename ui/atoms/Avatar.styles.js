@@ -11,5 +11,5 @@ export const fallbackStyle = (size) => ({
   display: 'inline-flex', alignItems: 'center',
   justifyContent: 'center', flexShrink: 0,
   background: color.accent.soft, color: color.accent.text,
-  fontSize: size * 0.4, fontWeight: 700, lineHeight: 1
+  fontSize: size * 0.32, fontWeight: 700, lineHeight: 1
 })
