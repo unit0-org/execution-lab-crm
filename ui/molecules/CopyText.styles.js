@@ -7,3 +7,8 @@ export const copyTextStyle = {
   cursor: 'pointer',
   textAlign: 'left'
 }
+
+export const truncateStyle = {
+  display: 'block', minWidth: 0, maxWidth: '100%', overflow: 'hidden',
+  textOverflow: 'ellipsis', whiteSpace: 'nowrap'
+}

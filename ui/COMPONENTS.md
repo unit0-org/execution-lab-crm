@@ -103,7 +103,7 @@ Conventions (from `AGENTS.md`):
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
 | `Stat` / `StatBody` / `Insight` | `label`, `value`, `tone`, `href` | Stat tiles & insights |
 | `BarChart` (+`ChartBar`/`ChartEmpty`/`ChartSkeleton`) | `data` | Bar chart |
-| `CopyText` / `CopyList` | `value`/`values`, `children` | Copy-to-clipboard |
+| `CopyText` / `CopyList` | `value`/`values`, `children`, `truncate`/`collapse` | Copy-to-clipboard; `collapse` shows the first value + a "+N more" toggle for tight columns |
 | `UploadButton` / `IconUpload` | `label`, `onPick` (`title`) | File upload triggers |
 | `SyncControl` / `SyncIcon` | `label`, `syncing`, `onSync` | Sync action + status |
 | `Toast` + `showToast(message)` | `message` | Transient feedback (use `showToast` for action feedback) |

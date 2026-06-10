@@ -18,7 +18,7 @@ export function ContactRow({ contact, selected, onToggle, onChanged }) {
     <Tr>
       <SelectCell checked={selected} onToggle={() => onToggle(contact.id)} />
       <Td><ContactNameCell contact={contact} /></Td>
-      <Td><CopyList values={emailsOf(contact)} /></Td>
+      <Td><CopyList values={emailsOf(contact)} collapse /></Td>
       <Td><ContactLabels contact={contact} /></Td>
       <Td><RowDelete onConfirm={remove} title="Delete contact" /></Td>
     </Tr>
