@@ -11,6 +11,7 @@ export const controlGlyphs = {
   refresh: 'M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5',
   copy: 'M9 9h10v10H9zM5 15H4V4h10v1',
   check: 'M5 12l5 5 9-11',
+  more: 'M12 5h.01M12 12h.01M12 19h.01',
   moon: 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z',
   sun:
     'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10M12 1v2M12 21v2M4.22 4.22l1.42 '
