@@ -1,14 +1,30 @@
-// Theme is a data-theme attribute on <html>, set before paint by the inline
-// script. Light is the default; toggling flips it and mirrors localStorage.
-const KEY = 'theme'
+// Theme is a data-theme attribute on <html>, applied before paint. It
+// follows the clock (dark 18:00–05:00); a manual toggle sticks until the
+// next boundary, when the clock takes over again.
+import { periodAt, themeForPeriod } from './scheduledTheme'
+
+const THEME = 'theme'
+const PERIOD = 'themeAutoPeriod'
 
 const root = () => document.documentElement
+const period = () => periodAt(new Date().getHours())
 
-const isDark = () => root().getAttribute('data-theme') === 'dark'
+const apply = (theme) => {
+  root().setAttribute('data-theme', theme)
+  localStorage.setItem(THEME, theme)
+}
 
 export function toggleTheme() {
-  const next = isDark() ? 'light' : 'dark'
+  const dark = root().getAttribute('data-theme') === 'dark'
+  apply(dark ? 'light' : 'dark')
+}
 
-  root().setAttribute('data-theme', next)
-  localStorage.setItem(KEY, next)
+// Apply the clock theme only when we cross into a new period.
+export function applyScheduledTheme() {
+  const now = period()
+
+  if (localStorage.getItem(PERIOD) === now) return
+
+  localStorage.setItem(PERIOD, now)
+  apply(themeForPeriod(now))
 }

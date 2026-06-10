@@ -1,5 +1,11 @@
-// Runs before paint so the saved theme applies with no flash. Light is the
-// default; only an explicit 'dark' preference sets the attribute.
+// Runs before paint so the right theme applies with no flash. The theme
+// follows the clock (dark 18:00–05:00) unless a manual toggle is still in
+// effect for the current period (both tracked in localStorage).
 export const themeScript =
-  "try{if(localStorage.getItem('theme')==='dark')"
-  + "document.documentElement.setAttribute('data-theme','dark')}catch(e){}"
+  "try{var h=new Date().getHours();"
+  + "var p=h>=18||h<5?'night':'day';"
+  + "var s=p==='night'?'dark':'light';"
+  + "var t=localStorage.getItem('themeAutoPeriod')===p"
+  + "?localStorage.getItem('theme')||s:s;"
+  + "document.documentElement.setAttribute('data-theme',t);"
+  + "localStorage.setItem('theme',t)}catch(e){}"
