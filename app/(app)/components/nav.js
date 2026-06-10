@@ -3,6 +3,7 @@ export const NAV = [
   { href: '/contacts', label: 'Contacts', icon: 'users' },
   { href: '/events', label: 'Events', icon: 'calendar' },
   { href: '/meetings', label: 'Meetings', icon: 'video' },
+  { href: '/cohorts', label: 'Cohorts', icon: 'calendar' },
   { href: '/purchases', label: 'Purchases', icon: 'card' },
   { href: '/invoices', label: 'Invoices', icon: 'file' }
 ]
