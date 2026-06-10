@@ -2,7 +2,7 @@ import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
 import { DateText } from '@/ui/atoms/DateText'
 import { PaymentStatus } from './PaymentStatus'
-import { ContactLink } from './ContactLink'
+import { RegistrationAction } from './RegistrationAction'
 
 // One registrant: name, contact details, payment state and a contact link.
 export function RegistrationRow({ registration }) {
@@ -15,7 +15,7 @@ export function RegistrationRow({ registration }) {
       <Td truncate>{registration.company}</Td>
       <Td><PaymentStatus status={registration.status} /></Td>
       <Td><DateText value={registration.created_at} /></Td>
-      <Td><ContactLink contactId={registration.contact_id} /></Td>
+      <Td><RegistrationAction registration={registration} /></Td>
     </Tr>
   )
 }
