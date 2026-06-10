@@ -1,5 +1,6 @@
 import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
+import { Link } from '@/ui/atoms/Link'
 import { DateText } from '@/ui/atoms/DateText'
 import { formatMoney } from '@/lib/purchase/controllers/formatMoney'
 import { CohortStatusSelect } from './CohortStatusSelect'
@@ -11,7 +12,9 @@ export function CohortRow({ cohort, onChanged, onEdit }) {
 
   return (
     <Tr>
-      <Td truncate>{cohort.label}</Td>
+      <Td truncate>
+        <Link href={`/cohorts/${cohort.id}`}>{cohort.label}</Link>
+      </Td>
       <Td><DateText value={cohort.start_date} /></Td>
       <Td>
         <CohortStatusSelect cohort={cohort} onChanged={onChanged} />
