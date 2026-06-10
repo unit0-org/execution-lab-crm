@@ -1,0 +1,21 @@
+'use client'
+
+import { Popover } from '@/ui/molecules/Popover'
+import { Stack } from '@/ui/layout/Stack'
+import { useToggle } from '@/ui/molecules/useToggle'
+import { MenuTrigger } from './MenuTrigger'
+import { NudgeMenuItem } from './NudgeMenuItem'
+
+// A three-dots menu of operations for one pending registrant.
+export function RegistrationMenu({ registrationId }) {
+  const pop = useToggle()
+  const trigger = <MenuTrigger onClick={pop.toggle} />
+
+  return (
+    <Popover open={pop.open} onClose={pop.hide} trigger={trigger}>
+      <Stack gap="sm">
+        <NudgeMenuItem registrationId={registrationId} onDone={pop.hide} />
+      </Stack>
+    </Popover>
+  )
+}

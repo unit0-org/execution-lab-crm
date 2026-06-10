@@ -1,12 +1,12 @@
 import { ContactLink } from './ContactLink'
-import { NudgeButton } from './NudgeButton'
+import { RegistrationMenu } from './RegistrationMenu'
 
-// A paid registrant links to their contact; a pending one gets a button
-// to nudge them toward completing payment.
+// A paid registrant links to their contact; a pending one gets an
+// operations menu (e.g. nudge them toward completing payment).
 export function RegistrationAction({ registration }) {
   if (registration.status === 'paid') {
     return <ContactLink contactId={registration.contact_id} />
   }
 
-  return <NudgeButton registrationId={registration.id} />
+  return <RegistrationMenu registrationId={registration.id} />
 }
