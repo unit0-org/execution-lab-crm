@@ -17,9 +17,9 @@ export const tones = {
     color: color.accent.text,
     border: border(color.accent.solid)
   },
-  launch: fill(color.warmth.cool, color.ink),
-  wave: fill(color.warmth.wave, color.ink),
-  cyan: fill(color.warmth.cold, color.ink),
+  launch: fill(color.warmth.cool, color.onBrand),
+  wave: fill(color.warmth.wave, color.onBrand),
+  cyan: fill(color.warmth.cold, color.onBrand),
   waitlist: outline(color.warmth.cold),
   quiet: outline(color.border.default),
   danger: {

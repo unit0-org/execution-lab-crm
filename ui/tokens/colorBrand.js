@@ -15,8 +15,8 @@ const gradient = {
   brand: 'var(--gradient-brand)', brandX: 'var(--gradient-brand-x)'
 }
 
-// Neon glows, low-alpha accents, gradients, and ink — constant across
-// themes (portal/design-system extras to the core color tokens).
+// Neon glows, low-alpha accents, gradients, and on-brand button text —
+// portal/design-system extras to the core color tokens.
 export const brand = {
-  glow, soft, tint, gradient, ink: v('ink'), required: v('required')
+  glow, soft, tint, gradient, onBrand: v('on-brand'), required: v('required')
 }
