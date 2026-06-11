@@ -176,7 +176,9 @@ input::placeholder, textarea::placeholder { color: var(--color-text-subtle); }
 a, button { transition: color var(--motion-quick) var(--motion-ease), background var(--motion-quick) var(--motion-ease), border-color var(--motion-quick) var(--motion-ease), transform var(--motion-quick) var(--motion-ease), filter var(--motion-quick) var(--motion-ease); }
 
 button:disabled { cursor: not-allowed; opacity: 0.35; }
-button:not(:disabled):active { transform: translateY(0.5px) scale(0.98); filter: brightness(0.92); }
+/* Press feedback on buttons and Button-styled links (data-tone). */
+button:not(:disabled):active,
+a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightness(0.92); }
 
 [data-card-lift]:hover { transform: translateY(-1px); box-shadow: 0 8px 24px -16px rgba(0,0,0,0.6); border-color: var(--color-border-strong) !important; }
 [data-row-hover]:hover { background: var(--color-bg-subtle); }
@@ -256,12 +258,13 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
   .sidebar-collapsed [data-sidebar-when-collapsed] { display: none; }
 }
 
-button[data-tone="default"]:not(:disabled):hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
-button[data-tone="primary"]:not(:disabled):hover { background: var(--color-accent-hover) !important; border-color: var(--color-accent-hover) !important; }
-button[data-tone="accent"]:not(:disabled):hover  { background: var(--color-accent-hover) !important; border-color: var(--color-accent-hover) !important; }
-button[data-tone="ghost"]:not(:disabled):hover   { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
-button[data-tone="danger"]:not(:disabled):hover  { background: var(--color-error-bg) !important; }
-button[data-tone="danger"]:not(:disabled):hover  { color: var(--color-error-text) !important; }
+/* Tone hovers apply to both <button> and Button-styled links (<a>). */
+[data-tone="default"]:not(:disabled):hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
+[data-tone="primary"]:not(:disabled):hover { background: var(--color-accent-hover) !important; border-color: var(--color-accent-hover) !important; }
+[data-tone="accent"]:not(:disabled):hover  { background: var(--color-accent-hover) !important; border-color: var(--color-accent-hover) !important; }
+[data-tone="ghost"]:not(:disabled):hover   { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
+[data-tone="danger"]:not(:disabled):hover  { background: var(--color-error-bg) !important; }
+[data-tone="danger"]:not(:disabled):hover  { color: var(--color-error-text) !important; }
 
 /* Portal neon CTAs (used on <button> and ButtonLink <a>). */
 [data-tone="launch"]:not(:disabled):hover,
@@ -283,6 +286,18 @@ button[data-tone="danger"]:not(:disabled):hover  { color: var(--color-error-text
 }
 [data-radio-card] input:focus-visible + [data-radio-dot] {
   box-shadow: 0 0 0 3px var(--color-accent-tint);
+}
+
+/* Portal brand lockup (header logo) dims slightly on hover. */
+[data-brand-lockup] { transition: opacity var(--motion-quick) var(--motion-ease); }
+[data-brand-lockup]:hover { opacity: 0.82; }
+
+/* Portal mono links (header/footer) brighten on hover. */
+[data-mono-link] { transition: color var(--motion-quick) var(--motion-ease),
+  border-color var(--motion-quick) var(--motion-ease); }
+[data-mono-link]:hover {
+  color: var(--color-accent-hover);
+  border-bottom-color: var(--color-accent);
 }
 
 /* Portal cohort chips — selected/hover/focus highlight (ChipRadio). */

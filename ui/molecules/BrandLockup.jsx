@@ -7,7 +7,7 @@ import {
 // Logo + product kicker + product title, linking home.
 export function BrandLockup({ kicker, title, logoSrc, logoAlt, href = '/' }) {
   return (
-    <a href={href} style={lockupStyle}>
+    <a href={href} style={lockupStyle} data-brand-lockup>
       <Image src={logoSrc} width={40} height={40} alt={logoAlt}
         style={logoStyle} />
       <span style={colStyle}>
