@@ -7,7 +7,9 @@ import { WaitlistThanksHead } from './WaitlistThanksHead'
 import { WaitlistNext } from './WaitlistNext'
 import { waitlistThanksView } from './waitlistThanksView'
 
-// The confirmation: position + wave + the 24h rule, then next steps.
+// The confirmation: pure urgency — seat scarcity, the 24h claim window,
+// and the first-mover discount. No position or wave, so the screen never
+// hints at how short the list is.
 export function WaitlistThanks({ result }) {
   const v = waitlistThanksView(result)
 
@@ -16,11 +18,11 @@ export function WaitlistThanks({ result }) {
       <Stack gap="lg">
         <WaitlistThanksHead blurb={v.blurb} />
         <Columns>
-          <StatTile value={v.position} label="Your position" />
-          <StatTile value={v.wave} label="Notified in" />
+          <StatTile value={v.seats} label="Seats per cohort" />
           <StatTile value="24h" label="To claim your seat" />
+          <StatTile value="20% off" label="First 2 to register" />
         </Columns>
-        <WaitlistNext wave={v.waveNumber} />
+        <WaitlistNext />
         <ButtonLink href="/" tone="primary">Back to all cohorts</ButtonLink>
       </Stack>
     </Narrow>
