@@ -34,6 +34,25 @@
   --color-warm: #ffa15e;
   --color-cool: #5effb7;
   --color-cold: #5ee4ff;
+  --color-wave: #fff75e;
+  --color-required: #ff5e89;
+  --color-ink: #1d2a33;
+
+  /* Brand gradient + neon glows (design system) */
+  --gradient-brand:   linear-gradient(180deg, #5e7cff, #5effb7);
+  --gradient-brand-x: linear-gradient(90deg, #5e7cff, #5effb7);
+  --glow-blue: 0 0 36px rgba(94, 124, 255, 0.12);
+  --glow-mint: 0 0 36px rgba(94, 255, 183, 0.12);
+  --glow-wave: 0 0 24px rgba(255, 247, 94, 0.12);
+  --glow-cyan: 0 0 24px rgba(94, 228, 255, 0.12);
+
+  /* Neon accents at low alpha — for tinted borders/surfaces (CSS vars
+     can't take an inline alpha suffix, so they're predefined here). */
+  --color-cool-soft: rgba(94, 255, 183, 0.35);
+  --color-cool-tint: rgba(94, 255, 183, 0.06);
+  --color-cold-soft: rgba(94, 228, 255, 0.40);
+  --color-wave-soft: rgba(255, 247, 94, 0.40);
+  --color-wave-tint: rgba(255, 247, 94, 0.06);
 
   /* Light surfaces: neon green is unreadable as text, so use the
      design system's "dark text on colored surface" treatment. */
@@ -243,6 +262,12 @@ button[data-tone="accent"]:not(:disabled):hover  { background: var(--color-accen
 button[data-tone="ghost"]:not(:disabled):hover   { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
 button[data-tone="danger"]:not(:disabled):hover  { background: var(--color-error-bg) !important; }
 button[data-tone="danger"]:not(:disabled):hover  { color: var(--color-error-text) !important; }
+
+/* Portal neon CTAs (used on <button> and ButtonLink <a>). */
+[data-tone="launch"]:not(:disabled):hover,
+[data-tone="wave"]:not(:disabled):hover { filter: brightness(1.08); }
+[data-tone="waitlist"]:not(:disabled):hover,
+[data-tone="quiet"]:not(:disabled):hover { background: rgba(255, 255, 255, 0.04); }
 
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 0; box-shadow: 0 0 0 3px var(--color-accent-tint); border-color: var(--color-accent) !important;
