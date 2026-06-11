@@ -6,7 +6,7 @@ import { font } from '../tokens/typography'
 export const fieldInputStyle = {
   width: '100%',
   boxSizing: 'border-box',
-  background: color.bg.canvas,
+  background: color.bg.surface,
   border: `1px solid ${color.border.default}`,
   borderRadius: radius.md,
   color: color.text.primary,
