@@ -1,13 +1,13 @@
-import { TextField } from '@/ui/atoms/TextField'
+import { Stack } from '@/ui/layout/Stack'
+import { WaitlistCohortSection } from './WaitlistCohortSection'
+import { WaitlistAboutSection } from './WaitlistAboutSection'
 
-// The waitlist sign-up fields. First name and email are required; last
-// name is optional. Required mirrors the server-side validation.
-export function WaitlistFields() {
+// The waitlist sign-up fields: cohort picker + applicant details.
+export function WaitlistFields({ cohorts, selected }) {
   return (
-    <>
-      <TextField label="First name" name="first_name" required />
-      <TextField label="Last name" name="last_name" />
-      <TextField label="Email" name="email" type="email" required />
-    </>
+    <Stack gap="lg">
+      <WaitlistCohortSection cohorts={cohorts} selected={selected} />
+      <WaitlistAboutSection />
+    </Stack>
   )
 }

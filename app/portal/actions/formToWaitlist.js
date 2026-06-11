@@ -1,9 +1,19 @@
-// Collect the public waitlist form into a plain object. Only first name
-// and email are required (last name is optional).
+import { splitName } from './splitName'
+
+const get = (formData, key) => (formData.get(key) || '').trim()
+
+// Collect the waitlist form. Name, email, cohort, business and challenge
+// are required (enforced on the inputs); phone is optional. The full name
+// splits into first/last for the contact.
 export function formToWaitlist(formData) {
+  const name = splitName(get(formData, 'full_name')) || {}
+
   return {
-    first_name: (formData.get('first_name') || '').trim(),
-    last_name: (formData.get('last_name') || '').trim(),
-    email: (formData.get('email') || '').trim()
+    ...name,
+    email: get(formData, 'email'),
+    phone: get(formData, 'phone'),
+    cohort_id: get(formData, 'cohort_id'),
+    business: get(formData, 'business'),
+    challenge: get(formData, 'challenge')
   }
 }
