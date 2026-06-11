@@ -30,11 +30,13 @@
   --color-accent-tint:   rgba(94, 124, 255, 0.20);
   --color-accent-deep:   #3d5ae0;
 
-  /* Brand accents — constant across themes (design system) */
-  --color-warm: #ffa15e;
-  --color-cool: #5effb7;
-  --color-cold: #5ee4ff;
-  --color-wave: #fff75e;
+  /* Brand accents. The neon hues are unreadable as text/icons on light
+     surfaces, so light uses the design system's readable shades (mirrors
+     the label palette below); dark restores the neon further down. */
+  --color-warm: #d97706;
+  --color-cool: #16a34a;
+  --color-cold: #0891b2;
+  --color-wave: #a16207;
   --color-required: #ff5e89;
   --color-ink: #1d2a33;
 
@@ -112,6 +114,7 @@
   --color-warm: #ffa15e;
   --color-cool: #5effb7;
   --color-cold: #5ee4ff;
+  --color-wave: #fff75e;
 
   --color-success-bg:    rgba(94, 255, 110, 0.12);
   --color-success-text:  #5eff6e;
