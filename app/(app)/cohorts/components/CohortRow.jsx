@@ -6,7 +6,7 @@ import { formatMoney } from '@/lib/purchase/controllers/formatMoney'
 import { CohortStatusSelect } from './CohortStatusSelect'
 import { CohortEditButton } from './CohortEditButton'
 
-export function CohortRow({ cohort, onChanged, onEdit }) {
+export function CohortRow({ cohort, onChanged }) {
   const spots = `${cohort.filled} / ${cohort.capacity}`
   const revenue = formatMoney(cohort.revenue, 'cad')
 
@@ -21,7 +21,7 @@ export function CohortRow({ cohort, onChanged, onEdit }) {
       </Td>
       <Td>{spots}</Td>
       <Td>{revenue}</Td>
-      <Td><CohortEditButton cohort={cohort} onEdit={onEdit} /></Td>
+      <Td><CohortEditButton cohort={cohort} /></Td>
     </Tr>
   )
 }
