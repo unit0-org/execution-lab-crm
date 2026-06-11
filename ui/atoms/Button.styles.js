@@ -3,7 +3,8 @@ import { tones } from './Button.tones'
 import { sizes } from './Button.sizes'
 
 const ease = 'var(--motion-quick) var(--motion-ease)'
-const transition = `background ${ease}, border-color ${ease}, color ${ease}`
+const transition = `background ${ease}, border-color ${ease}, `
+  + `color ${ease}, transform ${ease}, filter ${ease}`
 
 const base = {
   cursor: 'pointer', font: 'inherit', fontWeight: fontWeight.bold,
