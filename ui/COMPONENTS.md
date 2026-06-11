@@ -31,12 +31,14 @@ Conventions (from `AGENTS.md`):
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`) |
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square |
 | `DateText` | `value`, `withTime` | Display-only date, UTC-safe (`withTime` adds the time) |
+| `Display` | `size='md'`, `children` | Oversized uppercase display headline (`md`/`lg`/`xl`) for portal hero/section titles |
 | `EditableText` | `value`, `onClick` | View-mode text that opens an editor on click |
 | `ExternalLink` | `href`, `children` | Link to an external URL (new tab) |
 | `FieldError` | `message` | Inline field error (renders nothing if empty) |
 | `FieldLabel` (+`RequiredMark`) | `label`, `required` | Field label with a `*` when required; used inside `TextField`/`Select` |
 | `FileField` | `label`, `...rest` | File input field |
 | `GearIcon` | `size=18` | Settings gear glyph |
+| `GlowDot` | `color`, `size=7` | Small status dot with a neon glow halo (portal) |
 | `Heading` | `level=1`, `gutter='md'`, `children` | Section headings h1–h3 (uppercase) |
 | `HeatDots` | `rating=0` | Dot-scale rating indicator |
 | `HoverReveal` | `children` | Reveal children on hover of the host row |
@@ -45,6 +47,8 @@ Conventions (from `AGENTS.md`):
 | `LabelBadge` | `name`, `color` | Colored contact-label chip |
 | `LabelDot` | `color`, `size=8` | Small colored status dot |
 | `Link` | `href`, `children` | Internal app navigation link |
+| `MonoLabel` | `tone='muted'`, `size=11`, `caps`, `align`, `children` | Monospaced micro-label/kicker; `tone` picks a brand/neutral color, `align` blocks + aligns (portal) |
+| `MonoLink` | `href`, `size=11`, `underline`, `children` | Monospaced accent link, opens a new tab (portal) |
 | `NavIcon` / `NavLink` | `icon` / `href`, `active`, `icon`, `children` | Sidebar navigation entries |
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`) |
 | `ProgressBar` | — | Indeterminate top-of-page progress |
@@ -76,6 +80,7 @@ Conventions (from `AGENTS.md`):
 | `Scrim` | `open`, `onClick` | Dim backdrop behind overlays |
 | `Hamburger` | `onClick` | Mobile menu toggle |
 | `Shell` | — | App shell wrapper |
+| `PortalShell` | `max=1080`, `children` | Dark, centered page frame for the no-login client portal |
 | `TimelineRail` / `Connector` | `children` / `show` | Vertical timeline rail + connector |
 
 ## Molecules — `ui/molecules/`
@@ -83,6 +88,10 @@ Conventions (from `AGENTS.md`):
 | Component | Props | Use for |
 |---|---|---|
 | `SectionHeader` | `title`, `addLabel`, `onAdd` | Section heading with optional `+` create action |
+| `StateTag` | `state`, `label`, `size=11` | Mono uppercase cohort-status label, neon-colored by `state` (launch/open/wave/waitlist/full/soon/closed), with a glow dot on live states (portal) |
+| `PriceTag` | `price`, `regular`, `currency='CAD'`, `size=30` | Price line: optional struck regular + price + currency; takes pre-formatted strings (portal) |
+| `BrandLockup` | `kicker`, `title`, `logoSrc`, `logoAlt`, `href='/'` | Logo + product kicker + title, linking home (portal) |
+| `FeatureChecks` | `items` | Wrapped row of mono "✓ item" highlights (portal hero) |
 | `BirthdayField` | `day`, `month`, `year` | Day/month/year inputs for a Form (`birth_day`/`birth_month`/`birth_year`) |
 | `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick`, `onCreate`, `createLabel`, `hint` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). `options`=`[{value,label}]` |
 | `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Lower-level field that just renders the `options` you pass (no filtering/create). Prefer `Autocomplete` |
@@ -128,6 +137,8 @@ Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`.
 | `ThemeToggle` | `onClick` | Light/dark theme switch (sidebar) |
 | `Toaster` | — | Toast outlet — mount once at the root |
 | `UserEmail` | `value` | Signed-in user email display |
+| `PortalHeader` | `kicker`, `title`, `infoLabel`, `linkLabel`, `linkHref`, `logoSrc`, `logoAlt` | Portal masthead: brand lockup + cohort meta and program link |
+| `HeroPanel` | `tone='launch'`, `main`, `aside` | Featured-cohort panel: glowing tone-bordered surface with a brand gradient edge; `main`/`aside` stack on mobile (portal) |
 
 ## Tokens — `ui/tokens/`
 

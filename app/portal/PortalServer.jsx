@@ -1,7 +1,7 @@
 import { Text } from '@/ui/atoms/Text'
 import { portalOrganizationId } from '@/lib/portal/portalOrganizationId'
 import { cohortCardData } from '@/lib/portal/cohortCardData'
-import { CohortGrid } from './components/CohortGrid'
+import { PortalBody } from './components/PortalBody'
 
 // Server-side load of the org's open cohorts for the public portal.
 export async function PortalServer() {
@@ -13,5 +13,5 @@ export async function PortalServer() {
 
   const cohorts = await cohortCardData(orgId)
 
-  return <CohortGrid cohorts={cohorts} />
+  return <PortalBody cohorts={cohorts} />
 }
