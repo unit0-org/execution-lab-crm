@@ -9,7 +9,8 @@ const transition = `background ${ease}, border-color ${ease}, `
 const base = {
   cursor: 'pointer', font: 'inherit', fontWeight: fontWeight.bold,
   textTransform: 'uppercase', letterSpacing: '0.08em', alignSelf: 'flex-start',
-  textDecoration: 'none', display: 'inline-block', transition
+  textAlign: 'center', textDecoration: 'none', display: 'inline-block',
+  transition
 }
 
 const full = (block) => (block ? { width: '100%' } : null)
