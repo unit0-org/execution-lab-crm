@@ -12,7 +12,7 @@ export function RegistrationMenu({ registrationId }) {
   const trigger = <MenuTrigger onClick={pop.toggle} />
 
   return (
-    <Popover open={pop.open} onClose={pop.hide} trigger={trigger}>
+    <Popover open={pop.open} onClose={pop.hide} trigger={trigger} align="end">
       <Stack gap="sm">
         <NudgeMenuItem registrationId={registrationId} onDone={pop.hide} />
       </Stack>
