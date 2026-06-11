@@ -1,5 +1,6 @@
 const EMPTY = {
   label: '', start_date: '', capacity: '', description: '',
+  registration_opens_at: '', registration_closes_at: '',
   stripe_price_id: '', stripe_early_bird_price_id: '',
   early_bird_deadline: '', promo_code: ''
 }
