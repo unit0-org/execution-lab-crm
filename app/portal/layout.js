@@ -4,9 +4,7 @@ import { PortalThemeToggle } from './components/PortalThemeToggle'
 import { portalThemeScript } from './portalThemeScript'
 import { FUNDAMENTALS_URL } from './components/portalCopy'
 
-export const metadata = {
-  title: 'The Execution Lab — Fundamentals Registration'
-}
+export { metadata } from './portalMetadata'
 
 export default function PortalLayout({ children }) {
   return (
