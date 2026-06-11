@@ -1,22 +1,29 @@
 'use client'
 
-import { Card } from '@/ui/atoms/Card'
+import { SidebarLayout } from '@/ui/layout/SidebarLayout'
 import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
-import { Text } from '@/ui/atoms/Text'
+import { WaitlistHeader } from './WaitlistHeader'
 import { WaitlistForm } from './WaitlistForm'
+import { WaitlistExplainer } from './WaitlistExplainer'
+import { WaitlistThanks } from './WaitlistThanks'
+import { useWaitlistJoin } from '../hooks/useWaitlistJoin'
 
-// The public join screen (Story 3.1): one global waitlist across cohorts.
-export function WaitlistJoin() {
+// The public join screen: form + explainer, swapping to the confirmation
+// (full width) on success.
+export function WaitlistJoin({ cohorts, selected }) {
+  const { action, error, joined, result } = useWaitlistJoin()
+
+  if (joined) return <WaitlistThanks result={result} />
+
   return (
-    <Card>
-      <Stack gap="md">
-        <Heading level={1} gutter="none">Join the waitlist</Heading>
-        <Text>
-          We&apos;ll email you when a spot opens in any cohort.
-        </Text>
-        <WaitlistForm />
-      </Stack>
-    </Card>
+    <SidebarLayout
+      main={
+        <Stack gap="md">
+          <WaitlistHeader />
+          <WaitlistForm action={action} error={error}
+            cohorts={cohorts} selected={selected} />
+        </Stack>
+      }
+      aside={<WaitlistExplainer />} />
   )
 }

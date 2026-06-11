@@ -1,25 +1,20 @@
-'use client'
-
 import { Form } from '@/ui/molecules/Form'
 import { Stack } from '@/ui/layout/Stack'
 import { Button } from '@/ui/atoms/Button'
 import { FormError } from '@/ui/molecules/FormError'
+import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { WaitlistFields } from './WaitlistFields'
-import { WaitlistThanks } from './WaitlistThanks'
-import { useWaitlistJoin } from '../hooks/useWaitlistJoin'
 
-// The public waitlist form; swaps to a thank-you on success via an early
-// return (no JSX conditional).
-export function WaitlistForm() {
-  const { action, error, joined } = useWaitlistJoin()
+const NOTE = 'No payment now. You’re notified the moment your wave opens.'
 
-  if (joined) return <WaitlistThanks />
-
+// The waitlist form. The join action + success swap live in WaitlistJoin.
+export function WaitlistForm({ action, error, cohorts, selected }) {
   return (
     <Form action={action}>
       <Stack gap="md">
-        <WaitlistFields />
-        <Button tone="primary" type="submit">Join waitlist</Button>
+        <WaitlistFields cohorts={cohorts} selected={selected} />
+        <Button tone="cyan" type="submit" block>Join the waitlist →</Button>
+        <MonoLabel tone="subtle" size={10} align="center">{NOTE}</MonoLabel>
         <FormError message={error} />
       </Stack>
     </Form>

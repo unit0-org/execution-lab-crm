@@ -1,11 +1,28 @@
-import { Text } from '@/ui/atoms/Text'
+import { Narrow } from '@/ui/layout/Narrow'
+import { Stack } from '@/ui/layout/Stack'
+import { Columns } from '@/ui/layout/Columns'
+import { StatTile } from '@/ui/molecules/StatTile'
+import { ButtonLink } from '@/ui/atoms/ButtonLink'
+import { WaitlistThanksHead } from './WaitlistThanksHead'
+import { WaitlistNext } from './WaitlistNext'
+import { waitlistThanksView } from './waitlistThanksView'
 
-// Shown after a successful join — replaces the form so there's no JSX
-// conditional at the call site (Story 3.1 confirmation).
-export function WaitlistThanks() {
+// The confirmation: position + wave + the 24h rule, then next steps.
+export function WaitlistThanks({ result }) {
+  const v = waitlistThanksView(result)
+
   return (
-    <Text>
-      You&apos;re on the list. We&apos;ll email you when a spot opens.
-    </Text>
+    <Narrow>
+      <Stack gap="lg">
+        <WaitlistThanksHead blurb={v.blurb} />
+        <Columns>
+          <StatTile value={v.position} label="Your position" />
+          <StatTile value={v.wave} label="Notified in" />
+          <StatTile value="24h" label="To claim your seat" />
+        </Columns>
+        <WaitlistNext wave={v.waveNumber} />
+        <ButtonLink href="/" tone="primary">Back to all cohorts</ButtonLink>
+      </Stack>
+    </Narrow>
   )
 }

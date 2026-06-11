@@ -84,6 +84,7 @@ Conventions (from `AGENTS.md`):
 | `Shell` | — | App shell wrapper |
 | `PortalShell` | `max=1080`, `children` | Dark, centered page frame for the no-login client portal |
 | `SidebarLayout` | `main`, `aside` | Content + a sticky aside that stacks below on mobile (portal forms) |
+| `Narrow` | `max=760`, `children` | Centered, width-capped column (portal confirmation screens) |
 | `TimelineRail` / `Connector` | `children` / `show` | Vertical timeline rail + connector |
 
 ## Molecules — `ui/molecules/`
@@ -95,8 +96,12 @@ Conventions (from `AGENTS.md`):
 | `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (Field + FieldInput) |
 | `FieldArea` | `label`, `hint`, `required`, `rows`, `...rest` | Portal labelled textarea (Field + FieldTextArea) |
 | `RadioCards` | `label`, `name`, `options`, `required`, `hint` | Portal radio-card group (native radios; choice submits) |
+| `ChipRadios` | `label`, `name`, `options`, `required`, `hint`, `value` | Portal chip radios; `options`=`{value,label}`, `value` preselects (cohort picker) |
 | `SectionLabel` | `n`, `children` | Numbered section divider ("01 · label" + rule) |
 | `MetaRow` | `label`, `value` | Label/value detail row with a bottom rule (order summary) |
+| `StatTile` | `value`, `label`, `tone='cold'` | Big stat over a mono caption, in a bordered tile (portal) |
+| `NumberedStep` | `n`, `title`, `desc` | Circled index + title + description (waitlist explainer) |
+| `ArrowItem` | `children` | A "→ text" step line (what-happens-next lists) |
 | `StateTag` | `state`, `label`, `size=11` | Mono uppercase cohort-status label, neon-colored by `state` (launch/open/wave/waitlist/full/soon/closed), with a glow dot on live states (portal) |
 | `PriceTag` | `price`, `regular`, `currency='CAD'`, `size=30` | Price line: optional struck regular + price + currency; takes pre-formatted strings (portal) |
 | `BrandLockup` | `kicker`, `title`, `logoSrc`, `logoAlt`, `href='/'` | Logo + product kicker + title, linking home (portal) |
