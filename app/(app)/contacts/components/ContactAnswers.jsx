@@ -5,12 +5,11 @@ import { useContactAnswers } from '../hooks/useContactAnswers'
 import { useReveal } from '../hooks/useReveal'
 import { KnowHeader } from './KnowHeader'
 import { AddNuggetModal } from './AddNuggetModal'
-import { NuggetList } from './NuggetList'
+import { NuggetsBody } from './NuggetsBody'
 
 export function ContactAnswers({ contactId }) {
   const { nuggets, reload } = useContactAnswers(contactId)
   const add = useReveal()
-  const items = nuggets || []
 
   const saved = () => {
     reload()
@@ -22,7 +21,7 @@ export function ContactAnswers({ contactId }) {
       <KnowHeader onAdd={add.show} />
       <AddNuggetModal open={add.shown} contactId={contactId}
         onSaved={saved} onClose={add.hide} />
-      <NuggetList nuggets={items} onChanged={reload} />
+      <NuggetsBody nuggets={nuggets} onChanged={reload} />
     </Stack>
   )
 }

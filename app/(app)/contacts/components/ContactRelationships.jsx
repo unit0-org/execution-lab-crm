@@ -5,12 +5,11 @@ import { useRelationships } from '../hooks/useRelationships'
 import { useReveal } from '../hooks/useReveal'
 import { RelationshipHeader } from './RelationshipHeader'
 import { AddRelationshipModal } from './AddRelationshipModal'
-import { RelationshipList } from './RelationshipList'
+import { RelationshipsBody } from './RelationshipsBody'
 
 export function ContactRelationships({ contactId }) {
   const { relationships, reload } = useRelationships(contactId)
   const add = useReveal()
-  const items = relationships || []
 
   const saved = () => {
     reload()
@@ -22,7 +21,7 @@ export function ContactRelationships({ contactId }) {
       <RelationshipHeader onAdd={add.show} />
       <AddRelationshipModal open={add.shown} contactId={contactId}
         onSaved={saved} onClose={add.hide} />
-      <RelationshipList items={items} onChanged={reload} />
+      <RelationshipsBody items={relationships} onChanged={reload} />
     </Stack>
   )
 }
