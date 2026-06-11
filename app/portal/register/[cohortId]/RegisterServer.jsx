@@ -17,7 +17,7 @@ export async function RegisterServer({ params, searchParams }) {
 
   if (!cohort) return <RegisterClosed />
 
-  const invite = await resolveInvite(orgId, cohortId, searchParams)
+  const invite = await resolveInvite(orgId, cohort.id, searchParams)
   const open = registrationPhase(cohort, todayIso()) === 'register'
 
   if (!invite && !open) return <RegisterClosed />

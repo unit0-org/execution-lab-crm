@@ -14,5 +14,5 @@ function cohortLabel(card) {
 export function waitlistOptions(cards) {
   return cards
     .filter((card) => JOINABLE.has(cohortStateKey(card)))
-    .map((card) => ({ value: card.id, label: cohortLabel(card) }))
+    .map((card) => ({ value: card.slug, label: cohortLabel(card) }))
 }
