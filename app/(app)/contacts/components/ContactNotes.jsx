@@ -5,12 +5,11 @@ import { useContactNotes } from '../hooks/useContactNotes'
 import { useReveal } from '../hooks/useReveal'
 import { NotesHeader } from './NotesHeader'
 import { AddNoteModal } from './AddNoteModal'
-import { NoteList } from './NoteList'
+import { NotesBody } from './NotesBody'
 
 export function ContactNotes({ contactId }) {
   const { notes, reload } = useContactNotes(contactId)
   const add = useReveal()
-  const items = notes || []
 
   const saved = () => {
     reload()
@@ -22,7 +21,7 @@ export function ContactNotes({ contactId }) {
       <NotesHeader onAdd={add.show} />
       <AddNoteModal open={add.shown} contactId={contactId}
         onSaved={saved} onClose={add.hide} />
-      <NoteList notes={items} onChanged={reload} />
+      <NotesBody notes={notes} onChanged={reload} />
     </Stack>
   )
 }
