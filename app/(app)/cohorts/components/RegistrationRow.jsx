@@ -3,14 +3,13 @@ import { Td } from '@/ui/molecules/Td'
 import { DateText } from '@/ui/atoms/DateText'
 import { PaymentStatus } from './PaymentStatus'
 import { RegistrationAction } from './RegistrationAction'
+import { RegistrantName } from './RegistrantName'
 
-// One registrant: name, contact details, payment state and a contact link.
+// One registrant: name (links to their contact), details, payment state.
 export function RegistrationRow({ registration }) {
-  const fullName = `${registration.first_name} ${registration.last_name}`
-
   return (
     <Tr>
-      <Td truncate>{fullName}</Td>
+      <Td truncate><RegistrantName registration={registration} /></Td>
       <Td truncate>{registration.email}</Td>
       <Td truncate>{registration.company}</Td>
       <Td><PaymentStatus status={registration.status} /></Td>

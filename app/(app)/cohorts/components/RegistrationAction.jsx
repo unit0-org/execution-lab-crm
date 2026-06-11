@@ -1,12 +1,10 @@
-import { ContactLink } from './ContactLink'
 import { RegistrationMenu } from './RegistrationMenu'
 
-// A paid registrant links to their contact; a pending one gets an
-// operations menu (e.g. nudge them toward completing payment).
+// A pending registrant gets an operations menu (nudge them toward
+// completing payment); a paid one needs no row action — their name links
+// to their contact.
 export function RegistrationAction({ registration }) {
-  if (registration.status === 'paid') {
-    return <ContactLink contactId={registration.contact_id} />
-  }
+  if (registration.status === 'paid') return null
 
   return <RegistrationMenu registrationId={registration.id} />
 }
