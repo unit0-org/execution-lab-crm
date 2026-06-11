@@ -319,6 +319,7 @@ tbody tr[data-row-hover]:hover { background: var(--color-bg-subtle); cursor: poi
 tbody tr { transition: background var(--motion-quick) var(--motion-ease); }
 tbody tr:hover { background: var(--color-bg-subtle); }
 tbody tr[data-plain]:hover { background: transparent; }
+tbody tr[data-clickable] { cursor: pointer; }
 
 details[data-collapsible] > summary { list-style: none; }
 details[data-collapsible] > summary::-webkit-details-marker { display: none; }
