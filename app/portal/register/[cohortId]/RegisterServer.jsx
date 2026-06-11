@@ -1,6 +1,8 @@
 import { portalOrganizationId } from '@/lib/portal/portalOrganizationId'
 import { openCohort } from '@/lib/portal/openCohort'
 import { cohortIsFull } from '@/lib/portal/cohortIsFull'
+import { todayIso } from '@/lib/portal/todayIso'
+import { registrationPhase } from '@/lib/cohort/controllers'
 import { resolveInvite } from './resolveInvite'
 import { RegisterClosed } from '../../components/RegisterClosed'
 import { RegisterFull } from '../../components/RegisterFull'
@@ -16,6 +18,9 @@ export async function RegisterServer({ params, searchParams }) {
   if (!cohort) return <RegisterClosed />
 
   const invite = await resolveInvite(orgId, cohortId, searchParams)
+  const open = registrationPhase(cohort, todayIso()) === 'register'
+
+  if (!invite && !open) return <RegisterClosed />
 
   if (!invite && await cohortIsFull(orgId, cohort)) return <RegisterFull />
 

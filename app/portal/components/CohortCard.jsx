@@ -18,7 +18,7 @@ export function CohortCard({ cohort }) {
         </Text>
         <CohortPrice pricing={cohort.pricing} />
         <CohortAvailability spotsLeft={cohort.spotsLeft} />
-        <CohortAction id={cohort.id} spotsLeft={cohort.spotsLeft} />
+        <CohortAction card={cohort} />
       </Stack>
     </Card>
   )
