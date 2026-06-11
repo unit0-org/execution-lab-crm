@@ -1,6 +1,7 @@
 import { cohortMonthYear } from '@/lib/portal/cohortMonthYear'
 
-// Format the join result for the confirmation screen.
+// Format the join result for the confirmation screen. We never surface the
+// list position or wave number — that would reveal how short the list is.
 export function waitlistThanksView(result) {
   const r = result || {}
   const when = cohortMonthYear(r.start)
@@ -10,8 +11,6 @@ export function waitlistThanksView(result) {
   return {
     blurb: `You’re in line for the ${cohort} cohort. We’ll email `
       + `${email} the moment your wave opens.`,
-    position: r.position ? `#${r.position}` : '—',
-    wave: r.wave ? `Wave ${r.wave}` : '—',
-    waveNumber: r.wave || 1
+    seats: r.capacity || 6
   }
 }
