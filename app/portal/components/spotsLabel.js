@@ -1,4 +1,6 @@
-// Human seat scarcity for a cohort card, by phase + seats remaining.
+// Quiet seat-status line shown when there is no live open-seat count to
+// surface — registration not open yet, closed, or sold out. Returns null
+// while open seats remain (the count is handled by lowSeatsLabel).
 export function spotsLabel(card) {
   if (card.phase === 'waitlist') return 'Registration opens soon'
 
@@ -6,11 +8,5 @@ export function spotsLabel(card) {
 
   if (card.spotsLeft <= 0) return 'Sold out'
 
-  if (card.spotsLeft <= 3) {
-    const plural = card.spotsLeft === 1 ? '' : 's'
-
-    return `Last ${card.spotsLeft} spot${plural}`
-  }
-
-  return `${card.spotsLeft} spots left`
+  return null
 }

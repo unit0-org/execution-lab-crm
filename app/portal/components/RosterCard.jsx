@@ -5,6 +5,7 @@ import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { StateTag } from '@/ui/molecules/StateTag'
 import { PriceTag } from '@/ui/molecules/PriceTag'
 import { CohortCta } from './CohortCta'
+import { CohortScarcity } from './CohortScarcity'
 import { rosterCardView } from './rosterCardView'
 
 // A roster cohort card: month, status, dates, price, seats, action.
@@ -18,7 +19,7 @@ export function RosterCard({ card }) {
         <StateTag state={v.action.state} label={v.action.tag} size={10} />
         <MonoLabel size={11}>{v.start}</MonoLabel>
         <PriceTag price={v.price} regular={v.regular} size={20} />
-        <MonoLabel tone={v.tone} size={11} caps>{v.spots}</MonoLabel>
+        <CohortScarcity card={card} tone={v.tone} size={11} />
         <CohortCta action={v.action} block />
       </Stack>
     </Card>

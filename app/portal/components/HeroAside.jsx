@@ -3,6 +3,7 @@ import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { PriceTag } from '@/ui/molecules/PriceTag'
 import { CohortCta } from './CohortCta'
 import { SaveLine } from './SaveLine'
+import { CohortScarcity } from './CohortScarcity'
 import { heroAsideView } from './heroAsideView'
 
 // Right side of the hero: price, scarcity, and the primary CTA.
@@ -17,7 +18,7 @@ export function HeroAside({ action, card }) {
         <SaveLine pricing={card.pricing} />
       </Stack>
       <Stack gap="sm">
-        <MonoLabel tone={v.tone} size={12} caps>{v.spots}</MonoLabel>
+        <CohortScarcity card={card} tone={v.tone} />
         <CohortCta action={action} block size="lg" />
         <MonoLabel tone="subtle" size={10} align="center">{v.note}</MonoLabel>
       </Stack>

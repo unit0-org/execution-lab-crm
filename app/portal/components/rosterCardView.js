@@ -1,5 +1,4 @@
 import { cohortState } from './cohortState'
-import { spotsLabel } from './spotsLabel'
 import { stateTone } from './stateTone'
 import { startLine } from './startLine'
 import { cohortMonthYear } from '@/lib/portal/cohortMonthYear'
@@ -17,7 +16,6 @@ export function rosterCardView(card) {
     start: startLine(card, when),
     price: formatDollars(card.pricing.amountCents),
     regular: regular ? formatDollars(regular) : null,
-    spots: spotsLabel(card),
     tone: stateTone(action.state)
   }
 }

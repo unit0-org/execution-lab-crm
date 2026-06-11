@@ -1,4 +1,3 @@
-import { spotsLabel } from './spotsLabel'
 import { stateTone } from './stateTone'
 import { formatDollars } from '@/lib/portal/formatDollars'
 
@@ -12,7 +11,6 @@ export function heroAsideView(card, action) {
     kicker: card.pricing.discounted ? 'Launch price' : 'Price',
     price: formatDollars(card.pricing.amountCents),
     regular: regular ? formatDollars(regular) : null,
-    spots: spotsLabel(card),
     tone: stateTone(action.state),
     note: NOTE
   }
