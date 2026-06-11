@@ -15,7 +15,7 @@ export function RegisterView({ card, invite }) {
       main={
         <Stack gap="md">
           <RegisterHeader state={state} />
-          <RegisterForm cohortId={card.id} invite={invite} state={state} />
+          <RegisterForm cohortId={card.slug} invite={invite} state={state} />
         </Stack>
       }
       aside={<OrderSummary card={card} />} />

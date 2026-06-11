@@ -16,7 +16,7 @@ export async function resolveCheckout(cohortId, formData) {
 
   if (!cohort) return { error: 'This cohort is not open.' }
 
-  const invited = await hasValidInvite(orgId, cohortId, formData)
+  const invited = await hasValidInvite(orgId, cohort.id, formData)
 
   if (!invited && await cohortIsFull(orgId, cohort)) return { waitlist: true }
 
