@@ -1,14 +1,13 @@
-const EMPTY = { first_name: '', last_name: '', email: '' }
-
-// Flatten an optional invite into a safe { token, prefill } with blank
+// Flatten an optional invite into safe { token, full_name, email }
 // defaults — so an absent invite changes nothing on the register form.
 export function inviteDefaults(invite) {
-  const prefill = invite?.prefill || EMPTY
+  const prefill = invite?.prefill || {}
+  const fullName = [prefill.first_name, prefill.last_name]
+    .filter(Boolean).join(' ')
 
   return {
     token: invite?.token || '',
-    first_name: prefill.first_name || '',
-    last_name: prefill.last_name || '',
+    full_name: fullName,
     email: prefill.email || ''
   }
 }

@@ -31,7 +31,9 @@ Conventions (from `AGENTS.md`):
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`) |
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square |
 | `DateText` | `value`, `withTime` | Display-only date, UTC-safe (`withTime` adds the time) |
-| `Display` | `size='md'`, `children` | Oversized uppercase display headline (`md`/`lg`/`xl`) for portal hero/section titles |
+| `Display` | `size='md'`, `children` | Oversized uppercase display headline (`sm`/`md`/`lg`/`xl`) for portal hero/section titles |
+| `FieldInput` | `...rest` | Dark portal text input (label it with `Field`/`FieldText`) |
+| `FieldTextArea` | `rows=3`, `...rest` | Dark portal textarea (label it with `Field`/`FieldArea`) |
 | `EditableText` | `value`, `onClick` | View-mode text that opens an editor on click |
 | `ExternalLink` | `href`, `children` | Link to an external URL (new tab) |
 | `FieldError` | `message` | Inline field error (renders nothing if empty) |
@@ -81,6 +83,7 @@ Conventions (from `AGENTS.md`):
 | `Hamburger` | `onClick` | Mobile menu toggle |
 | `Shell` | — | App shell wrapper |
 | `PortalShell` | `max=1080`, `children` | Dark, centered page frame for the no-login client portal |
+| `SidebarLayout` | `main`, `aside` | Content + a sticky aside that stacks below on mobile (portal forms) |
 | `TimelineRail` / `Connector` | `children` / `show` | Vertical timeline rail + connector |
 
 ## Molecules — `ui/molecules/`
@@ -88,10 +91,16 @@ Conventions (from `AGENTS.md`):
 | Component | Props | Use for |
 |---|---|---|
 | `SectionHeader` | `title`, `addLabel`, `onAdd` | Section heading with optional `+` create action |
+| `Field` | `label`, `required`, `hint`, `error`, `children` | Portal form field: mono label row (+ `*`/hint) over a control + error slot |
+| `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (Field + FieldInput) |
+| `FieldArea` | `label`, `hint`, `required`, `rows`, `...rest` | Portal labelled textarea (Field + FieldTextArea) |
+| `RadioCards` | `label`, `name`, `options`, `required`, `hint` | Portal radio-card group (native radios; choice submits) |
+| `SectionLabel` | `n`, `children` | Numbered section divider ("01 · label" + rule) |
+| `MetaRow` | `label`, `value` | Label/value detail row with a bottom rule (order summary) |
 | `StateTag` | `state`, `label`, `size=11` | Mono uppercase cohort-status label, neon-colored by `state` (launch/open/wave/waitlist/full/soon/closed), with a glow dot on live states (portal) |
 | `PriceTag` | `price`, `regular`, `currency='CAD'`, `size=30` | Price line: optional struck regular + price + currency; takes pre-formatted strings (portal) |
 | `BrandLockup` | `kicker`, `title`, `logoSrc`, `logoAlt`, `href='/'` | Logo + product kicker + title, linking home (portal) |
-| `FeatureChecks` | `items` | Wrapped row of mono "✓ item" highlights (portal hero) |
+| `FeatureChecks` | `items`, `column` | Mono "✓ item" highlights — wrapped row, or a column (portal) |
 | `BirthdayField` | `day`, `month`, `year` | Day/month/year inputs for a Form (`birth_day`/`birth_month`/`birth_year`) |
 | `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick`, `onCreate`, `createLabel`, `hint` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). `options`=`[{value,label}]` |
 | `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Lower-level field that just renders the `options` you pass (no filtering/create). Prefer `Autocomplete` |

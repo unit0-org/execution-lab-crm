@@ -1,10 +1,11 @@
 import { color } from '../tokens/color'
 
-export const rowStyle = {
+export const rowStyle = (column) => ({
   display: 'flex',
+  flexDirection: column ? 'column' : 'row',
   flexWrap: 'wrap',
-  gap: '10px 20px'
-}
+  gap: column ? '8px' : '10px 20px'
+})
 
 export const itemStyle = {
   display: 'inline-flex',

@@ -1,25 +1,29 @@
-import { resolveReferralSource } from './resolveReferralSource'
+import { splitName } from './splitName'
 
-const FIELDS = [
-  'first_name', 'last_name', 'email', 'phone', 'company', 'role'
+const REQUIRED = [
+  'email', 'linkedin', 'business', 'stage', 'obstacle', 'commitment'
 ]
+const OPTIONAL = ['preferred_name', 'phone', 'website']
+const get = (formData, key) => (formData.get(key) || '').trim()
 
-// Collect the register form into a plain object; null if any is blank
-// (all fields are required for a paid registration).
+// Collect the register form into a plain object; null if the name or any
+// required field is blank (those are required for a paid registration).
 export function formToRegistration(formData) {
-  const data = {}
+  const name = splitName(get(formData, 'full_name'))
 
-  for (const field of FIELDS) {
-    const value = (formData.get(field) || '').trim()
+  if (!name) return null
+
+  const data = { ...name }
+
+  for (const field of REQUIRED) {
+    const value = get(formData, field)
 
     if (!value) return null
 
     data[field] = value
   }
 
-  data.referral_source = resolveReferralSource(formData)
-
-  if (!data.referral_source) return null
+  for (const field of OPTIONAL) data[field] = get(formData, field)
 
   return data
 }

@@ -2,7 +2,7 @@ import { spotsLabel } from './spotsLabel'
 import { stateTone } from './stateTone'
 import { formatDollars } from '@/lib/portal/formatDollars'
 
-const NOTE = 'Quick form · ~5 min · refundable to 1 wk before'
+const NOTE = 'Quick form · ~5 min · refundable to 2 wks before'
 
 // View data for the hero's price + scarcity aside.
 export function heroAsideView(card, action) {

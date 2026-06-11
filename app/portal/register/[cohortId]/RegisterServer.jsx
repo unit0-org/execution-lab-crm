@@ -1,6 +1,7 @@
 import { portalOrganizationId } from '@/lib/portal/portalOrganizationId'
 import { openCohort } from '@/lib/portal/openCohort'
 import { cohortIsFull } from '@/lib/portal/cohortIsFull'
+import { cohortCard } from '@/lib/portal/cohortCard'
 import { todayIso } from '@/lib/portal/todayIso'
 import { registrationPhase } from '@/lib/cohort/controllers'
 import { resolveInvite } from './resolveInvite'
@@ -8,8 +9,7 @@ import { RegisterClosed } from '../../components/RegisterClosed'
 import { RegisterFull } from '../../components/RegisterFull'
 import { RegisterView } from '../../components/RegisterView'
 
-// Server-side load of one open cohort for the public register screen. A
-// valid invite skips the full check and prefills the form (Story 3.2).
+// Load one open cohort; a valid invite skips the full check + prefills.
 export async function RegisterServer({ params, searchParams }) {
   const { cohortId } = await params
   const orgId = portalOrganizationId()
@@ -24,5 +24,7 @@ export async function RegisterServer({ params, searchParams }) {
 
   if (!invite && await cohortIsFull(orgId, cohort)) return <RegisterFull />
 
-  return <RegisterView cohort={cohort} invite={invite} />
+  const card = await cohortCard(orgId, cohort)
+
+  return <RegisterView card={card} invite={invite} />
 }
