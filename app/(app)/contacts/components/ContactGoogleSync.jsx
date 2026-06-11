@@ -11,5 +11,7 @@ export function ContactGoogleSync({ contactId }) {
 
   if (!link) return null
 
-  return <SyncBadge href={googleContactUrl(link.resourceName)} />
+  const href = googleContactUrl(link.resourceName, link.email)
+
+  return <SyncBadge href={href} />
 }
