@@ -12,18 +12,13 @@ export function WaitlistAboutSection() {
   return (
     <Stack gap="md">
       <SectionLabel n="02">About you</SectionLabel>
-      <FieldText label="Full name" name="full_name" required
-        placeholder="Jordan Avery" />
+      <FieldText label="Full name" name="full_name" required />
       <Columns>
-        <FieldText label="Email" name="email" type="email" required
-          placeholder="you@business.com" />
-        <FieldText label="Phone" name="phone" type="tel" hint="optional"
-          placeholder="+1 ___ ___ ____" />
+        <FieldText label="Email" name="email" type="email" required />
+        <FieldText label="Phone" name="phone" type="tel" hint="optional" />
       </Columns>
-      <FieldArea label={BUSINESS} name="business" required rows={3}
-        placeholder="What you sell (or want to build) and who it’s for." />
-      <FieldArea label={CHALLENGE} name="challenge" required rows={2}
-        placeholder="The one thing most in your way today." />
+      <FieldArea label={BUSINESS} name="business" required rows={3} />
+      <FieldArea label={CHALLENGE} name="challenge" required rows={2} />
     </Stack>
   )
 }
