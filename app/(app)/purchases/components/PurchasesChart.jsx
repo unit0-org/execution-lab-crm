@@ -16,7 +16,7 @@ export function PurchasesChart({ window }) {
 
   return (
     <Card>
-      <Collapsible title="Spend">
+      <Collapsible title="Spend" defaultOpen={false}>
         <Stack gap="sm">
           <GrainSelect value={grain} onChange={setGrain} />
           <ChartBody loading={loading} data={toChartData(buckets)} />
