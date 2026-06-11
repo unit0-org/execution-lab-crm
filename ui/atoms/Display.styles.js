@@ -1,7 +1,7 @@
 import { font, fontWeight } from '../tokens/typography'
 import { color } from '../tokens/color'
 
-const SIZES = { md: '40px', lg: '58px', xl: '52px' }
+const SIZES = { sm: '26px', md: '40px', lg: '58px', xl: '52px' }
 
 export const displayStyle = (size = 'md') => ({
   margin: 0,

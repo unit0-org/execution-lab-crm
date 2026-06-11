@@ -1,21 +1,23 @@
-'use client'
-
-import { Card } from '@/ui/atoms/Card'
+import { SidebarLayout } from '@/ui/layout/SidebarLayout'
 import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
-import { OrderSummary } from './OrderSummary'
+import { RegisterHeader } from './RegisterHeader'
 import { RegisterForm } from './RegisterForm'
+import { OrderSummary } from './OrderSummary'
+import { cohortState } from './cohortState'
 
-// The full register screen: order summary + payment form (Stories 2.2–2.3).
-// An invite prefills the form and lets the holder claim a freed seat (3.2).
-export function RegisterView({ cohort, invite }) {
+// The full register screen: questionnaire + sticky order summary
+// (Stories 2.2–2.3). An invite turns it into a wave claim (3.2).
+export function RegisterView({ card, invite }) {
+  const state = invite ? 'wave' : cohortState(card).state
+
   return (
-    <Card>
-      <Stack gap="md">
-        <Heading level={1} gutter="none">{cohort.label}</Heading>
-        <OrderSummary cohort={cohort} />
-        <RegisterForm cohortId={cohort.id} invite={invite} />
-      </Stack>
-    </Card>
+    <SidebarLayout
+      main={
+        <Stack gap="md">
+          <RegisterHeader state={state} />
+          <RegisterForm cohortId={card.id} invite={invite} state={state} />
+        </Stack>
+      }
+      aside={<OrderSummary card={card} />} />
   )
 }

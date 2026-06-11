@@ -1,10 +1,10 @@
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { rowStyle, itemStyle, checkStyle } from './FeatureChecks.styles'
 
-// A wrapped row of mono "✓ item" highlights (hero feature list).
-export function FeatureChecks({ items }) {
+// A list of mono "✓ item" highlights — a wrapped row, or a column.
+export function FeatureChecks({ items, column }) {
   return (
-    <div style={rowStyle}>
+    <div style={rowStyle(column)}>
       {items.map((item) => (
         <span key={item} style={itemStyle}>
           <span style={checkStyle}>✓</span>
