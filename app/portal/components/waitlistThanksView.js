@@ -10,7 +10,6 @@ export function waitlistThanksView(result) {
   return {
     blurb: `You’re in line for the ${cohort} cohort. We’ll email `
       + `${email} the moment your wave opens.`,
-    position: r.position ? `#${r.position}` : '—',
     wave: r.wave ? `Wave ${r.wave}` : '—',
     waveNumber: r.wave || 1
   }
