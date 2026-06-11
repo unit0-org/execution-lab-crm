@@ -9,7 +9,7 @@ export function heroAsideView(card, action) {
   const regular = card.pricing.regularCents
 
   return {
-    kicker: card.pricing.earlyBird ? 'Launch price' : 'Price',
+    kicker: card.pricing.discounted ? 'Launch price' : 'Price',
     price: formatDollars(card.pricing.amountCents),
     regular: regular ? formatDollars(regular) : null,
     spots: spotsLabel(card),

@@ -4,11 +4,11 @@ import { PriceTag } from '@/ui/molecules/PriceTag'
 import { formatDollars } from '@/lib/portal/formatDollars'
 
 // The summary's price line: a kicker + the current price (struck regular
-// during early-bird).
+// when discounted).
 export function SummaryPrice({ pricing }) {
   const regular = pricing.regularCents
   const regularPrice = regular ? formatDollars(regular) : null
-  const label = pricing.earlyBird ? 'LAUNCH PRICE' : 'PRICE'
+  const label = pricing.discounted ? 'LAUNCH PRICE' : 'PRICE'
 
   return (
     <GrowRow align="baseline">
