@@ -8,7 +8,7 @@ export function useGrain() {
   const params = useSearchParams()
   const router = useRouter()
   const path = usePathname()
-  const grain = params.get('grain') || 'date'
+  const grain = params.get('grain') || 'month'
 
   const setGrain = (value) => {
     const next = new URLSearchParams(params)
