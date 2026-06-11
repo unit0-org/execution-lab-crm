@@ -1,6 +1,7 @@
 import { PortalShell } from '@/ui/layout/PortalShell'
 import { PortalHeader } from '@/ui/organisms/PortalHeader'
-import { forceDarkScript } from './forceDarkScript'
+import { PortalThemeToggle } from './components/PortalThemeToggle'
+import { portalThemeScript } from './portalThemeScript'
 import { FUNDAMENTALS_URL } from './components/portalCopy'
 
 export const metadata = {
@@ -10,7 +11,8 @@ export const metadata = {
 export default function PortalLayout({ children }) {
   return (
     <PortalShell>
-      <script dangerouslySetInnerHTML={{ __html: forceDarkScript }} />
+      <script dangerouslySetInnerHTML={{ __html: portalThemeScript }} />
+      <PortalThemeToggle />
       <PortalHeader kicker="Income First™"
         title="Fundamentals · Registration"
         infoLabel="8-week cohort · online"
