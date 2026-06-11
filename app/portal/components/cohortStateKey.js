@@ -7,7 +7,7 @@ export function cohortStateKey(card) {
 
   if (card.spotsLeft <= 0) return 'full'
 
-  if (card.pricing.earlyBird) return 'launch'
+  if (card.pricing.discounted) return 'launch'
 
   return 'open'
 }
