@@ -11,5 +11,11 @@ export function assertCohortData(data) {
   if (hasPrice !== hasDeadline)
     throw new Error('Early-bird pricing needs a price ID and a deadline')
 
+  const opens = data.registration_opens_at
+  const closes = data.registration_closes_at
+
+  if (opens && closes && opens > closes)
+    throw new Error('Registration must open before it closes')
+
   return data
 }
