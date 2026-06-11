@@ -14,11 +14,9 @@ export function BusinessSection() {
   return (
     <Stack gap="md">
       <SectionLabel n="02">Your business</SectionLabel>
-      <FieldArea label={BUSINESS} name="business" required rows={3}
-        placeholder="What you sell, who it’s for, why it’s worth it." />
+      <FieldArea label={BUSINESS} name="business" required rows={3} />
       <RadioCards label={STAGE} name="stage" options={STAGE_OPTIONS} required />
-      <FieldArea label={OBSTACLE} name="obstacle" required rows={2}
-        placeholder="The one thing most in your way." />
+      <FieldArea label={OBSTACLE} name="obstacle" required rows={2} />
     </Stack>
   )
 }

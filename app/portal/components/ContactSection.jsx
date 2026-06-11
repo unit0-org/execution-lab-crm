@@ -8,22 +8,19 @@ export function ContactSection({ defaults = {} }) {
   return (
     <Stack gap="md">
       <SectionLabel n="01">Contact</SectionLabel>
-      <FieldText label="Email" name="email" type="email" required
-        defaultValue={defaults.email} placeholder="you@business.com" />
+      <FieldText label="Email" name="email" type="email" required autoFocus
+        defaultValue={defaults.email} />
       <Columns>
         <FieldText label="Full name" name="full_name" required
-          defaultValue={defaults.full_name} placeholder="Jordan Avery" />
+          defaultValue={defaults.full_name} />
         <FieldText label="Preferred name" name="preferred_name"
-          hint="optional" placeholder="Jordan" />
+          hint="optional" />
       </Columns>
       <Columns>
-        <FieldText label="Phone" name="phone" type="tel" hint="optional"
-          placeholder="+1 ___ ___ ____" />
-        <FieldText label="LinkedIn" name="linkedin" required
-          placeholder="linkedin.com/in/…" />
+        <FieldText label="Phone" name="phone" type="tel" hint="optional" />
+        <FieldText label="LinkedIn" name="linkedin" required />
       </Columns>
-      <FieldText label="Website" name="website" hint="optional"
-        placeholder="yourbusiness.com" />
+      <FieldText label="Website" name="website" hint="optional" />
     </Stack>
   )
 }
