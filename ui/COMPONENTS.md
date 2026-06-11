@@ -153,6 +153,7 @@ Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`.
 | `UserEmail` | `value` | Signed-in user email display |
 | `PortalHeader` | `kicker`, `title`, `infoLabel`, `linkLabel`, `linkHref`, `logoSrc`, `logoAlt` | Portal masthead: brand lockup + cohort meta and program link |
 | `HeroPanel` | `tone='launch'`, `main`, `aside` | Featured-cohort panel: glowing tone-bordered surface with a brand gradient edge; `main`/`aside` stack on mobile (portal) |
+| `AccentPanel` | `tone='mint'`, `children` | Glowing tone-bordered surface with a brand gradient top stripe (confirmation/celebration) |
 
 ## Tokens — `ui/tokens/`
 
