@@ -16,13 +16,13 @@ export function useInvoiceSendFlow(onDone) {
   const start = (invoices) =>
     previewInvoiceEmailsAction(invoices.map((i) => i.id)).then(setDrafts)
 
-  const confirm = () => {
+  const send = (list) => {
     setSending(true)
-    bulkSendInvoicesAction(sendable(drafts))
+    bulkSendInvoicesAction(sendable(list))
       .then((r) => showToast(sendResultMessage(r)))
       .then(() => { setSending(false); setDrafts(null); onDone() })
   }
 
-  return { drafts, sending, start, confirm, edit: update,
+  return { drafts, sending, start, send, edit: update,
     cancel: () => setDrafts(null) }
 }
