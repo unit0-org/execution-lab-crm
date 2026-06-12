@@ -277,8 +277,9 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
   }
   [data-sidebar][data-open] { transform: translateX(0); }
   [data-scrim][data-open] { display: block; }
-  /* The drawer is hamburger-driven on mobile; ignore the collapse state. */
-  [data-collapse-toggle] { display: none; }
+  /* The drawer is hamburger-driven on mobile; ignore the collapse state.
+     !important beats the toggle's inline display so it stays hidden. */
+  [data-collapse-toggle] { display: none !important; }
   .sidebar-collapsed [data-sidebar] { width: 260px; }
   .sidebar-collapsed [data-nav-item] { justify-content: flex-start; }
   .sidebar-collapsed [data-nav-label] { display: inline; }
