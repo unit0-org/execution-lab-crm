@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation'
 import { Shell } from '@/ui/layout/Shell'
 import { Sidebar } from '@/ui/organisms/Sidebar'
-import { ThemeToggle } from '@/ui/organisms/ThemeToggle'
 import { Toaster } from '@/ui/organisms/Toaster'
 import { useSidebar } from '../hooks/useSidebar'
 import { useCurrentUser } from '../hooks/useCurrentUser'
@@ -23,7 +22,6 @@ export function AppFrame({ role, children }) {
         onClose={nav.close}>
         {children}
       </Shell>
-      <ThemeToggle onClick={nav.toggleTheme} />
       <Toaster />
     </>
   )

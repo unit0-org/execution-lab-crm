@@ -5,5 +5,6 @@ export const SETTINGS_TABS = [
   { value: 'conflicts', label: 'Sync conflicts' },
   { value: 'emails', label: 'Email templates' },
   { value: 'company', label: 'Company info' },
-  { value: 'invoicing', label: 'Invoicing' }
+  { value: 'invoicing', label: 'Invoicing' },
+  { value: 'appearance', label: 'Appearance' }
 ]
