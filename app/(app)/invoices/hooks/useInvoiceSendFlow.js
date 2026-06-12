@@ -6,25 +6,23 @@ import { previewInvoiceEmailsAction }
   from '../actions/previewInvoiceEmails'
 import { bulkSendInvoicesAction } from '../actions/bulkSendInvoices'
 import { sendResultMessage } from './sendResultMessage'
-
-const idsOf = (invoices) => invoices.map((i) => i.id)
+import { editDraft, sendable } from './editDraft'
 
 export function useInvoiceSendFlow(onDone) {
-  const [previews, setPreviews] = useState(null)
+  const [drafts, setDrafts] = useState(null)
   const [sending, setSending] = useState(false)
-
+  const update = (id, field, value) =>
+    setDrafts((prev) => editDraft(prev, id, field, value))
   const start = (invoices) =>
-    previewInvoiceEmailsAction(idsOf(invoices)).then(setPreviews)
+    previewInvoiceEmailsAction(invoices.map((i) => i.id)).then(setDrafts)
 
   const confirm = () => {
     setSending(true)
-    bulkSendInvoicesAction(idsOf(previews))
+    bulkSendInvoicesAction(sendable(drafts))
       .then((r) => showToast(sendResultMessage(r)))
-      .then(() => { setSending(false); setPreviews(null); onDone() })
+      .then(() => { setSending(false); setDrafts(null); onDone() })
   }
 
-  return {
-    previews, sending, start, confirm,
-    cancel: () => setPreviews(null)
-  }
+  return { drafts, sending, start, confirm, edit: update,
+    cancel: () => setDrafts(null) }
 }

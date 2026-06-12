@@ -148,7 +148,7 @@ Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`.
 
 | Component | Props | Use for |
 |---|---|---|
-| `Modal` | `open`, `onClose`, `children` | Centered dialog (Esc / outside / X to close, auto-focus) |
+| `Modal` | `open`, `onClose`, `wide`, `children` | Centered dialog (Esc / outside / X to close, auto-focus); `wide` widens it, and it scrolls when tall |
 | `Nav` / `Sidebar` / `SidebarFooter` / `CollapseToggle` | `items`,`currentPath` / `email` | App navigation chrome |
 | `ThemeToggle` | `onClick` | Light/dark theme switch (sidebar) |
 | `Toaster` | — | Toast outlet — mount once at the root |
