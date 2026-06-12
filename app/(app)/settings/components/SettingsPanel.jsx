@@ -4,6 +4,7 @@ import { ConflictsView } from './ConflictsView'
 import { CompanyView } from './CompanyView'
 import { EmailTemplatesView } from './EmailTemplatesView'
 import { InvoicingView } from './InvoicingView'
+import { AppearanceView } from './AppearanceView'
 
 const PANELS = {
   members: SettingsView,
@@ -11,7 +12,8 @@ const PANELS = {
   conflicts: ConflictsView,
   emails: EmailTemplatesView,
   company: CompanyView,
-  invoicing: InvoicingView
+  invoicing: InvoicingView,
+  appearance: AppearanceView
 }
 
 // Render the panel for the active settings tab.
