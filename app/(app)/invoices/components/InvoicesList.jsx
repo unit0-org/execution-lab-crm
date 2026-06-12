@@ -3,8 +3,9 @@
 import { InvoicesTable } from './InvoicesTable'
 import { InvoicesSkeleton } from './InvoicesSkeleton'
 
-export function InvoicesList({ loading, invoices, onChanged }) {
+export function InvoicesList({ loading, invoices, selection, onChanged }) {
   if (loading) return <InvoicesSkeleton />
 
-  return <InvoicesTable invoices={invoices} onChanged={onChanged} />
+  return <InvoicesTable invoices={invoices} selection={selection}
+    onChanged={onChanged} />
 }

@@ -6,7 +6,7 @@ import { RowDelete } from '@/ui/molecules/RowDelete'
 import { CopyList } from '@/ui/molecules/CopyList'
 import { ContactNameCell } from './ContactNameCell'
 import { ContactLabels } from './ContactLabels'
-import { SelectCell } from './SelectCell'
+import { SelectCell } from '@/ui/molecules/SelectCell'
 import { useDeleteContact } from '../hooks/useDeleteContact'
 
 const emailsOf = (c) => (c.contact_email || []).map((e) => e.email)

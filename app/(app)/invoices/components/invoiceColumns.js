@@ -3,6 +3,7 @@ export const columns = [
   { label: 'Client', key: 'client', sortBy: (i) => i.client || '' },
   { label: 'Total', key: 'total', sortBy: (i) => i.total || '' },
   { label: 'Status', key: 'status', sortBy: (i) => i.status || '' },
+  { label: 'Sent', key: 'sent', sortBy: (i) => i.sentAt || '' },
   { label: 'Date', key: 'date', sortBy: (i) => i.date },
   { label: '' }
 ]

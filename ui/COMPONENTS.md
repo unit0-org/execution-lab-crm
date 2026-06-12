@@ -124,7 +124,9 @@ Conventions (from `AGENTS.md`):
 | `Popover` | `open`, `onClose`, `trigger`, `children` | Anchored popover |
 | `Collapsible` | `title`, `children` | Expand/collapse section |
 | `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel` | Confirmation modal |
+| `ConfirmBulkDelete` | `count`, `onDelete`, `onCancel` | Inline "Delete N?" confirm for bulk-action bars |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
+| `SelectCell` | `checked`, `onToggle` | Row-selection checkbox `Td` for multi-select tables |
 | `Stat` / `StatBody` / `Insight` | `label`, `value`, `tone`, `href` | Stat tiles & insights |
 | `BarChart` (+`ChartBar`/`ChartEmpty`/`ChartSkeleton`) | `data` | Bar chart |
 | `CopyText` / `CopyList` | `value`/`values`, `children`, `truncate`/`collapse` | Copy-to-clipboard; `collapse` shows the first value + a "+N more" toggle for tight columns |
