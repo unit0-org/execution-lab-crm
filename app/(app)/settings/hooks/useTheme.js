@@ -1,23 +1,22 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useSyncExternalStore } from 'react'
 import { toggleTheme } from '../../hooks/themeStore'
 
-const isDark = () =>
-  document.documentElement.getAttribute('data-theme') === 'dark'
+const root = () => document.documentElement
 
-// Read the current light/dark theme and flip it (themeStore persists it).
+const subscribe = (onChange) => {
+  const observer = new MutationObserver(onChange)
+  observer.observe(root(), { attributeFilter: ['data-theme'] })
+
+  return () => observer.disconnect()
+}
+
+const isDark = () => root().getAttribute('data-theme') === 'dark'
+
+// Track the light/dark theme (an external <html> attribute) and flip it.
 export function useTheme() {
-  const [dark, setDark] = useState(false)
+  const dark = useSyncExternalStore(subscribe, isDark, () => false)
 
-  useEffect(() => {
-    setDark(isDark())
-  }, [])
-
-  const toggle = () => {
-    toggleTheme()
-    setDark(isDark())
-  }
-
-  return { dark, toggle }
+  return { dark, toggle: toggleTheme }
 }
