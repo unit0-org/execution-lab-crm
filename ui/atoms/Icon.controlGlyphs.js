@@ -7,6 +7,9 @@ export const controlGlyphs = {
   chevron: 'M6 9l6 6 6-6',
   chevronLeft: 'M15 18l-6-6 6-6',
   chevronRight: 'M9 18l6-6-6-6',
+  panelLeft:
+    'M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 '
+    + '2-2z M9 3v18',
   upload: 'M12 16V4M7 9l5-5 5 5M5 20h14',
   refresh: 'M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5',
   copy: 'M9 9h10v10H9zM5 15H4V4h10v1',
