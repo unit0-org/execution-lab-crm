@@ -215,11 +215,33 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 .sidebar-collapsed [data-sidebar] { width: 68px; }
 .sidebar-collapsed [data-nav-item] { justify-content: center; }
 .sidebar-collapsed [data-nav-label] { display: none; }
-.sidebar-collapsed [data-collapse-toggle] { justify-content: center; }
 [data-sidebar-when-collapsed] { display: none; }
 .sidebar-collapsed [data-sidebar-when-expanded] { display: none; }
 .sidebar-collapsed [data-sidebar-when-collapsed] {
   display: block; text-align: center;
+}
+
+/* Stripe-style collapse control — a floating pill on the sidebar's right
+   edge, hidden until the sidebar is hovered; its label tooltip shows on
+   hover. The button overrides IconButton's inline styles to read as a
+   pill straddling the divider. */
+[data-collapse-toggle],
+[data-collapse-tip] {
+  opacity: 0;
+  transition: opacity var(--motion-quick) var(--motion-ease);
+}
+@media (hover: hover) {
+  [data-sidebar]:hover [data-collapse-toggle],
+  [data-collapse-toggle]:focus-within { opacity: 1; }
+}
+[data-collapse-toggle]:hover [data-collapse-tip] { opacity: 1; }
+[data-collapse-toggle] button {
+  width: 28px !important;
+  height: 28px !important;
+  background: var(--color-bg-surface) !important;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 /* Floating theme toggle — dim when idle, solid on hover. The icon shows

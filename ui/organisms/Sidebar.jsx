@@ -8,10 +8,8 @@ export function Sidebar(props) {
 
   return (
     <div style={sidebarStyle}>
-      <div>
-        <CollapseToggle onClick={onToggleCollapse} />
-        <Nav items={items} currentPath={currentPath} />
-      </div>
+      <CollapseToggle onClick={onToggleCollapse} />
+      <Nav items={items} currentPath={currentPath} />
       <div>
         <Nav items={settings} currentPath={currentPath} />
         <SidebarFooter email={email} />
