@@ -1,14 +1,19 @@
 'use client'
 
-import { useActionState, useEffect } from 'react'
+import { useActionState, useEffect, useRef } from 'react'
 
 export function useFormAction(serverAction, onDone) {
   const run = (prev, formData) => serverAction(formData)
   const [state, action] = useActionState(run, null)
+  const onDoneRef = useRef(onDone)
 
   useEffect(() => {
-    if (state?.ok) onDone()
-  }, [state, onDone])
+    onDoneRef.current = onDone
+  })
+
+  useEffect(() => {
+    if (state?.ok) onDoneRef.current()
+  }, [state])
 
   return { action, error: state?.error }
 }
