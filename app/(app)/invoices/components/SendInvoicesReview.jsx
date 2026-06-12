@@ -4,15 +4,18 @@ import { Stack } from '@/ui/layout/Stack'
 import { Inline } from '@/ui/layout/Inline'
 import { Heading } from '@/ui/atoms/Heading'
 import { Button } from '@/ui/atoms/Button'
-import { InvoiceEmailPreview } from './InvoiceEmailPreview'
+import { InvoiceSendCard } from './InvoiceSendCard'
 
-export function SendInvoicesReview({ previews, sending, onConfirm, onCancel }) {
+const noun = (n) => (n === 1 ? 'invoice' : 'invoices')
+
+export function SendInvoicesReview({ drafts, sending, onEdit, onConfirm,
+  onCancel }) {
   return (
     <Stack gap="md">
-      <Heading level={2}>Send {previews.length} invoices</Heading>
+      <Heading level={2}>Send {drafts.length} {noun(drafts.length)}</Heading>
       <Stack gap="sm">
-        {previews.map((p) => (
-          <InvoiceEmailPreview key={p.id} preview={p} />
+        {drafts.map((draft) => (
+          <InvoiceSendCard key={draft.id} draft={draft} onEdit={onEdit} />
         ))}
       </Stack>
       <Inline gap="sm">

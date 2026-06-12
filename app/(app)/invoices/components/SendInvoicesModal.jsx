@@ -4,12 +4,12 @@ import { Modal } from '@/ui/organisms/Modal'
 import { SendInvoicesReview } from './SendInvoicesReview'
 
 export function SendInvoicesModal({ flow }) {
-  const previews = flow.previews || []
+  const drafts = flow.drafts || []
 
   return (
-    <Modal open={!!flow.previews} onClose={flow.cancel}>
-      <SendInvoicesReview previews={previews} sending={flow.sending}
-        onConfirm={flow.confirm} onCancel={flow.cancel} />
+    <Modal open={!!flow.drafts} onClose={flow.cancel} wide>
+      <SendInvoicesReview drafts={drafts} sending={flow.sending}
+        onEdit={flow.edit} onConfirm={flow.confirm} onCancel={flow.cancel} />
     </Modal>
   )
 }
