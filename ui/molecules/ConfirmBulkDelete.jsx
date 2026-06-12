@@ -1,6 +1,6 @@
-import { Inline } from '@/ui/layout/Inline'
-import { Button } from '@/ui/atoms/Button'
-import { Text } from '@/ui/atoms/Text'
+import { Inline } from '../layout/Inline'
+import { Button } from '../atoms/Button'
+import { Text } from '../atoms/Text'
 
 export function ConfirmBulkDelete({ count, onDelete, onCancel }) {
   return (

@@ -1,7 +1,7 @@
 'use client'
 
-import { Td } from '@/ui/molecules/Td'
-import { Checkbox } from '@/ui/atoms/Checkbox'
+import { Td } from './Td'
+import { Checkbox } from '../atoms/Checkbox'
 
 export function SelectCell({ checked, onToggle }) {
   return (

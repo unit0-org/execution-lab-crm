@@ -4,12 +4,9 @@ import { useState } from 'react'
 import { Inline } from '@/ui/layout/Inline'
 import { Button } from '@/ui/atoms/Button'
 import { Text } from '@/ui/atoms/Text'
-import { MergeButton } from './MergeButton'
-import { BulkLabelMenu } from './BulkLabelMenu'
 import { ConfirmBulkDelete } from '@/ui/molecules/ConfirmBulkDelete'
 
-export function BulkActions({ count, canMerge, chosen, cats, onLabeled,
-  onDelete, onMerge }) {
+export function InvoiceBulkActions({ count, onSend, onMarkSent, onDelete }) {
   const [confirming, setConfirming] = useState(false)
 
   if (confirming) {
@@ -20,10 +17,10 @@ export function BulkActions({ count, canMerge, chosen, cats, onLabeled,
   return (
     <Inline gap="md">
       <Text size="sm">{count} selected</Text>
-      <BulkLabelMenu chosen={chosen} cats={cats} onChanged={onLabeled} />
-      <MergeButton show={canMerge} onMerge={onMerge} />
+      <Button tone="primary" size="sm" onClick={onSend}>Send</Button>
+      <Button size="sm" onClick={onMarkSent}>Mark sent</Button>
       <Button tone="danger" size="sm"
-        onClick={() => setConfirming(true)}>Delete</Button>
+        onClick={() => setConfirming(true)}>Remove</Button>
     </Inline>
   )
 }
