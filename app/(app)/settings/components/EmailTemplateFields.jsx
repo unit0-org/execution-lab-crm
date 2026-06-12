@@ -13,7 +13,7 @@ export function EmailTemplateFields({ template, body, onBody, error }) {
         defaultValue={template.subject}
       />
       <TextArea
-        label="Body (HTML)"
+        label="Body — plain text, blank line starts a paragraph"
         name="body"
         rows={10}
         value={body}
