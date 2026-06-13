@@ -7,7 +7,7 @@ import { Button } from '@/ui/atoms/Button'
 import { CommandOverlays } from './CommandOverlays'
 import { useCommandBar } from '../hooks/useCommandBar'
 
-const PLACEHOLDER = 'Search people, notes, threads…'
+const PLACEHOLDER = 'Search people…'
 
 export function CommandBar() {
   const bar = useCommandBar()
