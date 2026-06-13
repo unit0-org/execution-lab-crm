@@ -1,5 +1,5 @@
-import { AppShell } from './components/AppShell'
+import { AppShellServer } from './AppShellServer'
 
 export default function AppLayout({ children }) {
-  return <AppShell>{children}</AppShell>
+  return <AppShellServer>{children}</AppShellServer>
 }

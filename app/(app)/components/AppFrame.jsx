@@ -5,15 +5,14 @@ import { Shell } from '@/ui/layout/Shell'
 import { Sidebar } from '@/ui/organisms/Sidebar'
 import { Toaster } from '@/ui/organisms/Toaster'
 import { useSidebar } from '../hooks/useSidebar'
-import { useCurrentUser } from '../hooks/useCurrentUser'
 import { CommandBar } from './CommandBar'
 import { navFor, settingsNav } from './nav'
 
-export function AppFrame({ role, children }) {
+export function AppFrame({ role, email, children }) {
   const nav = useSidebar()
   const sidebar = (
     <Sidebar items={navFor()} settings={settingsNav(role)}
-      currentPath={usePathname()} email={useCurrentUser()}
+      currentPath={usePathname()} email={email}
       onToggleCollapse={nav.toggleCollapse} />
   )
 
