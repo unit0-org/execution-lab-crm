@@ -13,7 +13,7 @@ export function AppFrame({ role, email, children }) {
   const sidebar = (
     <Sidebar items={navFor()} settings={settingsNav(role)}
       currentPath={usePathname()} email={email}
-      onToggleCollapse={nav.toggleCollapse} />
+      onToggleCollapse={nav.toggleCollapse} onNavigate={nav.close} />
   )
 
   return (

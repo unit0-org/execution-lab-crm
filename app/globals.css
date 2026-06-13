@@ -288,8 +288,8 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
   [data-app-main] { padding-top: 32px; }
   [data-sidebar] {
     position: fixed; top: 0; left: 0; height: 100dvh; z-index: 25;
-    /* Clear the fixed hamburger so the first nav item isn't covered. */
-    padding-top: 48px;
+    /* Clear the fixed hamburger and leave a gap below it. */
+    padding-top: 80px;
     transform: translateX(-100%);
     transition: transform var(--motion-soft) var(--motion-ease);
   }
