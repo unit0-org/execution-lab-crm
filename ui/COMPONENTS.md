@@ -79,6 +79,7 @@ Conventions (from `AGENTS.md`):
 | `GrowRow` | `align`, `children` | Row where the first child grows, rest content-width |
 | `EndRow` | `children` | Row aligned to the end |
 | `StickyBar` | `active`, `children` | Sticky action bar |
+| `Topbar` | `children` | Sticky bar at the top of the scrolling main area (global command bar) |
 | `Scrim` | `open`, `onClick` | Dim backdrop behind overlays |
 | `Hamburger` | `onClick` | Mobile menu toggle |
 | `Shell` | — | App shell wrapper |
@@ -92,6 +93,8 @@ Conventions (from `AGENTS.md`):
 | Component | Props | Use for |
 |---|---|---|
 | `SectionHeader` | `title`, `addLabel`, `onAdd` | Section heading with optional `+` create action |
+| `SearchTrigger` | `placeholder`, `hint`, `onClick` | Search-field-shaped button (magnifier + placeholder + key hint) that opens a command palette |
+| `MenuRow` | `leading`, `label`, `meta`, `onClick` | Full-width clickable menu/palette row: leading slot + label + optional trailing meta |
 | `Field` | `label`, `required`, `hint`, `error`, `children` | Portal form field: mono label row (+ `*`/hint) over a control + error slot |
 | `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (Field + FieldInput) |
 | `FieldArea` | `label`, `hint`, `required`, `rows`, `...rest` | Portal labelled textarea (Field + FieldTextArea) |
