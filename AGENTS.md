@@ -12,6 +12,22 @@ the rest are enforced in review (see `.github/pull_request_template.md`).
 Auto-enforced rules are marked **[lint]**. Rules are unordered — never number
 them (so adding one never renumbers the rest).
 
+## Architecture
+
+- **Read `ARCHITECTURE.md` before any cross-cutting change.** It maps how
+  the system fits together and records the **invariants that span more
+  than one file** — the things you can't see from the file you're editing.
+  The canonical one: **every contact-owned table must be folded in by the
+  contact-merge operation** (`lib/contacts/applyMerge.js`). Add a table
+  that references `contact_id` (or any other documented cross-module
+  dependency) and the merge — and the architecture doc — must be updated,
+  or that data is silently lost on merge. Likewise, a new `Registration`
+  field must flow to the contact via `syncRegistrationContact`.
+- **Keep `ARCHITECTURE.md` up to date in the same PR.** Whenever you change
+  something it documents — a contact-owned table, an FK, a registration
+  field, a cross-module flow, a business rule — update the doc alongside
+  the code. A structural change that leaves it stale is incomplete.
+
 ## Naming
 
 - **Name things properly — Clean Code.** A name reveals intent so the code
