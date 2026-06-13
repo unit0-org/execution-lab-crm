@@ -1,18 +1,16 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Stack } from '@/ui/layout/Stack'
 import { SectionHeader } from '@/ui/molecules/SectionHeader'
 import { useToggle } from '@/ui/molecules/useToggle'
-import { useMembership } from '../../hooks/useMembership'
-import { useMembers } from '../hooks/useMembers'
 import { MembersTable } from './MembersTable'
 import { InviteModal } from './InviteModal'
 
-export function SettingsView() {
-  const membership = useMembership()
-  const orgId = membership?.organizationId
-  const { members, reload } = useMembers(orgId)
+export function SettingsView({ members, organizationId }) {
+  const router = useRouter()
   const modal = useToggle()
+  const reload = () => router.refresh()
   const onInvited = () => { reload(); modal.hide() }
 
   return (
@@ -21,7 +19,7 @@ export function SettingsView() {
         onAdd={modal.show} />
       <MembersTable members={members} onChanged={reload} />
       <InviteModal open={modal.open} onClose={modal.hide}
-        organizationId={orgId} onInvited={onInvited} />
+        organizationId={organizationId} onInvited={onInvited} />
     </Stack>
   )
 }
