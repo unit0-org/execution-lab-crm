@@ -6,7 +6,8 @@ import { EventRow } from './EventRow'
 import { columns } from './eventColumns'
 
 export function EventsTable({ events, onChanged }) {
-  const { sorted, sort, toggle } = useTableSort(events, columns, 'date')
+  const { sorted, sort, toggle } =
+    useTableSort(events, columns, 'date', 'desc')
 
   return (
     <Table cols={columns} sort={sort} onSort={toggle}>

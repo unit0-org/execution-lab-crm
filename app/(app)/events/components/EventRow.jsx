@@ -3,6 +3,7 @@ import { Td } from '@/ui/molecules/Td'
 import { Link } from '@/ui/atoms/Link'
 import { DateText } from '@/ui/atoms/DateText'
 import { EventRowActions } from './EventRowActions'
+import { attendanceLabel } from './attendanceLabel'
 
 export function EventRow({ event, onChanged }) {
   const type = event.type || '—'
@@ -14,7 +15,7 @@ export function EventRow({ event, onChanged }) {
       </Td>
       <Td><DateText value={event.date} /></Td>
       <Td>{type}</Td>
-      <Td>{event.checked_in}/{event.registered}</Td>
+      <Td>{attendanceLabel(event)}</Td>
       <Td><EventRowActions event={event} onChanged={onChanged} /></Td>
     </Tr>
   )
