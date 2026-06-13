@@ -1,12 +1,13 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Stack } from '@/ui/layout/Stack'
 import { SectionHeader } from '@/ui/molecules/SectionHeader'
-import { useConflicts } from '../hooks/useConflicts'
 import { ConflictsTable } from './ConflictsTable'
 
-export function ConflictsView() {
-  const { conflicts, reload } = useConflicts()
+export function ConflictsView({ conflicts }) {
+  const router = useRouter()
+  const reload = () => router.refresh()
 
   return (
     <Stack gap="md">

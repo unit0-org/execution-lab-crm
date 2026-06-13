@@ -1,18 +1,27 @@
-import { Suspense } from 'react'
 import { forbidden } from 'next/navigation'
+import { Stack } from '@/ui/layout/Stack'
+import { Heading } from '@/ui/atoms/Heading'
+import { Tabs } from '@/ui/molecules/Tabs'
 import { currentMembership } from '@/lib/org/controllers/currentMembership'
-import { SettingsTabsView } from './components/SettingsTabsView'
+import { SETTINGS_TABS } from './components/settingsTabs'
+import { SettingsTabPanel } from './SettingsTabPanel'
 
-// Gate settings to org admins server-side (a real 403), then render the
-// tabs. Runs before any Suspense boundary so forbidden() interrupts clean.
-export async function SettingsServer() {
+// Gate settings to org admins (a real 403), then render the active tab
+// server-side, keyed on the ?tab search param.
+export async function SettingsServer({ searchParams }) {
   const m = await currentMembership()
 
   if (m?.role !== 'admin') forbidden()
 
+  const { tab } = await searchParams
+  const active = tab || 'members'
+
   return (
-    <Suspense>
-      <SettingsTabsView />
-    </Suspense>
+    <Stack gap="lg">
+      <Heading>Settings</Heading>
+      <Tabs tabs={SETTINGS_TABS} active={active}
+        basePath="/settings" param="tab" />
+      <SettingsTabPanel tab={active} organizationId={m.organizationId} />
+    </Stack>
   )
 }

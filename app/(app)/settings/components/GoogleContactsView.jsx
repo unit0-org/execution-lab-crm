@@ -1,16 +1,17 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Stack } from '@/ui/layout/Stack'
 import { EndRow } from '@/ui/layout/EndRow'
 import { SectionHeader } from '@/ui/molecules/SectionHeader'
 import { ButtonLink } from '@/ui/atoms/ButtonLink'
 import { SyncControl } from '@/ui/molecules/SyncControl'
-import { useGoogleAccounts } from '../hooks/useGoogleAccounts'
 import { useSyncContacts } from '../hooks/useSyncContacts'
 import { GoogleAccountsTable } from './GoogleAccountsTable'
 
-export function GoogleContactsView() {
-  const { accounts, reload } = useGoogleAccounts()
+export function GoogleContactsView({ accounts }) {
+  const router = useRouter()
+  const reload = () => router.refresh()
   const { syncing, sync } = useSyncContacts(reload)
   const label = syncing ? 'Syncing…' : 'Sync contacts from Google'
 

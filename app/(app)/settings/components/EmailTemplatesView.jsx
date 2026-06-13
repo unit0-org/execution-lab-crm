@@ -1,13 +1,12 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Text } from '@/ui/atoms/Text'
-import { useEmailTemplates } from '../hooks/useEmailTemplates'
 import { EmailTemplatesPanel } from './EmailTemplatesPanel'
 
-export function EmailTemplatesView() {
-  const { templates, reload } = useEmailTemplates()
-
-  if (templates === undefined) return <Text>Loading…</Text>
+export function EmailTemplatesView({ templates }) {
+  const router = useRouter()
+  const reload = () => router.refresh()
 
   if (templates.length === 0) return <Text>No templates yet.</Text>
 
