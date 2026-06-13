@@ -11,7 +11,17 @@ export const rowStyle = {
   fontSize: fontSize.sm
 }
 
-export const labelStyle = {
-  flex: 1, minWidth: 0, textAlign: 'left',
+const clip = {
   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
+}
+
+export const textStyle = {
+  flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column'
+}
+
+export const labelStyle = { ...clip, textAlign: 'left' }
+
+export const subtitleStyle = {
+  ...clip, textAlign: 'left',
+  color: color.text.muted, fontSize: fontSize.xs
 }

@@ -16,6 +16,10 @@ export const mainStyle = {
 
 export const asideStyle = {
   flexShrink: 0,
+  // Sit above the main area's sticky topbar (z-index 10) so the sidebar's
+  // protruding collapse toggle isn't painted over by the topbar.
+  position: 'relative',
+  zIndex: 15,
   borderRight: `1px solid ${color.border.default}`,
   background: color.bg.surface
 }
