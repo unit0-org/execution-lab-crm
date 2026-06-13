@@ -4,7 +4,8 @@ import { color } from '../tokens/color'
 const TONES = {
   muted: color.text.muted, subtle: color.text.subtle,
   primary: color.text.primary, accent: color.accent.solid,
-  cool: color.warmth.cool, cold: color.warmth.cold, wave: color.warmth.wave
+  cool: color.warmth.cool, cold: color.warmth.cold,
+  wave: color.warmth.wave, danger: color.status.errorText
 }
 
 const aligned = (align) => (align ? { display: 'block', textAlign: align } : {})
