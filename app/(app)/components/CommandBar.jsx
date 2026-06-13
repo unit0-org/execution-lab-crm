@@ -19,7 +19,7 @@ export function CommandBar() {
           <SearchTrigger placeholder={PLACEHOLDER} hint="Ctrl K"
             onClick={bar.palette.show} />
           <Button tone="primary" onClick={bar.log.show}>
-            Log interaction
+            Log note
           </Button>
         </GrowRow>
       </Topbar>

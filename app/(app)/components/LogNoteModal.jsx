@@ -1,8 +1,7 @@
 'use client'
 
-import { Modal } from '@/ui/organisms/Modal'
+import { TitledModal } from '@/ui/organisms/TitledModal'
 import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
 import { ContactAutocomplete }
   from '../contacts/components/ContactAutocomplete'
 import { LogNoteBody } from './LogNoteBody'
@@ -14,13 +13,12 @@ export function LogNoteModal({ open, onClose, onLogged }) {
   const saved = () => { note.reset(); onLogged() }
 
   return (
-    <Modal open={open} onClose={close}>
+    <TitledModal open={open} title="Log note" onClose={close}>
       <Stack gap="md">
-        <Heading level={3} gutter="none">Log interaction</Heading>
         <ContactAutocomplete label="Person" value={note.value}
           onChange={note.setValue} allowCreate />
         <LogNoteBody contactId={note.contactId} onSaved={saved} />
       </Stack>
-    </Modal>
+    </TitledModal>
   )
 }
