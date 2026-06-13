@@ -7,8 +7,8 @@ import { KnowHeader } from './KnowHeader'
 import { AddNuggetModal } from './AddNuggetModal'
 import { NuggetsBody } from './NuggetsBody'
 
-export function ContactAnswers({ contactId }) {
-  const { nuggets, reload } = useContactAnswers(contactId)
+export function ContactAnswers({ contactId, initial }) {
+  const { nuggets, reload } = useContactAnswers(contactId, initial)
   const add = useReveal()
 
   const saved = () => {

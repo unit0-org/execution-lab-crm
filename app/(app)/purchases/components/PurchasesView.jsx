@@ -13,7 +13,7 @@ import { RefundFilter } from './RefundFilter'
 
 export function PurchasesView({ initialPurchases }) {
   const range = useSearchParams().get('window')
-  const { purchases, loading, reload } = usePurchases(range, initialPurchases)
+  const { purchases, reload } = usePurchases(range, initialPurchases)
   const refund = useRefundFilter(purchases)
 
   return (
@@ -24,7 +24,7 @@ export function PurchasesView({ initialPurchases }) {
       <RefundFilter showRefunded={refund.showRefunded}
         onToggle={refund.toggle} />
       <PurchasesChart window={range} />
-      <PurchasesList loading={loading} purchases={refund.visible} />
+      <PurchasesList purchases={refund.visible} />
     </Stack>
   )
 }

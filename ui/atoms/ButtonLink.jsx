@@ -1,4 +1,5 @@
 import NextLink from 'next/link'
+import { NavProgress } from './NavProgress'
 import { buttonStyle } from './Button.styles'
 
 // A navigation link that looks like a Button (shares buttonStyle).
@@ -11,6 +12,7 @@ export function ButtonLink({
     <NextLink href={href} target={target} rel={rel} data-tone={tone}
       style={buttonStyle({ tone, size, block })}>
       {children}
+      <NavProgress />
     </NextLink>
   )
 }

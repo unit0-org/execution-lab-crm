@@ -1,9 +1,7 @@
-import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
 import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { DashboardServer } from './DashboardServer'
-import { DashboardSkeleton } from './components/DashboardSkeleton'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,9 +10,7 @@ export default function DashboardPage() {
     <Page width="wide">
       <Stack gap="lg">
         <Heading>Dashboard</Heading>
-        <Suspense fallback={<DashboardSkeleton />}>
-          <DashboardServer />
-        </Suspense>
+        <DashboardServer />
       </Stack>
     </Page>
   )

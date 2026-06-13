@@ -1,16 +1,12 @@
 'use client'
 
-import { useParams } from 'next/navigation'
 import { useMeeting } from '../hooks/useMeeting'
 import { MeetingDetail } from './MeetingDetail'
-import { MeetingLoading } from './MeetingLoading'
 import { MeetingNotFound } from './MeetingNotFound'
 
-export function MeetingDetailView() {
-  const { id } = useParams()
-  const { meeting, refresh } = useMeeting(id)
-
-  if (meeting === undefined) return <MeetingLoading />
+export function MeetingDetailView({ initialMeeting }) {
+  const seed = initialMeeting
+  const { meeting, refresh } = useMeeting(seed?.id, seed)
 
   if (meeting === null) return <MeetingNotFound />
 

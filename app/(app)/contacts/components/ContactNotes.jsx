@@ -7,8 +7,8 @@ import { NotesHeader } from './NotesHeader'
 import { AddNoteModal } from './AddNoteModal'
 import { NotesBody } from './NotesBody'
 
-export function ContactNotes({ contactId }) {
-  const { notes, reload } = useContactNotes(contactId)
+export function ContactNotes({ contactId, initial }) {
+  const { notes, reload } = useContactNotes(contactId, initial)
   const add = useReveal()
 
   const saved = () => {

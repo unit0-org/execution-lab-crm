@@ -1,5 +1,6 @@
 import NextLink from 'next/link'
 import { NavIcon } from './NavIcon'
+import { NavProgress } from './NavProgress'
 import { navLinkStyle, navIconStyle } from './NavLink.styles'
 
 export function NavLink({ href, active, icon, children }) {
@@ -10,6 +11,7 @@ export function NavLink({ href, active, icon, children }) {
       style={navLinkStyle} title={children}>
       <span data-nav-icon style={navIconStyle}><NavIcon icon={icon} /></span>
       <span data-nav-label>{children}</span>
+      <NavProgress />
     </NextLink>
   )
 }
