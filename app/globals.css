@@ -228,11 +228,17 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 [data-collapse-toggle],
 [data-collapse-tip] {
   opacity: 0;
+  /* While hidden, ignore the pointer so the toggle's protruding hitbox
+     over the topbar doesn't reveal it — only a sidebar hover does. */
+  pointer-events: none;
   transition: opacity var(--motion-quick) var(--motion-ease);
 }
 @media (hover: hover) {
   [data-sidebar]:hover [data-collapse-toggle],
-  [data-collapse-toggle]:focus-within { opacity: 1; }
+  [data-collapse-toggle]:focus-within {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 [data-collapse-toggle]:hover [data-collapse-tip] { opacity: 1; }
 [data-collapse-toggle] button {
