@@ -170,6 +170,7 @@ input::placeholder, textarea::placeholder { color: var(--color-text-subtle); }
 @keyframes skeletonPulse { 0%,100% { opacity: .6 } 50% { opacity: 1 } }
 @keyframes spin { to { transform: rotate(360deg) } }
 @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 6px) } to { opacity: 1; transform: translate(-50%, 0) } }
+@keyframes nav-progress { 0% { transform: translateX(-100%); opacity: 0 } 12% { opacity: 1 } 88% { opacity: 1 } 100% { transform: translateX(320%); opacity: .3 } }
 
 ::-webkit-scrollbar { width: 8px; height: 8px }
 ::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 4px }

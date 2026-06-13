@@ -1,11 +1,10 @@
 'use client'
 
 import { useLinkStatus } from 'next/link'
-import { ProgressBar } from './ProgressBar'
-import { navProgressStyle } from './NavProgress.styles'
+import { navProgressStyle, navBarStyle } from './NavProgress.styles'
 
-// Native top-of-page progress while a Link navigation is pending, so the
-// app gives navigation feedback without a layout-shaped skeleton.
+// A thin brand-gradient bar at the very top of the page while a Link
+// navigation is pending — sleek loading feedback, no layout skeleton.
 export function NavProgress() {
   const { pending } = useLinkStatus()
 
@@ -13,7 +12,7 @@ export function NavProgress() {
 
   return (
     <div style={navProgressStyle}>
-      <ProgressBar />
+      <div style={navBarStyle} />
     </div>
   )
 }
