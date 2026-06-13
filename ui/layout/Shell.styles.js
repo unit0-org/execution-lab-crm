@@ -16,10 +16,9 @@ export const mainStyle = {
 
 export const asideStyle = {
   flexShrink: 0,
-  // Sit above the main area's sticky topbar (z-index 10) so the sidebar's
-  // protruding collapse toggle isn't painted over by the topbar.
-  position: 'relative',
-  zIndex: 15,
+  // Position/z-index live in globals.css ([data-sidebar]) so the mobile
+  // media query can flip the sidebar to a fixed drawer — an inline
+  // position here would outrank the media query and keep it in flow.
   borderRight: `1px solid ${color.border.default}`,
   background: color.bg.surface
 }
