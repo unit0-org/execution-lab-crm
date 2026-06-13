@@ -7,5 +7,5 @@ export function lowSeatsLabel(card) {
 
   const plural = card.spotsLeft === 1 ? '' : 's'
 
-  return `Only ${card.spotsLeft} spot${plural} left`
+  return `🔥 Only ${card.spotsLeft} spot${plural} left`
 }
