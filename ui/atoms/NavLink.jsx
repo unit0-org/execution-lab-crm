@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import { NavIcon } from './NavIcon'
-import { navLinkStyle } from './NavLink.styles'
+import { navLinkStyle, navIconStyle } from './NavLink.styles'
 
 export function NavLink({ href, active, icon, children }) {
   const current = active || undefined
@@ -8,7 +8,7 @@ export function NavLink({ href, active, icon, children }) {
   return (
     <NextLink href={href} data-nav-item data-active={current}
       style={navLinkStyle} title={children}>
-      <span data-nav-icon><NavIcon icon={icon} /></span>
+      <span data-nav-icon style={navIconStyle}><NavIcon icon={icon} /></span>
       <span data-nav-label>{children}</span>
     </NextLink>
   )

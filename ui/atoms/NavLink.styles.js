@@ -13,3 +13,10 @@ export const navLinkStyle = {
   textTransform: 'uppercase',
   letterSpacing: '0.08em'
 }
+
+// Collapse the icon's inline-SVG line box so the glyph centers on the
+// label instead of sitting on the text baseline (which raised it).
+export const navIconStyle = {
+  display: 'flex',
+  alignItems: 'center'
+}
