@@ -265,8 +265,9 @@ input[type="file"]::file-selector-button {
 input[type="file"]::file-selector-button:hover { background: var(--color-bg-subtle); }
 
 /* Command bar: horizontal padding here so the mobile rule can widen the
-   left side to clear the fixed hamburger. */
-[data-topbar] { padding-left: 1rem; padding-right: 1rem; }
+   left side. The desktop left gap clears the sidebar's protruding
+   collapse toggle; the mobile gap clears the fixed hamburger. */
+[data-topbar] { padding-left: 2.5rem; padding-right: 1rem; }
 [data-menu-row]:hover { background: var(--color-bg-subtle); }
 
 @media (max-width: 768px) {

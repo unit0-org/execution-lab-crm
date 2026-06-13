@@ -11,4 +11,7 @@ export const rowStyle = {
   fontSize: fontSize.sm
 }
 
-export const labelStyle = { flex: 1, minWidth: 0, textAlign: 'left' }
+export const labelStyle = {
+  flex: 1, minWidth: 0, textAlign: 'left',
+  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
+}
