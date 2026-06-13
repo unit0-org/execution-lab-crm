@@ -6,6 +6,7 @@ import { Sidebar } from '@/ui/organisms/Sidebar'
 import { Toaster } from '@/ui/organisms/Toaster'
 import { useSidebar } from '../hooks/useSidebar'
 import { useCurrentUser } from '../hooks/useCurrentUser'
+import { CommandBar } from './CommandBar'
 import { navFor, settingsNav } from './nav'
 
 export function AppFrame({ role, children }) {
@@ -20,6 +21,7 @@ export function AppFrame({ role, children }) {
     <>
       <Shell sidebar={sidebar} open={nav.open} onToggle={nav.toggle}
         onClose={nav.close}>
+        <CommandBar />
         {children}
       </Shell>
       <Toaster />

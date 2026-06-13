@@ -264,7 +264,13 @@ input[type="file"]::file-selector-button {
 }
 input[type="file"]::file-selector-button:hover { background: var(--color-bg-subtle); }
 
+/* Command bar: horizontal padding here so the mobile rule can widen the
+   left side to clear the fixed hamburger. */
+[data-topbar] { padding-left: 1rem; padding-right: 1rem; }
+[data-menu-row]:hover { background: var(--color-bg-subtle); }
+
 @media (max-width: 768px) {
+  [data-topbar] { padding-left: 56px; }
   [data-hamburger] { display: inline-flex; align-items: center; justify-content: center; }
   /* Reserve room for the fixed hamburger so it never overlaps content. */
   [data-app-main] { padding-top: 32px; }
