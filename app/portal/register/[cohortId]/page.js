@@ -1,5 +1,3 @@
-import { Suspense } from 'react'
-import { PortalFallback } from '../../components/PortalFallback'
 import { RegisterServer } from './RegisterServer'
 
 // Live render: cohort openness + seats must reflect the CRM at request
@@ -7,9 +5,5 @@ import { RegisterServer } from './RegisterServer'
 export const dynamic = 'force-dynamic'
 
 export default function RegisterPage({ params, searchParams }) {
-  return (
-    <Suspense fallback={<PortalFallback />}>
-      <RegisterServer params={params} searchParams={searchParams} />
-    </Suspense>
-  )
+  return <RegisterServer params={params} searchParams={searchParams} />
 }
