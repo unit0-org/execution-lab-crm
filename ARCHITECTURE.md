@@ -158,3 +158,11 @@ in each view.
   unique per org.
 - **Google sync:** OAuth account → contact/calendar sync; conflicts land
   in a review queue rather than auto-applying.
+- **Contact activity timeline:** `lib/activity/controllers/contactActivity.js`
+  merges a contact's events, meetings, purchases and cohort registrations
+  into one date-sorted feed (shown on the contact page and via the
+  `contact_activity` MCP tool). Each source contributes an entries
+  controller returning a uniform `{id, kind, href, title, date, status,
+  statusTone}` shape. **A new per-contact record type that belongs on the
+  timeline must add its own `*Entries` controller and be merged in here** —
+  otherwise it never appears in a contact's activity.
