@@ -1,12 +1,13 @@
 import { Page } from '@/ui/layout/Page'
 import { Stack } from '@/ui/layout/Stack'
-import { InvoiceEditorView } from '../components/InvoiceEditorView'
+import { InvoiceEditor } from '../components/InvoiceEditor'
+import { blankInitial } from '../hooks/blankInitial'
 
 export default function NewInvoicePage() {
   return (
     <Page>
       <Stack gap="md">
-        <InvoiceEditorView mode="create" />
+        <InvoiceEditor mode="create" initial={blankInitial()} />
       </Stack>
     </Page>
   )

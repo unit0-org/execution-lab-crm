@@ -1,12 +1,16 @@
+import { Suspense } from 'react'
 import { Page } from '@/ui/layout/Page'
 import { Stack } from '@/ui/layout/Stack'
-import { InvoiceEditorView } from '../../components/InvoiceEditorView'
+import { Text } from '@/ui/atoms/Text'
+import { InvoiceEditServer } from './InvoiceEditServer'
 
-export default function EditInvoicePage() {
+export default function EditInvoicePage({ params }) {
   return (
     <Page>
       <Stack gap="md">
-        <InvoiceEditorView mode="edit" />
+        <Suspense fallback={<Text>Loading…</Text>}>
+          <InvoiceEditServer params={params} />
+        </Suspense>
       </Stack>
     </Page>
   )
