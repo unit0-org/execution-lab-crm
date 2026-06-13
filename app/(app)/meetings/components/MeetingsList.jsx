@@ -1,10 +1,7 @@
 'use client'
 
 import { MeetingsTable } from './MeetingsTable'
-import { MeetingsSkeleton } from './MeetingsSkeleton'
 
-export function MeetingsList({ loading, meetings }) {
-  if (loading) return <MeetingsSkeleton />
-
+export function MeetingsList({ meetings }) {
   return <MeetingsTable meetings={meetings} />
 }

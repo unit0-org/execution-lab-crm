@@ -1,11 +1,8 @@
 'use client'
 
 import { InvoicesTable } from './InvoicesTable'
-import { InvoicesSkeleton } from './InvoicesSkeleton'
 
-export function InvoicesList({ loading, invoices, selection, onChanged }) {
-  if (loading) return <InvoicesSkeleton />
-
+export function InvoicesList({ invoices, selection, onChanged }) {
   return <InvoicesTable invoices={invoices} selection={selection}
     onChanged={onChanged} />
 }

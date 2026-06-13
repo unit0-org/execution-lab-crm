@@ -22,7 +22,7 @@ export function ContactsView({ filter, initialContacts }) {
       </Inline>
       <ContactsToolbar contacts={v.contacts} selection={v.selection}
         cats={v.cats} onChanged={v.reload} />
-      <ContactsBody loading={false} contacts={v.search.results}
+      <ContactsBody contacts={v.search.results}
         selection={v.selection} onChanged={v.reload} />
     </>
   )

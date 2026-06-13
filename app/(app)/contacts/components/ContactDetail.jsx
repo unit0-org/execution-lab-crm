@@ -7,7 +7,7 @@ import { ContactNotes } from './ContactNotes'
 import { ContactRelationships } from './ContactRelationships'
 import { Timeline } from './Timeline'
 
-export function ContactDetail({ contact, onChanged }) {
+export function ContactDetail({ contact, onChanged, sections }) {
   const id = contact.id
 
   return (
@@ -15,10 +15,11 @@ export function ContactDetail({ contact, onChanged }) {
       <ContactHeader contact={contact} onChanged={onChanged} />
       <TotalSpent contactId={id} />
       <ContactChannels contact={contact} onChanged={onChanged} />
-      <ContactAnswers contactId={id} />
-      <ContactNotes contactId={id} />
-      <ContactRelationships contactId={id} />
-      <Timeline contactId={id} />
+      <ContactAnswers contactId={id} initial={sections.answers} />
+      <ContactNotes contactId={id} initial={sections.notes} />
+      <ContactRelationships contactId={id}
+        initial={sections.relationships} />
+      <Timeline entries={sections.timeline} />
     </Stack>
   )
 }

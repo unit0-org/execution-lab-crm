@@ -1,11 +1,8 @@
 'use client'
 
 import { ContactList } from './ContactList'
-import { ContactListSkeleton } from './ContactListSkeleton'
 
-export function ContactsBody({ loading, contacts, selection, onChanged }) {
-  if (loading) return <ContactListSkeleton />
-
+export function ContactsBody({ contacts, selection, onChanged }) {
   return (
     <ContactList contacts={contacts} selection={selection}
       onChanged={onChanged} />

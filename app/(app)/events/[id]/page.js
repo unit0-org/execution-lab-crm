@@ -1,12 +1,12 @@
 import { Page } from '@/ui/layout/Page'
 import { Stack } from '@/ui/layout/Stack'
-import { EventDetailView } from '../components/EventDetailView'
+import { EventDetailServer } from './EventDetailServer'
 
-export default function EventPage() {
+export default function EventPage({ params }) {
   return (
     <Page>
       <Stack gap="md">
-        <EventDetailView />
+        <EventDetailServer params={params} />
       </Stack>
     </Page>
   )

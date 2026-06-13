@@ -1,13 +1,8 @@
-'use client'
-
 import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
-import { useAttendees } from '../hooks/useAttendees'
 import { AttendeeBody } from './AttendeeBody'
 
-export function AttendeeList({ eventId }) {
-  const attendees = useAttendees(eventId)
-
+export function AttendeeList({ attendees }) {
   return (
     <Stack gap="sm">
       <Heading level={3}>Attendees</Heading>

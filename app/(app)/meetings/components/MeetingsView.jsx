@@ -19,7 +19,7 @@ export function MeetingsView({ initialMeetings }) {
       <SyncStatus lastSyncedAt={sync.lastSyncedAt} syncing={sync.syncing}
         onForce={sync.force} />
       <MergeSuggestions suggestions={suggestions.items} onChanged={onMerged} />
-      <MeetingsList loading={meetings.loading} meetings={meetings.meetings} />
+      <MeetingsList meetings={meetings.meetings} />
       <NewMeetingModal open={modal.open} onClose={modal.hide}
         onCreated={onCreated} />
     </Stack>

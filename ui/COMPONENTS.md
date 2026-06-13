@@ -52,6 +52,7 @@ Conventions (from `AGENTS.md`):
 | `MonoLabel` | `tone='muted'`, `size=11`, `caps`, `align`, `children` | Monospaced micro-label/kicker; `tone` picks a brand/neutral color, `align` blocks + aligns (portal) |
 | `MonoLink` | `href`, `size=11`, `underline`, `children` | Monospaced accent link, opens a new tab (portal) |
 | `NavIcon` / `NavLink` | `icon` / `href`, `active`, `icon`, `children` | Sidebar navigation entries |
+| `NavProgress` | — | Fixed top progress bar shown while a `Link` navigation is pending; rendered inside the link atoms, not used directly |
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`) |
 | `ProgressBar` | — | Indeterminate top-of-page progress |
 | `Radio` | `checked`, `onChange`, `label` | Single radio option |

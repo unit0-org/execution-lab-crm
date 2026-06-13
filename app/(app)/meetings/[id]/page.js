@@ -1,12 +1,12 @@
 import { Page } from '@/ui/layout/Page'
 import { Stack } from '@/ui/layout/Stack'
-import { MeetingDetailView } from '../components/MeetingDetailView'
+import { MeetingDetailServer } from './MeetingDetailServer'
 
-export default function MeetingPage() {
+export default function MeetingPage({ params }) {
   return (
     <Page>
       <Stack gap="md">
-        <MeetingDetailView />
+        <MeetingDetailServer params={params} />
       </Stack>
     </Page>
   )

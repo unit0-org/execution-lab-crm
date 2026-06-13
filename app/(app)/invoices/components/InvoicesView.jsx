@@ -19,7 +19,7 @@ export function InvoicesView({ initialInvoices }) {
       <SectionHeader title="Invoices" addLabel="New invoice" onAdd={onAdd} />
       <InvoicesToolbar invoices={invoices} selection={selection}
         onChanged={reload} />
-      <InvoicesList loading={false} invoices={invoices}
+      <InvoicesList invoices={invoices}
         selection={selection} onChanged={reload} />
     </Stack>
   )

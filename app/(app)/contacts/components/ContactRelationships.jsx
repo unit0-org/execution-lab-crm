@@ -7,8 +7,8 @@ import { RelationshipHeader } from './RelationshipHeader'
 import { AddRelationshipModal } from './AddRelationshipModal'
 import { RelationshipsBody } from './RelationshipsBody'
 
-export function ContactRelationships({ contactId }) {
-  const { relationships, reload } = useRelationships(contactId)
+export function ContactRelationships({ contactId, initial }) {
+  const { relationships, reload } = useRelationships(contactId, initial)
   const add = useReveal()
 
   const saved = () => {
