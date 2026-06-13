@@ -210,6 +210,11 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
    so the collapsed width is already correct on first render (no flash). */
 [data-sidebar] {
   width: 260px;
+  /* Sit above the main area's sticky topbar (z-index 10) so the sidebar's
+     protruding collapse toggle isn't painted over. The mobile rule below
+     overrides position to a fixed drawer. */
+  position: relative;
+  z-index: 15;
   transition: width var(--motion-soft) var(--motion-ease);
 }
 .sidebar-collapsed [data-sidebar] { width: 68px; }
