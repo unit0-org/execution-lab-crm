@@ -1,9 +1,9 @@
 'use server'
 
 import { getContact } from '@/lib/contact/controllers/get'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const getContactAction = withOrg(
-  (organizationId, id) => getContact(organizationId, id),
+export const getContactAction = withMember(
+  (id) => getContact(id),
   null
 )

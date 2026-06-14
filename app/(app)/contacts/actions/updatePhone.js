@@ -1,10 +1,10 @@
 'use server'
 
 import { updatePhone } from '@/lib/contact/controllers/updatePhone'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const updatePhoneAction = withOrg(
-  (organizationId, formData) =>
-    updatePhone(organizationId, formData.get('id'),
+export const updatePhoneAction = withMember(
+  (formData) =>
+    updatePhone(formData.get('id'),
       formData.get('value'))
 )

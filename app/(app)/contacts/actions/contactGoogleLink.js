@@ -1,7 +1,7 @@
 'use server'
 
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 import { contactGoogleLink }
   from '@/lib/google/controllers/contactGoogleLink'
 
-export const contactGoogleLinkAction = withOrg(contactGoogleLink, null)
+export const contactGoogleLinkAction = withMember(contactGoogleLink, null)

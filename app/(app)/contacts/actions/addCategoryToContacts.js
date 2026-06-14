@@ -2,9 +2,9 @@
 
 import { addCategoryToContacts }
   from '@/lib/contact/controllers/addCategoryToContacts'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const addCategoryToContactsAction = withOrg(
-  (organizationId, contactIds, categoryId) =>
-    addCategoryToContacts(organizationId, contactIds, categoryId)
+export const addCategoryToContactsAction = withMember(
+  (contactIds, categoryId) =>
+    addCategoryToContacts(contactIds, categoryId)
 )

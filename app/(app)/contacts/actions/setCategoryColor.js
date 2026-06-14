@@ -1,9 +1,9 @@
 'use server'
 
 import { setCategoryColor } from '@/lib/contact/controllers/setCategoryColor'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const setCategoryColorAction = withOrg(
-  (organizationId, id, color) =>
-    setCategoryColor(organizationId, id, color)
+export const setCategoryColorAction = withMember(
+  (id, color) =>
+    setCategoryColor(id, color)
 )

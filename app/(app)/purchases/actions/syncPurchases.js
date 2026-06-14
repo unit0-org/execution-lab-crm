@@ -2,15 +2,12 @@
 
 import { syncPurchases } from '@/lib/purchase/controllers/syncPurchases'
 import { stripeApiKey } from '@/lib/stripe/stripeApiKey'
-import { currentMembership } from '@/lib/org/controllers/currentMembership'
+import { withMember } from '@/lib/auth/withMember'
 
-export async function syncPurchasesAction(force) {
+export const syncPurchasesAction = withMember(async (force) => {
   try {
-    const member = await currentMembership()
-    const org = member?.organizationId
-
-    return await syncPurchases(force, stripeApiKey(), org)
+    return await syncPurchases(force, stripeApiKey())
   } catch (e) {
     return { error: e.message }
   }
-}
+})

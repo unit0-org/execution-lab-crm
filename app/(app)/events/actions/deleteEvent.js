@@ -1,8 +1,8 @@
 'use server'
 
 import { deleteEvent } from '@/lib/event/controllers/deleteEvent'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const deleteEventAction = withOrg(
-  (organizationId, id) => deleteEvent(organizationId, id)
+export const deleteEventAction = withMember(
+  (id) => deleteEvent(id)
 )

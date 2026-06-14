@@ -4,4 +4,5 @@ import { withAdmin } from '@/lib/auth/withAdmin'
 import { setContactsSyncEnabled }
   from '@/lib/google/controllers/setContactsSyncEnabled'
 
-export const setSyncEnabledAction = withAdmin(setContactsSyncEnabled)
+export const setSyncEnabledAction =
+  withAdmin((_org, id, enabled) => setContactsSyncEnabled(id, enabled))

@@ -1,17 +1,13 @@
-import { syncEnabledOrgIds, syncContactsForOrg }
-  from '@/lib/google/contacts'
+import { syncContacts } from '@/lib/google/contacts'
 import { authorizeCron } from './authorizeCron'
 
 const UNAUTHORIZED = new Response('unauthorized', { status: 401 })
 
-// Daily cron: sync Google Contacts for every org that has it enabled.
+// Daily cron: sync Google Contacts for every enabled account.
 export async function GET(request) {
   if (!authorizeCron(request)) return UNAUTHORIZED
 
-  const orgIds = await syncEnabledOrgIds()
+  const result = await syncContacts()
 
-  for (const orgId of orgIds)
-    await syncContactsForOrg(orgId)
-
-  return Response.json({ ok: true, orgs: orgIds.length })
+  return Response.json({ ok: true, ...result })
 }

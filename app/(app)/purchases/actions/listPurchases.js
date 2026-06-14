@@ -1,9 +1,9 @@
 'use server'
 
 import { listPurchases } from '@/lib/purchase/controllers/listPurchases'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const listPurchasesAction = withOrg(
-  (organizationId, window) => listPurchases(organizationId, window),
+export const listPurchasesAction = withMember(
+  (window) => listPurchases(window),
   []
 )

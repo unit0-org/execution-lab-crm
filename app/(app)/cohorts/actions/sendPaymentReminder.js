@@ -1,9 +1,9 @@
 'use server'
 
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 import { sendPaymentReminder } from '@/lib/registration/controllers'
 
-export const sendPaymentReminderAction = withOrg(
-  (organizationId, registrationId) =>
-    sendPaymentReminder(organizationId, registrationId)
+export const sendPaymentReminderAction = withMember(
+  (registrationId) =>
+    sendPaymentReminder(registrationId)
 )

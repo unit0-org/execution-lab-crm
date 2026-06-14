@@ -1,9 +1,9 @@
 'use server'
 
 import { listNotes } from '@/lib/contact/controllers/listNotes'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const listNotesAction = withOrg(
-  (organizationId, contactId) => listNotes(organizationId, contactId),
+export const listNotesAction = withMember(
+  (contactId) => listNotes(contactId),
   []
 )

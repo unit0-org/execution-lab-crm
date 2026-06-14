@@ -1,9 +1,9 @@
 'use server'
 
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 import { listWaitlist } from '@/lib/waitlist/controllers'
 
-export const listWaitlistAction = withOrg(
-  (organizationId) => listWaitlist(organizationId),
+export const listWaitlistAction = withMember(
+  () => listWaitlist(),
   []
 )

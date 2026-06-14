@@ -3,4 +3,5 @@
 import { withAdmin } from '@/lib/auth/withAdmin'
 import { listConflicts } from '@/lib/google/controllers/listConflicts'
 
-export const listConflictsAction = withAdmin(listConflicts, [])
+export const listConflictsAction =
+  withAdmin((_org) => listConflicts(), [])

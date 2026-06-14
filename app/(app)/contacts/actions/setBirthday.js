@@ -1,7 +1,7 @@
 'use server'
 
 import { setBirthday } from '@/lib/contact/controllers/setBirthday'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
 const toNumber = (value) => {
   const raw = (value || '').trim()
@@ -11,8 +11,8 @@ const toNumber = (value) => {
   return Number(raw)
 }
 
-export const setBirthdayAction = withOrg(
-  async (organizationId, formData) => {
+export const setBirthdayAction = withMember(
+  async (formData) => {
     const id = formData.get('id')
     const parts = {
       birth_day: toNumber(formData.get('birth_day')),
@@ -20,6 +20,6 @@ export const setBirthdayAction = withOrg(
       birth_year: toNumber(formData.get('birth_year'))
     }
 
-    return setBirthday(organizationId, id, parts)
+    return setBirthday(id, parts)
   }
 )

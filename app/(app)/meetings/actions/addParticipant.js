@@ -1,10 +1,10 @@
 'use server'
 
 import { addParticipant } from '@/lib/meeting/controllers/addParticipant'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const addParticipantAction = withOrg((organizationId, formData) => {
+export const addParticipantAction = withMember((formData) => {
   const meetingId = formData.get('meeting_id')
 
-  return addParticipant(organizationId, meetingId, formData.get('email'))
+  return addParticipant(meetingId, formData.get('email'))
 })

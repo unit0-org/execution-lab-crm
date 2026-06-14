@@ -1,8 +1,8 @@
 'use server'
 
 import { dismissSuggestion } from '@/lib/meeting/controllers/dismissSuggestion'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const dismissSuggestionAction = withOrg(
-  (_organizationId, id) => dismissSuggestion(id)
+export const dismissSuggestionAction = withMember(
+  (id) => dismissSuggestion(id)
 )

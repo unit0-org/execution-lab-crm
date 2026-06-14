@@ -1,11 +1,11 @@
 'use server'
 
 import { createMeeting } from '@/lib/meeting/controllers/createMeeting'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const createMeetingAction = withOrg(
-  async (organizationId, formData) => {
-    const result = await createMeeting(organizationId, {
+export const createMeetingAction = withMember(
+  async (formData) => {
+    const result = await createMeeting({
       title: formData.get('title'),
       starts_at: formData.get('starts_at') || null,
       ends_at: formData.get('ends_at') || null,

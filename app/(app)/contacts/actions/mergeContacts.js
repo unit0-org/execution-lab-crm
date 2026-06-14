@@ -1,9 +1,9 @@
 'use server'
 
 import { mergeContacts } from '@/lib/contact/controllers/merge'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const mergeContactsAction = withOrg(
-  (organizationId, winnerId, loserIds) =>
-    mergeContacts(organizationId, winnerId, loserIds)
+export const mergeContactsAction = withMember(
+  (winnerId, loserIds) =>
+    mergeContacts(winnerId, loserIds)
 )

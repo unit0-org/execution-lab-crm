@@ -1,10 +1,10 @@
 'use server'
 
 import { dashboardSummary } from '@/lib/dashboard/controllers/dashboardSummary'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 import { emptySummary } from './emptySummary'
 
-export const dashboardSummaryAction = withOrg(
-  (organizationId) => dashboardSummary(organizationId),
+export const dashboardSummaryAction = withMember(
+  () => dashboardSummary(),
   emptySummary()
 )
