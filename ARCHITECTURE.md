@@ -26,9 +26,13 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `lib/db/sequelize.js`). No raw SQL in app code.
 - **`supabase-js` is for Auth only**, never for data. The signed-in user
   comes from `lib/auth/`.
-- **Single-tenant** (PR #237). `organization_id` columns remain and every
-  query still scopes by org, but there is one real org; `organization` is
-  kept mainly for invites. Secrets live in env, not the DB.
+- **Single-tenant** (PR #237). There is one real org. `organization_id`
+  has been dropped from the domain entities (contact, cohort, event,
+  meeting, registration, waitlist, google sync, purchase, …); only
+  **billing** (`invoice`, `invoice_setting`, `company_profile`) and **org
+  membership** (`organization`, `organization_user`) still carry it. Those
+  billing/membership actions use `withOrg` (injects the org id);
+  everything else uses `withMember` (auth gate only). Secrets live in env.
 - **Stripe** for payments (cohort checkout, invoices, purchase sync),
   **Google** for contacts + calendar sync, **Resend** for email.
 - **Money is always CAD.** `formatMoney` defaults to `cad`; never display

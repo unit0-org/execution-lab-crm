@@ -1,10 +1,10 @@
 'use server'
 
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 import { listCohortRegistrations } from '@/lib/registration/controllers'
 
-export const listCohortRegistrationsAction = withOrg(
-  (organizationId, cohortId) =>
-    listCohortRegistrations(organizationId, cohortId),
+export const listCohortRegistrationsAction = withMember(
+  (cohortId) =>
+    listCohortRegistrations(cohortId),
   []
 )

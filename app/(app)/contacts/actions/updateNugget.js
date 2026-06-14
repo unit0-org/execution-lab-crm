@@ -1,11 +1,11 @@
 'use server'
 
 import { updateFact } from '@/lib/contact/controllers/updateFact'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const updateNuggetAction = withOrg((organizationId, formData) => {
+export const updateNuggetAction = withMember((formData) => {
   const id = formData.get('id')
   const label = formData.get('label')
 
-  return updateFact(organizationId, id, label, formData.get('value'))
+  return updateFact(id, label, formData.get('value'))
 })

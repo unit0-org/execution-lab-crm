@@ -1,9 +1,9 @@
 'use server'
 
 import { contactNuggets } from '@/lib/contact/controllers/contactNuggets'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const contactAnswersAction = withOrg(
-  (organizationId, contactId) => contactNuggets(organizationId, contactId),
+export const contactAnswersAction = withMember(
+  (contactId) => contactNuggets(contactId),
   []
 )

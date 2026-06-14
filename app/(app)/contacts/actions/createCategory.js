@@ -1,9 +1,9 @@
 'use server'
 
 import { createCategory } from '@/lib/contact/controllers/createCategory'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const createCategoryAction = withOrg(
-  (organizationId, name, color) =>
-    createCategory(organizationId, name, color)
+export const createCategoryAction = withMember(
+  (name, color) =>
+    createCategory(name, color)
 )

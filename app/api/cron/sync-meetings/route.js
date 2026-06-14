@@ -12,8 +12,8 @@ export async function GET(request) {
 
   const accounts = await syncableMeetingAccounts()
 
-  for (const { organization_id, email } of accounts)
-    await syncMeetings(organization_id, email, true)
+  for (const { email } of accounts)
+    await syncMeetings(email, true)
 
   return Response.json({ ok: true, accounts: accounts.length })
 }

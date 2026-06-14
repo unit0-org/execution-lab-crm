@@ -1,10 +1,10 @@
 'use server'
 
 import { listRelationships } from '@/lib/contact/controllers/listRelationships'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const listRelationshipsAction = withOrg(
-  (organizationId, contactId) =>
-    listRelationships(organizationId, contactId),
+export const listRelationshipsAction = withMember(
+  (contactId) =>
+    listRelationships(contactId),
   []
 )

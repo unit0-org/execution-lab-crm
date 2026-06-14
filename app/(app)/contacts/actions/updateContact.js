@@ -1,13 +1,13 @@
 'use server'
 
 import { updateContact } from '@/lib/contact/controllers/update'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const updateContactAction = withOrg(
-  async (organizationId, formData) => {
+export const updateContactAction = withMember(
+  async (formData) => {
     const id = formData.get('id')
     const value = formData.get('value') || null
-    await updateContact(organizationId, id, { [formData.get('field')]: value })
+    await updateContact(id, { [formData.get('field')]: value })
 
     return { ok: true }
   }

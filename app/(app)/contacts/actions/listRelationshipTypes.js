@@ -2,9 +2,9 @@
 
 import { listRelationshipTypes }
   from '@/lib/contact/controllers/listRelationshipTypes'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const listRelationshipTypesAction = withOrg(
-  (organizationId) => listRelationshipTypes(organizationId),
+export const listRelationshipTypesAction = withMember(
+  () => listRelationshipTypes(),
   []
 )

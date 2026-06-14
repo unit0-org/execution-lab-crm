@@ -2,10 +2,10 @@
 
 import { parseCsv } from '@/lib/luma/controllers/parseCsv'
 import { importIntoEvent } from '@/lib/luma/controllers/importIntoEvent'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const importIntoEventAction = withOrg(
-  async (organizationId, formData) => {
+export const importIntoEventAction = withMember(
+  async (formData) => {
     const file = formData.get('file')
     const eventId = formData.get('eventId')
 
@@ -14,6 +14,6 @@ export const importIntoEventAction = withOrg(
     const text = await file.text()
     const rows = parseCsv(text)
 
-    return importIntoEvent(organizationId, eventId, rows)
+    return importIntoEvent(eventId, rows)
   }
 )

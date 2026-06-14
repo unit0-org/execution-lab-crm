@@ -1,9 +1,9 @@
 'use server'
 
 import { listMeetings } from '@/lib/meeting/controllers/listMeetings'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const listMeetingsAction = withOrg(
-  (organizationId) => listMeetings(organizationId),
+export const listMeetingsAction = withMember(
+  () => listMeetings(),
   []
 )

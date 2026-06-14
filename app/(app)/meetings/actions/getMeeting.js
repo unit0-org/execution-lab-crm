@@ -1,9 +1,9 @@
 'use server'
 
 import { getMeetingDetail } from '@/lib/meeting/controllers/getMeetingDetail'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const getMeetingAction = withOrg(
-  (organizationId, id) => getMeetingDetail(organizationId, id),
+export const getMeetingAction = withMember(
+  (id) => getMeetingDetail(id),
   null
 )

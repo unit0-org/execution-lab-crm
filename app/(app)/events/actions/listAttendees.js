@@ -2,11 +2,11 @@
 
 import { listAttendees } from '@/lib/event/controllers/listAttendees'
 import { getEventDetail } from '@/lib/event/controllers/getEventDetail'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const listAttendeesAction = withOrg(
-  async (organizationId, id) => {
-    const event = await getEventDetail(organizationId, id)
+export const listAttendeesAction = withMember(
+  async (id) => {
+    const event = await getEventDetail(id)
 
     if (!event) return []
 

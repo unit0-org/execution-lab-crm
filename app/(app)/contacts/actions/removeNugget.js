@@ -1,9 +1,9 @@
 'use server'
 
 import { removeFact } from '@/lib/contact/controllers/removeFact'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const removeNuggetAction = withOrg(
-  (organizationId, formData) =>
-    removeFact(organizationId, formData.get('id'))
+export const removeNuggetAction = withMember(
+  (formData) =>
+    removeFact(formData.get('id'))
 )

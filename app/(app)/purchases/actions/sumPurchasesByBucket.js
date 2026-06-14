@@ -1,11 +1,10 @@
 'use server'
 
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 import { sumPurchasesByBucket }
   from '@/lib/purchase/controllers/sumPurchasesByBucket'
 
-export const sumPurchasesByBucketAction = withOrg(
-  (organizationId, window, grain) =>
-    sumPurchasesByBucket(organizationId, window, grain),
+export const sumPurchasesByBucketAction = withMember(
+  (window, grain) => sumPurchasesByBucket(window, grain),
   []
 )

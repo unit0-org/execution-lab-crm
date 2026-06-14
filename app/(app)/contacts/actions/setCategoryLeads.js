@@ -1,9 +1,9 @@
 'use server'
 
 import { setCategoryLeads } from '@/lib/contact/controllers/setCategoryLeads'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const setCategoryLeadsAction = withOrg(
-  (organizationId, id, includeInLeads) =>
-    setCategoryLeads(organizationId, id, includeInLeads)
+export const setCategoryLeadsAction = withMember(
+  (id, includeInLeads) =>
+    setCategoryLeads(id, includeInLeads)
 )

@@ -1,9 +1,9 @@
 'use server'
 
 import { listEvents } from '@/lib/event/controllers/listEvents'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const listEventsAction = withOrg(
-  (organizationId) => listEvents(organizationId),
+export const listEventsAction = withMember(
+  () => listEvents(),
   []
 )

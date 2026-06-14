@@ -1,11 +1,11 @@
 'use server'
 
 import { addFact } from '@/lib/contact/controllers/addFact'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const addNuggetAction = withOrg((organizationId, formData) => {
+export const addNuggetAction = withMember((formData) => {
   const contactId = formData.get('contact_id')
   const label = formData.get('label')
 
-  return addFact(organizationId, contactId, label, formData.get('value'))
+  return addFact(contactId, label, formData.get('value'))
 })

@@ -2,9 +2,9 @@
 
 import { removeRelationship }
   from '@/lib/contact/controllers/removeRelationship'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const removeRelationshipAction = withOrg(
-  (organizationId, formData) =>
-    removeRelationship(organizationId, formData.get('id'))
+export const removeRelationshipAction = withMember(
+  (formData) =>
+    removeRelationship(formData.get('id'))
 )

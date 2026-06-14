@@ -2,9 +2,9 @@
 
 import { removeCategoryFromContacts }
   from '@/lib/contact/controllers/removeCategoryFromContacts'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const removeCategoryFromContactsAction = withOrg(
-  (organizationId, contactIds, categoryId) =>
-    removeCategoryFromContacts(organizationId, contactIds, categoryId)
+export const removeCategoryFromContactsAction = withMember(
+  (contactIds, categoryId) =>
+    removeCategoryFromContacts(contactIds, categoryId)
 )

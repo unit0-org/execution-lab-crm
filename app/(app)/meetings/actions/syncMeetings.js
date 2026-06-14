@@ -2,14 +2,14 @@
 
 import { syncMeetings } from '@/lib/meeting/controllers/syncMeetings'
 import { getCurrentUserAction } from '@/app/(app)/actions/getCurrentUser'
-import { withOrg } from '@/lib/auth/withOrg'
+import { withMember } from '@/lib/auth/withMember'
 
-export const syncMeetingsAction = withOrg(
-  async (organizationId, force) => {
+export const syncMeetingsAction = withMember(
+  async (force) => {
     const { email } = await getCurrentUserAction()
 
     if (!email) return { error: 'not_authenticated' }
 
-    return syncMeetings(organizationId, email, force)
+    return syncMeetings(email, force)
   }
 )

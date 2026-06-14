@@ -18,7 +18,7 @@ export async function POST(request) {
       await handlePaidCharge(found.event.data.object, found.organizationId)
 
     if (found.event.type === CHECKOUT)
-      await handlePaidCheckout(found.event.data.object, found.organizationId)
+      await handlePaidCheckout(found.event.data.object)
   } catch (e) {
     return new Response(e.message, { status: 400 })
   }
