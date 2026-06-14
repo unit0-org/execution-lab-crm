@@ -168,8 +168,12 @@ them (so adding one never renumbers the rest).
   pushing a change that could lose or corrupt data — schema restructures,
   data migrations, bulk merges/deletes, contact-merge changes, or any
   large/uncertain refactor touching the data layer — run
-  `pnpm backup:db` (`./scripts/backup-db.sh`) first. It writes a gzipped
-  `pg_dump` to `backups/` (gitignored). When in doubt, back up.
+  `pnpm backup:db` (`./scripts/backup-db.sh`) first. When in doubt, back up.
+- **NEVER commit a database dump — it holds customer PII.** `backup:db`
+  writes the gzipped `pg_dump` OUTSIDE the repo (`~/crm-db-backups`) so it
+  can't be staged; upload it to the team Google Drive, then delete the
+  local copy. If a dump ever lands in a commit, remove it and force-push
+  before the branch is shared; treat the data as exposed.
 - CI (lint + build) must be green; that check gates merging.
 - **Offer it to the MCP.** Whenever you add an operation — a new `lib/`
   controller or server action that reads or writes data — ask whether it
