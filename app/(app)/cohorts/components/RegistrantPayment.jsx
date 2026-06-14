@@ -1,11 +1,11 @@
 import { Stack } from '@/ui/layout/Stack'
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { MetaRow } from '@/ui/molecules/MetaRow'
-import { paymentRows } from './paymentRows'
+import { buildPaymentRows } from './buildPaymentRows'
 
 // The registrant's payment summary: status, amount, discount and dates.
 export function RegistrantPayment({ registration }) {
-  const rows = paymentRows(registration)
+  const rows = buildPaymentRows(registration)
 
   return (
     <Stack gap="sm">

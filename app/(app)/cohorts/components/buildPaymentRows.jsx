@@ -3,7 +3,8 @@ import { formatDollars } from '@/lib/portal/formatDollars'
 import { PaymentStatus } from './PaymentStatus'
 
 // Label/value rows for a registrant's payment, dropping the empty ones.
-export function paymentRows(r) {
+export function buildPaymentRows(registration) {
+  const r = registration
   const amount = r.amount_total ? formatDollars(r.amount_total) : null
   const discount = r.discount_total ? formatDollars(r.discount_total) : null
   const paid = r.paid_at ? <DateText value={r.paid_at} /> : null

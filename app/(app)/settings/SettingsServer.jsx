@@ -9,9 +9,9 @@ import { SettingsTabPanel } from './SettingsTabPanel'
 // Gate settings to org admins (a real 403), then render the active tab
 // server-side, keyed on the ?tab search param.
 export async function SettingsServer({ searchParams }) {
-  const m = await currentMembership()
+  const membership = await currentMembership()
 
-  if (m?.role !== 'admin') forbidden()
+  if (membership?.role !== 'admin') forbidden()
 
   const { tab } = await searchParams
   const active = tab || 'members'
@@ -21,7 +21,8 @@ export async function SettingsServer({ searchParams }) {
       <Heading>Settings</Heading>
       <Tabs tabs={SETTINGS_TABS} active={active}
         basePath="/settings" param="tab" />
-      <SettingsTabPanel tab={active} organizationId={m.organizationId} />
+      <SettingsTabPanel tab={active}
+        organizationId={membership.organizationId} />
     </Stack>
   )
 }
