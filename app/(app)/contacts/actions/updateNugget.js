@@ -1,6 +1,6 @@
 'use server'
 
-import { updateFact } from '@/lib/contacts/updateFact'
+import { updateFact } from '@/lib/contact/controllers/updateFact'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const updateNuggetAction = withOrg((organizationId, formData) => {

@@ -1,6 +1,6 @@
 'use server'
 
-import { addPhone } from '@/lib/contacts/addPhone'
+import { addPhone } from '@/lib/contact/controllers/addPhone'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const addPhoneAction = withOrg((organizationId, formData) => {

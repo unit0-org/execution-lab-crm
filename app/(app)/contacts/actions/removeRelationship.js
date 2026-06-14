@@ -1,6 +1,7 @@
 'use server'
 
-import { removeRelationship } from '@/lib/contacts/removeRelationship'
+import { removeRelationship }
+  from '@/lib/contact/controllers/removeRelationship'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const removeRelationshipAction = withOrg(

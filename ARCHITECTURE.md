@@ -85,8 +85,8 @@ leaves this stale is incomplete (this is a review-enforced rule in
 
 ## Invariant: contact merge must fold in every contact-owned table
 
-`lib/contacts/merge.js` → `applyMerge.js` folds all of a loser contact's
-data into the winner inside one transaction, then deletes the losers.
+`lib/contact/controllers/merge.js` → `applyMerge.js` folds all of a loser
+contact's data into the winner inside one transaction, then deletes them.
 **This is the #1 trap:** deleting a contact triggers FK rules, so any
 table that references `contact_id` and isn't explicitly reassigned is
 either **CASCADE-deleted** (data lost) or **SET NULL** (orphaned) when the
@@ -151,9 +151,9 @@ file trails for the flows you'll touch most — follow them top to bottom.
 
 - **Contact merge** — `app/(app)/contacts/components/ContactsToolbar.jsx`
   (`hooks/useMergeFlow.js`) → `actions/mergeContacts.js` →
-  `lib/contacts/merge.js` (opens the transaction) → `applyMerge.js` (folds
-  each contact-owned table — see the merge invariant table above) →
-  `Contact.destroy`.
+  `lib/contact/controllers/merge.js` (opens the transaction) →
+  `applyMerge.js` (folds each contact-owned table — see the merge invariant
+  table above) → `Contact.destroy`.
 - **Invoice create** — `app/(app)/invoices/new/page.js` →
   `components/InvoiceEditor.jsx` (`hooks/useInvoiceEditor.js` →
   `useSubmitInvoice.js`) → `actions/createInvoice.js` →

@@ -1,6 +1,6 @@
 'use server'
 
-import { addRelationship } from '@/lib/contacts/addRelationship'
+import { addRelationship } from '@/lib/contact/controllers/addRelationship'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const addRelationshipAction = withOrg((organizationId, formData) => {

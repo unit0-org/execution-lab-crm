@@ -1,8 +1,8 @@
 'use server'
 
 import { redirect } from 'next/navigation'
-import { createContact } from '@/lib/contacts/create'
-import { readContactForm } from '@/lib/contacts/form'
+import { createContact } from '@/lib/contact/controllers/create'
+import { readContactForm } from '@/lib/contact/controllers/form'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const createContactAction = withOrg(

@@ -1,6 +1,6 @@
 'use server'
 
-import { removePhone } from '@/lib/contacts/removePhone'
+import { removePhone } from '@/lib/contact/controllers/removePhone'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const removePhoneAction = withOrg(

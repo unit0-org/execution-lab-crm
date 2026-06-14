@@ -1,6 +1,6 @@
 'use server'
 
-import { removeNote } from '@/lib/contacts/removeNote'
+import { removeNote } from '@/lib/contact/controllers/removeNote'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const removeNoteAction = withOrg(

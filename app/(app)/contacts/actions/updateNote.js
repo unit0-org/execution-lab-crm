@@ -1,6 +1,6 @@
 'use server'
 
-import { updateNote } from '@/lib/contacts/updateNote'
+import { updateNote } from '@/lib/contact/controllers/updateNote'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const updateNoteAction = withOrg((organizationId, formData) => {
