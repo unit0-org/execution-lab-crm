@@ -53,5 +53,5 @@ next-env.d.ts
 
 .backup/
 
-# Local database backups (never commit dumps — they hold customer PII)
+# Local database backups (never commit dumps)
 backups/

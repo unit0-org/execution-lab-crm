@@ -164,6 +164,12 @@ them (so adding one never renumbers the rest).
 - **Every change ships via a small, easy-to-review PR.** Open it as soon as
   the feature or request is complete — don't wait to be asked.
 - **Never push directly to `main`.**
+- **Back up the database before anything dangerous or complicated.** Before
+  pushing a change that could lose or corrupt data — schema restructures,
+  data migrations, bulk merges/deletes, contact-merge changes, or any
+  large/uncertain refactor touching the data layer — run
+  `pnpm backup:db` (`./scripts/backup-db.sh`) first. It writes a gzipped
+  `pg_dump` to `backups/` (gitignored). When in doubt, back up.
 - CI (lint + build) must be green; that check gates merging.
 - **Offer it to the MCP.** Whenever you add an operation — a new `lib/`
   controller or server action that reads or writes data — ask whether it
