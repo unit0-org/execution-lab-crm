@@ -144,6 +144,27 @@ payment). This single query feeds the portal scarcity label, sold-out /
 `cohortIsFull` checks, and waitlist openings — change the rule there, not
 in each view.
 
+## Flow maps (which file does each step)
+
+Because files are small, one user action spans many of them. These are the
+file trails for the flows you'll touch most — follow them top to bottom.
+
+- **Contact merge** — `app/(app)/contacts/components/ContactsToolbar.jsx`
+  (`hooks/useMergeFlow.js`) → `actions/mergeContacts.js` →
+  `lib/contacts/merge.js` (opens the transaction) → `applyMerge.js` (folds
+  each contact-owned table — see the merge invariant table above) →
+  `Contact.destroy`.
+- **Invoice create** — `app/(app)/invoices/new/page.js` →
+  `components/InvoiceEditor.jsx` (`hooks/useInvoiceEditor.js` →
+  `useSubmitInvoice.js`) → `actions/createInvoice.js` →
+  `lib/invoice/controllers/createInvoice.js` (assigns the number, writes
+  line items, recalculates totals) → models.
+- **Registration → contact** — `app/portal/actions/registerAndCheckout.js`
+  → `lib/registration/controllers/createPendingRegistration.js` →
+  `syncRegistrationContact.js` → `linkRegistrationContact` +
+  `mapRegistrationToContact` + `recordRegistrationFacts` +
+  `tagCohortContact` (see the registration invariant above).
+
 ## Key flows
 
 - **Cohort registration:** portal `registerAndCheckout` →
