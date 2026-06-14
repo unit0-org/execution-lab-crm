@@ -1,6 +1,6 @@
 'use server'
 
-import { listContacts } from '@/lib/contacts/list'
+import { listContacts } from '@/lib/contact/controllers/list'
 import { withOrg } from '@/lib/auth/withOrg'
 
 // Contacts for the attendee autocomplete (names + emails).

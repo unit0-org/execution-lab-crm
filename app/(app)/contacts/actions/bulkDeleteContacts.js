@@ -1,6 +1,6 @@
 'use server'
 
-import { deleteContacts } from '@/lib/contacts/removeMany'
+import { deleteContacts } from '@/lib/contact/controllers/removeMany'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const bulkDeleteContactsAction = withOrg(

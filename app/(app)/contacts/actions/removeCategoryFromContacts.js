@@ -1,7 +1,7 @@
 'use server'
 
 import { removeCategoryFromContacts }
-  from '@/lib/contacts/removeCategoryFromContacts'
+  from '@/lib/contact/controllers/removeCategoryFromContacts'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const removeCategoryFromContactsAction = withOrg(

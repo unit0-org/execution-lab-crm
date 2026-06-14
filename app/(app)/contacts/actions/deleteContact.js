@@ -1,7 +1,7 @@
 'use server'
 
 import { redirect } from 'next/navigation'
-import { deleteContact } from '@/lib/contacts/remove'
+import { deleteContact } from '@/lib/contact/controllers/remove'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const deleteContactAction = withOrg(

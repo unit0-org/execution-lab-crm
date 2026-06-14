@@ -1,6 +1,6 @@
 'use server'
 
-import { mergeContacts } from '@/lib/contacts/merge'
+import { mergeContacts } from '@/lib/contact/controllers/merge'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const mergeContactsAction = withOrg(

@@ -1,6 +1,7 @@
 'use server'
 
-import { listRelationshipTypes } from '@/lib/contacts/listRelationshipTypes'
+import { listRelationshipTypes }
+  from '@/lib/contact/controllers/listRelationshipTypes'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const listRelationshipTypesAction = withOrg(

@@ -1,6 +1,7 @@
 'use server'
 
-import { setContactCategories } from '@/lib/contacts/setContactCategories'
+import { setContactCategories }
+  from '@/lib/contact/controllers/setContactCategories'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const setContactCategoriesAction = withOrg(

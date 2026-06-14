@@ -1,6 +1,6 @@
 'use server'
 
-import { createContact } from '@/lib/contacts/create'
+import { createContact } from '@/lib/contact/controllers/create'
 import { withOrg } from '@/lib/auth/withOrg'
 
 const fullName = (first, last) =>

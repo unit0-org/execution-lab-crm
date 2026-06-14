@@ -1,6 +1,6 @@
 'use server'
 
-import { updatePhone } from '@/lib/contacts/updatePhone'
+import { updatePhone } from '@/lib/contact/controllers/updatePhone'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const updatePhoneAction = withOrg(

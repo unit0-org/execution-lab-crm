@@ -1,6 +1,6 @@
 'use server'
 
-import { setBirthday } from '@/lib/contacts/setBirthday'
+import { setBirthday } from '@/lib/contact/controllers/setBirthday'
 import { withOrg } from '@/lib/auth/withOrg'
 
 const toNumber = (value) => {

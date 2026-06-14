@@ -1,6 +1,6 @@
 'use server'
 
-import { listCategories } from '@/lib/contacts/listCategories'
+import { listCategories } from '@/lib/contact/controllers/listCategories'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const listCategoriesAction = withOrg(

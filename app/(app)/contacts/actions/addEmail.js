@@ -1,6 +1,6 @@
 'use server'
 
-import { addEmail } from '@/lib/contacts/addEmail'
+import { addEmail } from '@/lib/contact/controllers/addEmail'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const addEmailAction = withOrg((organizationId, formData) => {

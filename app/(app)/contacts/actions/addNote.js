@@ -1,6 +1,6 @@
 'use server'
 
-import { addNote } from '@/lib/contacts/addNote'
+import { addNote } from '@/lib/contact/controllers/addNote'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const addNoteAction = withOrg((organizationId, formData) => {

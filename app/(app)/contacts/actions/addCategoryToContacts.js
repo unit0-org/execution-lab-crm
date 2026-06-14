@@ -1,6 +1,7 @@
 'use server'
 
-import { addCategoryToContacts } from '@/lib/contacts/addCategoryToContacts'
+import { addCategoryToContacts }
+  from '@/lib/contact/controllers/addCategoryToContacts'
 import { withOrg } from '@/lib/auth/withOrg'
 
 export const addCategoryToContactsAction = withOrg(

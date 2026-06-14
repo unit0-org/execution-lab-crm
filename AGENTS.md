@@ -18,7 +18,7 @@ them (so adding one never renumbers the rest).
   the system fits together and records the **invariants that span more
   than one file** — the things you can't see from the file you're editing.
   The canonical one: **every contact-owned table must be folded in by the
-  contact-merge operation** (`lib/contacts/applyMerge.js`). Add a table
+  contact-merge operation** (`lib/contact/controllers/applyMerge.js`). Add a table
   that references `contact_id` (or any other documented cross-module
   dependency) and the merge — and the architecture doc — must be updated,
   or that data is silently lost on merge. Likewise, a new `Registration`
