@@ -1,10 +1,10 @@
 import { PortalShell } from '@/ui/layout/PortalShell'
 import { PortalHeader } from '@/ui/organisms/PortalHeader'
 import { PortalThemeToggle } from './components/PortalThemeToggle'
-import { portalThemeScript } from './portalThemeScript'
+import { portalThemeScript } from '@/lib/portal/portalThemeScript'
 import { FUNDAMENTALS_URL } from './components/portalCopy'
 
-export { metadata } from './portalMetadata'
+export { metadata } from '@/lib/portal/portalMetadata'
 
 export default function PortalLayout({ children }) {
   return (
