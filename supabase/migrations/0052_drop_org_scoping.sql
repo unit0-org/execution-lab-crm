@@ -1,8 +1,15 @@
 -- Single-tenant cleanup: organization is now only for billing/invoices and
--- org membership. Drop organization_id from every other entity, reverting
--- the per-org unique constraints to global ones. In Postgres, dropping a
--- column also drops its FK and any index/constraint that referenced it, so
--- we only recreate the global replacements here.
+-- org membership. There must be exactly ONE organization.
+--
+-- A stray second org ("Nubel") was created with 23 bare duplicate contacts
+-- (same emails as the real org, no other data). Delete every org except the
+-- founding "The Execution Lab" seed; contact (and friends) reference
+-- organization ON DELETE CASCADE, so the duplicate rows go with it. With the
+-- duplicates gone, we can drop organization_id and rebuild the former
+-- per-org unique indexes as proper GLOBAL uniques.
+
+delete from organization
+  where id <> '00000000-0000-4000-8000-000000000001';
 
 -- contact family ------------------------------------------------------------
 alter table contact drop column if exists organization_id;
