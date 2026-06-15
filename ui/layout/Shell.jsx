@@ -1,9 +1,8 @@
-import { Hamburger } from './Hamburger'
 import { Scrim } from './Scrim'
 import { shellStyle, mainStyle, asideStyle } from './Shell.styles'
 
 export function Shell(props) {
-  const { sidebar, open, onToggle, onClose, children } = props
+  const { sidebar, open, onClose, children } = props
   const isOpen = open || undefined
 
   return (
@@ -11,7 +10,6 @@ export function Shell(props) {
       <aside data-sidebar data-open={isOpen} style={asideStyle}>
         {sidebar}
       </aside>
-      <Hamburger onClick={onToggle} />
       <main data-app-main style={mainStyle}>{children}</main>
       <Scrim open={open} onClick={onClose} />
     </div>

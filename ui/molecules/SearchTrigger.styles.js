@@ -5,7 +5,7 @@ import { font, fontSize } from '../tokens/typography'
 
 export const triggerStyle = {
   display: 'flex', alignItems: 'center', gap: space[3],
-  width: '100%', padding: `${space[2]} ${space[3]}`,
+  flex: 1, minWidth: 0, padding: `${space[2]} ${space[3]}`,
   background: color.bg.subtle, color: color.text.muted,
   border: `1px solid ${color.border.default}`,
   borderRadius: radius.lg, cursor: 'pointer'

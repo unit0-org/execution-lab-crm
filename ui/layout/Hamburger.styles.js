@@ -2,12 +2,7 @@ import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
 
 export const hamburgerStyle = {
-  position: 'fixed',
-  // Match the topbar's top padding so the button lines up with the
-  // search bar that sits beside it.
-  top: '12px',
-  left: '16px',
-  zIndex: 30,
+  flexShrink: 0,
   padding: '8px 10px',
   fontSize: '18px',
   lineHeight: 1,
