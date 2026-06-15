@@ -136,6 +136,9 @@ up:**
 - Everything else (business, stage, obstacle, commitment, …) → a fact, in
   `registrationFacts.js`. Facts are written with `addFactIfMissing` so
   re-syncing never duplicates.
+- Operational bookkeeping the registrant never sees (e.g.
+  `payment_followup_sent_at`, the timestamp the payment follow-up cron
+  stamps) stays on `Registration` and is **not** synced to the contact.
 
 Find-or-create never does fuzzy name matching (no silent wrong links); a
 same-name-different-person registrant becomes a new contact to merge later.
@@ -175,6 +178,12 @@ file trails for the flows you'll touch most — follow them top to bottom.
   `createPendingRegistration` → `syncRegistrationContact` → Stripe
   Checkout. Webhook → `handlePaidCheckout` → `markRegistrationPaid` →
   re-sync (adds paid-amount facts) → emails → `convertWaitlistEntry`.
+- **Payment follow-up:** daily cron `/api/cron/payment-followups` →
+  `sendPendingPaymentFollowups` finds registrations still `pending` 1–14
+  days after sign-up that haven't been chased, emails each the
+  `payment_followup` template with their `payUrl`, and stamps
+  `payment_followup_sent_at` so it sends once. Distinct from the manual
+  `sendPaymentReminder` nudge on the cohort page.
 - **Waitlist:** join → on a freed spot, a priority invite is sent; the
   invite converts to a registration.
 - **Purchases:** Stripe charges sync into `purchase`; ≥ $100 promotes a
