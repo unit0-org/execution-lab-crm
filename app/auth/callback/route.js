@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { rememberGoogleToken } from '@/lib/google/controllers/rememberToken'
+import { safeNextPath } from '@/lib/auth/safeNextPath'
 
 const back = (url, to) => NextResponse.redirect(new URL(to, url.origin))
 
@@ -11,7 +12,7 @@ const errUrl = (error) =>
 export async function GET(request) {
   const url = new URL(request.url)
   const code = url.searchParams.get('code')
-  const next = url.searchParams.get('next') || '/dashboard'
+  const next = safeNextPath(url.searchParams.get('next'))
 
   if (!code) return back(url, '/login?error=missing_code')
 
