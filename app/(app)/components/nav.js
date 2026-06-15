@@ -8,6 +8,7 @@ export const NAV = [
   { href: '/invoices', label: 'Invoices', icon: 'file' }
 ]
 
+const CRON = { href: '/cron', label: 'Cron', icon: 'refresh' }
 const SETTINGS = { href: '/settings', label: 'Settings', icon: 'gear' }
 
 // The main nav (everyone). Settings lives separately, at the bottom.
@@ -15,7 +16,7 @@ export function navFor() {
   return NAV
 }
 
-// Settings nav (admin only) — rendered at the bottom of the sidebar.
+// Admin-only nav (Cron + Settings), rendered at the bottom of the sidebar.
 export function settingsNav(role) {
-  return role === 'admin' ? [SETTINGS] : []
+  return role === 'admin' ? [CRON, SETTINGS] : []
 }

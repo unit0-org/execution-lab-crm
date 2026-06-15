@@ -83,11 +83,15 @@ leaves this stale is incomplete (this is a review-enforced rule in
   for sync conflicts (`sync_conflict`, `contact_google_link`).
 - **email** — templated transactional email (Resend) + editable templates.
 - **luma / drive** — CSV/event imports.
-- **cron** — records every scheduled cron execution. Each route under
-  `app/api/cron/` wraps its work in `recordCronRun(name, work)`
-  (`lib/cron/controllers/`), which persists timing, result, and any error
-  to the `cron_run` table. Viewable under Settings → Cron history. **Any
-  new cron must call `recordCronRun` so its runs are logged.**
+- **cron** — one daily Vercel cron (`/api/cron`, the only entry in
+  `vercel.json`) runs every job in `lib/cron/jobs.js` **in order** via
+  `runAllJobs` → `runJob` → `recordCronRun(name, work)`, which persists
+  timing, result, and any error to the `cron_run` table. The admin-only
+  **Cron** page (`/cron`, in the sidebar) lists each job with its last run
+  and a Run button that calls the same `runJob`; the full history is under
+  Settings → Cron history. **Add a job by appending to `CRON_JOBS`** — it
+  then runs daily and appears on the Cron page automatically; never add a
+  second Vercel cron entry (the plan allows one daily cron).
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).
 
 ---
@@ -183,7 +187,7 @@ file trails for the flows you'll touch most — follow them top to bottom.
   `createPendingRegistration` → `syncRegistrationContact` → Stripe
   Checkout. Webhook → `handlePaidCheckout` → `markRegistrationPaid` →
   re-sync (adds paid-amount facts) → emails → `convertWaitlistEntry`.
-- **Payment follow-up:** daily cron `/api/cron/payment-followups` →
+- **Payment follow-up:** the daily cron's `payment-followups` job →
   `sendPendingPaymentFollowups` finds registrations still `pending` 1–14
   days after sign-up that haven't been chased, emails each the
   `payment_followup` template with their `payUrl`, and stamps
