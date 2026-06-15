@@ -83,6 +83,11 @@ leaves this stale is incomplete (this is a review-enforced rule in
   for sync conflicts (`sync_conflict`, `contact_google_link`).
 - **email** — templated transactional email (Resend) + editable templates.
 - **luma / drive** — CSV/event imports.
+- **cron** — records every scheduled cron execution. Each route under
+  `app/api/cron/` wraps its work in `recordCronRun(name, work)`
+  (`lib/cron/controllers/`), which persists timing, result, and any error
+  to the `cron_run` table. Viewable under Settings → Cron history. **Any
+  new cron must call `recordCronRun` so its runs are logged.**
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).
 
 ---

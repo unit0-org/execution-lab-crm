@@ -1,4 +1,5 @@
 import { sendPendingPaymentFollowups } from '@/lib/registration/controllers'
+import { recordCronRun } from '@/lib/cron/controllers/recordCronRun'
 import { authorizeCron } from '../sync-contacts/authorizeCron'
 
 const UNAUTHORIZED = new Response('unauthorized', { status: 401 })
@@ -7,7 +8,8 @@ const UNAUTHORIZED = new Response('unauthorized', { status: 401 })
 export async function GET(request) {
   if (!authorizeCron(request)) return UNAUTHORIZED
 
-  const result = await sendPendingPaymentFollowups()
+  const result =
+    await recordCronRun('payment-followups', sendPendingPaymentFollowups)
 
   return Response.json({ ok: true, ...result })
 }
