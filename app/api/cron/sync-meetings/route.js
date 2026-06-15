@@ -1,6 +1,6 @@
-import { syncableMeetingAccounts }
-  from '@/lib/google/controllers/syncableMeetingAccounts'
-import { syncMeetings } from '@/lib/meeting/controllers/syncMeetings'
+import { syncAllMeetings }
+  from '@/lib/meeting/controllers/syncAllMeetings'
+import { recordCronRun } from '@/lib/cron/controllers/recordCronRun'
 import { authorizeCron } from '../sync-contacts/authorizeCron'
 
 const UNAUTHORIZED = new Response('unauthorized', { status: 401 })
@@ -10,10 +10,7 @@ const UNAUTHORIZED = new Response('unauthorized', { status: 401 })
 export async function GET(request) {
   if (!authorizeCron(request)) return UNAUTHORIZED
 
-  const accounts = await syncableMeetingAccounts()
+  const result = await recordCronRun('sync-meetings', syncAllMeetings)
 
-  for (const { email } of accounts)
-    await syncMeetings(email, true)
-
-  return Response.json({ ok: true, accounts: accounts.length })
+  return Response.json({ ok: true, ...result })
 }
