@@ -2,12 +2,15 @@
 
 import { useState } from 'react'
 
-// Local draft of a template's body so the preview updates live as the
-// admin edits. The editor remounts per template (keyed), so the initial
-// value is always the selected template's body.
+// Local draft of a template's editable fields so the preview updates live
+// and Save can stay disabled until something actually changes. The editor
+// remounts per template (keyed), so the initial values are the selected one.
 export function useTemplateDraft(template) {
+  const [subject, setSubject] = useState(template.subject)
   const [body, setBody] = useState(template.body)
-  const onChange = (e) => setBody(e.target.value)
+  const onSubject = (e) => setSubject(e.target.value)
+  const onBody = (e) => setBody(e.target.value)
+  const changed = subject !== template.subject || body !== template.body
 
-  return { body, onChange }
+  return { subject, body, onSubject, onBody, changed }
 }

@@ -4,22 +4,25 @@ import { TextArea } from '@/ui/atoms/TextArea'
 import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { FormError } from '@/ui/molecules/FormError'
 
-export function EmailTemplateFields({ template, body, onBody, error }) {
+export function EmailTemplateFields({ draft, error }) {
   return (
     <Stack gap="sm">
       <TextField
         label="Subject"
         name="subject"
-        defaultValue={template.subject}
+        value={draft.subject}
+        onChange={draft.onSubject}
       />
       <TextArea
         label="Body — plain text, blank line starts a paragraph"
         name="body"
         rows={10}
-        value={body}
-        onChange={onBody}
+        value={draft.body}
+        onChange={draft.onBody}
       />
-      <SubmitButton tone="primary">Save</SubmitButton>
+      <SubmitButton tone="primary" disabled={!draft.changed}>
+        Save
+      </SubmitButton>
       <FormError message={error} />
     </Stack>
   )
