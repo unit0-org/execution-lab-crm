@@ -18,9 +18,8 @@ export function AppFrame({ role, email, children }) {
 
   return (
     <>
-      <Shell sidebar={sidebar} open={nav.open} onToggle={nav.toggle}
-        onClose={nav.close}>
-        <CommandBar />
+      <Shell sidebar={sidebar} open={nav.open} onClose={nav.close}>
+        <CommandBar onMenu={nav.toggle} />
         {children}
       </Shell>
       <Toaster />
