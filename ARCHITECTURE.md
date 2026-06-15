@@ -88,8 +88,8 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `runAllJobs` → `runJob` → `recordCronRun(name, work)`, which persists
   timing, result, and any error to the `cron_run` table. The admin-only
   **Cron** page (`/cron`, in the sidebar) lists each job with its last run
-  and a Run button that calls the same `runJob`; the full history is under
-  Settings → Cron history. **Add a job by appending to `CRON_JOBS`** — it
+  and a Run button that calls the same `runJob`, with the full run history
+  below it on the same page. **Add a job by appending to `CRON_JOBS`** — it
   then runs daily and appears on the Cron page automatically; never add a
   second Vercel cron entry (the plan allows one daily cron).
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).

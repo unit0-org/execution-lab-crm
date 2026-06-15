@@ -4,7 +4,6 @@ import { ConflictsServer } from './ConflictsServer'
 import { EmailTemplatesServer } from './EmailTemplatesServer'
 import { CompanyServer } from './CompanyServer'
 import { InvoicingServer } from './InvoicingServer'
-import { CronHistoryServer } from './CronHistoryServer'
 import { AppearanceView } from './components/AppearanceView'
 
 const PANELS = {
@@ -14,7 +13,6 @@ const PANELS = {
   emails: EmailTemplatesServer,
   company: CompanyServer,
   invoicing: InvoicingServer,
-  cron: CronHistoryServer,
   appearance: AppearanceView
 }
 

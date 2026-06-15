@@ -5,12 +5,11 @@ import { useRunJob } from '../hooks/useRunJob'
 
 export function RunJobButton({ name, onRan }) {
   const { run, running } = useRunJob(onRan)
-  const label = running ? 'Running…' : 'Run'
 
   return (
-    <Button size="sm" tone="primary" disabled={running}
+    <Button size="sm" tone="primary" loading={running}
       onClick={() => run(name)}>
-      {label}
+      Run
     </Button>
   )
 }

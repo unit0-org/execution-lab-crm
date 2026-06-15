@@ -25,7 +25,7 @@ Conventions (from `AGENTS.md`):
 |---|---|---|
 | `Avatar` | `src`, `name`, `size=40` | Circular profile photo, or tokened initials fallback |
 | `Badge` | `tone='accent'`, `children` | Small static status/label pill |
-| `Button` | `tone='default'`, `size`, `block`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones` |
+| `Button` | `tone='default'`, `size`, `block`, `loading`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones`; `loading` shows a spinner + disables while keeping size (no CLS) |
 | `ButtonLink` | `href`, `tone='default'`, `size`, `target`, `children` | Navigation link styled as a Button (`target="_blank"` opens a new tab) |
 | `Card` | `tone`, `hoverHost`, `children` | Surface container for grouped content |
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`) |

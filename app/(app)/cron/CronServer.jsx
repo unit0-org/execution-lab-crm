@@ -2,10 +2,13 @@ import { forbidden } from 'next/navigation'
 import { currentMembership } from '@/lib/org/controllers/currentMembership'
 import { listCronJobs } from '@/lib/cron/controllers/listCronJobs'
 import { listCronRuns } from '@/lib/cron/controllers/listCronRuns'
+import { Stack } from '@/ui/layout/Stack'
 import { CronView } from './components/CronView'
+import { CronHistoryView } from './components/CronHistoryView'
 import { attachLatestRun } from './components/attachLatestRun'
 
-// Admin-only: the cron operations, each with its last run + a Run button.
+// Admin-only: the cron operations (each with its last run + a Run button)
+// and the full run history below.
 export async function CronServer() {
   const membership = await currentMembership()
 
@@ -14,5 +17,10 @@ export async function CronServer() {
   const runs = await listCronRuns()
   const jobs = attachLatestRun(listCronJobs(), runs)
 
-  return <CronView jobs={jobs} />
+  return (
+    <Stack gap="lg">
+      <CronView jobs={jobs} />
+      <CronHistoryView runs={runs} />
+    </Stack>
+  )
 }
