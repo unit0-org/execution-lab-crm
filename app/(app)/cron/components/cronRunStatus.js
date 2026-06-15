@@ -1,4 +1,5 @@
-// Status badge tone, label, and elapsed time for a cron_run row.
+// Status badge tone, label, and elapsed time for a cron_run row. Shared by
+// the Cron page and the Settings → Cron history tab.
 
 export function runTone(run) {
   return run.ok ? 'success' : 'error'
