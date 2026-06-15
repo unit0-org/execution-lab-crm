@@ -136,6 +136,15 @@ Plain reassign is safe only when nothing is unique per contact. Where a
 uniqueness/composite key exists (meetings, phones, category links), dedupe
 before reassigning or the update throws.
 
+**Soft-delete vs. merge (force-delete).** `contact` and `meeting` are
+**paranoid** (a `deleted_at` column): a *direct* `delete_contact` /
+`delete_contacts` / meeting delete now **soft-deletes** — the row is
+hidden but recoverable, and FK cascades do **not** fire (children stay
+attached, ready to restore). Merge is different: after folding the loser's
+data into the winner, `applyMerge` / `foldMeeting` destroy the loser with
+`force: true` (a real delete), so the cascade/set-null behaviour in the
+table above is unchanged and a merge stays non-undoable.
+
 ## Invariant: registration fields must flow to the CRM contact
 
 Every cohort registration syncs to a contact via
