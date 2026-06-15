@@ -93,6 +93,13 @@ leaves this stale is incomplete (this is a review-enforced rule in
   then runs daily and appears on the Cron page automatically; never add a
   second Vercel cron entry (the plan allows one daily cron).
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).
+  Irreversible/financial tools (`delete_*`, `merge_*`, `approve_invoice`,
+  `send_invoice(s)`, `void_invoice`) are wrapped by `guardDestructive`: they
+  refuse unless called with `confirm: true`, and the whole destructive set
+  can be switched off with `MCP_DISABLE_DESTRUCTIVE=true` (a read-only MCP
+  profile). New destructive tools must use the same guard. The server
+  `INSTRUCTIONS` also tell clients to treat stored CRM text as untrusted
+  data, never as instructions (prompt-injection defence).
 
 ---
 
