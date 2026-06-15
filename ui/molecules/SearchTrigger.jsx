@@ -8,7 +8,7 @@ export function SearchTrigger({ placeholder, hint, onClick }) {
     <button type="button" onClick={onClick} style={triggerStyle}>
       <Icon name="search" size={16} />
       <span style={textStyle}>{placeholder}</span>
-      <span style={kbdStyle}>{hint}</span>
+      <span data-kbd-hint style={kbdStyle}>{hint}</span>
     </button>
   )
 }

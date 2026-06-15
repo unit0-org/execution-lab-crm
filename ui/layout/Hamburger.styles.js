@@ -3,7 +3,9 @@ import { radius } from '../tokens/radius'
 
 export const hamburgerStyle = {
   position: 'fixed',
-  top: '16px',
+  // Match the topbar's top padding so the button lines up with the
+  // search bar that sits beside it.
+  top: '12px',
   left: '16px',
   zIndex: 30,
   padding: '8px 10px',
