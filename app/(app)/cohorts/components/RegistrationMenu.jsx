@@ -4,6 +4,7 @@ import { Popover } from '@/ui/molecules/Popover'
 import { Stack } from '@/ui/layout/Stack'
 import { useToggle } from '@/ui/molecules/useToggle'
 import { MenuTrigger } from './MenuTrigger'
+import { CopyPayLinkMenuItem } from './CopyPayLinkMenuItem'
 import { NudgeMenuItem } from './NudgeMenuItem'
 
 // A three-dots menu of operations for one pending registrant.
@@ -14,6 +15,10 @@ export function RegistrationMenu({ registrationId }) {
   return (
     <Popover open={pop.open} onClose={pop.hide} trigger={trigger} align="end">
       <Stack gap="sm">
+        <CopyPayLinkMenuItem
+          registrationId={registrationId}
+          onDone={pop.hide}
+        />
         <NudgeMenuItem registrationId={registrationId} onDone={pop.hide} />
       </Stack>
     </Popover>
