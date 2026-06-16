@@ -1,24 +1,25 @@
+'use client'
+
 import { Stack } from '@/ui/layout/Stack'
 import { ContactHeader } from './ContactHeader'
+import { ContactActivityBar } from './ContactActivityBar'
 import { TotalSpent } from './TotalSpent'
 import { ContactChannels } from './ContactChannels'
-import { ContactAnswers } from './ContactAnswers'
-import { ContactNotes } from './ContactNotes'
-import { ContactRelationships } from './ContactRelationships'
+import { ContactSections } from './ContactSections'
 import { Timeline } from './Timeline'
+import { useContactActivity } from '../hooks/useContactActivity'
 
 export function ContactDetail({ contact, onChanged, sections }) {
   const id = contact.id
+  const act = useContactActivity()
 
   return (
     <Stack gap="lg">
       <ContactHeader contact={contact} onChanged={onChanged} />
+      <ContactActivityBar act={act} />
       <TotalSpent contactId={id} />
       <ContactChannels contact={contact} onChanged={onChanged} />
-      <ContactAnswers contactId={id} initial={sections.answers} />
-      <ContactNotes contactId={id} initial={sections.notes} />
-      <ContactRelationships contactId={id}
-        initial={sections.relationships} />
+      <ContactSections contactId={id} sections={sections} act={act} />
       <Timeline entries={sections.timeline} />
     </Stack>
   )

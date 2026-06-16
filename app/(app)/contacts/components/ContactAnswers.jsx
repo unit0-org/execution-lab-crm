@@ -2,25 +2,23 @@
 
 import { Stack } from '@/ui/layout/Stack'
 import { useContactAnswers } from '../hooks/useContactAnswers'
-import { useReveal } from '../hooks/useReveal'
 import { KnowHeader } from './KnowHeader'
 import { AddNuggetModal } from './AddNuggetModal'
 import { NuggetsBody } from './NuggetsBody'
 
-export function ContactAnswers({ contactId, initial }) {
+export function ContactAnswers({ contactId, initial, reveal }) {
   const { nuggets, reload } = useContactAnswers(contactId, initial)
-  const add = useReveal()
 
   const saved = () => {
     reload()
-    add.hide()
+    reveal.hide()
   }
 
   return (
     <Stack gap="sm">
-      <KnowHeader onAdd={add.show} />
-      <AddNuggetModal open={add.shown} contactId={contactId}
-        onSaved={saved} onClose={add.hide} />
+      <KnowHeader onAdd={reveal.show} />
+      <AddNuggetModal open={reveal.shown} contactId={contactId}
+        onSaved={saved} onClose={reveal.hide} />
       <NuggetsBody nuggets={nuggets} onChanged={reload} />
     </Stack>
   )
