@@ -11,6 +11,8 @@ export const rowStyle = {
   fontSize: fontSize.sm
 }
 
+export const activeStyle = { background: color.bg.subtle }
+
 const clip = {
   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
 }
