@@ -95,7 +95,7 @@ Conventions (from `AGENTS.md`):
 |---|---|---|
 | `SectionHeader` | `title`, `addLabel`, `onAdd` | Section heading with optional `+` create action |
 | `SearchTrigger` | `placeholder`, `hint`, `onClick` | Search-field-shaped button (magnifier + placeholder + key hint) that opens a command palette |
-| `MenuRow` | `leading`, `label`, `subtitle`, `meta`, `onClick` | Full-width clickable menu/palette row: leading slot + label (with optional `subtitle` below) + optional trailing meta |
+| `MenuRow` | `leading`, `label`, `subtitle`, `meta`, `active`, `onClick` | Full-width clickable menu/palette row: leading slot + label (with optional `subtitle` below) + optional trailing meta; `active` pre-highlights it (keyboard-selected) |
 | `Field` | `label`, `required`, `hint`, `error`, `children` | Portal form field: mono label row (+ `*`/hint) over a control + error slot |
 | `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (Field + FieldInput) |
 | `FieldArea` | `label`, `hint`, `required`, `rows`, `...rest` | Portal labelled textarea (Field + FieldTextArea) |

@@ -8,8 +8,9 @@ export function PaletteResults({ people, onPick, onAdd }) {
   return (
     <Stack gap="xs">
       <PaletteAction onClick={onAdd} />
-      {people.map((person) => (
-        <PalettePerson key={person.id} person={person} onPick={onPick} />
+      {people.map((person, index) => (
+        <PalettePerson key={person.id} person={person}
+          active={index === 0} onPick={onPick} />
       ))}
     </Stack>
   )
