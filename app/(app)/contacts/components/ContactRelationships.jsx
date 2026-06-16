@@ -2,25 +2,23 @@
 
 import { Stack } from '@/ui/layout/Stack'
 import { useRelationships } from '../hooks/useRelationships'
-import { useReveal } from '../hooks/useReveal'
 import { RelationshipHeader } from './RelationshipHeader'
 import { AddRelationshipModal } from './AddRelationshipModal'
 import { RelationshipsBody } from './RelationshipsBody'
 
-export function ContactRelationships({ contactId, initial }) {
+export function ContactRelationships({ contactId, initial, reveal }) {
   const { relationships, reload } = useRelationships(contactId, initial)
-  const add = useReveal()
 
   const saved = () => {
     reload()
-    add.hide()
+    reveal.hide()
   }
 
   return (
     <Stack gap="sm">
-      <RelationshipHeader onAdd={add.show} />
-      <AddRelationshipModal open={add.shown} contactId={contactId}
-        onSaved={saved} onClose={add.hide} />
+      <RelationshipHeader onAdd={reveal.show} />
+      <AddRelationshipModal open={reveal.shown} contactId={contactId}
+        onSaved={saved} onClose={reveal.hide} />
       <RelationshipsBody items={relationships} onChanged={reload} />
     </Stack>
   )

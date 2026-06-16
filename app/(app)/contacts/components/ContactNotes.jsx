@@ -2,25 +2,23 @@
 
 import { Stack } from '@/ui/layout/Stack'
 import { useContactNotes } from '../hooks/useContactNotes'
-import { useReveal } from '../hooks/useReveal'
 import { NotesHeader } from './NotesHeader'
 import { AddNoteModal } from './AddNoteModal'
 import { NotesBody } from './NotesBody'
 
-export function ContactNotes({ contactId, initial }) {
+export function ContactNotes({ contactId, initial, reveal }) {
   const { notes, reload } = useContactNotes(contactId, initial)
-  const add = useReveal()
 
   const saved = () => {
     reload()
-    add.hide()
+    reveal.hide()
   }
 
   return (
     <Stack gap="sm">
-      <NotesHeader onAdd={add.show} />
-      <AddNoteModal open={add.shown} contactId={contactId}
-        onSaved={saved} onClose={add.hide} />
+      <NotesHeader onAdd={reveal.show} />
+      <AddNoteModal open={reveal.shown} contactId={contactId}
+        onSaved={saved} onClose={reveal.hide} />
       <NotesBody notes={notes} onChanged={reload} />
     </Stack>
   )
