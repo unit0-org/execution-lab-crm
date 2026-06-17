@@ -9,13 +9,14 @@ export function rosterCardView(card) {
   const action = cohortState(card)
   const when = cohortMonthYear(card.start_date)
   const regular = card.pricing.regularCents
+  const soldOut = action.state === 'full'
 
   return {
     action,
     month: when.month,
     start: startLine(card, when),
-    price: formatDollars(card.pricing.amountCents),
-    regular: regular ? formatDollars(regular) : null,
+    price: soldOut ? null : formatDollars(card.pricing.amountCents),
+    regular: soldOut || !regular ? null : formatDollars(regular),
     tone: stateTone(action.state)
   }
 }

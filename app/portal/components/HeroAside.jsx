@@ -1,22 +1,17 @@
 import { Stack } from '@/ui/layout/Stack'
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
-import { PriceTag } from '@/ui/molecules/PriceTag'
 import { CohortCta } from './CohortCta'
-import { SaveLine } from './SaveLine'
 import { CohortScarcity } from './CohortScarcity'
+import { HeroPrice } from './HeroPrice'
 import { heroAsideView } from './heroAsideView'
 
-// Right side of the hero: price, scarcity, and the primary CTA.
+// Right side of the hero: price (hidden when sold out), scarcity, and CTA.
 export function HeroAside({ action, card }) {
   const v = heroAsideView(card, action)
 
   return (
     <>
-      <Stack gap="sm">
-        <MonoLabel caps size={10}>{v.kicker}</MonoLabel>
-        <PriceTag price={v.price} regular={v.regular} size={46} />
-        <SaveLine pricing={card.pricing} />
-      </Stack>
+      <HeroPrice view={v} pricing={card.pricing} />
       <Stack gap="sm">
         <CohortScarcity card={card} tone={v.tone} />
         <CohortCta action={action} block size="lg" />
