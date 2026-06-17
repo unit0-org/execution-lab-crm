@@ -82,6 +82,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - **google** — OAuth accounts, contact/calendar sync, and a review queue
   for sync conflicts (`sync_conflict`, `contact_google_link`).
 - **email** — templated transactional email (Resend) + editable templates.
+  `sendEmail` is the single Resend entry point; it always adds the
+  always-CC address (`abel@theexecutionlab.ca`, override `ALWAYS_CC`) via
+  `withAlwaysCc`, deduped against the recipient and any existing CC, so
+  every outgoing email CCs that address.
 - **luma / drive** — CSV/event imports.
 - **cron** — one daily Vercel cron (`/api/cron`, the only entry in
   `vercel.json`) runs every job in `lib/cron/jobs.js` **in order** via
