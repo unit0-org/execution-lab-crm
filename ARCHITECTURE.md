@@ -236,10 +236,13 @@ file trails for the flows you'll touch most — follow them top to bottom.
 - **Purchases:** Stripe charges sync into `purchase`; ≥ $100 promotes a
   contact from lead to customer (dashboard). A paid cohort registration
   (incl. comp seats) also makes a contact a customer.
-- **Invoices:** build → approve → Stripe charge → email PDF; numbers are
-  unique per org. Invoices **auto-created from a Stripe purchase**
-  (`autoInvoiceForOrg` → `chargeInvoiceAttrs`) are created **already
-  `paid`** (the charge cleared — they're receipts), not `draft`.
+- **Invoices:** build → **approve** (renders the PDF and files it on Drive,
+  best-effort, via `storeInvoicePdf`/`archiveInvoicePdf` — idempotent, so
+  sending later doesn't re-upload) → email PDF; numbers are unique per org.
+  Invoices **auto-created from a Stripe purchase** (`autoInvoiceForOrg`) are
+  created as a draft, then **auto-approved** (filing the PDF) and **marked
+  paid** (the charge cleared — they're receipts). `paid` invoices stay
+  **sendable** (the receipt can be emailed).
 - **Google sync:** OAuth account → contact/calendar sync; conflicts land
   in a review queue rather than auto-applying.
 - **Contact activity timeline:** `lib/activity/controllers/contactActivity.js`
