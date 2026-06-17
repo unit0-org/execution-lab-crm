@@ -61,8 +61,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
   per-participant registration answers; attendance = checked-in /
   registered.
 - **meeting** — meetings synced from Google Calendar or entered by hand,
-  with participants (`meeting_participant`), notes, attachments, and
-  merge suggestions.
+  with participants (`meeting_participant`), notes, attachments,
+  transcripts (`meeting_transcript`), and merge suggestions. A meeting may
+  carry `source_drive_id` — the Drive file it was enriched from, the exact
+  dedup key for the MCP enrichment ops.
 - **cohort** — a program cohort with capacity, pricing (Stripe), and a
   registration window. `cohortStats` gives per-cohort filled head count
   (pending **or** paid) and paid revenue; `spotsLeft = capacity - filled`.
@@ -106,6 +108,16 @@ leaves this stale is incomplete (this is a review-enforced rule in
   profile). New destructive tools must use the same guard. The server
   `INSTRUCTIONS` also tell clients to treat stored CRM text as untrusted
   data, never as instructions (prompt-injection defence).
+- **enrichment** (`lib/enrichment/`) — the transcript-enricher's write ops,
+  exposed as additive, idempotent MCP tools (`apply_meeting_enrichment` and
+  the `upsert_contact` / `upsert_meeting` / `attach_meeting_transcript` /
+  `get_meeting_by_source` primitives). They dedup server-side
+  (contact by email→name, meeting by `source_drive_id`, transcript by
+  `drive_file_id`), so no `confirm` is needed. `apply_meeting_enrichment`
+  runs the whole payload in ONE `sequelize.transaction` (the only
+  transaction-aware write path outside merge) — every helper threads `t`;
+  `dryRun:true` runs then rolls back. Each result carries
+  `schemaVersion` (`OPS_SCHEMA_VERSION`) for the enricher's drift check.
 
 ---
 
@@ -149,7 +161,11 @@ hidden but recoverable, and FK cascades do **not** fire (children stay
 attached, ready to restore). Merge is different: after folding the loser's
 data into the winner, `applyMerge` / `foldMeeting` destroy the loser with
 `force: true` (a real delete), so the cascade/set-null behaviour in the
-table above is unchanged and a merge stays non-undoable.
+table above is unchanged and a merge stays non-undoable. `foldMeeting`
+folds every meeting-owned table — participants, notes, attachments, and
+**transcripts** (`mergeMeetingTranscripts`); **add a new table that
+references `meeting_id` and you MUST fold it in there too**, the
+meeting-side twin of the contact-merge invariant above.
 
 ## Invariant: registration fields must flow to the CRM contact
 
