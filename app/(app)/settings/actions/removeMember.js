@@ -1,7 +1,7 @@
 'use server'
 
+import { withAdmin } from '@/lib/auth/withAdmin'
 import { removeMember } from '@/lib/org/controllers/removeMember'
 
-export async function removeMemberAction(formData) {
-  return removeMember(formData.get('id'))
-}
+export const removeMemberAction = withAdmin((_org, formData) =>
+  removeMember(formData.get('id')))

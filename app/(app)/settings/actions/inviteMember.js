@@ -1,10 +1,8 @@
 'use server'
 
+import { withAdmin } from '@/lib/auth/withAdmin'
 import { inviteMember } from '@/lib/org/controllers/inviteMember'
 
-export async function inviteMemberAction(formData) {
-  const organizationId = formData.get('organization_id')
-
-  return inviteMember(organizationId, formData.get('email'),
-    formData.get('role'))
-}
+export const inviteMemberAction = withAdmin((organizationId, formData) =>
+  inviteMember(organizationId, formData.get('email'),
+    formData.get('role')))
