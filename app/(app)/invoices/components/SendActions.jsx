@@ -6,7 +6,7 @@ import { SendAllMenu } from './SendAllMenu'
 
 export function SendActions({ draft, drafts, sending, onSend, onCancel }) {
   return (
-    <Inline gap="xs" nowrap>
+    <Inline gap="sm" nowrap>
       <Button tone="primary" size="sm" disabled={sending}
         onClick={() => onSend([draft])}>Send</Button>
       <SendAllMenu show={drafts.length > 1} disabled={sending}
