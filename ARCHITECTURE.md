@@ -237,7 +237,9 @@ file trails for the flows you'll touch most — follow them top to bottom.
   contact from lead to customer (dashboard). A paid cohort registration
   (incl. comp seats) also makes a contact a customer.
 - **Invoices:** build → approve → Stripe charge → email PDF; numbers are
-  unique per org.
+  unique per org. Invoices **auto-created from a Stripe purchase**
+  (`autoInvoiceForOrg` → `chargeInvoiceAttrs`) are created **already
+  `paid`** (the charge cleared — they're receipts), not `draft`.
 - **Google sync:** OAuth account → contact/calendar sync; conflicts land
   in a review queue rather than auto-applying.
 - **Contact activity timeline:** `lib/activity/controllers/contactActivity.js`
