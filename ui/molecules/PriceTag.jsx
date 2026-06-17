@@ -12,6 +12,8 @@ function Regular({ value, size }) {
 // A price line: optional struck regular, the price, and a currency code.
 // Amounts are pre-formatted strings (e.g. "$1,500"); `size` is in px.
 export function PriceTag({ price, regular, currency = 'CAD', size = 30 }) {
+  if (!price) return null
+
   return (
     <div style={rowStyle}>
       <Regular value={regular} size={size} />
