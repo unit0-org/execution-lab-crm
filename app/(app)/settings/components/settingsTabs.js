@@ -8,3 +8,12 @@ export const SETTINGS_TABS = [
   { value: 'invoicing', label: 'Invoicing' },
   { value: 'appearance', label: 'Appearance' }
 ]
+
+const ADMIN_ONLY = new Set(['members'])
+
+// Tabs a role may see. Member management (the Members tab) is admin-only.
+export function visibleSettingsTabs(role) {
+  if (role === 'admin') return SETTINGS_TABS
+
+  return SETTINGS_TABS.filter((tab) => !ADMIN_ONLY.has(tab.value))
+}

@@ -16,7 +16,9 @@ export function navFor() {
   return NAV
 }
 
-// Admin-only nav (Cron + Settings), rendered at the bottom of the sidebar.
+// Bottom-of-sidebar nav: Settings for every member; Cron stays admin-only.
 export function settingsNav(role) {
-  return role === 'admin' ? [CRON, SETTINGS] : []
+  if (role === 'admin') return [CRON, SETTINGS]
+
+  return [SETTINGS]
 }
