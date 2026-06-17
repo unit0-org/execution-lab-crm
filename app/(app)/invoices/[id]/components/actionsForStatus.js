@@ -17,5 +17,8 @@ export function actionsForStatus(status, h) {
 
   if (status === 'sent') return sendable(h)
 
+  if (status === 'paid')
+    return [btn('Send', 'primary', h.send), voidBtn(h)]
+
   return []
 }
