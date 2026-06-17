@@ -76,8 +76,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - **invoice** — invoices with line items, PDF generation, Stripe charge,
   and email delivery.
 - **dashboard** — lead scoring & segments. **Lead vs customer:** a contact
-  with a qualifying purchase (any single purchase **≥ $100 CAD**) is a
-  *customer*; everyone else is a *lead*. Customers are excluded from lead
+  who has a qualifying purchase (any single purchase **≥ $100 CAD**) **or a
+  paid cohort registration** (comp seats included — a comp is a paid
+  registration with `amount_total` 0) is a *customer*; everyone else is a
+  *lead* (`toSignal` → `isCustomer`). Customers are excluded from lead
   views (`excludedLeadIds`).
 - **google** — OAuth accounts, contact/calendar sync, and a review queue
   for sync conflicts (`sync_conflict`, `contact_google_link`).
@@ -212,7 +214,8 @@ file trails for the flows you'll touch most — follow them top to bottom.
 - **Waitlist:** join → on a freed spot, a priority invite is sent; the
   invite converts to a registration.
 - **Purchases:** Stripe charges sync into `purchase`; ≥ $100 promotes a
-  contact from lead to customer (dashboard).
+  contact from lead to customer (dashboard). A paid cohort registration
+  (incl. comp seats) also makes a contact a customer.
 - **Invoices:** build → approve → Stripe charge → email PDF; numbers are
   unique per org.
 - **Google sync:** OAuth account → contact/calendar sync; conflicts land
