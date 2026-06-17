@@ -9,8 +9,6 @@ export function DashboardStats({ stats }) {
         href="/contacts?filter=new" />
       <Stat label="Active leads · 30d" value={stats.activeLeads} tone="cold"
         href="/contacts?filter=active" />
-      <Stat label="Revenue · 30d" value={stats.revenue} tone="cool"
-        href="/purchases?window=30d" />
       <Stat label="Customers" value={stats.customers} tone="warm"
         href="/contacts?filter=customers" />
     </CardGrid>
