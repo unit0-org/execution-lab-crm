@@ -68,6 +68,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - **cohort** — a program cohort with capacity, pricing (Stripe), and a
   registration window. `cohortStats` gives per-cohort filled head count
   (pending **or** paid) and paid revenue; `spotsLeft = capacity - filled`.
+  The window's open/close dates are `DATEONLY`; they're compared against
+  **`todayIso()` in the business timezone** (`BUSINESS_TIMEZONE`, default
+  `America/Vancouver`), NOT UTC — a UTC "today" closes windows a day early
+  for evening-local times.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
   cohort tagging (see invariant). `amount_total` is set only on payment.
