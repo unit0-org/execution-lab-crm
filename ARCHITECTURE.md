@@ -84,6 +84,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
   and the lead/customer split.
 - **invoice** — invoices with line items, PDF generation, Stripe charge,
   and email delivery.
+- **notification** — member-to-member alerts. `note_mention` records who a
+  member tagged (`@`) in a `contact_note`; `notification` is the recipient's
+  in-app inbox item (also emailed, with a deep link to the note). Both
+  reference `contact_id` and are folded by contact-merge (see invariant).
 - **dashboard** — lead scoring & segments. **Lead vs customer:** a contact
   who has a qualifying purchase (any single purchase **≥ $100 CAD**) **or a
   paid cohort registration** (comp seats included — a comp is a paid
@@ -154,6 +158,8 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `invoice` | set null | `claimContactRecords` (reassign) |
 | `registration` | set null | `claimContactRecords` (reassign) |
 | `waitlist_entry` | set null | `claimContactRecords` (reassign) |
+| `note_mention` | cascade | `claimContactRecords` (reassign) |
+| `notification` | cascade | `claimContactRecords` (reassign) |
 | `contact_google_link` | cascade | **not migrated** (sync artifact; re-sync recreates) |
 | `sync_conflict` | cascade | **not migrated** (sync artifact) |
 
