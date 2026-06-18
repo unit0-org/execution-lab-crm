@@ -14,6 +14,6 @@ export function heroAsideView(card, action) {
     price: soldOut ? null : formatDollars(card.pricing.amountCents),
     regular: soldOut || !regular ? null : formatDollars(regular),
     tone: stateTone(action.state),
-    note: NOTE
+    note: soldOut ? null : NOTE
   }
 }

@@ -4,6 +4,9 @@
 :root {
   color-scheme: light;
 
+  /* Height of the sticky top command bar; sticky bars pin below it. */
+  --topbar-height: 4rem;
+
   --font-sans:  var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-serif: var(--font-montserrat), -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono:  var(--font-jetbrains), ui-monospace, "JetBrains Mono", Menlo, monospace;

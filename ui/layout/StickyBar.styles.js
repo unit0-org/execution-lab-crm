@@ -3,7 +3,7 @@ import { space } from '../tokens/space'
 
 export const stickyBarStyle = (active) => ({
   position: 'sticky',
-  top: 0,
+  top: 'var(--topbar-height)',
   zIndex: 2,
   padding: `${space[3]} 0`,
   background: active ? color.bg.canvas : 'transparent',

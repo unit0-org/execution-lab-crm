@@ -1,11 +1,12 @@
 import { Stack } from '@/ui/layout/Stack'
-import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { CohortCta } from './CohortCta'
 import { CohortScarcity } from './CohortScarcity'
 import { HeroPrice } from './HeroPrice'
+import { HeroNote } from './HeroNote'
 import { heroAsideView } from './heroAsideView'
 
-// Right side of the hero: price (hidden when sold out), scarcity, and CTA.
+// Right side of the hero: price (hidden when sold out), scarcity, CTA, and
+// fine print — the CTA and note both drop out once the cohort is sold out.
 export function HeroAside({ action, card }) {
   const v = heroAsideView(card, action)
 
@@ -15,7 +16,7 @@ export function HeroAside({ action, card }) {
       <Stack gap="sm">
         <CohortScarcity card={card} tone={v.tone} />
         <CohortCta action={action} block size="lg" />
-        <MonoLabel tone="subtle" size={10} align="center">{v.note}</MonoLabel>
+        <HeroNote note={v.note} />
       </Stack>
     </>
   )
