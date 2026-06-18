@@ -15,9 +15,10 @@ export function ContactDetail({ contact, onChanged, sections }) {
 
   return (
     <Stack gap="lg">
-      <ContactHeader contact={contact} onChanged={onChanged} />
+      <ContactHeader contact={contact} onChanged={onChanged}
+        googleLink={sections.googleLink} />
       <ContactActivityBar act={act} />
-      <TotalSpent contactId={id} />
+      <TotalSpent spend={sections.spend} />
       <ContactChannels contact={contact} onChanged={onChanged} />
       <ContactSections contactId={id} sections={sections} act={act} />
       <Timeline entries={sections.timeline} />
