@@ -10,13 +10,13 @@ import { EditNameModal } from './EditNameModal'
 import { DeleteContact } from './DeleteContact'
 import { useReveal } from '../hooks/useReveal'
 
-export function ContactHeader({ contact, onChanged }) {
+export function ContactHeader({ contact, onChanged, googleLink }) {
   const edit = useReveal()
 
   return (
     <Inline gap="sm">
       <ContactHeading contact={contact} />
-      <ContactGoogleSync contactId={contact.id} />
+      <ContactGoogleSync link={googleLink} />
       <IconButton label="Edit name" onClick={edit.show}>
         <Icon name="pencil" />
       </IconButton>
