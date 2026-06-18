@@ -56,7 +56,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
   facts (a.k.a. nuggets: optional label + value), relationships, and
   optional birthday/LinkedIn/photo. **Merge** folds duplicates together
   (see the invariant below).
-- **org** — organization + membership/roles + invites.
+- **org** — organization + membership/roles + invites. A member's
+  `organization_user` row keeps its `email` after sign-in and carries an
+  editable `display_name` (their identity to teammates, e.g. mentions),
+  which they set on the Settings → Profile tab.
 - **event** — events with participants (`event_participant`) and
   per-participant registration answers; attendance = checked-in /
   registered.
