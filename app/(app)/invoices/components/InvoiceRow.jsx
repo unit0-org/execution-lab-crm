@@ -6,7 +6,7 @@ import { SelectCell } from '@/ui/molecules/SelectCell'
 import { StatusBadge } from './StatusBadge'
 import { SentCell } from './SentCell'
 import { InvoiceClient } from './InvoiceClient'
-import { InvoiceRowActions } from './InvoiceRowActions'
+import { InvoiceRowMenu } from './InvoiceRowMenu'
 
 export function InvoiceRow({ invoice, selected, onToggle, onChanged }) {
   return (
@@ -20,7 +20,7 @@ export function InvoiceRow({ invoice, selected, onToggle, onChanged }) {
       <Td><StatusBadge status={invoice.status} /></Td>
       <Td><SentCell sentAt={invoice.sentAt} /></Td>
       <Td><DateText value={invoice.date} /></Td>
-      <Td><InvoiceRowActions invoice={invoice} onChanged={onChanged} /></Td>
+      <Td><InvoiceRowMenu invoice={invoice} onChanged={onChanged} /></Td>
     </Tr>
   )
 }
