@@ -11,6 +11,8 @@ export function CohortCta({ action, block, size }) {
     )
   }
 
+  if (action.state === 'full') return null
+
   return (
     <ButtonLink href={action.href} tone={ctaTone(action.state)}
       block={block} size={size}>{action.cta}</ButtonLink>

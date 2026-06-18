@@ -106,7 +106,7 @@ Conventions (from `AGENTS.md`):
 | `StatTile` | `value`, `label`, `tone='cold'` | Big stat over a mono caption, in a bordered tile (portal) |
 | `NumberedStep` | `n`, `title`, `desc` | Circled index + title + description (waitlist explainer) |
 | `ArrowItem` | `children` | A "→ text" step line (what-happens-next lists) |
-| `StateTag` | `state`, `label`, `size=11` | Mono uppercase cohort-status label, neon-colored by `state` (launch/open/wave/waitlist/full/soon/closed), with a glow dot on live states (portal) |
+| `StateTag` | `state`, `label`, `size=11` | Mono uppercase cohort-status label, neon-colored by `state` (launch/open/wave/waitlist/full/soon/closed), with a glow dot on live states; `full` (sold out) renders a filled red pill (portal) |
 | `PriceTag` | `price`, `regular`, `currency='CAD'`, `size=30` | Price line: optional struck regular + price + currency; takes pre-formatted strings (portal) |
 | `BrandLockup` | `kicker`, `title`, `logoSrc`, `logoAlt`, `href='/'` | Logo + product kicker + title, linking home (portal) |
 | `FeatureChecks` | `items`, `column` | Mono "✓ item" highlights — wrapped row, or a column (portal) |

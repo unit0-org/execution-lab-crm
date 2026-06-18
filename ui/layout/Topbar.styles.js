@@ -8,8 +8,7 @@ export const topbarStyle = {
   display: 'flex',
   alignItems: 'center',
   gap: space[2],
-  paddingTop: space[3],
-  paddingBottom: space[3],
+  height: 'var(--topbar-height)',
   background: color.bg.canvas,
   borderBottom: `1px solid ${color.border.default}`
 }
