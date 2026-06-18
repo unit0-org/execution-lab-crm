@@ -1,3 +1,4 @@
+import { ProfileServer } from './ProfileServer'
 import { MembersServer } from './MembersServer'
 import { GoogleServer } from './GoogleServer'
 import { ConflictsServer } from './ConflictsServer'
@@ -7,6 +8,7 @@ import { InvoicingServer } from './InvoicingServer'
 import { AppearanceView } from './components/AppearanceView'
 
 const PANELS = {
+  profile: ProfileServer,
   members: MembersServer,
   google: GoogleServer,
   conflicts: ConflictsServer,
@@ -18,7 +20,7 @@ const PANELS = {
 
 // Render the server panel for the active settings tab.
 export function SettingsTabPanel({ tab, organizationId }) {
-  const Panel = PANELS[tab] || MembersServer
+  const Panel = PANELS[tab] || ProfileServer
 
   return <Panel organizationId={organizationId} />
 }

@@ -1,5 +1,6 @@
 // The settings tabs, in display order. The first is the default.
 export const SETTINGS_TABS = [
+  { value: 'profile', label: 'Profile' },
   { value: 'members', label: 'Members' },
   { value: 'google', label: 'Google Contacts' },
   { value: 'conflicts', label: 'Sync conflicts' },

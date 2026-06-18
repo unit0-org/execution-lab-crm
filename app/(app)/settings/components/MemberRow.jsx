@@ -6,7 +6,7 @@ import { RoleToggle } from './RoleToggle'
 import { RemoveMember } from './RemoveMember'
 
 export function MemberRow({ member, onChanged }) {
-  const who = member.email || 'Active member'
+  const who = member.display_name || member.email || 'Active member'
 
   return (
     <Tr>
