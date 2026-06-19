@@ -6,7 +6,7 @@ import { dismissSuggestionAction } from '../actions/dismissSuggestion'
 
 export function useSuggestionActions(suggestion, onChanged) {
   const merge = () =>
-    mergeMeetingsAction(suggestion.google.id, suggestion.manual.id)
+    mergeMeetingsAction(suggestion.google.id, [suggestion.manual.id])
       .then(() => {
         showToast('Meetings merged')
         onChanged()
