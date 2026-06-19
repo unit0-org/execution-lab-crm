@@ -6,7 +6,7 @@ import { useMembership } from '../hooks/useMembership'
 
 // Gate the app on org membership: blank while loading, the WIP notice
 // for non-members, otherwise the full app frame.
-export function AppShell({ email, children }) {
+export function AppShell({ email, unread, children }) {
   const membership = useMembership()
 
   if (membership === undefined) return null
@@ -14,6 +14,8 @@ export function AppShell({ email, children }) {
   if (membership === null) return <ExclusiveAccess />
 
   return (
-    <AppFrame role={membership.role} email={email}>{children}</AppFrame>
+    <AppFrame role={membership.role} email={email} unread={unread}>
+      {children}
+    </AppFrame>
   )
 }

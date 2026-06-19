@@ -4,12 +4,13 @@ import { Topbar } from '@/ui/layout/Topbar'
 import { Hamburger } from '@/ui/layout/Hamburger'
 import { SearchTrigger } from '@/ui/molecules/SearchTrigger'
 import { Button } from '@/ui/atoms/Button'
+import { Notifications } from './Notifications'
 import { CommandOverlays } from './CommandOverlays'
 import { useCommandBar } from '../hooks/useCommandBar'
 
 const PLACEHOLDER = 'Search people…'
 
-export function CommandBar({ onMenu }) {
+export function CommandBar({ onMenu, unread }) {
   const bar = useCommandBar()
 
   return (
@@ -18,6 +19,7 @@ export function CommandBar({ onMenu }) {
         <Hamburger onClick={onMenu} />
         <SearchTrigger placeholder={PLACEHOLDER} hint="Ctrl K"
           onClick={bar.palette.show} />
+        <Notifications unread={unread} />
         <Button tone="default" onClick={bar.log.show}>
           Log note
         </Button>

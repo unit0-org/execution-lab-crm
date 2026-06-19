@@ -8,7 +8,7 @@ import { useSidebar } from '../hooks/useSidebar'
 import { CommandBar } from './CommandBar'
 import { navFor, settingsNav } from './nav'
 
-export function AppFrame({ role, email, children }) {
+export function AppFrame({ role, email, unread, children }) {
   const nav = useSidebar()
   const sidebar = (
     <Sidebar items={navFor()} settings={settingsNav(role)}
@@ -19,7 +19,7 @@ export function AppFrame({ role, email, children }) {
   return (
     <>
       <Shell sidebar={sidebar} open={nav.open} onClose={nav.close}>
-        <CommandBar onMenu={nav.toggle} />
+        <CommandBar onMenu={nav.toggle} unread={unread} />
         {children}
       </Shell>
       <Toaster />
