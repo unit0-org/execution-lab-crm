@@ -283,6 +283,9 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
    collapse toggle. On mobile the inline hamburger takes that slot, so the
    mobile rule pads the bar symmetrically instead. */
 [data-topbar] { padding-left: 2.5rem; padding-right: 1rem; }
+/* Buttons default to align-self: flex-start (for column forms); in the
+   row-flex topbar that pushes them to the top, so re-center them. */
+[data-topbar] button { align-self: center !important; }
 [data-menu-row]:hover { background: var(--color-bg-subtle); }
 
 @media (max-width: 768px) {
