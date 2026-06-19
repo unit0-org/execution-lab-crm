@@ -1,4 +1,3 @@
-import { space } from '../tokens/space'
 import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
 
@@ -15,9 +14,3 @@ export const listStyle = (rect) => ({
   border: `1px solid ${color.border.default}`,
   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
 })
-
-export const itemStyle = {
-  textAlign: 'left', padding: `${space[2]} ${space[3]}`,
-  background: 'transparent', border: 'none', cursor: 'pointer',
-  font: 'inherit', color: color.text.primary
-}
