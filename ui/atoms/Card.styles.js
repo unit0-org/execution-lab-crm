@@ -11,7 +11,8 @@ const base = {
   height: '100%',
   boxSizing: 'border-box',
   minWidth: 0,
-  overflowWrap: 'break-word'
+  overflowWrap: 'break-word',
+  scrollMarginTop: `calc(var(--topbar-height) + ${space[4]})`
 }
 
 export const cardStyle = (tone) => ({

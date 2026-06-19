@@ -8,7 +8,7 @@ import { NoteHead } from './NoteHead'
 
 export function NoteCard({ note, onChanged }) {
   return (
-    <Card hoverHost>
+    <Card hoverHost id={`note-${note.id}`}>
       <Stack gap="xs">
         <NoteHead note={note} onChanged={onChanged}>
           <Text gutter="none">{note.body}</Text>
