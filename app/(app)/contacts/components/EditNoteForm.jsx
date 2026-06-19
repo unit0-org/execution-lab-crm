@@ -7,17 +7,20 @@ import { FormError } from './FormError'
 import { NoteFields } from './NoteFields'
 import { DialogActions } from './DialogActions'
 import { useFormAction } from '../hooks/useFormAction'
+import { useMentionOptions } from '../hooks/useMentionOptions'
 import { updateNoteAction } from '../actions/updateNote'
 
 export function EditNoteForm({ note, onSaved, onCancel }) {
   const { action, error } = useFormAction(updateNoteAction, onSaved)
+  const options = useMentionOptions()
 
   return (
     <Form action={action}>
       <input type="hidden" name="id" value={note.id} />
       <Stack gap="md">
         <Heading level={3}>Edit note</Heading>
-        <NoteFields body={note.body} notedAt={note.date} />
+        <NoteFields body={note.body} notedAt={note.date}
+          options={options} />
         <FormError message={error} />
         <DialogActions label="Save" onCancel={onCancel} />
       </Stack>
