@@ -4,6 +4,13 @@
 -- auth for members who already signed in (whose email was cleared).
 alter table organization_user add column display_name text;
 
+-- A linked member now keeps their invite email, so the old XOR check
+-- (exactly one of user_id / email) no longer holds. Require at least one
+-- identifier instead — both may be set once a member signs in.
+alter table organization_user drop constraint organization_user_check;
+alter table organization_user add constraint organization_user_check
+  check (user_id is not null or email is not null);
+
 update organization_user ou
    set email = au.email
   from auth.users au
