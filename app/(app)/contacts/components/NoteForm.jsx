@@ -2,15 +2,16 @@
 
 import { Form } from '@/ui/molecules/Form'
 import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
-import { FormError } from './FormError'
 import { NoteFields } from './NoteFields'
+import { NoteFormHeading } from './NoteFormHeading'
+import { FormError } from './FormError'
 import { DialogActions } from './DialogActions'
 import { useFormAction } from '../hooks/useFormAction'
 import { useMentionOptions } from '../hooks/useMentionOptions'
 import { addNoteAction } from '../actions/addNote'
 
-export function AddNoteForm({ contactId, onSaved, onCancel }) {
+export function NoteForm(props) {
+  const { contactId, heading, label = 'Add', onSaved, onCancel } = props
   const { action, error } = useFormAction(addNoteAction, onSaved)
   const options = useMentionOptions()
 
@@ -18,10 +19,10 @@ export function AddNoteForm({ contactId, onSaved, onCancel }) {
     <Form action={action}>
       <input type="hidden" name="contact_id" value={contactId} />
       <Stack gap="md">
-        <Heading level={3}>Add note</Heading>
+        <NoteFormHeading text={heading} />
         <NoteFields options={options} />
         <FormError message={error} />
-        <DialogActions label="Add" onCancel={onCancel} />
+        <DialogActions label={label} onCancel={onCancel} />
       </Stack>
     </Form>
   )

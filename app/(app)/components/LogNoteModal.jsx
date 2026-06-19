@@ -17,7 +17,8 @@ export function LogNoteModal({ open, onClose, onLogged }) {
       <Stack gap="md">
         <ContactAutocomplete label="Person" value={note.value}
           onChange={note.setValue} allowCreate />
-        <LogNoteBody contactId={note.contactId} onSaved={saved} />
+        <LogNoteBody contactId={note.contactId} onSaved={saved}
+          onCancel={close} />
       </Stack>
     </TitledModal>
   )

@@ -1,13 +1,13 @@
 'use client'
 
 import { Modal } from '@/ui/organisms/Modal'
-import { AddNoteForm } from './AddNoteForm'
+import { NoteForm } from './NoteForm'
 
 export function AddNoteModal({ open, contactId, onSaved, onClose }) {
   return (
     <Modal open={open} onClose={onClose}>
-      <AddNoteForm contactId={contactId} onSaved={onSaved}
-        onCancel={onClose} />
+      <NoteForm contactId={contactId} heading="Add note"
+        onSaved={onSaved} onCancel={onClose} />
     </Modal>
   )
 }
