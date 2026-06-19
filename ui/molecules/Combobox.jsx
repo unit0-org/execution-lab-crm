@@ -19,7 +19,8 @@ export function Combobox({ label, value, onChange, options, onPick, hint }) {
     <div ref={ref} style={wrapStyle}>
       <TextField label={label} value={value} onChange={type}
         onFocus={menu.show} placeholder={hint} autoComplete="off" />
-      <SuggestionList open={menu.open} options={options} onPick={pick} />
+      <SuggestionList open={menu.open} anchor={ref} options={options}
+        onPick={pick} />
     </div>
   )
 }

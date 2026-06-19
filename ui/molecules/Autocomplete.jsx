@@ -20,9 +20,9 @@ export function Autocomplete(props) {
     <div ref={ref} style={wrapStyle}>
       <TextField label={label} value={value} onChange={type}
         onFocus={menu.show} placeholder={hint} autoComplete="off" />
-      <AutocompleteMenu open={menu.open} onPick={pick} query={value}
-        options={matchOptions(options, value)} onCreate={create}
-        canCreate={canCreate} createLabel={createLabel} />
+      <AutocompleteMenu open={menu.open} anchor={ref} onPick={pick}
+        query={value} options={matchOptions(options, value)}
+        onCreate={create} canCreate={canCreate} createLabel={createLabel} />
     </div>
   )
 }
