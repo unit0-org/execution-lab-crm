@@ -2,7 +2,11 @@ import { space } from '../tokens/space'
 import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
 
-export const wrapStyle = { position: 'relative', display: 'inline-block' }
+// inline-flex + center hugs the trigger exactly, so it sits centered with
+// its row instead of dropping on an inline-block baseline gap.
+export const wrapStyle = {
+  position: 'relative', display: 'inline-flex', alignItems: 'center'
+}
 
 const anchor = { start: { left: 0 }, end: { right: 0 } }
 

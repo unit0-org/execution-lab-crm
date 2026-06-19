@@ -14,6 +14,6 @@ export const stackStyle = {
 
 export const moreStyle = {
   flexShrink: 0, border: 'none', background: 'none', padding: 0,
-  font: 'inherit', fontSize: '12px', color: color.accent.text,
+  font: 'inherit', fontSize: '12px', color: color.accent.solid,
   cursor: 'pointer', whiteSpace: 'nowrap'
 }
