@@ -67,7 +67,14 @@ leaves this stale is incomplete (this is a review-enforced rule in
   with participants (`meeting_participant`), notes, attachments,
   transcripts (`meeting_transcript`), and merge suggestions. A meeting may
   carry `source_drive_id` — the Drive file it was enriched from, the exact
-  dedup key for the MCP enrichment ops.
+  dedup key for the MCP enrichment ops. **Calendar sync and transcript
+  enrichment can each create a row for the same meeting, so both bridge
+  the gap symmetrically:** enrichment (`upsertMeetingBySource`) reuses a
+  calendar row within ±2h sharing a participant; calendar sync
+  (`resolveMeeting` → `findMeetingMatch`) adopts an un-synced row that
+  matches by title+minute, or — under a different (e.g. transcript-derived)
+  title — shares a participant within ~15 min (looser matches up to ±2h
+  raise a merge suggestion instead of auto-adopting).
 - **cohort** — a program cohort with capacity, pricing (Stripe), and a
   registration window. `cohortStats` gives per-cohort filled head count
   (pending **or** paid) and paid revenue; `spotsLeft = capacity - filled`.
