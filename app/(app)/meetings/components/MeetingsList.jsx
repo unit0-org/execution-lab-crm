@@ -2,6 +2,6 @@
 
 import { MeetingsTable } from './MeetingsTable'
 
-export function MeetingsList({ meetings }) {
-  return <MeetingsTable meetings={meetings} />
+export function MeetingsList({ meetings, selection }) {
+  return <MeetingsTable meetings={meetings} selection={selection} />
 }

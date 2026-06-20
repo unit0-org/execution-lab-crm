@@ -6,10 +6,11 @@ import { useMeetingsView } from '../hooks/useMeetingsView'
 import { SyncStatus } from './SyncStatus'
 import { MeetingsList } from './MeetingsList'
 import { MergeSuggestions } from './MergeSuggestions'
+import { MeetingsToolbar } from './MeetingsToolbar'
 import { NewMeetingModal } from './NewMeetingModal'
 
 export function MeetingsView({ initialMeetings }) {
-  const { meetings, sync, suggestions, modal, onCreated, onMerged } =
+  const { meetings, sync, suggestions, selection, modal, onCreated, onMerged } =
     useMeetingsView(initialMeetings)
 
   return (
@@ -19,7 +20,9 @@ export function MeetingsView({ initialMeetings }) {
       <SyncStatus lastSyncedAt={sync.lastSyncedAt} syncing={sync.syncing}
         onForce={sync.force} />
       <MergeSuggestions suggestions={suggestions.items} onChanged={onMerged} />
-      <MeetingsList meetings={meetings.meetings} />
+      <MeetingsToolbar meetings={meetings.meetings} selection={selection}
+        onMerged={onMerged} />
+      <MeetingsList meetings={meetings.meetings} selection={selection} />
       <NewMeetingModal open={modal.open} onClose={modal.hide}
         onCreated={onCreated} />
     </Stack>
