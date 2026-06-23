@@ -10,7 +10,7 @@ import { useWaitlistJoin } from '../hooks/useWaitlistJoin'
 
 // The public join screen: form + explainer, swapping to the confirmation
 // (full width) on success.
-export function WaitlistJoin({ cohorts, selected }) {
+export function WaitlistJoin({ cohorts, selected, pricing }) {
   const { action, error, joined, result } = useWaitlistJoin()
 
   if (joined) return <WaitlistThanks result={result} />
@@ -19,7 +19,7 @@ export function WaitlistJoin({ cohorts, selected }) {
     <SidebarLayout
       main={
         <Stack gap="md">
-          <WaitlistHeader />
+          <WaitlistHeader pricing={pricing} />
           <WaitlistForm action={action} error={error}
             cohorts={cohorts} selected={selected} />
         </Stack>
