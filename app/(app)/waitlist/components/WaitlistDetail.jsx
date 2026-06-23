@@ -9,7 +9,7 @@ import { useAcceptFlow } from '../hooks/useAcceptFlow'
 
 // What a waitlist applicant submitted, with an action to accept them into
 // their cohort and email the reviewed payment link.
-export function WaitlistDetail({ entry, onClose }) {
+export function WaitlistDetail({ entry, cohorts, onClose }) {
   const flow = useAcceptFlow(onClose)
 
   return (
@@ -17,7 +17,8 @@ export function WaitlistDetail({ entry, onClose }) {
       <Modal open={Boolean(entry)} onClose={onClose}>
         <Stack gap="lg">
           <WaitlistDetailBody entry={entry} />
-          <AcceptBar entry={entry} onAccept={flow.start} />
+          <AcceptBar key={entry?.id} entry={entry} cohorts={cohorts}
+            onAccept={flow.start} />
         </Stack>
       </Modal>
       <AcceptPreviewModal flow={flow} />

@@ -13,8 +13,8 @@ export function useAcceptFlow(onClose) {
   const close = () => setDraft(null)
   const edit = (field, value) =>
     setDraft((prev) => ({ ...prev, [field]: value }))
-  const start = (entry) =>
-    previewAcceptanceAction(entry.id).then(setDraft)
+  const start = (entry, cohortId) =>
+    previewAcceptanceAction(entry.id, cohortId).then(setDraft)
   const finish = acceptFinish({ setSending, close, onClose, router })
 
   const send = () => {
