@@ -351,16 +351,23 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
 [data-brand-lockup] { transition: opacity var(--motion-quick) var(--motion-ease); }
 [data-brand-lockup]:hover { opacity: 0.82; }
 
-/* Portal mono links (header/footer) brighten on hover. */
+/* Portal mono links (header/footer) brighten + underline on hover. The base
+   style is inline, so the hover needs !important to win over it. */
 [data-mono-link] { transition: color var(--motion-quick) var(--motion-ease),
   border-color var(--motion-quick) var(--motion-ease); }
 [data-mono-link]:hover {
-  color: var(--color-accent-hover);
-  border-bottom-color: var(--color-accent);
+  color: var(--color-accent-hover) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
 }
 
-/* Internal text links brighten on hover (transition via the global a rule). */
-[data-link]:hover { color: var(--color-accent-hover); text-decoration: underline; }
+/* Internal text links brighten + underline on hover (same inline override;
+   underline is painted, so no layout shift). */
+[data-link]:hover {
+  color: var(--color-accent-hover) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+}
 
 /* Portal cohort chips — selected/hover/focus highlight (ChipRadio). The
    chips set border/background/color inline, so these need !important. */
