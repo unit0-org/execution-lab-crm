@@ -3,7 +3,7 @@ import { splitName } from './splitName'
 const REQUIRED = [
   'email', 'linkedin', 'business', 'stage', 'obstacle', 'commitment'
 ]
-const OPTIONAL = ['preferred_name', 'phone', 'website']
+const OPTIONAL = ['preferred_name', 'phone', 'website', 'promo_code']
 const get = (formData, key) => (formData.get(key) || '').trim()
 
 // Collect the register form into a plain object; null if the name or any
