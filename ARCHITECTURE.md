@@ -81,7 +81,11 @@ leaves this stale is incomplete (this is a review-enforced rule in
   The window's open/close dates are `DATEONLY`; they're compared against
   **`todayIso()` in the business timezone** (`BUSINESS_TIMEZONE`, default
   `America/Vancouver`), NOT UTC — a UTC "today" closes windows a day early
-  for evening-local times.
+  for evening-local times. **Pricing reward (see the reward invariant
+  below):** registering *before* the window opens earns a 20% reward; once
+  it opens, only the first 2 in-window seats do. The legacy
+  `stripe_early_bird_price_id` / `early_bird_deadline` columns are
+  **deprecated** — pricing no longer reads them.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
   cohort tagging (see invariant). `amount_total` is set only on payment.
@@ -217,6 +221,20 @@ same-name-different-person registrant becomes a new contact to merge later.
 payment). This single query feeds the portal scarcity label, sold-out /
 `cohortIsFull` checks, and waitlist openings — change the rule there, not
 in each view.
+
+## Invariant: one discount applies, resolved in a single place
+
+The cohort price is the regular Stripe price (`stripe_price_id`) with at most
+**one** discount applied — never stacked. Eligibility lives in
+`lib/cohort/controllers/rewardDiscount.js` (`rewardKind` → `'prereg'` before
+the window, `'earlybird'` for the first 2 **in-window** seats via
+`inWindowRegistrationCount`, else none) and resolves to the reusable 20% Stripe
+promotion code from `lib/stripe/readinessPromoCode.js` (`READY20`, overridable
+via `STRIPE_READINESS_CODE`; the coupon must exist in Stripe). Checkout picks
+the effective code by precedence in `effectiveDiscountCode.js`: **customer code
+› reward 20% › cohort preset `promo_code` › none**. Both the displayed price
+(`resolveCohortAmounts`) and the Stripe session (`startCheckout`) consume these
+same helpers — change the rule there, not in each path.
 
 ## Flow maps (which file does each step)
 
