@@ -147,6 +147,14 @@ them (so adding one never renumbers the rest).
   scopes, validations, getters/setters, and class/instance methods over
   procedural code. A model owns its own behaviour and its associations
   (declare them in a static `associate(models)`).
+- **Encapsulate a status/filter meaning in a named scope — never inline it.**
+  A business predicate over a column (e.g. which registration statuses count
+  as a taken seat) is defined **once**, as a Sequelize scope on the model, and
+  every query goes through it. The canonical one: a "confirmed" registration
+  is `pending` **or** `paid` — query `Registration.scope('confirmed')`, never a
+  literal `status: ['pending', 'paid']` in a controller. Add such a predicate
+  and it must become (or extend) a scope, so changing the rule is a one-line
+  edit in the model, not a hunt across views.
 - **Controllers stay light.** They orchestrate models and shape output —
   holding as little logic as possible — and **return plain objects**
   (`.toJSON()`), never Sequelize instances, so results are safe to pass

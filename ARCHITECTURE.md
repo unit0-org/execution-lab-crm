@@ -216,11 +216,15 @@ same-name-different-person registrant becomes a new contact to merge later.
 
 ## Invariant: a cohort spot is taken once registered (not only paid)
 
-`cohortStats` counts `filled` from registrations that are `pending` **or**
-`paid`; revenue still sums only paid rows (`amount_total` is null until
-payment). This single query feeds the portal scarcity label, sold-out /
-`cohortIsFull` checks, and waitlist openings — change the rule there, not
-in each view.
+A registration holds a seat once it's `pending` **or** `paid`. That rule is
+defined **once**, as the `confirmed` scope on the `Registration` model;
+every seat-count query (`cohortStats`, `inWindowRegistrationCount`,
+`priorInWindowCount`) goes through `Registration.scope('confirmed')` — never
+an inline `status` list. `cohortStats` counts `filled` from that scope (and
+revenue still sums only paid rows, whose `amount_total` is set on payment);
+it feeds the portal scarcity label, sold-out / `cohortIsFull` checks, and
+waitlist openings. Change what counts as a taken seat in the scope, not in
+each view.
 
 ## Invariant: one discount applies, resolved in a single place
 
