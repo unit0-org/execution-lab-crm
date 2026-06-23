@@ -4,6 +4,6 @@ import { withMember } from '@/lib/auth/withMember'
 import { previewAcceptance } from '@/lib/waitlist/controllers'
 
 export const previewAcceptanceAction = withMember(
-  (entryId) => previewAcceptance(entryId),
+  (entryId, cohortId) => previewAcceptance(entryId, cohortId),
   null
 )

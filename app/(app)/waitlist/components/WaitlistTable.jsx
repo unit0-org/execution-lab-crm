@@ -9,7 +9,7 @@ import { useWaitlistSelection } from '../hooks/useWaitlistSelection'
 const COLS = ['#', 'Name', 'Email', 'Joined']
 
 // The waitlist in line order; click a row to see what they submitted.
-export function WaitlistTable({ entries }) {
+export function WaitlistTable({ entries, cohorts }) {
   const { selected, select, clear } = useWaitlistSelection()
 
   if (entries.length === 0) {
@@ -24,7 +24,7 @@ export function WaitlistTable({ entries }) {
             onClick={() => select(entry)} />
         ))}
       </Table>
-      <WaitlistDetail entry={selected} onClose={clear} />
+      <WaitlistDetail entry={selected} cohorts={cohorts} onClose={clear} />
     </>
   )
 }
