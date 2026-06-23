@@ -2,6 +2,7 @@ import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
 
 const COLORS = {
+  prereg: color.warmth.cool, earlybird: color.warmth.cool,
   launch: color.warmth.cool, open: color.accent.solid,
   wave: color.warmth.wave, waitlist: color.warmth.cold,
   confirmed: color.warmth.cool,
@@ -9,7 +10,9 @@ const COLORS = {
   closed: color.text.subtle
 }
 
-const DOTS = new Set(['launch', 'open', 'wave', 'confirmed'])
+const DOTS = new Set([
+  'prereg', 'earlybird', 'launch', 'open', 'wave', 'confirmed'
+])
 
 // Sold out reads as a hard stop, not a quiet caption: a filled red pill.
 const FILLED = { full: color.status.errorBg }
