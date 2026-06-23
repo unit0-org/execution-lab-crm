@@ -83,9 +83,7 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `America/Vancouver`), NOT UTC — a UTC "today" closes windows a day early
   for evening-local times. **Pricing reward (see the reward invariant
   below):** registering *before* the window opens earns a 20% reward; once
-  it opens, only the first 2 in-window seats do. The legacy
-  `stripe_early_bird_price_id` / `early_bird_deadline` columns are
-  **deprecated** — pricing no longer reads them.
+  it opens, only the first 2 in-window seats do.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
   cohort tagging (see invariant). `amount_total` is set only on payment.

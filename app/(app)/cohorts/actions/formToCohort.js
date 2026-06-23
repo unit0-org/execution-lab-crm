@@ -1,6 +1,5 @@
 const TEXT_FIELDS = [
-  'label', 'start_date', 'description', 'stripe_price_id',
-  'stripe_early_bird_price_id', 'early_bird_deadline', 'promo_code'
+  'label', 'start_date', 'description', 'stripe_price_id', 'promo_code'
 ]
 
 const WINDOW_FIELDS = ['registration_opens_at', 'registration_closes_at']
