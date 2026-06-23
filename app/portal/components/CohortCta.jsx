@@ -4,8 +4,11 @@ import { CtaButton } from './CtaButton'
 import { WaitlistLink } from './WaitlistLink'
 
 // A cohort's primary action plus, on register states, a quiet waitlist link.
-// A closed window shows a muted note instead of a button.
-export function CohortCta({ action, block, size }) {
+// A closed window shows a muted note; a sold-out one shows nothing (the card
+// already carries the "Sold out" tag).
+export function CohortCta({ action, ...cta }) {
+  if (action.state === 'full') return null
+
   if (action.kind === 'closed') {
     return (
       <MonoLabel tone="subtle" size={11} caps>Registration closed</MonoLabel>
@@ -13,12 +16,12 @@ export function CohortCta({ action, block, size }) {
   }
 
   if (action.kind === 'waitlist') {
-    return <CtaButton action={action} block={block} size={size} />
+    return <CtaButton action={action} {...cta} />
   }
 
   return (
     <Stack gap="xs">
-      <CtaButton action={action} block={block} size={size} />
+      <CtaButton action={action} {...cta} />
       <WaitlistLink href={action.waitlist} />
     </Stack>
   )

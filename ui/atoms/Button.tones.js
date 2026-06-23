@@ -12,16 +12,15 @@ export const tones = {
     color: color.text.secondary,
     border: border(color.border.default)
   },
-  primary: {
-    background: color.accent.solid,
-    color: color.accent.text,
-    border: border(color.accent.solid)
-  },
+  primary: fill(color.accent.solid, color.accent.text),
   launch: fill(color.warmth.cool, color.onBrand),
   wave: fill(color.warmth.wave, color.onBrand),
   cyan: fill(color.warmth.cold, color.onBrand),
   waitlist: outline(color.warmth.cold),
   quiet: outline(color.border.default),
+  primaryOutline: outline(color.accent.solid),
+  launchOutline: outline(color.warmth.cool),
+  waveOutline: outline(color.warmth.wave),
   danger: {
     background: color.bg.surface,
     color: color.status.errorText,

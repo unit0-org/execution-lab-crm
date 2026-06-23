@@ -5,14 +5,14 @@ import { SaveLine } from './SaveLine'
 
 // The hero price block: kicker, price, and any savings line. Hidden whole
 // when the cohort is sold out (view.price is null).
-export function HeroPrice({ view, pricing }) {
+export function HeroPrice({ view, pricing, opensAt }) {
   if (!view.price) return null
 
   return (
     <Stack gap="sm">
       <MonoLabel caps size={10}>{view.kicker}</MonoLabel>
       <PriceTag price={view.price} regular={view.regular} size={46} />
-      <SaveLine pricing={pricing} />
+      <SaveLine pricing={pricing} opensAt={opensAt} />
     </Stack>
   )
 }
