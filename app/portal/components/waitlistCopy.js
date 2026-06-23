@@ -15,12 +15,12 @@ export const EXPLAINER_STEPS = [
 ]
 
 export const EXPLAINER_FOOTER =
-  'First 2 to register in any wave save 20%.'
+  'First 2 to register save 20%.'
 
 export const NEXT_STEPS = [
   'When registration opens, the list is invited in small waves — we email '
     + 'and text you the moment it’s your turn.',
   'You then get 24 hours to register and lock your seat before the next '
     + 'wave is invited.',
-  'Be ready: the first 2 to register in any wave save 20%.'
+  'Be ready: the first 2 to register save 20%.'
 ]
