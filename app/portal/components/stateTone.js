@@ -1,6 +1,7 @@
 // MonoLabel tone for a cohort state (matches the StateTag color).
 const TONES = {
-  launch: 'cool', open: 'accent', wave: 'wave', waitlist: 'cold',
+  prereg: 'cool', earlybird: 'cool', launch: 'cool',
+  open: 'accent', wave: 'wave', waitlist: 'cold',
   full: 'danger', soon: 'subtle', closed: 'subtle'
 }
 

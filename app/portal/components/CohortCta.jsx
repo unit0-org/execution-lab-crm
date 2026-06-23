@@ -1,9 +1,10 @@
-import { ButtonLink } from '@/ui/atoms/ButtonLink'
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
-import { ctaTone } from './ctaTone'
+import { Stack } from '@/ui/layout/Stack'
+import { CtaButton } from './CtaButton'
+import { WaitlistLink } from './WaitlistLink'
 
-// A cohort's primary action: a tone-matched link, or a muted note once
-// the registration window has closed.
+// A cohort's primary action plus, on register states, a quiet waitlist link.
+// A closed window shows a muted note instead of a button.
 export function CohortCta({ action, block, size }) {
   if (action.kind === 'closed') {
     return (
@@ -11,10 +12,14 @@ export function CohortCta({ action, block, size }) {
     )
   }
 
-  if (action.state === 'full') return null
+  if (action.kind === 'waitlist') {
+    return <CtaButton action={action} block={block} size={size} />
+  }
 
   return (
-    <ButtonLink href={action.href} tone={ctaTone(action.state)}
-      block={block} size={size}>{action.cta}</ButtonLink>
+    <Stack gap="xs">
+      <CtaButton action={action} block={block} size={size} />
+      <WaitlistLink href={action.waitlist} />
+    </Stack>
   )
 }
