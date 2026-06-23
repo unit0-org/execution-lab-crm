@@ -2,7 +2,6 @@ import { Stack } from '@/ui/layout/Stack'
 import { CohortCta } from './CohortCta'
 import { CohortScarcity } from './CohortScarcity'
 import { HeroPrice } from './HeroPrice'
-import { HeroNote } from './HeroNote'
 import { HeroAsideSoldOut } from './HeroAsideSoldOut'
 import { heroAsideView } from './heroAsideView'
 
@@ -16,11 +15,10 @@ export function HeroAside({ action, card }) {
 
   return (
     <>
-      <HeroPrice view={v} pricing={card.pricing} />
+      <HeroPrice view={v} pricing={card.pricing} opensAt={card.opensAt} />
       <Stack gap="sm">
         <CohortScarcity card={card} tone={v.tone} />
         <CohortCta action={action} block size="lg" />
-        <HeroNote note={v.note} />
       </Stack>
     </>
   )

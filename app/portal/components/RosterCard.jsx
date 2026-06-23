@@ -20,7 +20,7 @@ export function RosterCard({ card }) {
         <MonoLabel size={11}>{v.start}</MonoLabel>
         <PriceTag price={v.price} regular={v.regular} size={20} />
         <CohortScarcity card={card} tone={v.tone} size={11} />
-        <CohortCta action={v.action} block />
+        <CohortCta action={v.action} block outline />
       </Stack>
     </Card>
   )
