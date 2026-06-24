@@ -13,7 +13,7 @@ export function SignInPanel({ status }) {
         <Text size="sm">Use the email you were invited with.</Text>
       </Stack>
       <SignInStatus status={status} />
-      <MagicLinkForm />
+      <MagicLinkForm defaultEmail={status.email} />
     </Stack>
   )
 }

@@ -2,27 +2,26 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { showToast } from '@/ui/molecules/toastBus'
-import { matchContactOptions } from './contactOptions'
-import { invitePortalMemberAction } from '../actions/invitePortalMember'
+import { addUnique, removeValue, withoutPicked } from './selection'
+import { runInvites } from './inviteMany'
 
-// Drives the invite picker: search contacts; on pick, email an invite,
-// toast the outcome, refresh the list, and close.
+// Drives the multi-invite picker: search + accumulate contacts, then
+// invite them all, toast the result, and refresh the list.
 export function useInviteMember(contacts, onClose) {
   const router = useRouter()
   const [query, setQuery] = useState('')
+  const [picked, setPicked] = useState([])
+  const [busy, setBusy] = useState(false)
 
-  const pick = (option) => {
+  const add = (option) => {
     setQuery('')
-    onClose()
-    invitePortalMemberAction(option.value)
-      .then((r) => showToast(r?.error || 'Invite sent'))
-      .catch(() => showToast('Could not send invite'))
-      .finally(() => router.refresh())
+    setPicked((cur) => addUnique(cur, option))
   }
+  const remove = (value) => setPicked((cur) => removeValue(cur, value))
+  const submit = () => runInvites(picked, { setBusy, onClose, router })
 
   return {
-    query, onChange: setQuery, pick,
-    options: matchContactOptions(contacts, query)
+    query, onType: setQuery, picked, add, remove, submit, busy,
+    options: withoutPicked(contacts, picked)
   }
 }
