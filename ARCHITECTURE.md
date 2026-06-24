@@ -287,8 +287,14 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   cross into the other's area. **Don't weaken either layout gate.**
 - **Portal routing.** Public registration pages live in
   `app/portal/(public)/` (registration masthead); the member area in
-  `app/portal/(member)/`; sign-in at `app/portal/signin`. The shared
-  `app/portal/layout.js` holds only the shell/theme. `/auth` and `/api`
+  `app/portal/(member)/`; sign-in at `app/portal/signin`; payment at
+  `app/portal/pay`. The shared `app/portal/layout.js` holds only the
+  theme; each route group supplies its own frame — the public/sign-in/pay
+  groups wrap in `PortalShell` (centered), while the member area uses a
+  full-height **sidebar shell** (`MemberFrame` → `Shell` + `Sidebar`, the
+  backoffice-style chrome with only Programs/Resources + log out). The
+  public masthead carries a "Lab member? Sign in" link
+  (`PortalHeader` `aside`). `/auth` and `/api`
   are **shared routes** (`isSharedRoute`) excluded from the portal-host
   rewrite so the OTP callback and sign-out resolve on the portal
   subdomain. The portal sign-in is **email magic link only**; the callback
