@@ -16,7 +16,7 @@ export function SignInPanel({ status }) {
         <Text size="sm">Use the email you were invited with.</Text>
       </Stack>
       <SignInStatus status={status} />
-      <MagicLinkForm />
+      <MagicLinkForm defaultEmail={status.email} />
       <Text size="sm">
         Not a member of the Lab yet?{' '}
         <ExternalLink href={TALK_URL}>Let’s talk</ExternalLink>
