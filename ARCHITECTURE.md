@@ -304,6 +304,9 @@ file trails for the flows you'll touch most — follow them top to bottom.
   `createPendingRegistration` → `syncRegistrationContact` → Stripe
   Checkout. Webhook → `handlePaidCheckout` → `markRegistrationPaid` →
   re-sync (adds paid-amount facts) → emails → `convertWaitlistEntry`.
+  Staff can also mark a pending registrant paid out-of-band from the
+  cohort page's registrant menu (`markRegistrationPaidManually`, no Stripe
+  data; `amount_total` stays null).
 - **Payment follow-up:** the daily cron's `payment-followups` job →
   `sendPendingPaymentFollowups` finds registrations still `pending` 1–14
   days after sign-up that haven't been chased, emails each the

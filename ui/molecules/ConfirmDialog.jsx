@@ -7,16 +7,21 @@ import { Heading } from '../atoms/Heading'
 import { Text } from '../atoms/Text'
 import { Button } from '../atoms/Button'
 
-const MESSAGE = 'This cannot be undone.'
-
-export function ConfirmDialog({ open, title, onConfirm, onCancel }) {
+// Confirm modal; defaults to a destructive Delete, overridable per call.
+export function ConfirmDialog({
+  open, title, onConfirm, onCancel,
+  message = 'This cannot be undone.',
+  confirmLabel = 'Delete', tone = 'danger'
+}) {
   return (
     <Modal open={open} onClose={onCancel}>
       <Stack gap="md">
         <Heading level={3}>{title}</Heading>
-        <Text size="sm">{MESSAGE}</Text>
+        <Text size="sm">{message}</Text>
         <Inline gap="sm">
-          <Button tone="danger" size="sm" onClick={onConfirm}>Delete</Button>
+          <Button tone={tone} size="sm" onClick={onConfirm}>
+            {confirmLabel}
+          </Button>
           <Button size="sm" onClick={onCancel}>Cancel</Button>
         </Inline>
       </Stack>

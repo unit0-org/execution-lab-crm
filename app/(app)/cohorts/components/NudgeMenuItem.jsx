@@ -1,6 +1,7 @@
 'use client'
 
-import { TextButton } from '@/ui/atoms/TextButton'
+import { Icon } from '@/ui/atoms/Icon'
+import { MenuRow } from '@/ui/molecules/MenuRow'
 import { useSendPaymentReminder } from '../hooks/useSendPaymentReminder'
 
 // One operation in the registrant menu: email a payment-completion link.
@@ -13,6 +14,7 @@ export function NudgeMenuItem({ registrationId, onDone }) {
   }
 
   return (
-    <TextButton type="button" onClick={nudge}>Send payment nudge</TextButton>
+    <MenuRow leading={<Icon name="bell" size={16} />}
+      label="Send payment nudge" onClick={nudge} />
   )
 }
