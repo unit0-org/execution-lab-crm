@@ -9,14 +9,15 @@ import { CopyPayLinkMenuItem } from './CopyPayLinkMenuItem'
 import { NudgeMenuItem } from './NudgeMenuItem'
 
 // A three-dots menu of operations for one pending registrant.
-export function RegistrationMenu({ registrationId }) {
+export function RegistrationMenu({ registrationId, cohortId }) {
   const pop = useToggle()
   const trigger = <MenuTrigger onClick={pop.toggle} />
 
   return (
     <Popover open={pop.open} onClose={pop.hide} trigger={trigger} align="end">
       <Stack gap="sm">
-        <MarkPaidMenuItem registrationId={registrationId} onDone={pop.hide} />
+        <MarkPaidMenuItem registrationId={registrationId} cohortId={cohortId}
+          onDone={pop.hide} />
         <CopyPayLinkMenuItem registrationId={registrationId}
           onDone={pop.hide} />
         <NudgeMenuItem registrationId={registrationId} onDone={pop.hide} />

@@ -306,7 +306,10 @@ file trails for the flows you'll touch most — follow them top to bottom.
   re-sync (adds paid-amount facts) → emails → `convertWaitlistEntry`.
   Staff can also mark a pending registrant paid out-of-band from the
   cohort page's registrant menu (`markRegistrationPaidManually`, no Stripe
-  data; `amount_total` stays null).
+  data; `amount_total` stays null), then optionally create + send an
+  invoice for the seat (`invoiceRegistration` → `createInvoice` →
+  `approveInvoice` → `sendInvoice`; amount defaults to the cohort's regular
+  Stripe price, operator-editable).
 - **Payment follow-up:** the daily cron's `payment-followups` job →
   `sendPendingPaymentFollowups` finds registrations still `pending` 1–14
   days after sign-up that haven't been chased, emails each the

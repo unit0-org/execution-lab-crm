@@ -9,7 +9,8 @@ export function RegistrationAction({ registration }) {
 
   return (
     <ActionSlot>
-      <RegistrationMenu registrationId={registration.id} />
+      <RegistrationMenu registrationId={registration.id}
+        cohortId={registration.cohort_id} />
     </ActionSlot>
   )
 }
