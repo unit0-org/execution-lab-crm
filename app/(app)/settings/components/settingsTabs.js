@@ -2,7 +2,6 @@
 export const SETTINGS_TABS = [
   { value: 'profile', label: 'Profile' },
   { value: 'members', label: 'Members' },
-  { value: 'portalMembers', label: 'Portal members' },
   { value: 'google', label: 'Google Contacts' },
   { value: 'conflicts', label: 'Sync conflicts' },
   { value: 'emails', label: 'Email templates' },
@@ -11,7 +10,7 @@ export const SETTINGS_TABS = [
   { value: 'appearance', label: 'Appearance' }
 ]
 
-const ADMIN_ONLY = new Set(['members', 'portalMembers'])
+const ADMIN_ONLY = new Set(['members'])
 
 // Tabs a role may see. Member management (the Members tab) is admin-only.
 export function visibleSettingsTabs(role) {

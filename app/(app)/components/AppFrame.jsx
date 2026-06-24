@@ -11,7 +11,7 @@ import { navFor, settingsNav } from './nav'
 export function AppFrame({ role, email, unread, children }) {
   const nav = useSidebar()
   const sidebar = (
-    <Sidebar items={navFor()} settings={settingsNav(role)}
+    <Sidebar items={navFor(role)} settings={settingsNav(role)}
       currentPath={usePathname()} email={email}
       onToggleCollapse={nav.toggleCollapse} onNavigate={nav.close} />
   )
