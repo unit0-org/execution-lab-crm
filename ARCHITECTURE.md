@@ -243,8 +243,9 @@ same helpers — change the rule there, not in each path.
 
 An invited CRM contact can sign in to the client portal to see their own
 data (Milestone 1: just sign-in + an authenticated home + a "Cohort
-registration" link). It reuses Supabase Auth (Google **and** email magic
-link), mirroring the staff `organization_user` invite pattern but linking
+registration" link). It reuses Supabase Auth via **email magic link
+only** (no Google sign-in — that's staff-only), mirroring the staff
+`organization_user` invite pattern but linking
 to a **`contact_id`** instead of an org. Module: `lib/portalMember`
 (`PortalMember` model + controllers); the auth helpers are in
 `lib/portal/auth`.
@@ -272,10 +273,10 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   `app/portal/(member)/`; sign-in at `app/portal/signin`. The shared
   `app/portal/layout.js` holds only the shell/theme. `/auth` and `/api`
   are **shared routes** (`isSharedRoute`) excluded from the portal-host
-  rewrite so the OAuth/OTP callback and sign-out resolve on the portal
-  subdomain. The portal sign-in uses **minimal Google scope**
-  (`portalSignInOptions`, no Calendar/Contacts) and the callback skips
-  `rememberGoogleToken` for `flow=portal` (`afterSession`).
+  rewrite so the OTP callback and sign-out resolve on the portal
+  subdomain. The portal sign-in is **email magic link only**; the callback
+  skips `rememberGoogleToken` for `flow=portal` (`afterSession`), so an OTP
+  session never stores Google tokens.
 
 ## Flow maps (which file does each step)
 
