@@ -3,22 +3,22 @@
 import { Form } from '@/ui/molecules/Form'
 import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
+import { TextField } from '@/ui/atoms/TextField'
 import { FormError } from '@/ui/molecules/FormError'
-import { ResourceFields } from './ResourceFields'
 import { ResourceFormActions } from './ResourceFormActions'
 import { useFormAction } from '../hooks/useFormAction'
-import { addCohortResourceAction } from '../actions/addCohortResource'
+import { addCohortFolderAction } from '../actions/addCohortFolder'
 
-export function ResourceForm({ folderId, cohortId, onSaved, onCancel }) {
-  const { action, error } = useFormAction(addCohortResourceAction, onSaved)
+export function FolderForm({ cohortId, onSaved, onCancel }) {
+  const { action, error } = useFormAction(addCohortFolderAction, onSaved)
 
   return (
     <Form action={action}>
-      <input type="hidden" name="folder_id" value={folderId} />
       <input type="hidden" name="cohort_id" value={cohortId} />
       <Stack gap="md">
-        <Heading level={3}>Add resource</Heading>
-        <ResourceFields />
+        <Heading level={3}>Add folder</Heading>
+        <TextField label="Folder name" name="name" required
+          placeholder="e.g. Session 1" />
         <FormError message={error} />
         <ResourceFormActions onCancel={onCancel} />
       </Stack>

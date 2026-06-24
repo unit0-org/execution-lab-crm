@@ -3,13 +3,14 @@
 import { Stack } from '@/ui/layout/Stack'
 import { SectionHeader } from '@/ui/molecules/SectionHeader'
 import { useToggle } from '@/ui/molecules/useToggle'
-import { useCohortResources } from '../hooks/useCohortResources'
-import { AddResourceModal } from './AddResourceModal'
-import { ResourceList } from './ResourceList'
+import { useCohortFolders } from '../hooks/useCohortFolders'
+import { AddFolderModal } from './AddFolderModal'
+import { FolderList } from './FolderList'
 
-// A cohort's session resources, with a "+" to add and per-row delete.
+// A cohort's resource folders, with a "+" to add a folder. Each folder
+// holds its own notes, resources and recordings.
 export function CohortResources({ cohortId, initial }) {
-  const { resources, reload } = useCohortResources(cohortId, initial)
+  const { folders, reload } = useCohortFolders(cohortId, initial)
   const modal = useToggle()
 
   const saved = () => {
@@ -18,12 +19,12 @@ export function CohortResources({ cohortId, initial }) {
   }
 
   return (
-    <Stack gap="sm">
-      <SectionHeader title="Resources" addLabel="Add resource"
+    <Stack gap="md">
+      <SectionHeader title="Resources" addLabel="Add folder"
         onAdd={modal.show} />
-      <AddResourceModal open={modal.open} cohortId={cohortId}
+      <AddFolderModal open={modal.open} cohortId={cohortId}
         onSaved={saved} onClose={modal.hide} />
-      <ResourceList resources={resources} onChanged={reload} />
+      <FolderList folders={folders} cohortId={cohortId} onChanged={reload} />
     </Stack>
   )
 }

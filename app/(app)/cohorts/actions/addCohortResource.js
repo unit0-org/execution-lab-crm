@@ -7,11 +7,10 @@ import { addCohortResource } from '@/lib/cohort/controllers'
 export const addCohortResourceAction = withMember(async (formData) => {
   const cohortId = formData.get('cohort_id')
   const result = await addCohortResource({
-    cohortId,
+    folderId: formData.get('folder_id'),
     kind: formData.get('kind'),
     title: formData.get('title'),
-    url: formData.get('url'),
-    sessionLabel: formData.get('session_label')
+    url: formData.get('url')
   })
 
   if (result.ok) revalidatePath(`/cohorts/${cohortId}`)

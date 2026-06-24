@@ -13,8 +13,6 @@ export function ResourceFields() {
       <TextField label="Title" name="title" required />
       <TextField label="Link" name="url" type="url" required
         placeholder="https://…" />
-      <TextField label="Session" name="session_label"
-        placeholder="e.g. Session 3 (optional)" />
     </Stack>
   )
 }
