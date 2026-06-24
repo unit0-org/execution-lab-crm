@@ -84,14 +84,15 @@ leaves this stale is incomplete (this is a review-enforced rule in
   for evening-local times. **Pricing reward (see the reward invariant
   below):** registering *before* the window opens earns a 20% reward; once
   it opens, only the first 2 in-window seats do. A cohort also owns
-  **`cohort_resource`** — titled links (notes → Google Doc, resources →
-  file link, recordings → YouTube; links only, no upload storage) the
-  operator manages on the cohort page and **confirmed** registrants
-  (`Registration.scope('confirmed')`) see in the member portal. It
-  references `cohort_id` only (FK CASCADE on cohort delete), so it is
-  **not** contact-owned (no contact-merge fold-in) and is **not** on the
-  contact activity timeline. An optional `session_label` groups items by
-  session; the single source of truth for the three kinds is
+  **`cohort_folder`** → **`cohort_resource`** — the operator creates named
+  folders (e.g. "Session 1") on the cohort page and drops titled links into
+  them (notes → Google Doc, resources → file link, recordings → YouTube;
+  links only, no upload storage). A folder references `cohort_id` and a
+  resource references `folder_id` (both FK CASCADE, so deleting a cohort or
+  folder removes what's under it). **Confirmed** registrants
+  (`Registration.scope('confirmed')`) see them in the member portal. Neither
+  table is contact-owned (no contact-merge fold-in) nor on the contact
+  activity timeline; the single source of truth for the three kinds is
   `lib/cohort/resourceKinds.js`.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
