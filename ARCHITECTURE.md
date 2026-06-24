@@ -88,7 +88,12 @@ leaves this stale is incomplete (this is a review-enforced rule in
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
   cohort tagging (see invariant). `amount_total` is set only on payment.
 - **waitlist** — `waitlist_entry` (unique per org+email); priority invites
-  open a spot and convert to a registration.
+  open a spot and convert to a registration. Status lifecycle:
+  `waiting`→`invited`→`accepted` (a pending registration exists)→`converted`
+  (paid), or `expired`. The **waiting-line view shows only the `active`
+  scope** (`waiting` + `invited`) — once a seat is taken or the invite
+  lapses, the entry leaves the line. Query `WaitlistEntry.scope('active')`,
+  never an inline status list.
 - **purchase** — Stripe charges synced as purchases; feeds spend insights
   and the lead/customer split.
 - **invoice** — invoices with line items, PDF generation, Stripe charge,
