@@ -1,7 +1,7 @@
 import { Stack } from '@/ui/layout/Stack'
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
 
-const SECTIONS = ['Billing', 'Cohort notes', 'Recordings', 'Resources']
+const SECTIONS = ['Billing']
 
 // Preview of the member sections shipping in later milestones.
 export function ComingSoon() {

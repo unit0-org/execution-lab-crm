@@ -11,7 +11,7 @@ export function AccountView({ name }) {
     <Stack gap="lg">
       <Heading level={2}>Welcome, {greetName(name)}</Heading>
       <Text size="sm">
-        Your billing, cohort notes, recordings and resources will live here.
+        Find your cohort notes, recordings and resources under Resources.
       </Text>
       <ComingSoon />
     </Stack>

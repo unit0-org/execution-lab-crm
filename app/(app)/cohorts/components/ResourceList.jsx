@@ -1,6 +1,6 @@
 import { Stack } from '@/ui/layout/Stack'
 import { Text } from '@/ui/atoms/Text'
-import { groupResources } from '../hooks/groupResources'
+import { groupResourcesBySession } from '@/lib/cohort/groupResourcesBySession'
 import { ResourceSession } from './ResourceSession'
 
 export function ResourceList({ resources, onChanged }) {
@@ -9,7 +9,7 @@ export function ResourceList({ resources, onChanged }) {
 
   return (
     <Stack gap="md">
-      {groupResources(resources).map((session) => (
+      {groupResourcesBySession(resources).map((session) => (
         <ResourceSession key={session.label} session={session}
           onChanged={onChanged} />
       ))}
