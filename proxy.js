@@ -3,6 +3,7 @@ import { isPortalHost } from '@/lib/portal/isPortalHost'
 import { isSharedRoute } from '@/lib/portal/isSharedRoute'
 import { portalRewrite } from '@/lib/portal/portalRewrite'
 import { portalRedirect } from '@/lib/portal/portalRedirect'
+import { portalCodeRedirect } from '@/lib/portal/portalCodeRedirect'
 
 export async function proxy(request) {
   const host = request.headers.get('host') || ''
@@ -11,11 +12,9 @@ export async function proxy(request) {
   if (isPortalHost(host) && !isSharedRoute(pathname))
     return portalRewrite(request)
 
-  const moved = portalRedirect(request)
-
-  if (moved) return moved
-
-  return updateSession(request)
+  return portalCodeRedirect(request)
+    || portalRedirect(request)
+    || updateSession(request)
 }
 
 export const config = {

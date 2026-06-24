@@ -283,7 +283,13 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   rewrite so the OTP callback and sign-out resolve on the portal
   subdomain. The portal sign-in is **email magic link only**; the callback
   skips `rememberGoogleToken` for `flow=portal` (`afterSession`), so an OTP
-  session never stores Google tokens.
+  session never stores Google tokens. **Magic-link fallback:** if the
+  portal callback URL isn't allow-listed in Supabase, the verify endpoint
+  falls back to the project Site URL (the CRM host) and lands on the CRM
+  root as `/?code=…`. The proxy's `portalCodeRedirect` bounces that code to
+  the **portal host's** `/auth/callback` (where the PKCE verifier cookie
+  lives, since Supabase cookies are host-only here), so sign-in completes
+  even without the dashboard allow-list entry.
 
 ## Flow maps (which file does each step)
 
