@@ -128,7 +128,7 @@ Conventions (from `AGENTS.md`):
 | `SwatchSelect` (+`SwatchMenu`/`SwatchTrigger`) | `value`, `onPick`, `options` | Color picker |
 | `Popover` | `open`, `onClose`, `trigger`, `children` | Anchored popover |
 | `Collapsible` | `title`, `children` | Expand/collapse section |
-| `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel` | Confirmation modal |
+| `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; override `message`/`confirmLabel`/`tone` for non-destructive confirms |
 | `ConfirmBulkDelete` | `count`, `onDelete`, `onCancel` | Inline "Delete N?" confirm for bulk-action bars |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
 | `SelectCell` | `checked`, `onToggle` | Row-selection checkbox `Td` for multi-select tables |
