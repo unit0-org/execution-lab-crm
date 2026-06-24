@@ -10,9 +10,14 @@ export const NAV = [
 
 const CRON = { href: '/cron', label: 'Cron', icon: 'refresh' }
 const SETTINGS = { href: '/settings', label: 'Settings', icon: 'gear' }
+const PORTAL_MEMBERS =
+  { href: '/portal-members', label: 'Portal Members', icon: 'users' }
 
-// The main nav (everyone). Settings lives separately, at the bottom.
-export function navFor() {
+// The main nav. Portal Members (invite/revoke) is admin-only; Settings
+// lives separately, at the bottom.
+export function navFor(role) {
+  if (role === 'admin') return [...NAV, PORTAL_MEMBERS]
+
   return NAV
 }
 

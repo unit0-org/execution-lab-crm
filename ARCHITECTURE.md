@@ -259,7 +259,9 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
 - **Invitation-only is an authorization rule, not an auth one.** Anyone can
   obtain a Supabase session (OTP may create an auth user), but with no
   `portal_member` row they reach nothing. Invite/revoke from a contact's
-  page (`PortalInvite`) or the admin **Portal members** settings tab.
+  page (`PortalInvite`) or the admin **Portal Members** page
+  (`/portal-members`, in the sidebar) — which also has an invite-by-contact
+  picker.
 - **Two-layer gate — the security-critical part.** Supabase cookies are
   shared across `.theexecutionlab.ca` subdomains, so a member's session
   also reaches the CRM host. The proxy still only checks session existence;

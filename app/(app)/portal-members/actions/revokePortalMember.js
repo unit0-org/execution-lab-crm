@@ -6,7 +6,7 @@ import { revokePortalMember } from '@/lib/portalMember/controllers'
 
 export const revokePortalMemberAction = withAdmin(async (orgId, formData) => {
   const result = await revokePortalMember(formData.get('id'))
-  revalidatePath('/settings')
+  revalidatePath('/portal-members')
 
   return result
 })

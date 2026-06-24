@@ -1,6 +1,5 @@
 import { ProfileServer } from './ProfileServer'
 import { MembersServer } from './MembersServer'
-import { PortalMembersServer } from './PortalMembersServer'
 import { GoogleServer } from './GoogleServer'
 import { ConflictsServer } from './ConflictsServer'
 import { EmailTemplatesServer } from './EmailTemplatesServer'
@@ -11,7 +10,6 @@ import { AppearanceView } from './components/AppearanceView'
 const PANELS = {
   profile: ProfileServer,
   members: MembersServer,
-  portalMembers: PortalMembersServer,
   google: GoogleServer,
   conflicts: ConflictsServer,
   emails: EmailTemplatesServer,
