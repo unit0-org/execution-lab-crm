@@ -1,29 +1,24 @@
 'use client'
 
 import { Inline } from '@/ui/layout/Inline'
-import { IconButton } from '@/ui/atoms/IconButton'
-import { Icon } from '@/ui/atoms/Icon'
 import { ContactHeading } from './ContactHeading'
 import { ContactGoogleSync } from './ContactGoogleSync'
 import { ContactCategory } from './ContactCategory'
-import { EditNameModal } from './EditNameModal'
+import { EditName } from './EditName'
 import { DeleteContact } from './DeleteContact'
-import { useReveal } from '../hooks/useReveal'
+import { PortalInvite } from './PortalInvite'
 
-export function ContactHeader({ contact, onChanged, googleLink }) {
-  const edit = useReveal()
-
+export function ContactHeader({
+  contact, onChanged, googleLink, portalMember
+}) {
   return (
     <Inline gap="sm">
       <ContactHeading contact={contact} />
       <ContactGoogleSync link={googleLink} />
-      <IconButton label="Edit name" onClick={edit.show}>
-        <Icon name="pencil" />
-      </IconButton>
+      <EditName contact={contact} onChanged={onChanged} />
       <DeleteContact contactId={contact.id} />
       <ContactCategory contact={contact} onChanged={onChanged} />
-      <EditNameModal contact={contact} open={edit.shown}
-        onClose={edit.hide} onChanged={onChanged} />
+      <PortalInvite contact={contact} portalMember={portalMember} />
     </Inline>
   )
 }

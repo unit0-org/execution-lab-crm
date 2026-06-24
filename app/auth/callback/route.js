@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { rememberGoogleToken } from '@/lib/google/controllers/rememberToken'
+import { afterSession } from '../afterSession'
 import { safeNextPath } from '@/lib/auth/safeNextPath'
 
 const back = (url, to) => NextResponse.redirect(new URL(to, url.origin))
@@ -13,6 +13,7 @@ export async function GET(request) {
   const url = new URL(request.url)
   const code = url.searchParams.get('code')
   const next = safeNextPath(url.searchParams.get('next'))
+  const isPortal = url.searchParams.get('flow') === 'portal'
 
   if (!code) return back(url, '/login?error=missing_code')
 
@@ -21,7 +22,7 @@ export async function GET(request) {
 
   if (error) return back(url, errUrl(error))
 
-  await rememberGoogleToken(data.session)
+  await afterSession(data.session, isPortal)
 
   return back(url, next)
 }

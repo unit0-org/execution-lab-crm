@@ -1,12 +1,15 @@
 import { updateSession } from '@/lib/supabase/proxy'
 import { isPortalHost } from '@/lib/portal/isPortalHost'
+import { isSharedRoute } from '@/lib/portal/isSharedRoute'
 import { portalRewrite } from '@/lib/portal/portalRewrite'
 import { portalRedirect } from '@/lib/portal/portalRedirect'
 
 export async function proxy(request) {
   const host = request.headers.get('host') || ''
+  const { pathname } = request.nextUrl
 
-  if (isPortalHost(host)) return portalRewrite(request)
+  if (isPortalHost(host) && !isSharedRoute(pathname))
+    return portalRewrite(request)
 
   const moved = portalRedirect(request)
 

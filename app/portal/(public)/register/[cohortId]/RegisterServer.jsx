@@ -4,9 +4,9 @@ import { cohortCard } from '@/lib/portal/cohortCard'
 import { todayIso } from '@/lib/portal/todayIso'
 import { registrationPhase } from '@/lib/cohort/controllers'
 import { resolveInvite } from './resolveInvite'
-import { RegisterClosed } from '../../components/RegisterClosed'
-import { RegisterFull } from '../../components/RegisterFull'
-import { RegisterView } from '../../components/RegisterView'
+import { RegisterClosed } from '../../../components/RegisterClosed'
+import { RegisterFull } from '../../../components/RegisterFull'
+import { RegisterView } from '../../../components/RegisterView'
 
 // Load one open cohort; a valid invite skips the full check + prefills.
 export async function RegisterServer({ params, searchParams }) {
