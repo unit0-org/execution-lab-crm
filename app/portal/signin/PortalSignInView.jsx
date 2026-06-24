@@ -1,25 +1,20 @@
 'use client'
 
-import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
-import { Text } from '@/ui/atoms/Text'
-import { GoogleSignIn } from './components/GoogleSignIn'
-import { MagicLinkForm } from './components/MagicLinkForm'
-import { SignInStatus } from './components/SignInStatus'
+import { Narrow } from '@/ui/layout/Narrow'
+import { Card } from '@/ui/atoms/Card'
+import { SignInPanel } from './components/SignInPanel'
 import { useSignInStatus } from './hooks/useSignInStatus'
 
+// Centered, width-capped sign-in card so the form doesn't stretch the full
+// portal width. The panel holds the actual sign-in methods.
 export function PortalSignInView() {
   const status = useSignInStatus()
 
   return (
-    <Stack gap="lg">
-      <Stack gap="xs">
-        <Heading level={2}>Member sign in</Heading>
-        <Text size="sm">Use the email you were invited with.</Text>
-      </Stack>
-      <SignInStatus status={status} />
-      <GoogleSignIn />
-      <MagicLinkForm />
-    </Stack>
+    <Narrow max={420}>
+      <Card>
+        <SignInPanel status={status} />
+      </Card>
+    </Narrow>
   )
 }
