@@ -1,30 +1,25 @@
 'use client'
 
-import { useState } from 'react'
 import { Icon } from '@/ui/atoms/Icon'
 import { MenuRow } from '@/ui/molecules/MenuRow'
 import { ConfirmDialog } from '@/ui/molecules/ConfirmDialog'
-import { useMarkRegistrationPaid } from '../hooks/useMarkRegistrationPaid'
+import { InvoicePrompt } from './InvoicePrompt'
+import { useMarkPaidFlow } from '../hooks/useMarkPaidFlow'
 
-// Mark a registrant paid out-of-band, behind a confirm dialog.
-export function MarkPaidMenuItem({ registrationId, onDone }) {
-  const [open, setOpen] = useState(false)
-  const markPaid = useMarkRegistrationPaid(registrationId)
-
-  const confirm = () => {
-    setOpen(false)
-    onDone()
-    markPaid()
-  }
+// Mark a registrant paid (confirm), then offer to invoice them.
+export function MarkPaidMenuItem({ registrationId, cohortId, onDone }) {
+  const flow = useMarkPaidFlow(registrationId, onDone)
 
   return (
     <>
       <MenuRow leading={<Icon name="check" size={16} />}
-        label="Mark as paid" onClick={() => setOpen(true)} />
-      <ConfirmDialog open={open} title="Mark as paid?"
+        label="Mark as paid" onClick={flow.ask} />
+      <ConfirmDialog open={flow.step === 'confirm'} title="Mark as paid?"
         message="This marks the registrant as paid."
         confirmLabel="Mark as paid" tone="primary"
-        onConfirm={confirm} onCancel={() => setOpen(false)} />
+        onConfirm={flow.confirm} onCancel={flow.cancel} />
+      <InvoicePrompt open={flow.step === 'invoice'} cohortId={cohortId}
+        onSubmit={flow.invoice} onSkip={flow.skip} />
     </>
   )
 }
