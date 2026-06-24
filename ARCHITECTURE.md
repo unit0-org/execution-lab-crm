@@ -87,7 +87,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
   **`cohort_folder`** → **`cohort_resource`** — the operator creates named
   folders (e.g. "Session 1") on the cohort page and drops titled links into
   them (notes → Google Doc, resources → file link, recordings → YouTube;
-  links only, no upload storage). A folder references `cohort_id` and a
+  links only, no upload storage; the portal embeds recording links as
+  inline players via `youtubeEmbedUrl` + `VideoEmbed`). A folder references
+  `cohort_id` and a
   resource references `folder_id` (both FK CASCADE, so deleting a cohort or
   folder removes what's under it). **Confirmed** registrants
   (`Registration.scope('confirmed')`) see them in the member portal. Neither
