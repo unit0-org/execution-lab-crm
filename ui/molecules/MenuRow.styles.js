@@ -6,7 +6,7 @@ import { fontSize } from '../tokens/typography'
 export const rowStyle = {
   display: 'flex', alignItems: 'center', gap: space[3],
   width: '100%', padding: space[2],
-  background: 'transparent', border: 'none', cursor: 'pointer',
+  border: 'none', cursor: 'pointer',
   borderRadius: radius.md, color: color.text.primary,
   fontSize: fontSize.sm
 }
