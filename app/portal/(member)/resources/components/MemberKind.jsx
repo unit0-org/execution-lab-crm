@@ -1,6 +1,6 @@
 import { Stack } from '@/ui/layout/Stack'
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
-import { MonoLink } from '@/ui/atoms/MonoLink'
+import { MemberResourceItem } from './MemberResourceItem'
 
 export function MemberKind({ title, items }) {
   if (!items.length) return null
@@ -9,9 +9,7 @@ export function MemberKind({ title, items }) {
     <Stack gap="xs">
       <MonoLabel size={11} tone="muted">{title}</MonoLabel>
       {items.map((item) => (
-        <MonoLink key={item.id} href={item.url} size={13}>
-          {item.title}
-        </MonoLink>
+        <MemberResourceItem key={item.id} item={item} />
       ))}
     </Stack>
   )
