@@ -16,7 +16,8 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "script-src 'self' 'unsafe-inline'",
   "form-action 'self' https://accounts.google.com",
-  "frame-src 'self' https://accounts.google.com",
+  "frame-src 'self' https://accounts.google.com " +
+    'https://www.youtube-nocookie.com',
   "connect-src 'self' https://*.supabase.co " +
     'https://accounts.google.com https://*.googleapis.com'
 ].join('; ');
