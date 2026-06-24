@@ -286,7 +286,9 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
 /* Buttons default to align-self: flex-start (for column forms); in the
    row-flex topbar that pushes them to the top, so re-center them. */
 [data-topbar] button { align-self: center !important; }
+[data-menu-row] { background: transparent; }
 [data-menu-row]:hover { background: var(--color-bg-subtle); }
+[data-menu-row]:active { background: var(--color-bg-sunken); }
 
 @media (max-width: 768px) {
   [data-topbar] { padding-left: 1rem; }
