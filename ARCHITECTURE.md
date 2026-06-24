@@ -83,7 +83,16 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `America/Vancouver`), NOT UTC — a UTC "today" closes windows a day early
   for evening-local times. **Pricing reward (see the reward invariant
   below):** registering *before* the window opens earns a 20% reward; once
-  it opens, only the first 2 in-window seats do.
+  it opens, only the first 2 in-window seats do. A cohort also owns
+  **`cohort_resource`** — titled links (notes → Google Doc, resources →
+  file link, recordings → YouTube; links only, no upload storage) the
+  operator manages on the cohort page and **confirmed** registrants
+  (`Registration.scope('confirmed')`) see in the member portal. It
+  references `cohort_id` only (FK CASCADE on cohort delete), so it is
+  **not** contact-owned (no contact-merge fold-in) and is **not** on the
+  contact activity timeline. An optional `session_label` groups items by
+  session; the single source of truth for the three kinds is
+  `lib/cohort/resourceKinds.js`.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
   cohort tagging (see invariant). `amount_total` is set only on payment.

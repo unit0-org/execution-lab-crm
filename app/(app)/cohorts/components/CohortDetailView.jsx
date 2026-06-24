@@ -3,12 +3,13 @@ import { ButtonLink } from '@/ui/atoms/ButtonLink'
 import { portalUrl } from '@/lib/portal/portalUrl'
 import { CohortDetailHeader } from './CohortDetailHeader'
 import { RegistrationsTable } from './RegistrationsTable'
+import { CohortResources } from './CohortResources'
 
 const registerHref = (slug) => portalUrl(`/register/${slug}`)
 
 // A cohort's header (with an edit action), a link to its public
-// registration page, and everyone registered for it.
-export function CohortDetailView({ cohort, registrations }) {
+// registration page, everyone registered, and its session resources.
+export function CohortDetailView({ cohort, registrations, resources }) {
   return (
     <Stack gap="lg">
       <CohortDetailHeader cohort={cohort} />
@@ -16,6 +17,7 @@ export function CohortDetailView({ cohort, registrations }) {
         Registration page
       </ButtonLink>
       <RegistrationsTable registrations={registrations} />
+      <CohortResources cohortId={cohort.id} initial={resources} />
     </Stack>
   )
 }
