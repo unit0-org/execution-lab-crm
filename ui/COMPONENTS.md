@@ -50,7 +50,7 @@ Conventions (from `AGENTS.md`):
 | `LabelDot` | `color`, `size=8` | Small colored status dot |
 | `Link` | `href`, `children` | Internal app navigation link |
 | `MonoLabel` | `tone='muted'`, `size=11`, `caps`, `align`, `children` | Monospaced micro-label/kicker; `tone` picks a brand/neutral color, `align` blocks + aligns (portal) |
-| `MonoLink` | `href`, `size=11`, `underline`, `children` | Monospaced accent link, opens a new tab (portal) |
+| `MonoLink` | `href`, `size=11`, `underline`, `external=true`, `children` | Monospaced accent link; new tab by default, `external={false}` for in-app nav (portal) |
 | `NavIcon` / `NavLink` | `icon` / `href`, `active`, `icon`, `children` | Sidebar navigation entries |
 | `NavProgress` | — | Fixed top progress bar shown while a `Link` navigation is pending; rendered inside the link atoms, not used directly |
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`) |
@@ -138,7 +138,7 @@ Conventions (from `AGENTS.md`):
 | `UploadButton` / `IconUpload` | `label`, `onPick` (`title`) | File upload triggers |
 | `SyncControl` / `SyncIcon` | `label`, `syncing`, `onSync` | Sync action + status |
 | `Toast` + `showToast(message)` | `message` | Transient feedback (use `showToast` for action feedback) |
-| `SignOutForm` | `children` | Sign-out form |
+| `SignOutForm` | `children`, `next` | Sign-out form (`next` = post-logout landing path) |
 
 Helpers: `matchOptions(options, query, limit=5)` and
 `hasExactLabel(options, query)` back `Autocomplete`'s filtering.
@@ -155,11 +155,11 @@ Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`.
 |---|---|---|
 | `Modal` | `open`, `onClose`, `wide`, `children` | Centered dialog (Esc / outside / X to close, auto-focus); `wide` widens it, and it scrolls when tall |
 | `TitledModal` | `open`, `title`, `onClose`, `wide`, `children` | Modal with a titled header row, so the close button stays visible and body content never sits under it. Prefer this over bare `Modal` for titled dialogs |
-| `Nav` / `Sidebar` / `SidebarFooter` / `CollapseToggle` | `items`,`currentPath` / `email` | App navigation chrome |
+| `Nav` / `Sidebar` / `SidebarFooter` / `CollapseToggle` | `items`,`currentPath` / `email`, `signOutNext` | App navigation chrome (`signOutNext` = post-logout landing) |
 | `ThemeToggle` | `onClick` | Light/dark theme switch (sidebar) |
 | `Toaster` | — | Toast outlet — mount once at the root |
 | `UserEmail` | `value` | Signed-in user email display |
-| `PortalHeader` | `kicker`, `title`, `infoLabel`, `linkLabel`, `linkHref`, `logoSrc`, `logoAlt` | Portal masthead: brand lockup + cohort meta and program link |
+| `PortalHeader` | `kicker`, `title`, `infoLabel`, `linkLabel`, `linkHref`, `logoSrc`, `logoAlt`, `aside` | Portal masthead: brand lockup + cohort meta and program link (`aside` = extra right-column node) |
 | `HeroPanel` | `tone='launch'`, `main`, `aside` | Featured-cohort panel: glowing tone-bordered surface with a brand gradient edge; `main`/`aside` stack on mobile (portal) |
 | `AccentPanel` | `tone='mint'`, `children` | Glowing tone-bordered surface with a brand gradient top stripe (confirmation/celebration) |
 
