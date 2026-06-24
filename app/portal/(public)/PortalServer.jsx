@@ -1,5 +1,5 @@
 import { cohortCardData } from '@/lib/portal/cohortCardData'
-import { PortalBody } from './components/PortalBody'
+import { PortalBody } from '../components/PortalBody'
 
 // Server-side load of the open cohorts for the public portal.
 export async function PortalServer() {

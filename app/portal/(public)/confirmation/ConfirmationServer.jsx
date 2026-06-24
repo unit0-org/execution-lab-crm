@@ -1,5 +1,5 @@
 import { confirmationData } from '@/lib/portal/confirmationData'
-import { Confirmation } from '../components/Confirmation'
+import { Confirmation } from '../../components/Confirmation'
 
 // Resolve the payer + cohort from the Stripe session and render the
 // "you're in" confirmation.

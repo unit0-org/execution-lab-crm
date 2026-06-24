@@ -169,6 +169,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `waitlist_entry` | set null | `claimContactRecords` (reassign) |
 | `note_mention` | cascade | `claimContactRecords` (reassign) |
 | `notification` | cascade | `claimContactRecords` (reassign) |
+| `portal_member` | cascade | `mergePortalMembers` (dedupe per contact) |
 | `contact_google_link` | cascade | **not migrated** (sync artifact; re-sync recreates) |
 | `sync_conflict` | cascade | **not migrated** (sync artifact) |
 
@@ -237,6 +238,44 @@ the effective code by precedence in `effectiveDiscountCode.js`: **customer code
 › reward 20% › cohort preset `promo_code` › none**. Both the displayed price
 (`resolveCohortAmounts`) and the Stripe session (`startCheckout`) consume these
 same helpers — change the rule there, not in each path.
+
+## Portal member sign-in (invitation-only client portal)
+
+An invited CRM contact can sign in to the client portal to see their own
+data (Milestone 1: just sign-in + an authenticated home + a "Cohort
+registration" link). It reuses Supabase Auth (Google **and** email magic
+link), mirroring the staff `organization_user` invite pattern but linking
+to a **`contact_id`** instead of an org. Module: `lib/portalMember`
+(`PortalMember` model + controllers); the auth helpers are in
+`lib/portal/auth`.
+
+- **`portal_member`** = `{contact_id (unique), user_id, status}` — **no
+  email/name** (the member is a contact; identity comes from `contact` /
+  `contact_email`). Invite by `contact_id` only; sign-in matches the
+  authenticated email → contact via `ContactEmail.findContactId`, then to
+  the `portal_member` row, linking `user_id` on first sign-in
+  (`portalMembershipFor`). Folded by contact-merge (`mergePortalMembers`).
+- **Invitation-only is an authorization rule, not an auth one.** Anyone can
+  obtain a Supabase session (OTP may create an auth user), but with no
+  `portal_member` row they reach nothing. Invite/revoke from a contact's
+  page (`PortalInvite`) or the admin **Portal members** settings tab.
+- **Two-layer gate — the security-critical part.** Supabase cookies are
+  shared across `.theexecutionlab.ca` subdomains, so a member's session
+  also reaches the CRM host. The proxy still only checks session existence;
+  the **backoffice `(app)` layout now positively requires STAFF membership**
+  (`requireStaff` in `AppShellServer` → `organization_user`), and the
+  **`app/portal/(member)` layout requires a `portal_member`**
+  (`MemberShellServer` → `currentPortalMember`). Neither session type can
+  cross into the other's area. **Don't weaken either layout gate.**
+- **Portal routing.** Public registration pages live in
+  `app/portal/(public)/` (registration masthead); the member area in
+  `app/portal/(member)/`; sign-in at `app/portal/signin`. The shared
+  `app/portal/layout.js` holds only the shell/theme. `/auth` and `/api`
+  are **shared routes** (`isSharedRoute`) excluded from the portal-host
+  rewrite so the OAuth/OTP callback and sign-out resolve on the portal
+  subdomain. The portal sign-in uses **minimal Google scope**
+  (`portalSignInOptions`, no Calendar/Contacts) and the callback skips
+  `rememberGoogleToken` for `flow=portal` (`afterSession`).
 
 ## Flow maps (which file does each step)
 

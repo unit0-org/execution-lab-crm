@@ -16,7 +16,8 @@ export function ContactDetail({ contact, onChanged, sections }) {
   return (
     <Stack gap="lg">
       <ContactHeader contact={contact} onChanged={onChanged}
-        googleLink={sections.googleLink} />
+        googleLink={sections.googleLink}
+        portalMember={sections.portalMember} />
       <ContactActivityBar act={act} />
       <TotalSpent spend={sections.spend} />
       <ContactChannels contact={contact} onChanged={onChanged} />
