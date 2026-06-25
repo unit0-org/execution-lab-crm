@@ -127,7 +127,17 @@ leaves this stale is incomplete (this is a review-enforced rule in
   always-CC address (`abel@theexecutionlab.ca`, override `ALWAYS_CC`) via
   `withAlwaysCc`, deduped against the recipient and any existing CC, so
   every outgoing email CCs that address.
-- **luma / drive** — CSV/event imports.
+- **luma / drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
+  API: invoice-PDF upload (narrow `drive.file` scope) plus list / download /
+  move for the meeting-transcript import, which uses the broad `drive` scope
+  (`driveAccessToken(raw, scope)`). The **`import-meetings`** cron job
+  (`lib/meetingImport/`) drains a source Drive folder of processed meeting
+  JSONs, applies them all in ONE transaction via
+  `applyMeetingEnrichmentBatch`, then moves each file to a done folder
+  (idempotent: dedup on `source_drive_id` makes a re-run after a partial
+  move safe). Both folders must be shared with the service-account email,
+  and the folder ids come from `MEETING_IMPORT_SOURCE_FOLDER` /
+  `MEETING_IMPORT_DONE_FOLDER` (defaults baked into `importConfig`).
 - **cron** — one daily Vercel cron (`/api/cron`, the only entry in
   `vercel.json`) runs every job in `lib/cron/jobs.js` **in order** via
   `runAllJobs` → `runJob` → `recordCronRun(name, work)`, which persists
@@ -155,6 +165,8 @@ leaves this stale is incomplete (this is a review-enforced rule in
   transaction-aware write path outside merge) — every helper threads `t`;
   `dryRun:true` runs then rolls back. Each result carries
   `schemaVersion` (`OPS_SCHEMA_VERSION`) for the enricher's drift check.
+  `applyMeetingEnrichmentBatch` extends this to many payloads in a single
+  transaction (all commit or none) — the `import-meetings` cron's write path.
 
 ---
 
