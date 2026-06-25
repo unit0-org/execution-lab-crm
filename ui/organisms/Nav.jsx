@@ -11,6 +11,7 @@ export function Nav({ items, currentPath, onNavigate }) {
           icon={item.icon}
           active={currentPath === item.href}
           onNavigate={onNavigate}
+          newTab={item.newTab}
         >
           {item.label}
         </NavLink>

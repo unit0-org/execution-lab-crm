@@ -6,13 +6,16 @@ export function normalizePath(path) {
   return path.length > 1 ? path.replace(/\/+$/, '') : path
 }
 
-const item = (path, label, icon) =>
-  ({ href: normalizePath(portalRoutePath(path)), label, icon })
+const item = (path, label, icon, newTab) =>
+  ({ href: normalizePath(portalRoutePath(path)), label, icon, newTab })
 
-// The member's own links: the public program listing and their resources.
+// The member's own links: the public program listing (opened in a new tab
+// so it doesn't navigate them out of the member area), their resources and
+// their billing.
 export function memberNav() {
   return [
-    item('/', 'Programs', 'calendar'),
-    item('/resources', 'Resources', 'file')
+    item('/', 'Programs', 'calendar', true),
+    item('/resources', 'Resources', 'file'),
+    item('/billing', 'Billing', 'card')
   ]
 }

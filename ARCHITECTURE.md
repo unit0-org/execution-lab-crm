@@ -294,7 +294,8 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   theme; each route group supplies its own frame — the public/sign-in/pay
   groups wrap in `PortalShell` (centered), while the member area uses a
   full-height **sidebar shell** (`MemberFrame` → `Shell` + `Sidebar`, the
-  backoffice-style chrome with only Programs/Resources + log out). The
+  backoffice-style chrome with Programs (opened in a new tab so it doesn't
+  navigate out of the member area), Resources and Billing + log out). The
   public masthead carries a "Lab member? Sign in" link
   (`PortalHeader` `aside`). `/auth` and `/api`
   are **shared routes** (`isSharedRoute`) excluded from the portal-host
@@ -308,6 +309,14 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   the **portal host's** `/auth/callback` (where the PKCE verifier cookie
   lives, since Supabase cookies are host-only here), so sign-in completes
   even without the dashboard allow-list entry.
+- **Member billing.** `app/portal/(member)/billing` lists the signed-in
+  member's own invoices (read-only). `BillingServer` resolves the member,
+  then `listInvoicesForMember(contactId)` reads the `invoice` table scoped
+  to the rows a member may see. **Which invoices are member-visible is a
+  business predicate defined once** as `Invoice.scope('memberVisible')`
+  (`status` is `sent` or `paid` — drafts/approved/void stay internal); the
+  controller queries through it, never an inline status list. Each row links
+  to the existing `/api/invoices/[id]/pdf` route.
 
 ## Flow maps (which file does each step)
 
