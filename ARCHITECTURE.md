@@ -167,6 +167,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `schemaVersion` (`OPS_SCHEMA_VERSION`) for the enricher's drift check.
   `applyMeetingEnrichmentBatch` extends this to many payloads in a single
   transaction (all commit or none) — the `import-meetings` cron's write path.
+  Facts and notes from a transcript are dated to the meeting (`startsAt`
+  threaded to `ContactFact.created_at`; per-note `notedAt`), not to import
+  time — so importing an old meeting back-dates its data correctly.
 
 ---
 
