@@ -314,7 +314,7 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   then `listInvoicesForMember(contactId)` reads the `invoice` table scoped
   to the rows a member may see. **Which invoices are member-visible is a
   business predicate defined once** as `Invoice.scope('memberVisible')`
-  (`status` is `sent` or `paid` — drafts/approved/void stay internal); the
+  (`status` is `approved`, `sent` or `paid` — drafts/void stay internal); the
   controller queries through it, never an inline status list. Each row links
   to the existing `/api/invoices/[id]/pdf` route.
 
