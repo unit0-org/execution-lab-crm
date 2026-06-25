@@ -1,11 +1,18 @@
 import { Badge } from '@/ui/atoms/Badge'
 
-const TONES = { approved: 'accent', sent: 'accent', paid: 'success' }
+const PENDING = { label: 'Payment pending', tone: 'accent' }
 
-// A member-facing invoice status pill. Only approved/sent/paid invoices
-// reach the portal, so anything else falls back to a neutral tone.
+// A member-facing invoice status pill in the member's own language: a paid
+// invoice reads "Paid"; anything not yet paid (approved or sent) reads
+// "Payment pending".
+const BADGES = {
+  paid: { label: 'Paid', tone: 'success' },
+  approved: PENDING,
+  sent: PENDING
+}
+
 export function InvoiceStatusBadge({ status }) {
-  const tone = TONES[status] || 'neutral'
+  const badge = BADGES[status] || PENDING
 
-  return <Badge tone={tone}>{status}</Badge>
+  return <Badge tone={badge.tone}>{badge.label}</Badge>
 }
