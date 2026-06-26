@@ -1,0 +1,128 @@
+[
+  {
+    "id": "deliveryModel",
+    "label": "Delivery model",
+    "desc": "Who actually does the work to reach the outcome.",
+    "options": ["Do-it-yourself (DIY)", "Done-with-you (DWY)", "Done-for-you (DFY)"],
+    "optDesc": ["Buyer executes alone using your materials.", "You and the buyer do the work together.", "You do the work for the buyer."]
+  },
+  {
+    "id": "executionDriver",
+    "label": "Execution driver",
+    "desc": "What powers the delivery — people or process.",
+    "options": ["Human-led", "System-led"],
+    "optDesc": ["A person delivers the value through their time and judgment.", "Software, automation, or a fixed process delivers the value."]
+  },
+  {
+    "id": "interactionTiming",
+    "label": "Interaction timing",
+    "desc": "When you and the buyer engage relative to each other.",
+    "options": ["Synchronous", "Asynchronous", "Hybrid"],
+    "optDesc": ["Live, real-time (calls, sessions, events).", "On each party’s own schedule (messages, recordings).", "A deliberate mix of live and on-demand."]
+  },
+  {
+    "id": "participationFormat",
+    "label": "Participation format",
+    "desc": "Who the buyer goes through the offer alongside.",
+    "options": ["Individual", "Cohort", "Ongoing community"],
+    "optDesc": ["Solo / 1:1 — just you and the buyer.", "A group moving through together on the same timeline.", "Open-ended membership people join and leave anytime."]
+  },
+  {
+    "id": "touchIntensity",
+    "label": "Touch intensity",
+    "desc": "How much personal attention the buyer receives.",
+    "options": ["High-touch", "Medium-touch", "Low-touch"],
+    "optDesc": ["Frequent, hands-on, individualized attention.", "Periodic check-ins and support.", "Minimal contact; largely self-serve."]
+  },
+  {
+    "id": "deliveryMedium",
+    "label": "Delivery medium",
+    "desc": "The primary vehicle that carries the value.",
+    "options": ["Presence-based", "Asset-based", "Tool-based"],
+    "optDesc": ["Your live time and attention (calls, coaching).", "Materials you produce (courses, templates, docs).", "Software or a product the buyer operates."]
+  },
+  {
+    "id": "scopeBreadth",
+    "label": "Scope breadth",
+    "desc": "How wide a slice of the buyer’s world the offer covers.",
+    "options": ["Single outcome", "Single domain", "Cross-domain", "End-to-end", "Ecosystem-level"],
+    "optDesc": ["One specific result.", "One area of their work or life.", "Several connected areas at once.", "The full journey from start to finish.", "The buyer plus the wider system around them."]
+  },
+  {
+    "id": "scopeDepth",
+    "label": "Scope depth",
+    "desc": "How deep the offer reaches into the problem.",
+    "options": ["Symptom-level", "Structural-level"],
+    "optDesc": ["Addresses the visible problem on the surface.", "Addresses the underlying cause beneath it."]
+  },
+  {
+    "id": "systemImpact",
+    "label": "System impact",
+    "desc": "The magnitude of change the offer makes.",
+    "options": ["Component optimization", "System redesign"],
+    "optDesc": ["Improves one part while leaving the whole intact.", "Rebuilds how the whole thing works."]
+  },
+  {
+    "id": "buyerParticipation",
+    "label": "Buyer participation intensity",
+    "desc": "How much the buyer themselves must engage to get the result.",
+    "options": ["Passive", "Active"],
+    "optDesc": ["Receives the value with little effort of their own.", "Must put in substantial work for it to land."]
+  },
+  {
+    "id": "effortDuration",
+    "label": "Effort duration",
+    "desc": "How long the buyer’s effort has to be sustained.",
+    "options": ["One-step", "Time-bound effort", "Ongoing effort"],
+    "optDesc": ["A single action and they’re done.", "Concentrated effort over a defined period.", "Continuous effort with no fixed end."]
+  },
+  {
+    "id": "downsideBearer",
+    "label": "Downside bearer",
+    "desc": "Who absorbs the loss if the offer doesn’t work.",
+    "options": ["Seller-borne", "Shared risk", "Buyer-borne"],
+    "optDesc": ["You carry the risk (e.g. pay-on-results).", "Risk is split between you and the buyer.", "The buyer carries the risk (pays regardless)."]
+  },
+  {
+    "id": "reversibility",
+    "label": "Commitment reversibility",
+    "desc": "How easily the buyer can back out once committed.",
+    "options": ["Reversible", "Partially reversible", "Irreversible"],
+    "optDesc": ["Easy, low-cost exit at any time.", "Some lock-in; partial refund or wind-down.", "Fully committed once they’re in."]
+  },
+  {
+    "id": "guarantee",
+    "label": "Guarantee structure",
+    "desc": "What promise you make about the result.",
+    "options": ["No guarantee", "Conditional guarantee", "Unconditional guarantee"],
+    "optDesc": ["No money-back promise.", "Refund if specific conditions are met.", "Refund on request, no questions asked."]
+  },
+  {
+    "id": "pricingModel",
+    "label": "Pricing model",
+    "desc": "How the price itself is determined.",
+    "options": ["Fixed", "Variable"],
+    "optDesc": ["One set price for everyone.", "Price flexes with usage, results, tier, or scope."]
+  },
+  {
+    "id": "paymentStructure",
+    "label": "Payment structure",
+    "desc": "How and when the money is collected.",
+    "options": ["One-time", "Installments", "Recurring"],
+    "optDesc": ["A single up-front payment.", "Split into scheduled payments over time.", "A subscription that renews on a cycle."]
+  },
+  {
+    "id": "priceFraming",
+    "label": "Price framing",
+    "desc": "How the price is positioned in the buyer’s mind.",
+    "options": ["Expense-framed", "Investment-framed"],
+    "optDesc": ["A cost to be minimized.", "Capital deployed for a return."]
+  },
+  {
+    "id": "authorityDynamic",
+    "label": "Authority dynamic",
+    "desc": "Who steers the decisions during delivery.",
+    "options": ["Provider-led", "Collaborative", "Client-led"],
+    "optDesc": ["You direct the process and call the shots.", "You and the buyer decide jointly.", "The buyer directs; you execute their lead."]
+  }
+]
