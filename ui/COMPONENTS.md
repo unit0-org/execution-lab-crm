@@ -128,7 +128,7 @@ Conventions (from `AGENTS.md`):
 | `MultiSelect` (+`Option`/`Trigger`) | `options`, `selected`, `onToggle`, `placeholder` | Multi-select dropdown |
 | `SwatchSelect` (+`SwatchMenu`/`SwatchTrigger`) | `value`, `onPick`, `options` | Color picker |
 | `Popover` | `open`, `onClose`, `trigger`, `children` | Anchored popover |
-| `Collapsible` | `title`, `children` | Expand/collapse section |
+| `Collapsible` | `title`, `preview`, `defaultOpen`, `children` | Expand/collapse section; `preview` shows only while collapsed |
 | `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; override `message`/`confirmLabel`/`tone` for non-destructive confirms |
 | `ConfirmBulkDelete` | `count`, `onDelete`, `onCancel` | Inline "Delete N?" confirm for bulk-action bars |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
