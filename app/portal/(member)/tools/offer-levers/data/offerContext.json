@@ -1,0 +1,52 @@
+[
+  {
+    "id": "seed",
+    "label": "Seed",
+    "hint": "your offer in one line",
+    "promptLabel": "Original offer",
+    "type": "text",
+    "placeholder": "e.g. A 6-week program that helps founders write a sales page that converts"
+  },
+  {
+    "id": "audience",
+    "label": "Audience",
+    "promptLabel": "Audience",
+    "type": "text",
+    "placeholder": "e.g. Early-stage B2B SaaS founders doing their first $10k MRR"
+  },
+  {
+    "id": "primaryOutcome",
+    "label": "Primary outcome",
+    "promptLabel": "Primary outcome",
+    "type": "text",
+    "placeholder": "The single result the buyer is paying for"
+  },
+  {
+    "id": "otherOutcomes",
+    "label": "Other outcomes",
+    "promptLabel": "Other outcomes",
+    "type": "area",
+    "placeholder": "Secondary wins and side benefits"
+  },
+  {
+    "id": "likeToDo",
+    "label": "What I like to do",
+    "promptLabel": "What I like to do",
+    "type": "area",
+    "placeholder": "The work you'd happily do more of"
+  },
+  {
+    "id": "dontWantToDo",
+    "label": "What I don't want to do",
+    "promptLabel": "What I want to avoid",
+    "type": "area",
+    "placeholder": "The work you want to design out of this offer"
+  },
+  {
+    "id": "extra",
+    "label": "Extra considerations",
+    "promptLabel": "Extra things to consider",
+    "type": "area",
+    "placeholder": "Constraints, context, anything else the architect should weigh"
+  }
+]

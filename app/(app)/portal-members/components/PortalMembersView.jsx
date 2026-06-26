@@ -7,14 +7,14 @@ import { PortalMembersTable } from './PortalMembersTable'
 import { InviteMemberModal } from './InviteMemberModal'
 
 // Portal members list with an invite action by the heading.
-export function PortalMembersView({ members, contacts }) {
+export function PortalMembersView({ members, tools, contacts }) {
   const invite = useToggle()
 
   return (
     <Stack gap="md">
       <SectionHeader title="Portal members" addLabel="Invite member"
         onAdd={invite.show} />
-      <PortalMembersTable members={members} />
+      <PortalMembersTable members={members} tools={tools} />
       <InviteMemberModal open={invite.open} onClose={invite.hide}
         contacts={contacts} />
     </Stack>

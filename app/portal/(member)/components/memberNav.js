@@ -16,6 +16,7 @@ export function memberNav() {
   return [
     item('/', 'Programs', 'calendar', true),
     item('/resources', 'Resources', 'file'),
+    item('/tools', 'Tools', 'grid'),
     item('/billing', 'Billing', 'card')
   ]
 }

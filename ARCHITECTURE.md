@@ -202,6 +202,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `note_mention` | cascade | `claimContactRecords` (reassign) |
 | `notification` | cascade | `claimContactRecords` (reassign) |
 | `portal_member` | cascade | `mergePortalMembers` (dedupe per contact) |
+| `portal_tool_access` | cascade | `mergeToolAccess` (idempotent, contact_id+tool_key) |
 | `contact_google_link` | cascade | **not migrated** (sync artifact; re-sync recreates) |
 | `sync_conflict` | cascade | **not migrated** (sync artifact) |
 
@@ -332,6 +333,18 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   (`status` is `approved`, `sent` or `paid` — drafts/void stay internal); the
   controller queries through it, never an inline status list. Each row links
   to the existing `/api/invoices/[id]/pdf` route.
+- **Member tools.** `app/portal/(member)/tools` lists the tools the member
+  has been granted; each tool is a code-defined entry in
+  `lib/portalTool/tools.js` (`PORTAL_TOOLS`, keyed by `key` with a `path`)
+  and implemented under `tools/<key>/`. Access is a `portal_tool_access`
+  row per `(contact_id, tool_key)` — a contact-owned table folded by
+  `mergeToolAccess` (see the merge invariant). `ToolsServer` resolves the
+  member, then `listToolsForMember(contactId)` maps granted keys to
+  metadata. **Each tool page must re-gate** via `memberHasTool(contactId,
+  key)` so a revoked member can't reach it by URL. Admins toggle access
+  per member in `app/(app)/portal-members` (the Tools column), through
+  `setToolAccess` (`withAdmin`). The first tool is **Offer Levers**, a
+  client-only prompt builder — no data is persisted, it copies a prompt.
 
 ## Flow maps (which file does each step)
 
