@@ -400,6 +400,7 @@ details[data-collapsible] summary svg {
   transition: transform var(--motion-quick) var(--motion-ease);
 }
 details[data-collapsible][open] summary svg { transform: rotate(180deg); }
+details[data-collapsible][open] [data-collapsible-preview] { display: none; }
 
 @keyframes progress-indeterminate {
   0% { transform: translateX(-100%); }
