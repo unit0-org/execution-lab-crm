@@ -14,7 +14,10 @@ export function useOfferLevers() {
   const setField = (id) => (event) =>
     setValues((cur) => ({ ...cur, [id]: event.target.value }))
 
+  const setLever = (id) => (value) =>
+    setValues((cur) => ({ ...cur, [id]: value }))
+
   const copyPrompt = () => copy(buildOfferPrompt(values))
 
-  return { values, setField, copyPrompt }
+  return { values, setField, setLever, copyPrompt }
 }
