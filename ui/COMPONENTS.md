@@ -58,6 +58,7 @@ Conventions (from `AGENTS.md`):
 | `Radio` | `checked`, `onChange`, `label` | Single radio option |
 | `Select` | `label`, `options`, `...rest` | Native dropdown select; `options` are strings or `{value,label}` |
 | `Skeleton` | `height` | Loading placeholder sized to final content |
+| `Slider` | `options`, `value`, `onChange`, `...rest` | Discrete slider over an ordered `options` list; thumb snaps to each stop, `onChange` receives the picked option string (not a DOM event) |
 | `Spinner` | `size=14` | Inline loading spinner |
 | `SubmitButton` | `children`, `...rest` | Submit button that reflects form pending state |
 | `SyncBadge` | `href` | Soft pill marking a contact as synced with Google; links out to Google Contacts (new tab) when `href` is set |

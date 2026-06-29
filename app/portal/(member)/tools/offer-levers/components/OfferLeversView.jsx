@@ -8,13 +8,13 @@ import { LeversSection } from './LeversSection'
 import { CopyPromptBar } from './CopyPromptBar'
 
 export function OfferLeversView() {
-  const { values, setField, copyPrompt } = useOfferLevers()
+  const { values, setField, setLever, copyPrompt } = useOfferLevers()
 
   return (
     <Stack gap="lg">
       <OfferLeversHeader />
       <OfferContextSection values={values} onField={setField} />
-      <LeversSection values={values} onField={setField} />
+      <LeversSection values={values} onField={setLever} />
       <CopyPromptBar onCopy={copyPrompt} />
     </Stack>
   )
