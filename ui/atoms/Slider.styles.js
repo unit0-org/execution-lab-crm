@@ -6,6 +6,13 @@ export const wrapStyle = {
   position: 'relative', display: 'block', padding: '8px 0'
 }
 
+export const railStyle = {
+  position: 'absolute', top: '50%', left: '8px', right: '8px',
+  height: '4px', transform: 'translateY(-50%)',
+  background: color.border.default, borderRadius: '999px',
+  pointerEvents: 'none'
+}
+
 export const ticksStyle = {
   position: 'absolute', inset: '0 8px', display: 'flex',
   alignItems: 'center', justifyContent: 'space-between',
