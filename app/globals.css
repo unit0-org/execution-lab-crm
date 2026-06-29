@@ -283,8 +283,7 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
    thumb is an accent puck that snaps to each discrete stop. */
 input[type="range"].slider {
   -webkit-appearance: none; appearance: none; width: 100%; height: 4px;
-  background: var(--color-border-default); border-radius: 999px;
-  cursor: pointer; outline: none;
+  background: transparent; cursor: pointer; outline: none;
 }
 input[type="range"].slider::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none; width: 16px; height: 16px;
@@ -300,7 +299,7 @@ input[type="range"].slider::-moz-range-thumb {
   background: var(--color-accent); border: 2px solid var(--color-bg-surface);
 }
 input[type="range"].slider::-moz-range-track {
-  height: 4px; border-radius: 999px; background: var(--color-border-default);
+  height: 4px; border-radius: 999px; background: transparent;
 }
 input[type="range"].slider:focus-visible::-webkit-slider-thumb {
   box-shadow: 0 0 0 4px var(--color-accent-soft);
