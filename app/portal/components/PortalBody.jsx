@@ -3,11 +3,12 @@ import { Text } from '@/ui/atoms/Text'
 import { FeaturedHero } from './FeaturedHero'
 import { CohortRoster } from './CohortRoster'
 import { PortalFootnote } from './PortalFootnote'
+import { CouponBanner } from './CouponBanner'
 import { featuredCohort } from './featuredCohort'
 
 // Hero (featured cohort) + roster of the rest + footnote; empty state
 // when no cohort is open.
-export function PortalBody({ cohorts }) {
+export function PortalBody({ cohorts, coupon }) {
   if (cohorts.length === 0) {
     return <Text tone="muted">No cohorts open right now.</Text>
   }
@@ -17,6 +18,7 @@ export function PortalBody({ cohorts }) {
 
   return (
     <Stack gap="lg">
+      <CouponBanner code={coupon} />
       <FeaturedHero card={featured} />
       <CohortRoster cohorts={rest} />
       <PortalFootnote />

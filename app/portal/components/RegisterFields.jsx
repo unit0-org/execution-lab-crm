@@ -6,13 +6,13 @@ import { PromoSection } from './PromoSection'
 
 // The full applicant questionnaire, in four sections. Required mirrors
 // the server revalidation; defaults prefill an invited applicant (3.2).
-export function RegisterFields({ defaults }) {
+export function RegisterFields({ defaults, promo }) {
   return (
     <Stack gap="lg">
       <ContactSection defaults={defaults} />
       <BusinessSection />
       <CommitmentSection />
-      <PromoSection />
+      <PromoSection defaultValue={promo} />
     </Stack>
   )
 }

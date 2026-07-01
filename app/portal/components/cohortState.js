@@ -1,11 +1,16 @@
 import { cohortStateKey } from './cohortStateKey'
 import { STATE_META } from './cohortStateMeta'
 
-const registerHref = (slug) => `/register/${slug}`
+const registerHref = (slug, code) =>
+  code
+    ? `/register/${slug}?code=${encodeURIComponent(code)}`
+    : `/register/${slug}`
 const waitlistHref = (slug) => `/waitlist?cohort=${slug}`
 
-const primaryHref = (kind, slug) =>
-  kind === 'register' ? registerHref(slug) : waitlistHref(slug)
+const primaryHref = (kind, card) =>
+  kind === 'register'
+    ? registerHref(card.slug, card.couponCode)
+    : waitlistHref(card.slug)
 
 // Resolve a cohort card to its design state + tag/CTA/destinations. Register
 // states also carry the waitlist as a secondary path.
@@ -16,7 +21,7 @@ export function cohortState(card) {
 
   return {
     state, ...meta,
-    href: primaryHref(meta.kind, card.slug),
+    href: primaryHref(meta.kind, card),
     waitlist: secondary
   }
 }
