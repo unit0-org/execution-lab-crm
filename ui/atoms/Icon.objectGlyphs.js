@@ -19,5 +19,7 @@ export const objectGlyphs = {
   grid: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
   paperclip: 'M16 8v8a4 4 0 0 1-8 0V7a2 2 0 0 1 4 0v8a1 1 0 0 1-2 0V9',
   tag: 'M3 3h8l10 10-8 8L3 11V3zM7 7h.01',
-  file: 'M6 2h8l4 4v16H6zM14 2v4h4M9 13h6M9 17h6'
+  file: 'M6 2h8l4 4v16H6zM14 2v4h4M9 13h6M9 17h6',
+  folder: 'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0'
+    + ' 1 2 2z'
 }
