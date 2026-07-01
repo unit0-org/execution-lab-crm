@@ -4,11 +4,11 @@ import { MetaRow } from '@/ui/molecules/MetaRow'
 import { FeatureChecks } from '@/ui/molecules/FeatureChecks'
 import { SummaryHead } from './SummaryHead'
 import { SummaryPrice } from './SummaryPrice'
+import { SeatHoldNote } from './SeatHoldNote'
 import { INCLUSIONS } from './portalCopy'
 import { cohortMonthYear } from '@/lib/portal/cohortMonthYear'
 
-// What the applicant is buying: program, cohort, format, price, what's
-// included — the sticky sidebar beside the register form.
+// The sticky sidebar: what the applicant is buying + what's included.
 export function OrderSummary({ card }) {
   const when = cohortMonthYear(card.start_date)
 
@@ -22,6 +22,7 @@ export function OrderSummary({ card }) {
           <MetaRow label="Cohort size" value="6 people, by design" />
         </Stack>
         <SummaryPrice pricing={card.pricing} />
+        <SeatHoldNote hours={card.holdHours} />
         <FeatureChecks items={INCLUSIONS} column />
       </Stack>
     </Card>
