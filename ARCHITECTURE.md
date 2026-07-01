@@ -305,8 +305,12 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   seats) and Tools lists/opens every tool (`memberCanUseTool`). This is
   still email-gated, so it does not weaken the two-layer gate below.
 - **Two-layer gate — the security-critical part.** Supabase cookies are
-  shared across `.theexecutionlab.ca` subdomains, so a member's session
-  also reaches the CRM host. The proxy still only checks session existence;
+  shared across `.theexecutionlab.ca` subdomains — every Supabase client
+  (browser/server/proxy) sets the cookie `domain` via `authCookieOptions`
+  (`AUTH_COOKIE_DOMAIN` env, `.theexecutionlab.ca` in prod; unset on
+  localhost/preview so cookies stay host-scoped). So one sign-in on either
+  host reaches both, and a member's session also reaches the CRM host. The
+  proxy still only checks session existence;
   the **backoffice `(app)` layout now positively requires STAFF membership**
   (`requireStaff` in `AppShellServer` → `organization_user`), and the
   **`app/portal/(member)` layout requires a `portal_member`**
