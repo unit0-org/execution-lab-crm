@@ -99,10 +99,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `lib/cohort/resourceKinds.js`.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
-  cohort tagging (see invariant). `amount_total` is set only on payment. For
-  July-2026+ cohorts the seat is confirmed only on payment, with a 2h hold
-  from `created_at` (see the confirmed-scope invariant); the portal tells the
-  applicant so via `SeatHoldNote`.
+  cohort tagging (see invariant). `amount_total` is set only on payment. The
+  seat is confirmed only on payment, with a 2h hold from `created_at` (see the
+  confirmed-scope invariant); the portal tells the applicant so via
+  `SeatHoldNote`.
 - **waitlist** — `waitlist_entry` (unique per org+email); priority invites
   open a spot and convert to a registration. Status lifecycle:
   `waiting`→`invited`→`accepted` (a pending registration exists)→`converted`
@@ -259,14 +259,11 @@ confirmedScope.js`); every seat-count query (`cohortStats`,
 `inWindowRegistrationCount`, `priorInWindowCount`) goes through
 `Registration.scope('confirmed')` — never an inline `status` list.
 
-The hold window is **read-time, not stored**: for cohorts starting **before
-`PAYMENT_HOLD_CUTOFF` (2026-07-01)** a pending seat is held indefinitely (the
-original behaviour); for cohorts on/after the cutoff — where a seat is
-confirmed only on payment — a pending seat is held only for `HOLD_HOURS`
-(2h) from `created_at`, after which the unpaid seat releases automatically.
-The cutoff/duration live in `lib/cohort/controllers/holdPolicy.js`; the scope
-computes the window with a correlated `EXISTS` on `cohort.start_date` and
-`NOW()` so the seat-count queries stay a plain `WHERE` and need no cron.
+A seat is confirmed only once payment lands: a `pending` seat is held only
+for `HOLD_HOURS` (2h) from `created_at`, after which the unpaid seat releases
+automatically. The window is **read-time, not stored** — the scope compares
+`created_at` to `NOW()`, so seat-count queries stay a plain `WHERE` and need
+no cron. The duration lives in `lib/cohort/controllers/holdPolicy.js`.
 
 `cohortStats` counts `filled` from that scope (revenue still sums only paid
 rows, whose `amount_total` is set on payment); it feeds the portal scarcity
