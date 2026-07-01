@@ -6,7 +6,7 @@ export function MemberKind({ title, items }) {
   if (!items.length) return null
 
   return (
-    <Stack gap="xs">
+    <Stack gap="sm">
       <MonoLabel size={11} tone="muted">{title}</MonoLabel>
       {items.map((item) => (
         <MemberResourceItem key={item.id} item={item} />
