@@ -1,27 +1,17 @@
-'use client'
+import { Card } from '@/ui/atoms/Card'
+import { Collapsible } from '@/ui/molecules/Collapsible'
+import { FolderTitle } from './FolderTitle'
+import { FolderBody } from './FolderBody'
 
-import { Stack } from '@/ui/layout/Stack'
-import { useToggle } from '@/ui/molecules/useToggle'
-import { FolderHeader } from './FolderHeader'
-import { AddResourceModal } from './AddResourceModal'
-import { FolderResources } from './FolderResources'
-
+// A cohort folder as a collapsible card, collapsed by default.
 export function CohortFolderCard({ folder, cohortId, onChanged }) {
-  const modal = useToggle()
-
-  const saved = () => {
-    onChanged()
-    modal.hide()
-  }
-
   return (
-    <Stack gap="sm">
-      <FolderHeader folder={folder} cohortId={cohortId} onAdd={modal.show}
-        onChanged={onChanged} />
-      <AddResourceModal open={modal.open} folderId={folder.id}
-        cohortId={cohortId} onSaved={saved} onClose={modal.hide} />
-      <FolderResources resources={folder.resource} cohortId={cohortId}
-        onChanged={onChanged} />
-    </Stack>
+    <Card>
+      <Collapsible defaultOpen={false}
+        title={<FolderTitle name={folder.name} />}>
+        <FolderBody folder={folder} cohortId={cohortId}
+          onChanged={onChanged} />
+      </Collapsible>
+    </Card>
   )
 }
