@@ -295,6 +295,15 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   page (`PortalInvite`) or the admin **Portal Members** page
   (`/portal-members`, in the sidebar) — which also has an invite-by-contact
   picker.
+- **Portal owners see everything.** An email in the owner allowlist
+  (`isPortalOwner`, `lib/portal/auth/portalOwners.js`; `PORTAL_OWNER_EMAILS`
+  env, comma-separated, with a fallback list) is a member implicitly —
+  `currentPortalMember` returns a synthetic `ownerMembership`
+  (`{contactId, status: 'owner', isOwner: true}`) with **no `portal_member`
+  row**, so they pass the layout gate. `isOwner` also unlocks all content:
+  Resources lists every cohort (`listAllResources`, not just confirmed
+  seats) and Tools lists/opens every tool (`memberCanUseTool`). This is
+  still email-gated, so it does not weaken the two-layer gate below.
 - **Two-layer gate — the security-critical part.** Supabase cookies are
   shared across `.theexecutionlab.ca` subdomains, so a member's session
   also reaches the CRM host. The proxy still only checks session existence;
