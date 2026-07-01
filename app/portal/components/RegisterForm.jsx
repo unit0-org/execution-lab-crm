@@ -9,7 +9,7 @@ import { usePortalCheckout } from '../hooks/usePortalCheckout'
 
 // The registration form; submitting opens Stripe Checkout. An invite
 // prefills the fields and rides along as a hidden token (3.2).
-export function RegisterForm({ cohortId, invite, state }) {
+export function RegisterForm({ cohortId, invite, state, promo }) {
   const { action, error } = usePortalCheckout(cohortId)
   const defaults = inviteDefaults(invite)
 
@@ -17,7 +17,7 @@ export function RegisterForm({ cohortId, invite, state }) {
     <Form action={action}>
       <Stack gap="md">
         <input type="hidden" name="invite" value={defaults.token} />
-        <RegisterFields defaults={defaults} />
+        <RegisterFields defaults={defaults} promo={promo} />
         <RegisterSubmit state={state} error={error} />
       </Stack>
     </Form>

@@ -4,6 +4,6 @@ import { PortalServer } from './PortalServer'
 // once (Story 1.2), and pricing is fetched fresh from Stripe.
 export const dynamic = 'force-dynamic'
 
-export default function PortalPage() {
-  return <PortalServer />
+export default function PortalPage({ searchParams }) {
+  return <PortalServer searchParams={searchParams} />
 }

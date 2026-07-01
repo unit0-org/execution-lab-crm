@@ -268,9 +268,13 @@ the window, `'earlybird'` for the first 2 **in-window** seats via
 promotion code from `lib/stripe/readinessPromoCode.js` (`READY20`, overridable
 via `STRIPE_READINESS_CODE`; the coupon must exist in Stripe). Checkout picks
 the effective code by precedence in `effectiveDiscountCode.js`: **customer code
-› reward 20% › cohort preset `promo_code` › none**. Both the displayed price
-(`resolveCohortAmounts`) and the Stripe session (`startCheckout`) consume these
-same helpers — change the rule there, not in each path.
+› reward 20% › cohort preset `promo_code` › none**. The customer code comes
+from the register promo field **or a `?code=` URL param** (e.g. a partner
+link `portal…?code=IN_MOTION_25`); it's validated against Stripe
+(`validCoupon` → `validPromotionCode`), then carried on the register CTA and
+prefilled. Both the displayed price (`resolveCohortAmounts`, which now takes
+the validated customer code) and the Stripe session (`startCheckout`) consume
+these same helpers — change the rule there, not in each path.
 
 ## Portal member sign-in (invitation-only client portal)
 
