@@ -82,7 +82,13 @@ leaves this stale is incomplete (this is a review-enforced rule in
   The window's open/close dates are `DATEONLY`; they're compared against
   **`todayIso()` in the business timezone** (`BUSINESS_TIMEZONE`, default
   `America/Vancouver`), NOT UTC — a UTC "today" closes windows a day early
-  for evening-local times. **Pricing reward (see the reward invariant
+  for evening-local times. The **public portal** shows a cohort while its
+  phase is live (`registrationPhase` ≠ `hidden`, i.e. until 5 days after
+  start), plus any **sold-out** cohort for a `SOLD_OUT_GRACE_DAYS` (45)
+  window past start so a recent sell-out still shows as *Sold out*
+  (`isPortalVisible`, `lib/portal`); live cohorts sort first and a past
+  sell-out is never the featured hero (`orderCohortCards`, `featuredCohort`).
+  **Pricing reward (see the reward invariant
   below):** registering *before* the window opens earns a 20% reward; once
   it opens, only the first 2 in-window seats do. A cohort also owns
   **`cohort_folder`** → **`cohort_resource`** — the operator creates named
