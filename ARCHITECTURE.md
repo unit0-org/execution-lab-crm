@@ -265,6 +265,13 @@ automatically. The window is **read-time, not stored** — the scope compares
 `created_at` to `NOW()`, so seat-count queries stay a plain `WHERE` and need
 no cron. The duration lives in `lib/cohort/controllers/holdPolicy.js`.
 
+The **cohort admin list** reflects the same rule for display: `paymentState`
+(`lib/registration/models/paymentState.js`) classifies a registration as
+`paid`, `pending` (still held), or `expired` (unpaid and past its hold — the
+seat released), mirroring the scope read-time from `created_at`. The
+`PaymentStatus` badge shows this, so a lapsed hold never keeps reading
+`pending`.
+
 `cohortStats` counts `filled` from that scope (revenue still sums only paid
 rows, whose `amount_total` is set on payment); it feeds the portal scarcity
 label, sold-out / `cohortIsFull` checks, and waitlist openings. Change what

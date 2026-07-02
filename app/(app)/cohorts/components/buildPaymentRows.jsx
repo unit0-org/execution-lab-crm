@@ -10,7 +10,7 @@ export function buildPaymentRows(registration) {
   const paid = r.paid_at ? <DateText value={r.paid_at} /> : null
 
   const rows = [
-    { label: 'Status', value: <PaymentStatus status={r.status} /> },
+    { label: 'Status', value: <PaymentStatus registration={r} /> },
     { label: 'Amount', value: amount },
     { label: 'Discount', value: discount },
     { label: 'Promo code', value: r.promo_code },

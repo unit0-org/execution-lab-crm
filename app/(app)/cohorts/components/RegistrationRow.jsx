@@ -11,7 +11,7 @@ export function RegistrationRow({ registration }) {
     <Tr>
       <Td truncate><RegistrantName registration={registration} /></Td>
       <Td truncate>{registration.email}</Td>
-      <Td><PaymentStatus status={registration.status} /></Td>
+      <Td><PaymentStatus registration={registration} /></Td>
       <Td><DateText value={registration.created_at} /></Td>
       <Td><RegistrationAction registration={registration} /></Td>
     </Tr>
