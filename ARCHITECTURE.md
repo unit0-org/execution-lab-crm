@@ -77,7 +77,8 @@ leaves this stale is incomplete (this is a review-enforced rule in
   raise a merge suggestion instead of auto-adopting).
 - **cohort** — a program cohort with capacity, pricing (Stripe), and a
   registration window. `cohortStats` gives per-cohort filled head count
-  (pending **or** paid) and paid revenue; `spotsLeft = capacity - filled`.
+  (paid, plus pending seats still inside their hold — see the confirmed-scope
+  invariant) and paid revenue; `spotsLeft = capacity - filled`.
   The window's open/close dates are `DATEONLY`; they're compared against
   **`todayIso()` in the business timezone** (`BUSINESS_TIMEZONE`, default
   `America/Vancouver`), NOT UTC — a UTC "today" closes windows a day early
@@ -98,7 +99,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `lib/cohort/resourceKinds.js`.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`). Drives find-or-create of a CRM contact and
-  cohort tagging (see invariant). `amount_total` is set only on payment.
+  cohort tagging (see invariant). `amount_total` is set only on payment. The
+  seat is confirmed only on payment, with a 2h hold from `created_at` (see the
+  confirmed-scope invariant); the portal tells the applicant so via
+  `SeatHoldNote`.
 - **waitlist** — `waitlist_entry` (unique per org+email); priority invites
   open a spot and convert to a registration. Status lifecycle:
   `waiting`→`invited`→`accepted` (a pending registration exists)→`converted`
@@ -246,17 +250,25 @@ up:**
 Find-or-create never does fuzzy name matching (no silent wrong links); a
 same-name-different-person registrant becomes a new contact to merge later.
 
-## Invariant: a cohort spot is taken once registered (not only paid)
+## Invariant: a cohort spot is taken once registered, subject to the hold
 
-A registration holds a seat once it's `pending` **or** `paid`. That rule is
-defined **once**, as the `confirmed` scope on the `Registration` model;
-every seat-count query (`cohortStats`, `inWindowRegistrationCount`,
-`priorInWindowCount`) goes through `Registration.scope('confirmed')` — never
-an inline `status` list. `cohortStats` counts `filled` from that scope (and
-revenue still sums only paid rows, whose `amount_total` is set on payment);
-it feeds the portal scarcity label, sold-out / `cohortIsFull` checks, and
-waitlist openings. Change what counts as a taken seat in the scope, not in
-each view.
+A registration holds a seat when it's `paid`, or while it's `pending` **and
+still within its hold window**. That rule is defined **once**, as the
+`confirmed` scope on the `Registration` model (`lib/registration/models/
+confirmedScope.js`); every seat-count query (`cohortStats`,
+`inWindowRegistrationCount`, `priorInWindowCount`) goes through
+`Registration.scope('confirmed')` — never an inline `status` list.
+
+A seat is confirmed only once payment lands: a `pending` seat is held only
+for `HOLD_HOURS` (2h) from `created_at`, after which the unpaid seat releases
+automatically. The window is **read-time, not stored** — the scope compares
+`created_at` to `NOW()`, so seat-count queries stay a plain `WHERE` and need
+no cron. The duration lives in `lib/cohort/controllers/holdPolicy.js`.
+
+`cohortStats` counts `filled` from that scope (revenue still sums only paid
+rows, whose `amount_total` is set on payment); it feeds the portal scarcity
+label, sold-out / `cohortIsFull` checks, and waitlist openings. Change what
+counts as a taken seat in the scope, not in each view.
 
 ## Invariant: one discount applies, resolved in a single place
 
