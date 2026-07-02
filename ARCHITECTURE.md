@@ -98,11 +98,16 @@ leaves this stale is incomplete (this is a review-enforced rule in
   activity timeline; the single source of truth for the three kinds is
   `lib/cohort/resourceKinds.js`.
 - **registration** — a person registering for a cohort (`registration`,
-  status `pending`→`paid`). Drives find-or-create of a CRM contact and
-  cohort tagging (see invariant). `amount_total` is set only on payment. The
-  seat is confirmed only on payment, with a 2h hold from `created_at` (see the
-  confirmed-scope invariant); the portal tells the applicant so via
-  `SeatHoldNote`.
+  status `pending`→`paid`), **one row per person per cohort** — `unique
+  (cohort_id, email)`, email stored normalized (trimmed + lowercased). A
+  repeat submit reuses the existing row and restarts its hold rather than
+  inserting a duplicate (`createPendingRegistration`). On creation it emails
+  the registrant a `payment_pending` link to finish paying (the daily
+  `payment_followup` cron is only a late backstop). Drives find-or-create of
+  a CRM contact and cohort tagging (see invariant). `amount_total` is set
+  only on payment. The seat is confirmed only on payment, with a 2h hold
+  from `created_at` (see the confirmed-scope invariant); the portal tells the
+  applicant so via `SeatHoldNote`.
 - **waitlist** — `waitlist_entry` (unique per org+email); priority invites
   open a spot and convert to a registration. Status lifecycle:
   `waiting`→`invited`→`accepted` (a pending registration exists)→`converted`
