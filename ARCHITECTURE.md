@@ -86,8 +86,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
   phase is live (`registrationPhase` ≠ `hidden`, i.e. until 5 days after
   start), plus any **sold-out** cohort for a `SOLD_OUT_GRACE_DAYS` (45)
   window past start so a recent sell-out still shows as *Sold out*
-  (`isPortalVisible`, `lib/portal`); live cohorts sort first and a past
-  sell-out is never the featured hero (`orderCohortCards`, `featuredCohort`).
+  (`isPortalVisible`, `lib/portal`); cards stay in chronological order
+  (soonest start first) and a sold-out cohort is never the featured hero
+  (`featuredCohort` prefers a buyable one).
   **Pricing reward (see the reward invariant
   below):** registering *before* the window opens earns a 20% reward; once
   it opens, only the first 2 in-window seats do. A cohort also owns
