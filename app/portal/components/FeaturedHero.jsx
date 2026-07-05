@@ -11,7 +11,7 @@ export function FeaturedHero({ card }) {
 
   return (
     <HeroPanel tone="launch"
-      main={<HeroMain when={when} action={action} />}
+      main={<HeroMain when={when} action={action} card={card} />}
       aside={<HeroAside action={action} card={card} />} />
   )
 }
