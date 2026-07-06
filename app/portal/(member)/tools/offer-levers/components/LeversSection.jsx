@@ -10,7 +10,7 @@ export function LeversSection({ values, onField }) {
       <Stack gap="md">
         <Heading level={2} gutter="none">Offer levers</Heading>
         <Text size="sm" tone="muted" gutter="none">
-          Eighteen structural dials. Set them to the shape you have in mind.
+          Fifteen structural dials. Set them to the shape you have in mind.
         </Text>
         <LeverGrid values={values} onField={onField} />
       </Stack>
