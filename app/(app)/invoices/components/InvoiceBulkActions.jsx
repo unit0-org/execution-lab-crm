@@ -1,26 +1,23 @@
 'use client'
 
-import { useState } from 'react'
 import { Inline } from '@/ui/layout/Inline'
 import { Button } from '@/ui/atoms/Button'
 import { Text } from '@/ui/atoms/Text'
-import { ConfirmBulkDelete } from '@/ui/molecules/ConfirmBulkDelete'
+import { ConfirmDialog } from '@/ui/molecules/ConfirmDialog'
+import { useToggle } from '@/ui/molecules/useToggle'
 
 export function InvoiceBulkActions({ count, onSend, onMarkSent, onDelete }) {
-  const [confirming, setConfirming] = useState(false)
-
-  if (confirming) {
-    return <ConfirmBulkDelete count={count} onDelete={onDelete}
-      onCancel={() => setConfirming(false)} />
-  }
+  const confirm = useToggle()
+  const run = () => { confirm.hide(); onDelete() }
 
   return (
     <Inline gap="md">
       <Text size="sm">{count} selected</Text>
       <Button tone="primary" size="sm" onClick={onSend}>Send</Button>
       <Button size="sm" onClick={onMarkSent}>Mark sent</Button>
-      <Button tone="danger" size="sm"
-        onClick={() => setConfirming(true)}>Remove</Button>
+      <Button tone="danger" size="sm" onClick={confirm.show}>Remove</Button>
+      <ConfirmDialog open={confirm.open} title={`Remove ${count}?`}
+        onConfirm={run} onCancel={confirm.hide} />
     </Inline>
   )
 }
