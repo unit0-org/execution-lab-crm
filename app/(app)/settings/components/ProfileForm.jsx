@@ -6,7 +6,7 @@ import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { FieldError } from '@/ui/atoms/FieldError'
 import { showToast } from '@/ui/molecules/toastBus'
 import { ProfileFields } from './ProfileFields'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { saveMemberProfileAction } from '../actions/saveMemberProfile'
 
 export function ProfileForm({ profile }) {

@@ -6,7 +6,7 @@ import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { FieldError } from '@/ui/atoms/FieldError'
 import { showToast } from '@/ui/molecules/toastBus'
 import { InvoicingFields } from './InvoicingFields'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { saveInvoiceSettingAction } from '../actions/saveInvoiceSetting'
 
 export function InvoicingForm({ setting }) {

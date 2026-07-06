@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { showToast } from '@/ui/molecules/toastBus'
-import { useFormAction } from './useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { addAttendeeAction } from '../actions/addAttendee'
 
 const EMPTY = { contactId: null, name: '', email: '' }

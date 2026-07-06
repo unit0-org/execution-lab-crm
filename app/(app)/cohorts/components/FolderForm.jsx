@@ -6,7 +6,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { TextField } from '@/ui/atoms/TextField'
 import { FormError } from '@/ui/molecules/FormError'
 import { ResourceFormActions } from './ResourceFormActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { addCohortFolderAction } from '../actions/addCohortFolder'
 
 export function FolderForm({ cohortId, onSaved, onCancel }) {

@@ -6,7 +6,7 @@ import { NoteFields } from './NoteFields'
 import { NoteFormHeading } from './NoteFormHeading'
 import { FormError } from './FormError'
 import { DialogActions } from './DialogActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { useMentionOptions } from '../hooks/useMentionOptions'
 import { addNoteAction } from '../actions/addNote'
 

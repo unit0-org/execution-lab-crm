@@ -2,7 +2,7 @@
 
 import { Form } from '@/ui/molecules/Form'
 import { TextButton } from '@/ui/atoms/TextButton'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { setMemberRoleAction } from '../actions/setMemberRole'
 
 export function RoleToggle({ member, onChanged }) {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useFormAction } from './useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { addRelationshipAction } from '../actions/addRelationship'
 
 const emptyContact = { contactId: null, name: '', email: '' }

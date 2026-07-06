@@ -3,7 +3,7 @@
 import { Form } from '@/ui/molecules/Form'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { removePhoneAction } from '../actions/removePhone'
 
 export function RemovePhone({ phoneId, onChanged }) {

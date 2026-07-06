@@ -6,7 +6,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from '@/ui/molecules/FormError'
 import { ResourceFields } from './ResourceFields'
 import { ResourceFormActions } from './ResourceFormActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { addCohortResourceAction } from '../actions/addCohortResource'
 
 export function ResourceForm({ folderId, cohortId, onSaved, onCancel }) {
