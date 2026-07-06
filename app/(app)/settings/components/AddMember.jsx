@@ -6,7 +6,7 @@ import { Select } from '@/ui/atoms/Select'
 import { GrowRow } from '@/ui/layout/GrowRow'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { inviteMemberAction } from '../actions/inviteMember'
 
 const ROLES = ['member', 'admin']

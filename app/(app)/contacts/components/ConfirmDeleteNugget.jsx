@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { Text } from '@/ui/atoms/Text'
 import { DialogActions } from './DialogActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { removeNuggetAction } from '../actions/removeNugget'
 
 export function ConfirmDeleteNugget({ nugget, onDeleted, onCancel }) {

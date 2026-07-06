@@ -1,7 +1,7 @@
 'use client'
 
 import { showToast } from '@/ui/molecules/toastBus'
-import { useFormAction } from './useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { updateEmailTemplateAction } from '../actions/updateEmailTemplate'
 
 // Binds the update action to a template key and toasts on save.

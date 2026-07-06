@@ -6,7 +6,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { TextField } from '@/ui/atoms/TextField'
 import { FormError } from './FormError'
 import { DialogActions } from './DialogActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { updateContactAction } from '../actions/updateContact'
 
 export function EditLinkedInForm({ contactId, url, onSaved, onCancel }) {

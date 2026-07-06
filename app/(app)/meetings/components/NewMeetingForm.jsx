@@ -8,7 +8,7 @@ import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { FormError } from '@/ui/molecules/FormError'
 import { MeetingFields } from './MeetingFields'
 import { ExtraMeetingFields } from './ExtraMeetingFields'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { createMeetingAction } from '../actions/createMeeting'
 
 export function NewMeetingForm({ onCreated, onCancel }) {

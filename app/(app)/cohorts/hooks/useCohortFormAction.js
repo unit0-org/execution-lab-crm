@@ -2,7 +2,7 @@
 
 import { createCohortAction } from '../actions/createCohort'
 import { updateCohortAction } from '../actions/updateCohort'
-import { useFormAction } from './useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 
 // Pick create vs update (binding the id) for a cohort form and wire it
 // through useFormAction.

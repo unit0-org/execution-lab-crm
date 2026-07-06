@@ -6,7 +6,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { BirthdayField } from '@/ui/molecules/BirthdayField'
 import { FormError } from './FormError'
 import { DialogActions } from './DialogActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { setBirthdayAction } from '../actions/setBirthday'
 
 export function EditBirthdayForm(props) {

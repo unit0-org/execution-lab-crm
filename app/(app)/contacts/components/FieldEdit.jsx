@@ -7,7 +7,7 @@ import { HiddenFields } from './HiddenFields'
 import { FormError } from './FormError'
 import { SaveSlot } from './SaveSlot'
 import { useDraft } from '../hooks/useDraft'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 
 export function FieldEdit({ label, value, action, hidden, onSaved, onCancel }) {
   const { draft, dirty, change } = useDraft(value)

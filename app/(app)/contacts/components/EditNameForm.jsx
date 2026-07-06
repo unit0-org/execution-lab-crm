@@ -6,7 +6,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from './FormError'
 import { NameFields } from './NameFields'
 import { DialogActions } from './DialogActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { updateContactNameAction } from '../actions/updateContactName'
 
 export function EditNameForm({ contact, onSaved, onCancel }) {

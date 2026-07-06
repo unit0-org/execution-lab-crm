@@ -6,7 +6,7 @@ import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from './FormError'
 import { NoteFields } from './NoteFields'
 import { DialogActions } from './DialogActions'
-import { useFormAction } from '../hooks/useFormAction'
+import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { useMentionOptions } from '../hooks/useMentionOptions'
 import { updateNoteAction } from '../actions/updateNote'
 
