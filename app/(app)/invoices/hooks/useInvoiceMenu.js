@@ -2,7 +2,8 @@
 
 import { useToggle } from '@/ui/molecules/useToggle'
 import { useUploadToDrive } from './useUploadToDrive'
-import { useDeleteInvoice } from './useDeleteInvoice'
+import { useActionHandler } from '@/app/(app)/hooks/useActionHandler'
+import { deleteInvoiceAction } from '../actions/deleteInvoice'
 import { openInvoicePdf } from './openInvoicePdf'
 
 // Behavior for an invoice row's kebab menu: open state plus the row ops
@@ -11,7 +12,9 @@ export function useInvoiceMenu(invoice, onChanged) {
   const menu = useToggle()
   const del = useToggle()
   const upload = useUploadToDrive(invoice.id, onChanged)
-  const deleteInvoice = useDeleteInvoice(onChanged)
+  const deleteInvoice = useActionHandler(deleteInvoiceAction, {
+    onDone: onChanged, toast: 'Invoice deleted'
+  })
 
   const after = (fn) => () => { fn(); menu.hide() }
 
