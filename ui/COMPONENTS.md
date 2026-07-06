@@ -67,6 +67,7 @@ Conventions (from `AGENTS.md`):
 | `TextField` | `label`, `trailing`, `...rest` | Text/email/number/date input (pass `type`, `value`, `onChange`, `placeholder`) |
 | `Text` | `tone`, `size`, `gutter`, `strike`, `children` | Body/paragraph text (`strike` for line-through) |
 | `ToggleBadge` | `tone`, `onClick`, `label`, `children` | Clickable badge toggle |
+| `SavedCheck` | `show` | Success check that fades in briefly after an autosave; reserves its space (no layout shift) |
 | `timeAgo(value)` | — | Helper → relative time string |
 
 ## Layout — `ui/layout/`
@@ -134,6 +135,7 @@ Conventions (from `AGENTS.md`):
 | `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; override `message`/`confirmLabel`/`tone` for non-destructive confirms |
 | `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table; reveals when `count > 0` and Delete opens the shared `ConfirmDialog` before firing `onDelete` |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
+| `FieldTitle` | `label`, `saved` | A field-label node with a transient `SavedCheck`; pass as a `TextField`/`TextArea` `label` |
 | `SelectCell` | `checked`, `onToggle` | Row-selection checkbox `Td` for multi-select tables |
 | `Stat` / `StatBody` / `Insight` | `label`, `value`, `tone`, `href` | Stat tiles & insights |
 | `BarChart` (+`ChartBar`/`ChartEmpty`/`ChartSkeleton`) | `data` | Bar chart |
@@ -151,7 +153,10 @@ Hooks: `useToggle(initial)`, `useOutsideClose(ref, onClose, open)`,
 `useBackdropClose(onClose)`, `useToasts()`, `useAnchorRect(ref, open)`,
 `useTableSort(rows, columns, initialKey, initialDir)`,
 `useRowSelection(items)` (Set of chosen `.id`s + `toggle`/`toggleAll`/`clear`,
-shared by every selectable table).
+shared by every selectable table), `useDebouncer(ms=600)` (returns
+`run(key, fn)` — one trailing timer per key), `useAddMore(options, onAdd)`
+(Select + Add behavior → `value`/`pick`/`add`). Helper: `editRow`/`appendRow`/
+`dropRow` (`listOps`) — pure `{ id, value }` list transforms.
 Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`,
 `rowColumns(cols, { selection, deletable })` (wraps a table's data columns
 with the shared leading select-all + trailing delete columns).

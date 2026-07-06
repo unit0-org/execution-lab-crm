@@ -3,12 +3,13 @@ import { Collapsible } from '@/ui/molecules/Collapsible'
 import { OfferContextFields } from './OfferContextFields'
 import { OfferContextPreview } from './OfferContextPreview'
 
-export function OfferContextSection({ values, onField }) {
+export function OfferContextSection({ values, lists, saved, on }) {
   return (
     <Card>
       <Collapsible title="Offer context"
         preview={<OfferContextPreview values={values} />}>
-        <OfferContextFields values={values} onField={onField} />
+        <OfferContextFields values={values} lists={lists} saved={saved}
+          on={on} />
       </Collapsible>
     </Card>
   )

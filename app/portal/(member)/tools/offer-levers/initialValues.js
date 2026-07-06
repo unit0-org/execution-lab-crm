@@ -1,9 +1,11 @@
 import context from './data/offerContext.json'
 import levers from './data/offerLevers.json'
 
-// Context fields start blank; each lever defaults to its first option (what
-// a native <select> would show selected), so the prompt is never empty.
-const blanks = Object.fromEntries(context.map((f) => [f.id, '']))
+// Single-valued fields keyed by input_type start blank (repeatables live in
+// separate list state); each lever defaults to its first option, so the
+// prompt is never empty.
+const singles = context.filter((f) => !f.repeatable)
+const blanks = Object.fromEntries(singles.map((f) => [f.inputType, '']))
 const defaults = Object.fromEntries(levers.map((l) => [l.id, l.options[0]]))
 
 export const initialValues = { ...blanks, ...defaults }

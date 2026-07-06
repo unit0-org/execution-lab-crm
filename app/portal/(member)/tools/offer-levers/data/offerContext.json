@@ -1,52 +1,66 @@
 [
   {
     "id": "seed",
+    "inputType": "seed",
     "label": "Seed",
     "hint": "your offer in one line",
     "promptLabel": "Original offer",
     "type": "text",
-    "placeholder": "e.g. A 6-week program that helps founders write a sales page that converts"
+    "required": true,
+    "placeholder": "I help [audience] achieve [outcome]."
   },
   {
     "id": "audience",
+    "inputType": "audience",
     "label": "Audience",
     "promptLabel": "Audience",
     "type": "text",
+    "required": true,
     "placeholder": "e.g. Early-stage B2B SaaS founders doing their first $10k MRR"
   },
   {
     "id": "primaryOutcome",
+    "inputType": "primary_outcome",
     "label": "Primary outcome",
     "promptLabel": "Primary outcome",
     "type": "text",
+    "required": true,
     "placeholder": "The single result the buyer is paying for"
   },
   {
     "id": "otherOutcomes",
+    "inputType": "other_outcome",
     "label": "Other outcomes",
     "promptLabel": "Other outcomes",
     "type": "area",
-    "placeholder": "Secondary wins and side benefits"
+    "repeatable": true,
+    "placeholder": "A secondary win or side benefit"
   },
   {
     "id": "likeToDo",
+    "inputType": "like_to_do",
     "label": "What I like to do",
     "promptLabel": "What I like to do",
     "type": "area",
-    "placeholder": "The work you'd happily do more of"
+    "repeatable": true,
+    "placeholder": "Work you'd happily do more of"
   },
   {
     "id": "dontWantToDo",
+    "inputType": "dont_want_to_do",
     "label": "What I don't want to do",
     "promptLabel": "What I want to avoid",
     "type": "area",
-    "placeholder": "The work you want to design out of this offer"
+    "repeatable": true,
+    "placeholder": "Work you want to design out of this offer"
   },
   {
     "id": "extra",
+    "inputType": "extra",
     "label": "Extra considerations",
     "promptLabel": "Extra things to consider",
     "type": "area",
-    "placeholder": "Constraints, context, anything else the architect should weigh"
+    "repeatable": true,
+    "placeholder": "A constraint or anything else to weigh"
   }
 ]
