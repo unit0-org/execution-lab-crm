@@ -31,7 +31,7 @@
     "inputType": "other_outcome",
     "label": "Other outcomes",
     "promptLabel": "Other outcomes",
-    "type": "area",
+    "type": "text",
     "repeatable": true,
     "placeholder": "A secondary win or side benefit"
   },
@@ -40,7 +40,7 @@
     "inputType": "like_to_do",
     "label": "What I like to do",
     "promptLabel": "What I like to do",
-    "type": "area",
+    "type": "text",
     "repeatable": true,
     "placeholder": "Work you'd happily do more of"
   },
@@ -49,7 +49,7 @@
     "inputType": "dont_want_to_do",
     "label": "What I don't want to do",
     "promptLabel": "What I want to avoid",
-    "type": "area",
+    "type": "text",
     "repeatable": true,
     "placeholder": "Work you want to design out of this offer"
   },
@@ -58,8 +58,26 @@
     "inputType": "extra",
     "label": "Extra considerations",
     "promptLabel": "Extra things to consider",
-    "type": "area",
+    "type": "text",
     "repeatable": true,
     "placeholder": "A constraint or anything else to weigh"
+  },
+  {
+    "id": "whatsWorking",
+    "inputType": "whats_working",
+    "label": "What's working",
+    "promptLabel": "What's working",
+    "type": "text",
+    "repeatable": true,
+    "placeholder": "Something that's working well today"
+  },
+  {
+    "id": "whatsNotWorking",
+    "inputType": "whats_not_working",
+    "label": "What's not working",
+    "promptLabel": "What's not working",
+    "type": "text",
+    "repeatable": true,
+    "placeholder": "Something that isn't working today"
   }
 ]
