@@ -6,7 +6,7 @@ export function OfferContextPreview({ values }) {
   return (
     <Stack gap="xs">
       <PreviewLine label="Seed" value={values.seed} />
-      <PreviewLine label="Primary outcome" value={values.primaryOutcome} />
+      <PreviewLine label="Primary outcome" value={values.primary_outcome} />
     </Stack>
   )
 }

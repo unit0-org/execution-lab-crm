@@ -4,20 +4,24 @@ import { useState } from 'react'
 import { useClipboard } from '@/ui/molecules/useClipboard'
 import { buildOfferPrompt } from '../buildOfferPrompt'
 import { initialValues } from '../initialValues'
+import { toInitialState } from '../toInitialState'
+import { useSavedFlags } from './useSavedFlags'
+import { useOfferSingles } from './useOfferSingles'
+import { useOfferLists } from './useOfferLists'
 
-// Holds the offer-configurator field values and copies the assembled prompt
-// to the clipboard. Pure client state — nothing is persisted.
-export function useOfferLevers() {
-  const [values, setValues] = useState(initialValues)
+// Offer-configurator state: single fields + levers in `values`, repeatable
+// inputs in `lists`, both seeded from saved rows and autosaved on change.
+export function useOfferLevers(initial) {
+  const start = toInitialState(initial)
+  const [values, setValues] = useState({ ...initialValues, ...start.singles })
+  const [lists, setLists] = useState(start.lists)
+  const saved = useSavedFlags()
+  const singles = useOfferSingles({ setValues, saved })
+  const listOps = useOfferLists({ setLists, saved })
   const copy = useClipboard()
+  const copyPrompt = () => copy(buildOfferPrompt(values, lists))
 
-  const setField = (id) => (event) =>
-    setValues((cur) => ({ ...cur, [id]: event.target.value }))
-
-  const setLever = (id) => (value) =>
-    setValues((cur) => ({ ...cur, [id]: value }))
-
-  const copyPrompt = () => copy(buildOfferPrompt(values))
-
-  return { values, setField, setLever, copyPrompt }
+  return {
+    values, lists, saved: saved.ids, copyPrompt, ...singles, ...listOps
+  }
 }

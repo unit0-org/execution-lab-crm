@@ -1,17 +1,16 @@
 import { TextField } from '@/ui/atoms/TextField'
 import { TextArea } from '@/ui/atoms/TextArea'
 import { fieldLabel } from '../fieldLabel'
+import { FieldTitle } from './FieldTitle'
 
-// One offer-context input — a textarea for long answers, else a text field.
-export function ContextField({ field, value, onChange }) {
-  if (field.type === 'area')
-    return (
-      <TextArea label={fieldLabel(field)} value={value} onChange={onChange}
-        placeholder={field.placeholder} />
-    )
+// One single-valued offer-context input (text or textarea), with a required
+// mark and a saved checkmark in its label.
+export function ContextField({ field, value, onChange, saved }) {
+  const label = <FieldTitle label={fieldLabel(field)} saved={saved} />
+  const props = { label, value, onChange, required: field.required,
+    placeholder: field.placeholder }
 
-  return (
-    <TextField label={fieldLabel(field)} value={value} onChange={onChange}
-      placeholder={field.placeholder} />
-  )
+  if (field.type === 'area') return <TextArea {...props} />
+
+  return <TextField {...props} />
 }
