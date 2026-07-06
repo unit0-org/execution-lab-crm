@@ -2,8 +2,7 @@
   {
     "id": "seed",
     "inputType": "seed",
-    "label": "Seed",
-    "hint": "your offer in one line",
+    "label": "Seed offer",
     "promptLabel": "Original offer",
     "type": "text",
     "required": true,
