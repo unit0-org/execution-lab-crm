@@ -95,6 +95,7 @@ Conventions (from `AGENTS.md`):
 | Component | Props | Use for |
 |---|---|---|
 | `SectionHeader` | `title`, `addLabel`, `onAdd` | Section heading with optional `+` create action |
+| `EmptyState` | `title`, `message` | Portal empty-state block: `Display` title over a muted line, shown when a list has no items |
 | `SearchTrigger` | `placeholder`, `hint`, `onClick` | Search-field-shaped button (magnifier + placeholder + key hint) that opens a command palette |
 | `VideoEmbed` | `src`, `title` | Responsive 16:9 embedded video player (`src` = an embed URL, e.g. from `youtubeEmbedUrl`) — cohort recordings |
 | `MenuRow` | `leading`, `label`, `subtitle`, `meta`, `active`, `onClick` | Full-width clickable menu/palette row: leading slot + label (with optional `subtitle` below) + optional trailing meta; `active` pre-highlights it (keyboard-selected) |

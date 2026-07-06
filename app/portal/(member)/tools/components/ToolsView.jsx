@@ -2,10 +2,12 @@ import { Stack } from '@/ui/layout/Stack'
 import { Display } from '@/ui/atoms/Display'
 import { CardGrid } from '@/ui/layout/CardGrid'
 import { ToolCard } from './ToolCard'
-import { ToolsEmpty } from './ToolsEmpty'
+import { EmptyState } from '@/ui/molecules/EmptyState'
 
 export function ToolsView({ tools }) {
-  if (!tools.length) return <ToolsEmpty />
+  const empty = 'Tools we’ve shared with you will appear here.'
+
+  if (!tools.length) return <EmptyState title="Tools" message={empty} />
 
   return (
     <Stack gap="lg">
