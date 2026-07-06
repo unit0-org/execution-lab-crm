@@ -2,16 +2,16 @@ import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
 import { Link } from '@/ui/atoms/Link'
 import { DateText } from '@/ui/atoms/DateText'
-import { SelectCell } from '@/ui/molecules/SelectCell'
 import { StatusBadge } from './StatusBadge'
 import { SentCell } from './SentCell'
 import { InvoiceClient } from './InvoiceClient'
 import { InvoiceRowMenu } from './InvoiceRowMenu'
 
 export function InvoiceRow({ invoice, selected, onToggle, onChanged }) {
+  const select = { checked: selected, onToggle: () => onToggle(invoice.id) }
+
   return (
-    <Tr>
-      <SelectCell checked={selected} onToggle={() => onToggle(invoice.id)} />
+    <Tr select={select}>
       <Td>
         <Link href={`/invoices/${invoice.id}`}>{invoice.number}</Link>
       </Td>

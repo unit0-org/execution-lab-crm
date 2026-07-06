@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation'
 import { Stack } from '@/ui/layout/Stack'
 import { SectionHeader } from '@/ui/molecules/SectionHeader'
 import { useInvoices } from '../hooks/useInvoices'
-import { useInvoiceSelection } from '../hooks/useInvoiceSelection'
+import { useRowSelection } from '@/ui/molecules/useRowSelection'
 import { InvoicesToolbar } from './InvoicesToolbar'
 import { InvoicesList } from './InvoicesList'
 
 export function InvoicesView({ initialInvoices }) {
   const { invoices, reload } = useInvoices(initialInvoices)
-  const selection = useInvoiceSelection(invoices)
+  const selection = useRowSelection(invoices)
   const router = useRouter()
   const onAdd = () => router.push('/invoices/new')
 

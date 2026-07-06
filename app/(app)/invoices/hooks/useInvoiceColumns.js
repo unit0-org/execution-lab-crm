@@ -1,18 +1,10 @@
 'use client'
 
 import { columns } from '../components/invoiceColumns'
+import { rowColumns } from '@/ui/molecules/rowColumns'
 
-// The invoice-table columns, led by a select-all checkbox column whose
-// state comes from the row selection: checked when all are selected,
-// indeterminate when only some are.
+// Invoice-table columns with a leading select-all checkbox column; the
+// trailing kebab-menu column stays defined in invoiceColumns.
 export function useInvoiceColumns(selection) {
-  const some = selection.ids.size > 0 && !selection.allSelected
-
-  return [
-    {
-      key: 'select', select: true, indeterminate: some,
-      checked: selection.allSelected, onToggle: selection.toggleAll
-    },
-    ...columns
-  ]
+  return rowColumns(columns, { selection })
 }
