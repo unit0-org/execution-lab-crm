@@ -147,7 +147,7 @@ Helpers: `matchOptions(options, query, limit=5)` and
 
 Hooks: `useToggle(initial)`, `useOutsideClose(ref, onClose, open)`,
 `useEscClose(onClose, open)`, `useAutoFocus(open)`, `useClipboard()`,
-`useToasts()`, `useAnchorRect(ref, open)`,
+`useBackdropClose(onClose)`, `useToasts()`, `useAnchorRect(ref, open)`,
 `useTableSort(rows, columns, initialKey, initialDir)`.
 Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`.
 
