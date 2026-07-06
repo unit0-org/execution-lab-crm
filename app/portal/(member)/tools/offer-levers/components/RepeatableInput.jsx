@@ -2,7 +2,7 @@ import { GrowRow } from '@/ui/layout/GrowRow'
 import { TextArea } from '@/ui/atoms/TextArea'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
-import { SavedCheck } from './SavedCheck'
+import { SavedCheck } from '@/ui/atoms/SavedCheck'
 
 // One added input for a repeatable type: a textarea, a saved check and a
 // remove button. The type's label sits above the group (RepeatableInputs).

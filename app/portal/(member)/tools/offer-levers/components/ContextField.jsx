@@ -1,7 +1,7 @@
 import { TextField } from '@/ui/atoms/TextField'
 import { TextArea } from '@/ui/atoms/TextArea'
 import { fieldLabel } from '../fieldLabel'
-import { FieldTitle } from './FieldTitle'
+import { FieldTitle } from '@/ui/molecules/FieldTitle'
 
 // One single-valued offer-context input (text or textarea), with a required
 // mark and a saved checkmark in its label.

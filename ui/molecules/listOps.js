@@ -1,4 +1,4 @@
-// Pure transforms on a repeatable type's list of { id, value } rows.
+// Pure transforms on a list of { id, value } rows.
 export const editRow = (list, id, value) =>
   list.map((row) => (row.id === id ? { ...row, value } : row))
 

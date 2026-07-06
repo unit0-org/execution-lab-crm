@@ -10,8 +10,8 @@ import { CopyPromptBar } from './CopyPromptBar'
 export function OfferLeversView({ initial }) {
   const offer = useOfferLevers(initial)
   const on = {
-    field: offer.setField, add: offer.addItem,
-    update: offer.updateItem, remove: offer.removeItem
+    field: offer.setField, add: offer.add,
+    update: offer.update, remove: offer.remove
   }
 
   return (

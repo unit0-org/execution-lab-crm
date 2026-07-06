@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react'
 
 // Returns run(key, fn): calls fn after a short pause, one timer per key, so
-// rapid edits to a field collapse into a single trailing save.
+// rapid edits to a field collapse into a single trailing call.
 export function useDebouncer(ms = 600) {
   const timers = useRef({})
 

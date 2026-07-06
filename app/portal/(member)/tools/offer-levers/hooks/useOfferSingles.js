@@ -1,7 +1,7 @@
 'use client'
 
 import { setOfferFieldAction } from '../actions/setOfferField'
-import { useDebouncer } from './useDebouncer'
+import { useDebouncer } from '@/ui/molecules/useDebouncer'
 
 // setField (debounced autosave for text singles) and setLever (immediate,
 // since a slider change is discrete). Both flag the field saved on success.
