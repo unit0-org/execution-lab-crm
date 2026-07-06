@@ -16,7 +16,7 @@
     "promptLabel": "Audience",
     "type": "text",
     "required": true,
-    "placeholder": "e.g. Early-stage B2B SaaS founders doing their first $10k MRR"
+    "placeholder": "Persona + Situation"
   },
   {
     "id": "primaryOutcome",
