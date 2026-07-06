@@ -1,7 +1,7 @@
 'use client'
 
 import { useContacts } from './useContacts'
-import { useContactSelection } from './useContactSelection'
+import { useRowSelection } from '@/ui/molecules/useRowSelection'
 import { useContactSearch } from './useContactSearch'
 import { useLabelFilter } from './useLabelFilter'
 import { useCategories } from './useCategories'
@@ -16,7 +16,7 @@ export function useContactsView(filter, initialContacts) {
   const labelOptions = [NO_LABELS, ...cats.categories]
   const byLabel = filterByLabels(contacts, labelFilter.ids)
   const search = useContactSearch(byLabel)
-  const selection = useContactSelection(search.results)
+  const selection = useRowSelection(search.results)
 
   return {
     contacts, cats, labelOptions, labelFilter, search, selection, reload

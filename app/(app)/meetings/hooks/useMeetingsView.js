@@ -5,13 +5,13 @@ import { showToast } from '@/ui/molecules/toastBus'
 import { useMeetings } from './useMeetings'
 import { useMeetingSync } from './useMeetingSync'
 import { useMergeSuggestions } from './useMergeSuggestions'
-import { useMeetingSelection } from './useMeetingSelection'
+import { useRowSelection } from '@/ui/molecules/useRowSelection'
 
 export function useMeetingsView(initialMeetings) {
   const meetings = useMeetings(initialMeetings)
   const sync = useMeetingSync(meetings.reload)
   const suggestions = useMergeSuggestions()
-  const selection = useMeetingSelection(meetings.meetings)
+  const selection = useRowSelection(meetings.meetings)
   const modal = useToggle()
 
   const onCreated = () => {

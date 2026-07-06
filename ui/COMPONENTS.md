@@ -120,7 +120,7 @@ Conventions (from `AGENTS.md`):
 | `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field; keeps fields' typed values on a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate automatically) |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form |
 | `FormError` | `message` | Form-level error message |
-| `Table` / `Tr` / `Td` | `cols`,`sort`,`onSort` / `plain` / `truncate` | Data tables |
+| `Table` / `Tr` / `Td` | `cols`,`sort`,`onSort` / `plain`,`onClick`,`select`,`onDelete`,`deleteTitle` / `truncate` | Data tables. `Tr`'s `select={{checked,onToggle}}` adds a leading checkbox cell; `onDelete` (+`deleteTitle`) adds the standard trailing trash+confirm delete button — the one way every table selects/deletes |
 | `SortHeader` / `SortArrow` / `SortLabel` | — | Sortable table headers |
 | `Tabs` | `tabs`, `active`, `basePath`, `param` | URL-driven tab navigation |
 | `FilterBar` / `FilterChip` | `options`,`active`,`basePath`,`param` | URL-driven filter chips |
@@ -132,6 +132,7 @@ Conventions (from `AGENTS.md`):
 | `Collapsible` | `title`, `preview`, `defaultOpen`, `children` | Expand/collapse section; `preview` shows only while collapsed |
 | `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; override `message`/`confirmLabel`/`tone` for non-destructive confirms |
 | `ConfirmBulkDelete` | `count`, `onDelete`, `onCancel` | Inline "Delete N?" confirm for bulk-action bars |
+| `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table (`StickyBar` + `ConfirmBulkDelete`); reveals when `count > 0` |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
 | `SelectCell` | `checked`, `onToggle` | Row-selection checkbox `Td` for multi-select tables |
 | `Stat` / `StatBody` / `Insight` | `label`, `value`, `tone`, `href` | Stat tiles & insights |
@@ -148,8 +149,12 @@ Helpers: `matchOptions(options, query, limit=5)` and
 Hooks: `useToggle(initial)`, `useOutsideClose(ref, onClose, open)`,
 `useEscClose(onClose, open)`, `useAutoFocus(open)`, `useClipboard()`,
 `useBackdropClose(onClose)`, `useToasts()`, `useAnchorRect(ref, open)`,
-`useTableSort(rows, columns, initialKey, initialDir)`.
-Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`.
+`useTableSort(rows, columns, initialKey, initialDir)`,
+`useRowSelection(items)` (Set of chosen `.id`s + `toggle`/`toggleAll`/`clear`,
+shared by every selectable table).
+Helpers: `buildTabs`, `buildFilterChips`, `selectedLabel`, `compareValues`,
+`rowColumns(cols, { selection, deletable })` (wraps a table's data columns
+with the shared leading select-all + trailing delete columns).
 
 ## Organisms — `ui/organisms/`
 
