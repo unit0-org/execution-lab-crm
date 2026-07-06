@@ -3,10 +3,13 @@
 import { GrowRow } from '@/ui/layout/GrowRow'
 import { ExternalLink } from '@/ui/atoms/ExternalLink'
 import { RowDelete } from '@/ui/molecules/RowDelete'
-import { useRemoveResource } from '../hooks/useRemoveResource'
+import { useActionHandler } from '@/app/(app)/hooks/useActionHandler'
+import { removeCohortResourceAction } from '../actions/removeCohortResource'
 
 export function ResourceRow({ item, cohortId, onChanged }) {
-  const removeResource = useRemoveResource(onChanged)
+  const removeResource = useActionHandler(removeCohortResourceAction, {
+    onDone: onChanged, toast: 'Resource deleted'
+  })
 
   return (
     <GrowRow align="center">

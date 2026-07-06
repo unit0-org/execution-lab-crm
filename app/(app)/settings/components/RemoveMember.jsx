@@ -1,10 +1,11 @@
 'use client'
 
 import { RowDelete } from '@/ui/molecules/RowDelete'
-import { useRemoveMember } from '../hooks/useRemoveMember'
+import { useActionHandler } from '@/app/(app)/hooks/useActionHandler'
+import { removeMemberAction } from '../actions/removeMember'
 
 export function RemoveMember({ id, onChanged }) {
-  const remove = useRemoveMember(id, onChanged)
+  const remove = useActionHandler(removeMemberAction, { onDone: onChanged })
 
-  return <RowDelete onConfirm={remove} title="Remove member" />
+  return <RowDelete onConfirm={() => remove(id)} title="Remove member" />
 }

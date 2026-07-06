@@ -4,11 +4,14 @@ import { Inline } from '@/ui/layout/Inline'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
 import { RowDelete } from '@/ui/molecules/RowDelete'
-import { useRemoveFolder } from '../hooks/useRemoveFolder'
+import { useActionHandler } from '@/app/(app)/hooks/useActionHandler'
+import { removeCohortFolderAction } from '../actions/removeCohortFolder'
 
 // Add-resource and delete-folder controls, shown inside an expanded folder.
 export function FolderActions({ folder, cohortId, onAdd, onChanged }) {
-  const removeFolder = useRemoveFolder(onChanged)
+  const removeFolder = useActionHandler(removeCohortFolderAction, {
+    onDone: onChanged, toast: 'Folder deleted'
+  })
 
   return (
     <Inline gap="xs">
