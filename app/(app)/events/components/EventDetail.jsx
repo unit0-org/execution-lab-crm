@@ -10,7 +10,8 @@ export function EventDetail({ event, onChanged, attendees }) {
       <EventHeader event={event} onChanged={onChanged} />
       <EventInfo event={event} />
       <EventStats event={event} />
-      <AttendeeList attendees={attendees} />
+      <AttendeeList eventId={event.id} attendees={attendees}
+        onChanged={onChanged} />
     </Stack>
   )
 }
