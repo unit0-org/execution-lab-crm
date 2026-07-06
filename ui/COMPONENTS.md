@@ -131,8 +131,7 @@ Conventions (from `AGENTS.md`):
 | `Popover` | `open`, `onClose`, `trigger`, `children` | Anchored popover |
 | `Collapsible` | `title`, `preview`, `defaultOpen`, `children` | Expand/collapse section; `preview` shows only while collapsed |
 | `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; override `message`/`confirmLabel`/`tone` for non-destructive confirms |
-| `ConfirmBulkDelete` | `count`, `onDelete`, `onCancel` | Inline "Delete N?" confirm for bulk-action bars |
-| `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table (`StickyBar` + `ConfirmBulkDelete`); reveals when `count > 0` |
+| `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table; reveals when `count > 0` and Delete opens the shared `ConfirmDialog` before firing `onDelete` |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
 | `SelectCell` | `checked`, `onToggle` | Row-selection checkbox `Td` for multi-select tables |
 | `Stat` / `StatBody` / `Insight` | `label`, `value`, `tone`, `href` | Stat tiles & insights |
