@@ -123,7 +123,11 @@ leaves this stale is incomplete (this is a review-enforced rule in
   lapses, the entry leaves the line. Query `WaitlistEntry.scope('active')`,
   never an inline status list.
 - **purchase** — Stripe charges synced as purchases; feeds spend insights
-  and the lead/customer split.
+  and the lead/customer split. **Earned-revenue invariant:** a refunded
+  purchase is not revenue — every spend/revenue aggregate goes through
+  `Purchase.scope('earned')` (refunded excluded, null status still counts),
+  never an inline status check. Adding a new money aggregate means using that
+  scope. The `$100` customer threshold is `CUSTOMER_MIN_PURCHASE_CENTS`.
 - **invoice** — invoices with line items, PDF generation, Stripe charge,
   and email delivery.
 - **notification** — member-to-member alerts. `note_mention` records who a
