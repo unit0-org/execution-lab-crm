@@ -11,7 +11,7 @@ export function AddMore({ onAdd }) {
   const picker = useAddMore(addMoreOptions, onAdd)
 
   return (
-    <Inline gap="sm">
+    <Inline gap="sm" align="end">
       <Select label="Add more" options={addMoreOptions}
         value={picker.value} onChange={picker.pick} />
       <Button onClick={picker.add}>Add</Button>

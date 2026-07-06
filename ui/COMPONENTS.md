@@ -76,7 +76,7 @@ Conventions (from `AGENTS.md`):
 |---|---|---|
 | `Page` | `width='wide'`, `children` | Top-level page container |
 | `Stack` | `gap='md'`, `children` | Vertical flex stack (`xs`/`sm`/`md`/`lg`) |
-| `Inline` | `gap`, `nowrap`, `children` | Horizontal flex row |
+| `Inline` | `gap`, `nowrap`, `align`, `children` | Horizontal flex row (`align` sets `align-items`, default `center`; e.g. `end` to bottom-align mixed-height items) |
 | `Columns` | `children` | Multi-column layout |
 | `CardGrid` | `children` | Responsive grid of cards |
 | `GrowRow` | `align`, `children` | Row where the first child grows, rest content-width |
