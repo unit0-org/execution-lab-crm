@@ -1,10 +1,12 @@
 import { Stack } from '@/ui/layout/Stack'
 import { Display } from '@/ui/atoms/Display'
 import { MemberCohortResources } from './MemberCohortResources'
-import { ResourcesEmpty } from './ResourcesEmpty'
+import { EmptyState } from '@/ui/molecules/EmptyState'
 
 export function ResourcesView({ cohorts }) {
-  if (!cohorts.length) return <ResourcesEmpty />
+  const empty = 'Your cohort’s resources and recordings will appear here.'
+
+  if (!cohorts.length) return <EmptyState title="Resources" message={empty} />
 
   return (
     <Stack gap="lg">
