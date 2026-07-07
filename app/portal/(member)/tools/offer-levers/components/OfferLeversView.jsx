@@ -16,7 +16,7 @@ export function OfferLeversView({ initial, offerId, offerName }) {
 
   return (
     <Stack gap="lg">
-      <OfferLeversHeader name={offerName} />
+      <OfferLeversHeader offerId={offerId} name={offerName} />
       <OfferContextSection values={offer.values} lists={offer.lists}
         saved={offer.saved} on={on} />
       <LeversSection values={offer.values} onField={offer.setLever} />
