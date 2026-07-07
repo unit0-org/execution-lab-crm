@@ -8,11 +8,12 @@ import { bodyStyle } from './OfferCard.styles'
 // with the created date and a delete control.
 export function OfferCard({ offer, onRemove }) {
   const href = portalRoutePath('/tools/offer-levers/' + offer.id)
+  const name = offer.name || 'Untitled offer'
 
   return (
-    <LinkCard href={href} label={'Open ' + offer.name}>
+    <LinkCard href={href} label={'Open ' + name}>
       <div style={bodyStyle}>
-        <Heading level={3} gutter="none">{offer.name}</Heading>
+        <Heading level={3} gutter="none">{name}</Heading>
         <OfferCardMeta offer={offer} onRemove={onRemove} />
       </div>
     </LinkCard>
