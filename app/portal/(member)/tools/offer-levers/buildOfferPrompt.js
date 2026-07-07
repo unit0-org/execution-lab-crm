@@ -9,17 +9,21 @@ const fieldLine = (values, lists) => (f) =>
   `${f.promptLabel}: ${fieldValue(f, values, lists)}`
 const leverLine = (values) => (l) => `${l.label}: ${clean(values, l.id)}`
 
+const frameworkPara = () =>
+  `${template.frameworkLead} ${frameworkUrl()}. ${template.frameworkNote}`
+const leversLine = (values) => `${levers.map(leverLine(values)).join('; ')}.`
+
 // Assemble the offer into a strategic-architect prompt: point the model at
 // the public framework guide (it holds the lever definitions), then the
 // offer context, the chosen lever settings, and the task.
 export function buildOfferPrompt(values, lists) {
   return [
     template.intro, '',
-    template.frameworkLead, frameworkUrl(), template.frameworkNote, '',
+    frameworkPara(), '',
     template.contextHeading,
     ...context.map(fieldLine(values, lists)), '',
     template.leversHeading,
-    ...levers.map(leverLine(values)), '',
+    leversLine(values), '',
     template.taskHeading,
     ...template.task
   ].join('\n')
