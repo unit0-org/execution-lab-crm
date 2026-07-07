@@ -1,13 +1,16 @@
+import { FieldLabel } from '@/ui/atoms/FieldLabel'
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { VersionDigit } from './VersionDigit'
-import { fieldStyle, boxStyle } from './OfferVersionControl.styles'
+import { fieldStyle } from '@/ui/atoms/TextField.styles'
+import { boxStyle } from './OfferVersionControl.styles'
 
-// The offer's editable version on the edit page: a compact bordered stepper
-// (V{major}.{minor}) whose two parts bump up or down. Floored at V1.0.
+// The offer's editable version on the edit page: a stepper box that matches
+// the name field — same label style, border, fill, and height. Each part
+// bumps up or down; floored at V1.0.
 export function OfferVersionControl({ version, onBump }) {
   return (
     <div style={fieldStyle}>
-      <MonoLabel caps>Version</MonoLabel>
+      <FieldLabel label="Version" />
       <div style={boxStyle}>
         <MonoLabel tone="primary" size={14}>V</MonoLabel>
         <VersionDigit label="major version" value={version.version_major}
