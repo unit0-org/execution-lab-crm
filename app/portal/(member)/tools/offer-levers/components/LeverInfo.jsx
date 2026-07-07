@@ -17,7 +17,8 @@ export function LeverInfo({ lever }) {
             desc={lever.optDesc[i]} />
         ))}
       </Stack>
-      <Link href={portalUrl('/offer-levers/' + leverSlug(lever.id))}>
+      <Link href={portalUrl('/offer-levers/' + leverSlug(lever.id))}
+        newTab>
         Learn more →
       </Link>
     </Stack>

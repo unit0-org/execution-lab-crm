@@ -8,7 +8,7 @@ import levers from '../data/offerLevers.json'
 // keep a lone lever at half width via an empty spacer slot.
 export function LeverGrid({ values, onField }) {
   return (
-    <Stack gap="md">
+    <Stack gap="lg">
       {toPairs(levers).map((pair) => (
         <Columns key={pair[0].id}>
           {[0, 1].map((i) => (
