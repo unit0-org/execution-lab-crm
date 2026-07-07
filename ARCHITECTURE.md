@@ -398,7 +398,10 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   key)` so a revoked member can't reach it by URL. Admins toggle access
   per member in `app/(app)/portal-members` (the Tools column), through
   `setToolAccess` (`withAdmin`). The first tool is **Offer Levers**, a
-  client-only prompt builder — no data is persisted, it copies a prompt.
+  prompt builder: offer context, lever settings, and the AI-generated
+  offers pasted back in all persist per offer as `offer_generator_input`
+  rows (a multi lever stores its picks as a JSON array in `value`); it
+  assembles those into a prompt the member copies.
 
 ## Flow maps (which file does each step)
 

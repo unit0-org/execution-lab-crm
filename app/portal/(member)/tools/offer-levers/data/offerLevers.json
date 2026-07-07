@@ -17,6 +17,7 @@
     "id": "interactionTiming",
     "label": "Interaction timing",
     "desc": "When does value happen?",
+    "multi": true,
     "options": ["Synchronous", "Asynchronous", "Hybrid"],
     "optDesc": ["Live, real-time (calls, sessions, events).", "On each party's own schedule (messages, recordings).", "A deliberate mix of live and on-demand."]
   },
@@ -31,8 +32,8 @@
     "id": "touchIntensity",
     "label": "Touch intensity",
     "desc": "How much direct human attention does each client receive?",
-    "options": ["High touch", "Medium touch", "Low touch"],
-    "optDesc": ["Frequent, hands-on, individualized attention.", "Periodic check-ins and support.", "Minimal contact; largely self-serve."]
+    "options": ["Low touch", "Medium touch", "High touch"],
+    "optDesc": ["Minimal contact; largely self-serve.", "Periodic check-ins and support.", "Frequent, hands-on, individualized attention."]
   },
   {
     "id": "deliveryMedium",
@@ -80,8 +81,8 @@
     "id": "reversibility",
     "label": "Commitment reversibility",
     "desc": "How easy is it for the buyer to exit after saying yes?",
-    "options": ["High reversibility", "Medium reversibility", "Low reversibility"],
-    "optDesc": ["Easy, low-cost exit at any time.", "Some lock-in; partial refund or wind-down.", "Fully committed once they're in."]
+    "options": ["Low reversibility", "Medium reversibility", "High reversibility"],
+    "optDesc": ["Fully committed once they're in.", "Some lock-in; partial refund or wind-down.", "Easy, low-cost exit at any time."]
   },
   {
     "id": "pricingModel",

@@ -1,0 +1,10 @@
+[
+  {
+    "id": "generatedOffer",
+    "inputType": "generated_offer",
+    "label": "Generated offer",
+    "type": "area",
+    "repeatable": true,
+    "placeholder": "Paste an offer the AI generated from your prompt."
+  }
+]
