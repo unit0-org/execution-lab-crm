@@ -1,21 +1,25 @@
 import context from './data/offerContext.json'
+import levers from './data/offerLevers.json'
 import template from './data/promptTemplate.json'
 import { fieldValue } from './fieldValue'
 import { frameworkUrl } from './frameworkUrl'
 
+const clean = (values, id) => (values[id] || '').trim()
 const fieldLine = (values, lists) => (f) =>
   `${f.promptLabel}: ${fieldValue(f, values, lists)}`
+const leverLine = (values) => (l) => `${l.label}: ${clean(values, l.id)}`
 
-// Assemble the offer into a strategic-architect prompt: send the model to
-// the public framework guide first (its AI won't know our levers), then the
-// offer context and the task. Lever settings aren't dumped here — the guide
-// carries the framework.
+// Assemble the offer into a strategic-architect prompt: point the model at
+// the public framework guide (it holds the lever definitions), then the
+// offer context, the chosen lever settings, and the task.
 export function buildOfferPrompt(values, lists) {
   return [
     template.intro, '',
     template.frameworkLead, frameworkUrl(), template.frameworkNote, '',
     template.contextHeading,
     ...context.map(fieldLine(values, lists)), '',
+    template.leversHeading,
+    ...levers.map(leverLine(values)), '',
     template.taskHeading,
     ...template.task
   ].join('\n')
