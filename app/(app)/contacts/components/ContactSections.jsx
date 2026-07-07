@@ -1,8 +1,9 @@
 import { ContactAnswers } from './ContactAnswers'
 import { ContactNotes } from './ContactNotes'
 import { ContactRelationships } from './ContactRelationships'
+import { ContactTasks } from './ContactTasks'
 
-// The three activity sections, each wired to its action-bar dialog.
+// The activity sections, each wired to its action-bar dialog.
 export function ContactSections({ contactId, sections, act }) {
   return (
     <>
@@ -12,6 +13,8 @@ export function ContactSections({ contactId, sections, act }) {
         initial={sections.notes} />
       <ContactRelationships contactId={contactId} reveal={act.rel}
         initial={sections.relationships} />
+      <ContactTasks contactId={contactId} reveal={act.task}
+        initial={sections.tasks} />
     </>
   )
 }

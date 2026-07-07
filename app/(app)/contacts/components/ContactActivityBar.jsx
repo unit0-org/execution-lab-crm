@@ -10,6 +10,7 @@ export function ContactActivityBar({ act }) {
       <ContactActivityButton label="Fact" onClick={act.fact.show} />
       <ContactActivityButton label="Relationship"
         onClick={act.rel.show} />
+      <ContactActivityButton label="Task" onClick={act.task.show} />
     </Inline>
   )
 }

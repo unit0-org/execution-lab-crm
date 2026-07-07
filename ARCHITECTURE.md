@@ -34,7 +34,7 @@ leaves this stale is incomplete (this is a review-enforced rule in
   billing/membership actions use `withOrg` (injects the org id);
   everything else uses `withMember` (auth gate only). Secrets live in env.
 - **Stripe** for payments (cohort checkout, invoices, purchase sync),
-  **Google** for contacts + calendar sync, **Resend** for email.
+  **Google** for contacts + calendar + tasks sync, **Resend** for email.
 - **Money is always CAD.** `formatMoney` defaults to `cad`; never display
   USD. Amounts are integer cents.
 - **Migrations run on deploy** from `supabase/migrations/`. Each version
@@ -211,6 +211,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `contact_phone` | cascade | `mergePhones` (dedupe per phone) |
 | `contact_fact` | cascade | `claimContactRecords` (reassign) |
 | `contact_note` | cascade | `claimContactRecords` (reassign) |
+| `contact_task` | cascade | `claimContactRecords` (reassign; `google_task_id` untouched) |
 | `event_participant` | cascade | `mergeParticipations` (dedupe per event, fold answers) |
 | `meeting_participant` | cascade | `mergeMeetingParticipations` (dedupe per meeting) |
 | `contact_category_link` | cascade | `mergeCategoryLinks` (idempotent, composite key) |
@@ -459,10 +460,19 @@ file trails for the flows you'll touch most — follow them top to bottom.
 - **Google sync:** OAuth account → contact/calendar sync; conflicts land
   in a review queue rather than auto-applying.
 - **Contact activity timeline:** `lib/activity/controllers/contactActivity.js`
-  merges a contact's events, meetings, purchases and cohort registrations
-  into one date-sorted feed (shown on the contact page and via the
-  `contact_activity` MCP tool). Each source contributes an entries
+  merges a contact's events, meetings, purchases, cohort registrations and
+  follow-up tasks into one date-sorted feed (shown on the contact page and
+  via the `contact_activity` MCP tool). Each source contributes an entries
   controller returning a uniform `{id, kind, href, title, date, status,
   statusTone}` shape. **A new per-contact record type that belongs on the
   timeline must add its own `*Entries` controller and be merged in here** —
   otherwise it never appears in a contact's activity.
+- **Contact tasks → Google Tasks:** a `contact_task` (title + optional due
+  date) is a contact-owned follow-up created from the contact page's Tasks
+  section (and the `create_task` MCP tool). On create/toggle it is mirrored
+  to the **primary** connected account's default Google Tasks list
+  (`lib/google/tasks/`), so it shows in Google Calendar; the push is
+  best-effort (a Google hiccup never fails the CRM write) and stores
+  `google_task_id` for the link. Needs the `tasks` OAuth scope (re-consent).
+  It appears both in the Tasks section and on the activity timeline. *(The
+  daily two-way reconcile cron lands in a follow-up PR.)*
