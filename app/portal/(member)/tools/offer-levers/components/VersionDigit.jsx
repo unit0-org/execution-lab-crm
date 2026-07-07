@@ -1,7 +1,7 @@
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
 import { Text } from '@/ui/atoms/Text'
-import { digitStyle } from './OfferVersion.styles'
+import { digitStyle } from './OfferVersionControl.styles'
 
 // One version part (major or minor): the number with an up chevron above
 // and a down chevron below to bump it.
