@@ -282,7 +282,7 @@ input[type="file"]::file-selector-button:hover { background: var(--color-bg-subt
 /* Brand the native range slider (Offer Levers). Track is a thin rail; the
    thumb is an accent puck that snaps to each discrete stop. */
 input[type="range"].slider {
-  -webkit-appearance: none; appearance: none; width: 100%; height: 4px;
+  -webkit-appearance: none; appearance: none; width: 100%; height: 20px;
   background: transparent; cursor: pointer; outline: none;
 }
 input[type="range"].slider::-webkit-slider-thumb {
