@@ -18,8 +18,8 @@
     "label": "Interaction timing",
     "desc": "When does value happen?",
     "multi": true,
-    "options": ["Synchronous", "Asynchronous", "Hybrid"],
-    "optDesc": ["Live, real-time (calls, sessions, events).", "On each party's own schedule (messages, recordings).", "A deliberate mix of live and on-demand."]
+    "options": ["Synchronous", "Asynchronous"],
+    "optDesc": ["Live, real-time (calls, sessions, events).", "On each party's own schedule (messages, recordings)."]
   },
   {
     "id": "participationFormat",

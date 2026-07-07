@@ -6,7 +6,6 @@ import { OfferLeversHeader } from './OfferLeversHeader'
 import { OfferContextSection } from './OfferContextSection'
 import { LeversSection } from './LeversSection'
 import { GeneratedOffersSection } from './GeneratedOffersSection'
-import { CopyPromptBar } from './CopyPromptBar'
 
 export function OfferLeversView(props) {
   const { initial, offerId, offerName, offerVersion } = props
@@ -22,9 +21,10 @@ export function OfferLeversView(props) {
         version={offerVersion} />
       <OfferContextSection values={offer.values} lists={offer.lists}
         saved={offer.saved} on={on} />
-      <LeversSection values={offer.values} onField={offer.setLever} />
-      <GeneratedOffersSection lists={offer.lists} saved={offer.saved} on={on} />
-      <CopyPromptBar onCopy={offer.copyPrompt} />
+      <LeversSection values={offer.values} onField={offer.setLever}
+        onCopy={offer.copyPrompt} />
+      <GeneratedOffersSection lists={offer.lists} saved={offer.saved}
+        on={on} />
     </Stack>
   )
 }
