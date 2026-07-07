@@ -7,8 +7,8 @@ import { OfferContextSection } from './OfferContextSection'
 import { LeversSection } from './LeversSection'
 import { CopyPromptBar } from './CopyPromptBar'
 
-export function OfferLeversView({ initial }) {
-  const offer = useOfferLevers(initial)
+export function OfferLeversView({ initial, offerId, offerName }) {
+  const offer = useOfferLevers(initial, offerId)
   const on = {
     field: offer.setField, add: offer.add,
     update: offer.update, remove: offer.remove
@@ -16,7 +16,7 @@ export function OfferLeversView({ initial }) {
 
   return (
     <Stack gap="lg">
-      <OfferLeversHeader />
+      <OfferLeversHeader name={offerName} />
       <OfferContextSection values={offer.values} lists={offer.lists}
         saved={offer.saved} on={on} />
       <LeversSection values={offer.values} onField={offer.setLever} />
