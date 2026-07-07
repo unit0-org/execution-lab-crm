@@ -17,7 +17,7 @@ export function LeverLabel({ lever }) {
 
   return (
     <Inline gap="xs" nowrap>
-      <MonoLabel tone="muted" size={12}>{lever.label}</MonoLabel>
+      <MonoLabel tone="muted" size={14}>{lever.label}</MonoLabel>
       <Popover open={pop.open} onClose={pop.hide} trigger={trigger}>
         <LeverInfo lever={lever} />
       </Popover>
