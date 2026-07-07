@@ -15,7 +15,7 @@ export function GeneratedOffersSection({ lists, saved, on }) {
 
   return (
     <Card>
-      <Collapsible title="Generated offers">
+      <Collapsible title="Generated offers" defaultOpen={false}>
         <Stack gap="md">
           <RepeatableInputs field={field} items={lists[field.inputType]}
             saved={saved} onUpdate={on.update} onRemove={on.remove} />

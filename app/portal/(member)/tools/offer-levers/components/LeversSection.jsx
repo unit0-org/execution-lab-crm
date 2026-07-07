@@ -9,7 +9,7 @@ export function LeversSection({ values, onField, onCopy }) {
   return (
     <Card>
       <Stack gap="md">
-        <Collapsible title="Offer levers">
+        <Collapsible title="Offer levers" defaultOpen={false}>
           <Stack gap="md">
             <Text size="sm" tone="muted" gutter="none">
               Fifteen structural dials. Set them to the shape you have in mind.
