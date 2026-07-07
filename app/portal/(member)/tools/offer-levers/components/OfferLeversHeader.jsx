@@ -1,16 +1,18 @@
-import { Stack } from '@/ui/layout/Stack'
-import { Link } from '@/ui/atoms/Link'
-import { MonoLabel } from '@/ui/atoms/MonoLabel'
-import { Display } from '@/ui/atoms/Display'
-import { Text } from '@/ui/atoms/Text'
-import { portalRoutePath } from '@/lib/portal/portalRoutePath'
+'use client'
 
-export function OfferLeversHeader({ name }) {
+import { Stack } from '@/ui/layout/Stack'
+import { TextField } from '@/ui/atoms/TextField'
+import { Text } from '@/ui/atoms/Text'
+import { useOfferName } from '../hooks/useOfferName'
+
+// The configurator header: the offer's editable name and a blurb.
+export function OfferLeversHeader({ offerId, name }) {
+  const offer = useOfferName(offerId, name)
+
   return (
     <Stack gap="xs">
-      <Link href={portalRoutePath('/tools/offer-levers')}>← All offers</Link>
-      <MonoLabel tone="accent" caps>Offer Design</MonoLabel>
-      <Display size="sm">{name}</Display>
+      <TextField label="Offer name" value={offer.name}
+        onChange={offer.onChange} onBlur={offer.save} />
       <Text size="sm" tone="muted">
         Describe your offer, set the structural levers, then copy a
         ready-to-run prompt that redesigns it into three variations.
