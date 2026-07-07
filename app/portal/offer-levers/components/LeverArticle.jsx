@@ -10,7 +10,8 @@ import { WhyItMatters } from './WhyItMatters'
 export function LeverArticle({ lever, num }) {
   return (
     <Stack gap="md">
-      <LeverHeading num={num} name={lever.name} question={lever.question} />
+      <LeverHeading num={num} name={lever.name} question={lever.question}
+        control={lever.control} />
       <Paragraphs items={lever.intro} />
       <LeverValues values={lever.values} />
       <LeverNotes notes={lever.notes} />
