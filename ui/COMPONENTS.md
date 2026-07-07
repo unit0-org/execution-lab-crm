@@ -135,7 +135,6 @@ Conventions (from `AGENTS.md`):
 | `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; override `message`/`confirmLabel`/`tone` for non-destructive confirms |
 | `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table; reveals when `count > 0` and Delete opens the shared `ConfirmDialog` before firing `onDelete` |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm |
-| `FieldTitle` | `label`, `saved` | A field-label node with a transient `SavedCheck`; pass as a `TextField`/`TextArea` `label` |
 | `SelectCell` | `checked`, `onToggle` | Row-selection checkbox `Td` for multi-select tables |
 | `Stat` / `StatBody` / `Insight` | `label`, `value`, `tone`, `href` | Stat tiles & insights |
 | `BarChart` (+`ChartBar`/`ChartEmpty`/`ChartSkeleton`) | `data` | Bar chart |
