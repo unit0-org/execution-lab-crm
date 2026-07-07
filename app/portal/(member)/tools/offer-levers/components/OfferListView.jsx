@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Stack } from '@/ui/layout/Stack'
 import { useOffers } from '../hooks/useOffers'
 import { OfferListHeader } from './OfferListHeader'
-import { OfferRows } from './OfferRows'
+import { OfferCards } from './OfferCards'
 import { OfferDeleteConfirm } from './OfferDeleteConfirm'
 
 // The offers screen: header (+ create), the rows, and a delete confirm.
@@ -20,8 +20,7 @@ export function OfferListView({ initial }) {
   return (
     <Stack gap="lg">
       <OfferListHeader onCreate={offers.create} />
-      <OfferRows offers={offers.offers} onRename={offers.rename}
-        onRemove={setPending} />
+      <OfferCards offers={offers.offers} onRemove={setPending} />
       <OfferDeleteConfirm offer={pending} onConfirm={confirm}
         onCancel={() => setPending(null)} />
     </Stack>
