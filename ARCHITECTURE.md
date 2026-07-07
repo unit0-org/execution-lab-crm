@@ -401,7 +401,9 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   prompt builder: offer context, lever settings, and the AI-generated
   offers pasted back in all persist per offer as `offer_generator_input`
   rows (a multi lever stores its picks as a JSON array in `value`); it
-  assembles those into a prompt the member copies.
+  assembles those into a prompt the member copies. A generated-offer row
+  can be flagged `active` (currently selling); the tool homepage lists
+  each offer's active offers via `listOffersWithActive`.
 
 ## Flow maps (which file does each step)
 

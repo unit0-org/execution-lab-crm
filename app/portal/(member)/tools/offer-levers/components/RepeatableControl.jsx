@@ -1,14 +1,21 @@
+import { Stack } from '@/ui/layout/Stack'
 import { TextField } from '@/ui/atoms/TextField'
 import { TextArea } from '@/ui/atoms/TextArea'
 import { SavedCheck } from '@/ui/atoms/SavedCheck'
+import { ActiveToggle } from './ActiveToggle'
 
-// A repeatable row's control: a line-break-preserving textarea for 'area'
-// fields, otherwise a single-line field with a trailing saved check.
-export function RepeatableControl({ field, item, saved, onUpdate }) {
+// A repeatable row's control: a line-break-preserving textarea (with an
+// active toggle) for 'area' fields, else a single-line field + saved check.
+export function RepeatableControl({ field, item, onUpdate, onActive, saved }) {
+  const flip = (active) => onActive(field.inputType, item.id, active)
+
   if (field.type === 'area') {
     return (
-      <TextArea value={item.value} onChange={onUpdate} rows={5}
-        placeholder={field.placeholder} />
+      <Stack gap="xs">
+        <TextArea value={item.value} onChange={onUpdate} rows={5}
+          placeholder={field.placeholder} />
+        <ActiveToggle checked={!!item.active} onChange={flip} />
+      </Stack>
     )
   }
 
