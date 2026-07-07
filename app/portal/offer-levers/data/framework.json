@@ -30,11 +30,27 @@
         "For example, many founders start with a done-for-you model: you do the work, you charge a premium, you collect success stories. Over time, as your authority grows, you transition toward done-with-you or do-it-yourself. A DIY product requires trust. People need to believe that following your system will actually get them somewhere. That trust is built through track record, not declared upfront.",
         "Finally: the values listed for each lever are not exhaustive. They're starting points, the most common configurations I've observed. You can find values in between, create hybrid combinations, or invent something new. The goal isn't to pick from a menu. It's to understand what each lever controls, so you can make intentional choices about how your business is built."
       ]
+    },
+    {
+      "heading": "Two control types",
+      "body": [
+        "Each lever is set with one of two controls.",
+        "Checkbox — the values stack. An offer can hold more than one at once, so check every one that genuinely applies, then decide which you lead with.",
+        "Slider — the values are points on a single scale. Pick the one position that fits; they are mutually exclusive."
+      ]
+    },
+    {
+      "heading": "What changed in this version",
+      "body": [
+        "Delivery model, Source of value, Participation format, Delivery medium, and Pricing model moved from slider to checkbox — they are additive, not either/or.",
+        "Interaction timing and Price framing dropped their standalone \"Hybrid\" option — checking both poles is the hybrid."
+      ]
     }
   ],
   "levers": [
     {
       "id": "deliveryModel",
+      "control": "checkbox",
       "name": "Delivery model",
       "question": "Who is responsible for producing the outcome?",
       "intro": [
@@ -109,6 +125,7 @@
     },
     {
       "id": "sourceOfValue",
+      "control": "checkbox",
       "name": "Source of value",
       "question": "What is the main thing the client is really paying for?",
       "intro": [
@@ -185,13 +202,14 @@
     },
     {
       "id": "interactionTiming",
+      "control": "checkbox",
       "name": "Interaction timing",
       "question": "When does value happen?",
       "intro": [
         "The interaction timing lever answers one question: when does value happen?",
         "Not what you deliver, and not who does the work — this lever is about the rhythm of the relationship. Does the client interact with you and your offer in real time, on their own schedule, or a mix of both?",
         "When you move this lever, you're changing: client experience, scheduling complexity, speed of delivery, how easy the offer is to scale, and how much momentum the engagement generates.",
-        "Three core values: synchronous, asynchronous, and hybrid."
+        "Two core values: synchronous and asynchronous. Checking both, intentionally, is the hybrid."
       ],
       "values": [
         {
@@ -224,21 +242,6 @@
             "traps": "Using async as a cost-cutting workaround rather than a deliberate design choice. If your clients need live conversation to feel confident in the process, removing it doesn't make you efficient — it makes you frustrating. Match the timing to what your client actually needs to move forward.",
             "worksWellWith": "Delivery model — DIY or scaled DFY. Source of value — system. Touch intensity — low to medium. Participation format — 1:n."
           }
-        },
-        {
-          "name": "Hybrid",
-          "summary": [
-            "Live and async interaction are both part of the delivery, each doing what it does best.",
-            "Same business: \"We start with a live strategy session, build async, then review together at the end.\" The kickoff call creates alignment and momentum. The build phase happens without meetings — you work, the client reviews at their own pace. The final call closes the loop and handles anything that needs a real conversation.",
-            "You're not choosing between synchronous and asynchronous. You're using each where it earns its place."
-          ],
-          "facets": {
-            "whatChanges": "Hybrid is where most well-designed offers land. The live touchpoints preserve the relationship and handle the decisions that genuinely need real-time dialogue. The async phases keep delivery moving without calendar dependency.\n\nThe design challenge is knowing which parts of your process need live presence and which don't. If you put a synchronous gate at the wrong moment — requiring a meeting before the client can move forward — you create unnecessary friction. The goal is to use live time surgically, not habitually.",
-            "whenConvenient": "When your offer has distinct phases: discovery, build, review, delivery. When some decisions require real dialogue and others don't. When you want the client experience of synchronous without the full scheduling overhead.",
-            "examples": "Kickoff call + async build + review call. Workshop + async implementation + check-in. Onboarding session + email-based support.",
-            "traps": "Letting hybrid become \"sync by default with some async thrown in.\" That's not a design — that's a busy calendar. The async phases should do real work, not just serve as filler between meetings.",
-            "worksWellWith": "Delivery model — DFY or DWY. Touch intensity — medium to high. Participation format — 1:1 or cohort."
-          }
         }
       ],
       "notes": [
@@ -246,11 +249,11 @@
           "heading": "How to identify it",
           "body": [
             "Ask: when does the client need to show up?",
-            "Mostly live meetings → Synchronous. Mostly messages and files at their own pace → Asynchronous. Some of both, intentionally → Hybrid.",
-            "The same offer can use all three timing configurations and produce very different client experiences. Three people building websites:",
+            "Mostly live meetings → Synchronous. Mostly messages and files at their own pace → Asynchronous. Some of both, intentionally → check both (the hybrid).",
+            "The same offer can use either timing — or both — and produce very different client experiences. Three people building websites:",
             "Offer A: \"We co-build your site in a one-day live session.\" → Synchronous.",
             "Offer B: \"Fill our intake form, receive your finished site in 7 days.\" → Asynchronous.",
-            "Offer C: \"Kickoff call to align, async build, final review call together.\" → Hybrid.",
+            "Offer C: \"Kickoff call to align, async build, final review call together.\" → both (the hybrid).",
             "Same category. Same deliverable. Completely different rhythms."
           ]
         }
@@ -262,6 +265,7 @@
     },
     {
       "id": "participationFormat",
+      "control": "checkbox",
       "name": "Participation format",
       "question": "How many people benefit from one unit of your effort?",
       "intro": [
@@ -353,83 +357,8 @@
       ]
     },
     {
-      "id": "touchIntensity",
-      "name": "Touch intensity",
-      "question": "How much direct human attention does each client receive?",
-      "intro": [
-        "The touch intensity lever answers one question: how much direct human attention does each client receive?",
-        "Not what you deliver, and not how often you interact — this lever is about the density of personal involvement during delivery. How close are you to the client's experience? How quickly do you respond? How often do you step in?",
-        "When you move this lever, you're changing: how much time each client requires, how premium the offer feels, how much accountability you provide, your margins, and how many clients you can serve at once.",
-        "Three core values: high touch, medium touch, and low touch."
-      ],
-      "values": [
-        {
-          "name": "High touch",
-          "summary": [
-            "Frequent, direct, personal involvement throughout the engagement. The client has real access to you, and you're actively present in their process.",
-            "For a \"build a website\" business: \"I meet with you weekly, review your progress, give detailed feedback, and help you make decisions at every step.\" You're in it with them. They don't get stuck for long because you're close enough to see it happening.",
-            "The value comes from confidence, responsiveness, and accountability. Clients don't just buy the outcome — they buy the feeling that someone is watching and will catch problems early."
-          ],
-          "facets": {
-            "whatChanges": "High touch commands higher prices. The personal involvement is the product, and it's genuinely scarce — there are only so many clients you can hold at this level without degrading the experience. Delivery load is significant, and it doesn't automate easily.\n\nWhat you get in return is high satisfaction and high retention. Clients who feel taken care of don't churn. And they refer others.",
-            "whenConvenient": "When the outcome is high-stakes or complex. When accountability is part of what drives results. When you're charging premium prices and need the delivery to justify it. When client confidence is a key part of what you're selling.",
-            "examples": "Executive coaching, premium consulting, high-end DFY services, VIP programs.",
-            "traps": "Defaulting to high touch because you're uncomfortable letting go. Every client check-in you do out of habit rather than necessity is time you're not spending on things that actually move the work forward. Audit your touch points. Some of them are for your comfort, not theirs.",
-            "worksWellWith": "Delivery model — DFY or DWY. Interaction timing — synchronous or hybrid. Source of value — human. Pricing model — premium or value-based."
-          }
-        },
-        {
-          "name": "Medium touch",
-          "summary": [
-            "Some direct support, but limited and structured. Clients know when they'll hear from you and what they can expect — it's not unlimited access, but it's not radio silence either.",
-            "Same business: \"We start with a strategy call, you get two review sessions, and there's email support between them.\" The client has touchpoints, but they're defined. You're available, but not on-demand.",
-            "The value comes from the balance: clients feel supported without becoming dependent, and you can manage more of them without burning out."
-          ],
-          "facets": {
-            "whatChanges": "Medium touch is where most scalable offers land. You maintain enough personal involvement to build trust and catch problems, while keeping your time manageable. Pricing sits below high touch but above low touch — which is appropriate, because the value delivered is genuinely between the two.\n\nThe challenge is setting expectations clearly. Medium touch only works when both sides understand the boundaries. If the client expects high touch and receives medium, they feel underserved. Over-promise and you end up in high touch at medium touch prices.",
-            "whenConvenient": "When the process is well-defined enough that clients don't need constant guidance. When you want to serve more clients without sacrificing the relationship. When structured support is enough to keep momentum without requiring daily involvement.",
-            "examples": "Productized services with defined revision rounds, group coaching with office hours, advisory retainers with monthly calls, cohort courses with limited Q&A access.",
-            "traps": "Letting medium touch creep into high touch over time. A \"quick question\" here and a \"just checking in\" there can add up to a full second job. Define the scope at the start, stick to it, and upsell high touch to clients who genuinely need more.",
-            "worksWellWith": "Delivery model — DFY at scale or DWY. Interaction timing — hybrid. Participation format — 1:group or cohort. Pricing model — flat fee or retainer."
-          }
-        },
-        {
-          "name": "Low touch",
-          "summary": [
-            "Minimal direct involvement. The client buys and moves forward largely on their own, using what you've created.",
-            "Same business: \"Buy the template pack and follow the step-by-step lessons to build it yourself.\" You made the materials. They do the work. Your involvement after purchase is close to zero — maybe a help center, maybe occasional support tickets, but no ongoing personal presence.",
-            "The value comes from affordability, speed, and autonomy. Clients who want to move at their own pace, on their own schedule, without depending on your availability."
-          ],
-          "facets": {
-            "whatChanges": "Low touch is where scale lives. Once the content or system is built, adding another client costs you almost nothing. Margins are high. Your time is no longer the limiting factor.\n\nThe trade-off: accountability disappears. Without someone checking in, many clients won't follow through. Completion rates drop. Results become harder to guarantee. That's not a problem to fix — it's a reality to design around. Low touch offers attract self-directed clients, and you need to market to that profile specifically.",
-            "whenConvenient": "When the offer is designed for independent learners. When the outcome is achievable through a well-structured system without live guidance. When you want to reach price points that high or medium touch can't serve profitably.",
-            "examples": "Template packs, recorded courses, ebooks, self-serve tools, public content libraries.",
-            "traps": "Applying low touch to an offer that actually requires human accountability to work. If your clients need someone to keep them on track, a self-serve product won't deliver — no matter how good the content is. The touch intensity has to match what the outcome actually requires.",
-            "worksWellWith": "Delivery model — DIY. Interaction timing — async. Participation format — 1:n. Source of value — system or asset. Pricing model — one-time or subscription."
-          }
-        }
-      ],
-      "notes": [
-        {
-          "heading": "How to identify it",
-          "body": [
-            "Ask: how much direct human attention does each client receive after buying?",
-            "Frequent and personal → High touch. Some, but structured and bounded → Medium touch. Minimal, mostly self-serve → Low touch.",
-            "Same \"build a website\" offer, three touch levels:",
-            "Offer A: weekly calls, detailed feedback at every step, ongoing support. → High touch.",
-            "Offer B: kickoff call, two review sessions, email support in between. → Medium touch.",
-            "Offer C: template pack plus recorded lessons, no direct involvement. → Low touch.",
-            "Same category. Very different delivery loads, price points, and client experiences."
-          ]
-        }
-      ],
-      "whyItMatters": [
-        "Touch intensity is one of the most direct levers on your time. Change it and you change how many clients you can serve, what you need to charge to make the math work, and how much of yourself each engagement requires.",
-        "It's also one of the levers that clients feel most acutely. They may not understand your delivery model or your pricing structure — but they know immediately whether they feel taken care of or left alone. Get the touch intensity right for your audience and your offer earns its price. Get it wrong and no amount of good content fixes the experience."
-      ]
-    },
-    {
       "id": "deliveryMedium",
+      "control": "checkbox",
       "name": "Delivery medium",
       "question": "What does the client actually interact with to receive the value?",
       "intro": [
@@ -503,442 +432,8 @@
       ]
     },
     {
-      "id": "scopeBreadth",
-      "name": "Scope breadth",
-      "question": "How much of the client's journey are you responsible for?",
-      "intro": [
-        "The scope breadth lever answers one question: how much of the client's journey are you responsible for?",
-        "Not how deeply you solve any one part — that's scope depth. This lever is about territory. Do you own one specific result, an entire business function, or the full chain from first contact to final outcome?",
-        "When you move this lever, you're changing: how you position the offer, how high the price ceiling goes, what the client sees as your remit, and how naturally the relationship extends over time.",
-        "Three core values: outcome, domain, and end-to-end."
-      ],
-      "values": [
-        {
-          "name": "Outcome",
-          "summary": [
-            "You solve one specific result or deliverable. Clear scope, clear finish line.",
-            "For a \"build a website\" business: \"I build you a landing page that converts.\" Not the full site. Not the brand. Not the traffic strategy. One result, done well.",
-            "Narrow doesn't mean small. A high-converting landing page for the right business is worth serious money. But outcome-level breadth means the offer doesn't try to own adjacent territory — it's precise about what it handles and what it doesn't."
-          ],
-          "facets": {
-            "whatChanges": "Outcome offers are the easiest to sell. The client knows exactly what they're buying, and the value is easy to understand and evaluate. Sales cycles are short. Commitment is bounded. Trust requirements are lower because the scope is small enough to grasp in one sentence.\n\nThey're also the easiest to deliver at high quality. Focused scope means you can invest your full attention in one thing, build a repeatable process around it, and get very good at it fast.",
-            "whenConvenient": "When you're entering a new market and need quick wins. When you want a low-friction entry point into a client relationship. When positioning clarity matters more than revenue per client.",
-            "examples": "Landing page builds, homepage redesigns, website audits, speed fixes, specific feature setups.",
-            "traps": "Staying outcome-level when your clients consistently need more. If every engagement ends with the client asking \"can you also help with X?\", that's the market telling you your scope is too tight. Outcome is a great starting point — it doesn't have to be a permanent ceiling.",
-            "worksWellWith": "Scope depth — any. Pricing model — flat fee or one-time. Effort duration — one-time or short time-bound. Entry point in a value ladder."
-          }
-        },
-        {
-          "name": "Domain",
-          "summary": [
-            "You handle an entire business function or area. The client isn't hiring you to solve one problem — they're handing you ownership of a whole territory.",
-            "Same business: \"I take care of your whole website presence.\" Design, copy, strategy, ongoing management — everything related to the website as a business asset. The client doesn't have to think about the website domain because you own it.",
-            "Domain breadth is where most full-service offers live. The client gets coherent ownership of a function, not a collection of separate deliverables they have to integrate themselves."
-          ],
-          "facets": {
-            "whatChanges": "Domain offers justify meaningfully higher prices than outcome offers because the value isn't one result — it's ongoing ownership and accountability across an entire function. The client isn't comparing you to a landing page builder. They're comparing you to having no one managing this area at all, or to hiring someone in-house.\n\nDelivery complexity increases. More territory means more decisions, more coordination, and more places things can go wrong. The offer has to be well-scoped and clearly communicated — what's inside the domain, and what requires a separate conversation.",
-            "whenConvenient": "When your clients' problems cluster around a coherent business function. When you have enough experience to own the whole domain without degrading quality across it. When you want to increase revenue per client without expanding into territory that doesn't belong in the core offer.",
-            "examples": "Full website management, complete brand identity, end-to-end content production, ongoing marketing function ownership.",
-            "traps": "Scope creep disguised as domain breadth. \"Full website presence\" means different things to different clients. Define what the domain includes and what it doesn't — explicitly and upfront. Ambiguity at this level is where margin disappears.",
-            "worksWellWith": "Pricing model — retainer or flat fee. Effort duration — ongoing or time-bound. System impact — medium. Source of value — human or system."
-          }
-        },
-        {
-          "name": "End-to-end",
-          "summary": [
-            "You own the complete chain connected to a business result — not just one function, but everything from the starting point to the final outcome.",
-            "Same business: \"We build and run the full system that turns strangers into customers.\" The website is in there, but so is the traffic strategy, the funnel, the CRM, the lead follow-up, the booking system. The client isn't buying web presence. They're buying a growth engine.",
-            "At this level, you're not solving a function. You're solving a business outcome — and owning all the pieces that make it happen."
-          ],
-          "facets": {
-            "whatChanges": "End-to-end offers unlock the highest price ceilings. When you're responsible for the full chain, the value conversation changes entirely. You're not competing on \"what does a website cost\" — you're competing on \"what is a functioning client acquisition system worth to your business?\" Those are different conversations with different numbers.\n\nEnd-to-end also locks in the relationship. A client whose entire growth infrastructure runs through you doesn't switch easily. Retention is structural, not just relational.\n\nThe challenge is delivery. End-to-end scope requires more team, more coordination, and consistent quality across more domains. Selling it before you can reliably deliver it is the fastest way to damage a reputation.",
-            "whenConvenient": "When you have the infrastructure to deliver across multiple functions without degrading quality in any of them. When your clients are sophisticated enough to value the full chain. When you want to build long-term relationships around business outcomes rather than deliverables.",
-            "examples": "Full-service agencies, fractional CMO or COO engagements, client acquisition system builds, managed growth partnerships.",
-            "traps": "Over-promising on breadth and under-delivering on depth. An end-to-end offer where every component is mediocre is worse than a focused domain offer done well. Don't sell the chain until you can deliver each link at quality.",
-            "worksWellWith": "Pricing model — retainer or value-based. System impact — high. Touch intensity — medium to high. Scope depth — medium to deep."
-          }
-        }
-      ],
-      "notes": [
-        {
-          "heading": "The value ladder",
-          "body": [
-            "One of the most practical uses of scope breadth is building a coherent offer stack in the same market. Clients don't have to start at the top. They can begin narrow, experience your quality, and expand as trust grows.",
-            "Same domain, ascending breadth:",
-            "- $300 landing page audit → Outcome\n- $2,500 full website build → Domain\n- $8,000 client acquisition system → End-to-end",
-            "Each offer is complete on its own. But they form a natural path — a client who gets the audit and loves it is already a candidate for the full build. A client who gets the build is thinking about what happens next. Scope breadth isn't just a positioning decision. It's architecture for how clients move through your business over time."
-          ]
-        }
-      ],
-      "whyItMatters": [
-        "Breadth determines how much territory your offer claims — and therefore how many problems it solves, how high you can price it, and how long the client relationship can last. Narrow offers are easy to sell and easy to deliver. End-to-end offers unlock higher value and deeper retention. Most businesses benefit from having both, stacked intentionally."
-      ]
-    },
-    {
-      "id": "scopeDepth",
-      "name": "Scope depth",
-      "question": "How far into the problem do you go?",
-      "intro": [
-        "The scope depth lever answers one question: how far into the problem do you go?",
-        "Scope breadth is about how many areas you cover. Scope depth is about how thoroughly you solve one of them. You can go wide and shallow, narrow and deep, or anywhere in between. This lever controls the vertical dimension of your offer — how far down the rabbit hole you're willing and able to go.",
-        "When you move this lever, you're changing: how much expertise the delivery requires, how long it takes, how much the client's situation actually changes, how high you can price the offer, and how hard you are to compete with.",
-        "Three core values: shallow, medium, and deep."
-      ],
-      "values": [
-        {
-          "name": "Shallow",
-          "summary": [
-            "You address the surface-level need. Fast, affordable, contained. The client gets something real and useful without a long engagement or a heavy commitment.",
-            "For a \"build a website\" business: \"I build you a clean 3-page site so you can launch fast.\" Or: \"I review your website, identify the main issues, and give you a fix roadmap.\" The problem isn't fully solved, but the client has something they can act on today.",
-            "Shallow doesn't mean low-quality. A sharp, well-executed audit that gives a client a clear action plan is a legitimate high-value offer. The depth is intentionally limited — not because you can't go further, but because the client doesn't need you to right now."
-          ],
-          "facets": {
-            "whatChanges": "Shallow offers are fast to deliver and easy to scope. Sales cycles are short. Risk is low for both sides. They work especially well as entry points — a client who gets real value from a shallow engagement has every reason to come back for more.\n\nThe ceiling is real, though. There's only so much transformation you can create when you're working at the surface. If the client's core problem requires going deeper, a shallow offer leaves that problem unsolved.",
-            "whenConvenient": "When speed and affordability matter more than comprehensive transformation. When you want a low-friction way for new clients to experience your quality. When the client's need is genuinely surface-level and doesn't require more.",
-            "examples": "Website audits, homepage refreshes, template setups, starter packages, diagnostic reports, quick-launch builds.",
-            "traps": "Underpricing shallow work because it feels \"small.\" A well-executed audit that saves a client from a costly redesign is worth serious money. Price based on the value of the clarity you deliver, not just the hours you spend.",
-            "worksWellWith": "Scope breadth — narrow. Sales cycle — short. Entry point in a value ladder. Pricing model — flat fee."
-          }
-        },
-        {
-          "name": "Medium",
-          "summary": [
-            "You solve the problem more completely. You're not just treating the surface symptom — you're delivering a functional outcome the client can build on.",
-            "Same business: \"I build a complete website optimized to generate leads.\" Custom pages, conversion-focused copy, mobile optimization, analytics setup, forms that actually work. The client doesn't just have a website — they have a site that's doing a job."
-          ],
-          "facets": {
-            "whatChanges": "Medium depth is where most full-service offers live. The client gets a meaningful outcome, not just a starting point. You're solving the stated problem end-to-end, even if you're not going into the deeper layers underneath it.\n\nDelivery takes longer and requires more coordination. The quality bar is higher because the client is measuring results, not just receiving a deliverable. And because the stakes are higher, the sales conversation takes longer too — the client needs more confidence before committing.",
-            "whenConvenient": "When the client has a real, functional need that requires a complete solution. When you have enough experience to deliver consistently at this level. When the offer's value is in solving the whole problem, not just a piece of it.",
-            "examples": "Custom website builds, full rebrands, complete onboarding systems, end-to-end campaign setups, comprehensive training programs.",
-            "traps": "Treating medium as the permanent ceiling when your clients' results suggest you could go deeper. If clients consistently come back asking for more after a medium-depth engagement, that's a signal that the underlying problem is bigger than what you're solving.",
-            "worksWellWith": "Scope breadth — narrow to medium. Delivery model — DFY or DWY. Source of value — human or system."
-          }
-        },
-        {
-          "name": "Deep",
-          "summary": [
-            "You go into root causes, structural layers, and underlying systems. You're not building pages — you're solving a business performance problem.",
-            "Same business: \"We rebuild your website as a revenue engine based on customer psychology and data.\" Or: \"We redesign your entire online presence, offer positioning, funnel flow, and lead capture system so growth becomes structurally easier.\" The website is still there, but it's now downstream of a deeper diagnosis.",
-            "Deep work asks different questions. Not \"what pages do you need?\" but \"why isn't this converting?\" Not \"what should the site look like?\" but \"what does your ideal client actually need to believe before they buy, and is any of that true in the current site?\""
-          ],
-          "facets": {
-            "whatChanges": "Deep offers require real expertise. You can't fake root-cause work — clients notice quickly when someone is going deep in form but shallow in substance. The delivery takes longer, involves more discovery, and often surfaces problems the client didn't know they had.\n\nThe upside: deep offers are the hardest to compete with. Anyone can build a website. Few people can redesign the business model that sits behind it. The deeper your scope, the more unique your offer becomes, and the harder it is for a client to find an equivalent elsewhere.",
-            "whenConvenient": "When the client's problem is structural and surface solutions have already been tried. When you have the expertise and track record to operate at this level. When the client is sophisticated enough to understand and value root-cause work — and willing to pay for it.",
-            "examples": "Strategic repositioning engagements, conversion rate optimization programs, full funnel architecture, organizational design, long-term advisory relationships.",
-            "traps": "Going deep without the authority to back it up. Clients sense when someone is improvising at this level. Deep work requires not just more effort but a different kind of knowledge — systems thinking, pattern recognition across many clients, and the ability to connect surface problems to underlying causes. Build to that level before you sell it.",
-            "worksWellWith": "Source of value — human. Touch intensity — high. Scope breadth — narrow to medium (deep and broad simultaneously is rare and hard to deliver). Pricing model — value-based."
-          }
-        }
-      ],
-      "notes": [
-        {
-          "heading": "Depth and breadth together",
-          "body": [
-            "The two scope levers combine to define the overall shape of your offer. Four useful combinations:",
-            "- Narrow + shallow: fast, affordable, entry-level. A landing page audit. Easy to sell, easy to deliver.\n- Narrow + deep: highly specialized. A landing page rebuilt from scratch with full conversion research and testing. Premium positioning in a specific domain.\n- Broad + shallow: wide coverage, light execution. A full digital setup with basic implementation across many channels. Often productized.\n- Broad + deep: rare and demanding. A full business growth system built and optimized thoroughly across every channel. Requires significant team, time, and client trust.",
-            "Most offers live in the middle of this grid. The value of naming your position is that it becomes a deliberate choice rather than an accident."
-          ]
-        }
-      ],
-      "whyItMatters": [
-        "Depth is one of the most direct levers on pricing power and competitive resistance. The deeper you go, the fewer people can do what you do, the more transformation you create, and the harder your offer is to compare against alternatives. Moving down the depth axis is often the most reliable path to charging more in the same domain — without necessarily covering more ground."
-      ]
-    },
-    {
-      "id": "systemImpact",
-      "name": "System impact",
-      "question": "How much does the client's business actually change because of this offer?",
-      "intro": [
-        "The system impact lever answers one question: how much does the client's business actually change because of this offer?",
-        "Not how deep the work goes — that's scope depth. Not how many areas it covers — that's scope breadth. This lever measures something different: the ripple effect. Once the offer is delivered, how much of the client's underlying system — their habits, processes, team behavior, revenue engine — is different from what it was before?",
-        "When you move this lever, you're changing: how the client perceives your ROI, how sticky the relationship is, how easy you are to replace, and what kind of referrals and retention the offer generates.",
-        "Three core values: low, medium, and high impact."
-      ],
-      "values": [
-        {
-          "name": "Low impact",
-          "summary": [
-            "The offer creates a standalone result. The deliverable is real and useful, but the business operates mostly the same way after receiving it.",
-            "For a \"build a website\" business: \"I build your website and hand it over.\" The client has a new website. That's a genuine improvement. But their sales process, their lead capture, their team workflows — none of that changed. The website sits alongside the existing system without integrating into it.",
-            "Low-impact offers aren't a problem. They're the right design for many situations. A client who just needs a clean site to point people to doesn't need a system overhaul."
-          ],
-          "facets": {
-            "whatChanges": "Low-impact offers are easier to scope, faster to deliver, and less likely to surface unexpected complexity. The client knows what they're getting and can evaluate it easily. The trade-off: perceived ROI is limited to the deliverable itself, and switching to a different provider next time carries little cost.",
-            "whenConvenient": "When the client's real need is a standalone output. When they're not ready or willing to change their underlying operations. When you want a fast, contained engagement that demonstrates your quality without requiring deep integration.",
-            "examples": "Website builds handed off at completion, logo design, template installation, one-time audits, standalone content assets.",
-            "traps": "Delivering low-impact work when the client's actual problem requires a system change. If the root issue is that no one is following up with leads, a beautiful website doesn't fix that. Diagnosing system impact early helps you set accurate expectations — and sometimes reveals that the client needs more than they're asking for.",
-            "worksWellWith": "Scope breadth — narrow. Scope depth — shallow to medium. Delivery model — DFY. Engagement duration — short."
-          }
-        },
-        {
-          "name": "Medium impact",
-          "summary": [
-            "The offer improves connected workflows and creates ongoing operational benefits. The business doesn't just have a new asset — it works better because of how that asset connects to everything else.",
-            "Same business: \"We build your website and connect it to lead capture, bookings, and reporting.\" Now when someone visits the site, there's a form that goes into a CRM. Appointments book automatically. The client can see what's working. The website isn't just a brochure — it's doing work in the business every day."
-          ],
-          "facets": {
-            "whatChanges": "Medium-impact offers generate ongoing value beyond the delivery date. The client feels the benefit every time the system runs — every lead that comes in automatically, every booking that self-schedules, every report that doesn't require manual assembly. That recurring value justifies higher prices and creates a natural reason to maintain the relationship.\n\nIt also raises the switching cost. Ripping out a website is easy. Ripping out a website, CRM integration, booking flow, and analytics setup is a project. The deeper the integration, the stickier the engagement.",
-            "whenConvenient": "When the client's problem is operational as much as it is a deliverable problem. When you have the expertise to connect the pieces well, not just build them individually. When recurring value — not just point-in-time value — is part of what justifies the price.",
-            "examples": "Website plus CRM integration, content management systems with workflow automation, onboarding flows connected to email sequences, analytics dashboards built into daily operations.",
-            "traps": "Building integrations the client won't actually use. A CRM connection that no one checks is medium effort for low impact. Before connecting systems, make sure the client has the habits and team capacity to benefit from the connection. Unused infrastructure isn't an upgrade — it's complexity without payoff.",
-            "worksWellWith": "Scope breadth — medium. Scope depth — medium. Touch intensity — medium. Delivery model — DFY or DWY."
-          }
-        },
-        {
-          "name": "High impact",
-          "summary": [
-            "The offer changes core business mechanics. The client's revenue engine, decision-making process, or operating infrastructure is fundamentally different after this engagement than it was before.",
-            "Same business: \"We redesign your website, funnel, messaging, and operating flow so client acquisition becomes systematic.\" The website is one piece. But the offer also repositioned how the business talks about itself, rebuilt the sales pipeline, automated follow-up, and gave the team a new process for handling inbound leads. Now the business grows differently — not just faster, but through a different mechanism.",
-            "High-impact offers don't just solve a problem. They change how the business solves problems in that domain going forward."
-          ],
-          "facets": {
-            "whatChanges": "High-impact work generates the strongest ROI perception, the deepest retention, and the most valuable referrals. Clients who experience real systemic change don't forget who caused it. They refer others, they come back, and they trust your judgment on the next problem.\n\nIt also requires the most from both sides. You need the expertise to understand the system, not just the deliverable. The client needs to be willing to change — not just receive — which not every client is ready for. High-impact engagements require buy-in, time, and organizational capacity that some clients simply don't have yet.",
-            "whenConvenient": "When the client's problem is structural. When they've already tried surface-level solutions and they didn't hold. When the client is sophisticated enough to understand what systemic change means and willing to commit to the process of getting there.",
-            "examples": "Full business repositioning, sales infrastructure rebuilds, client acquisition system design, operational redesigns, long-term strategic advisory.",
-            "traps": "Promising high impact but delivering medium. High-impact work is measurable — the client's business either operates differently or it doesn't. If you're selling system transformation but the client still has the same habits and workflows six months later, the impact didn't land regardless of what was delivered. Only sell the impact level you can actually produce.",
-            "worksWellWith": "Scope depth — deep. Touch intensity — high. Source of value — human. Pricing model — value-based. Engagement duration — long."
-          }
-        }
-      ],
-      "notes": [
-        {
-          "heading": "Scope depth vs. system impact",
-          "body": [
-            "These two levers measure different things and don't move together automatically.",
-            "Scope depth is about how thoroughly you solve a specific problem. System impact is about how much of the surrounding system changes as a result.",
-            "A deep copy rewrite on a single homepage page: deep scope, potentially low system impact if the rest of the funnel stays the same.",
-            "A basic CRM integration that automates follow-up: medium scope, potentially high system impact if it changes how the sales team operates every day.",
-            "You can go deep on a narrow piece of the problem and create high system impact if that piece is load-bearing. You can also go broad and deep and create surprisingly low system impact if the client doesn't change how they operate around what you built.",
-            "The question to ask before designing any offer: if this works exactly as planned, what else changes automatically? That answer tells you the system impact level."
-          ]
-        }
-      ],
-      "whyItMatters": [
-        "Clients pay for deliverables. They remember — and talk about — transformation. The higher the system impact, the harder you are to replace, the stronger the ROI story, and the more naturally the relationship extends over time. Moving this lever up is often the highest-leverage change you can make to an offer's perceived and actual value."
-      ]
-    },
-    {
-      "id": "buyerParticipation",
-      "name": "Buyer participation intensity",
-      "question": "How much does the client have to do for this to work?",
-      "intro": [
-        "The buyer participation intensity lever answers one question: how much does the client have to do for this to work?",
-        "Not how much you do — that's touch intensity. This lever is specifically about the client's workload. How much effort, time, input, and ongoing involvement does the buyer need to contribute to get the result they paid for?",
-        "When you move this lever, you're changing: how convenient the offer feels, what kind of buyer it attracts, how often clients follow through, how much support they need, and how consistent the outcomes are across different clients.",
-        "Three core values: low, medium, and high participation."
-      ],
-      "values": [
-        {
-          "name": "Low participation",
-          "summary": [
-            "The buyer has minimal involvement. They hand things off and receive the result.",
-            "For a \"build a website\" business: \"Send us your details and we handle the rest.\" The client fills an intake form, sends the logo and some photos, approves the draft, and signs off at the end. They're present at a few key moments but not doing any real work.",
-            "The value here is convenience. Busy buyers — the ones who have the money but not the time — gravitate toward low-participation offers. They're not paying for the experience of building. They're paying to have it done."
-          ],
-          "facets": {
-            "whatChanges": "Low-participation offers convert well to buyers who have the money and the desire but not the bandwidth. The sales conversation is short: \"You do nothing, we handle it.\" That's a simple, attractive promise.\n\nThe challenge is that results become entirely your responsibility. If the website doesn't perform, the client didn't fail to show up — you did. That's appropriate accountability when you're charging a premium, but it means your delivery has to hold up without the client's input making it better.",
-            "whenConvenient": "When the buyer's time is genuinely scarce and that scarcity is a real constraint, not an excuse. When your process is tight enough to produce good results with minimal client involvement. When you want to attract high-value buyers who pay for outcomes, not experiences.",
-            "examples": "Full-service agencies, productized DFY services, white-glove packages, concierge programs.",
-            "traps": "Designing for low participation when the outcome actually requires client input to be good. A website that perfectly reflects the client's brand, voice, and positioning requires real information about those things. If you skip the discovery because it's \"low participation,\" you often end up building something technically complete but strategically wrong — and revisions undo the efficiency you were trying to create.",
-            "worksWellWith": "Delivery model — DFY. Touch intensity — high. Source of value — human or system. Scope breadth — narrow to medium."
-          }
-        },
-        {
-          "name": "Medium participation",
-          "summary": [
-            "The buyer contributes meaningful input at key moments but isn't doing sustained work throughout the engagement.",
-            "Same business: \"We guide the project, but you'll review pages and provide feedback weekly.\" The client shows up for a kickoff call, reviews drafts, gives feedback at defined checkpoints, and makes decisions when decisions are needed. Between those touchpoints, the work moves forward without them.",
-            "This is the most common configuration in well-run service businesses. The client has real ownership without being in the weeds. You have the information you need to do the work well without scheduling around a passive buyer."
-          ],
-          "facets": {
-            "whatChanges": "Medium participation balances quality and convenience. The client's input makes the output better — decisions get made faster, feedback loops stay short, and the client feels genuinely involved in something that's being built for them specifically.\n\nThe friction point is coordination. Medium participation requires the client to actually show up at the agreed moments. When they don't — when feedback is late, when the kickoff gets rescheduled, when approvals drag — the whole engagement slows down. Clear expectations upfront about what \"medium participation\" means in practice are essential.",
-            "whenConvenient": "When client input genuinely improves the output. When the buyer has time for checkpoints but not for sustained daily involvement. When you want a collaborative relationship without making the buyer responsible for doing the work.",
-            "examples": "Project-based services with defined review rounds, coaching programs with between-session assignments, advisory retainers with monthly input sessions.",
-            "traps": "Letting medium drift into low when the client goes quiet. If the client stops showing up for reviews and you keep building anyway, you're doing low-participation work without the pricing or clarity to match it. Hold the structure — delay before proceeding without the input you need.",
-            "worksWellWith": "Delivery model — DFY or DWY. Touch intensity — medium. Interaction timing — hybrid. Participation format — 1:1 or small group."
-          }
-        },
-        {
-          "name": "High participation",
-          "summary": [
-            "The buyer actively works throughout the process. They're not a passenger — they're a co-builder, learner, or implementer. The result comes from their effort as much as yours.",
-            "Same business: \"We coach you to build the website with us, and you complete tasks each week.\" The client writes copy, gathers assets, makes design decisions, and implements pieces themselves — with your guidance at every step. At the end, they have a website they understand and can maintain, built largely by their own hands.",
-            "High participation is where the strongest learning outcomes live. When the client does the work, they build the skill. They don't just have a website — they know how to have a website."
-          ],
-          "facets": {
-            "whatChanges": "High-participation offers attract a specific kind of buyer: someone who wants the skill, not just the result. Someone motivated, self-directed, and willing to invest their time alongside their money. These buyers tend to be deeply engaged and get strong outcomes when they follow through.\n\nThe conversion challenge is real. Many buyers think they want high participation until they realize what it actually requires. The gap between \"I want to learn this\" and \"I'm willing to do homework every week for six weeks\" is wide. Your marketing has to attract buyers who genuinely match the participation level, not just aspire to it.",
-            "whenConvenient": "When learning is part of the value. When the buyer's involvement in the process improves the outcome in ways you can't replicate by doing it for them. When you want to serve self-directed, motivated clients who are less likely to churn or blame you for lack of results.",
-            "examples": "Cohort courses with weekly deliverables, coaching programs with implementation requirements, workshops with between-session work, guided DIY builds.",
-            "traps": "Underestimating how many buyers will drop off. High-participation offers have inherently lower completion rates. Not because the offer is bad — because life gets in the way, and motivation fades. Design for this: build in accountability mechanisms, celebrate early wins, reduce friction on the hardest tasks. And make peace with the fact that not everyone finishes. That's not a design failure. It's the nature of high-participation work.",
-            "worksWellWith": "Delivery model — DWY or DIY. Touch intensity — medium to high. Interaction timing — hybrid. Source of value — human or system."
-          }
-        }
-      ],
-      "notes": [
-        {
-          "heading": "Touch intensity vs. buyer participation intensity",
-          "body": [
-            "These two levers are easy to conflate. They're not the same.",
-            "Touch intensity measures how much attention you give the client. Buyer participation intensity measures how much work the client puts in. Both can be high or low independently.",
-            "A concierge DFY service: high touch (you're constantly involved), low buyer participation (the client barely has to show up).",
-            "A self-paced course with no support: low touch, high buyer participation. The client does all the work. You're nowhere to be found.",
-            "A guided cohort build: medium to high touch, high buyer participation. You're present and engaged, and so are they.",
-            "The combination matters. High touch plus high buyer participation creates the most intense engagement — and often the best outcomes, if the client is ready for it. Low touch plus low participation is the lightest possible offer. Most offers live somewhere in between, and the right combination depends on who you're serving and what outcome you're promising."
-          ]
-        }
-      ],
-      "whyItMatters": [
-        "Many buyers say they want transformation but actually buy convenience. Understanding participation intensity helps you match the offer to what the client will actually do — not just what they say they want. The gap between those two things is where unmet expectations and refund requests come from. Get this lever right and client satisfaction goes up, outcomes improve, and your reputation compounds."
-      ]
-    },
-    {
-      "id": "effortDuration",
-      "name": "Effort duration",
-      "question": "How long does the commitment last?",
-      "intro": [
-        "The effort duration lever answers one question: how long does the commitment last?",
-        "Not how intense the work is during that time — that's touch intensity. Not how many areas it covers — that's scope breadth. This lever is specifically about the time structure of the engagement. When does it start, when does it end, and is there a fixed end at all?",
-        "When you move this lever, you're changing: how predictable your revenue is, what kind of buyer commitment you require, how you structure delivery, and whether the client relationship is transactional or ongoing.",
-        "Three core values: one-time, time-bound, and ongoing."
-      ],
-      "values": [
-        {
-          "name": "One-time",
-          "summary": [
-            "A single delivery event or short burst of effort, then it ends. One clear scope, one clear finish line.",
-            "For a \"build a website\" business: \"We build your website this week and hand it over.\" The client buys once. You deliver once. The engagement closes when the deliverable is complete.",
-            "One-time offers are the cleanest to sell and the simplest to deliver. The buyer knows exactly what they're committing to, and so do you."
-          ],
-          "facets": {
-            "whatChanges": "One-time offers create urgency in the sale — the client is buying a thing, not entering a relationship. That makes the conversion easier in some ways (low commitment) and harder in others (no recurring revenue, no natural next step unless you create one).\n\nThey also create the revenue volatility problem that plagues most freelancers and agencies. When every project ends, every project has to be replaced. One-time offers require constant new client acquisition to sustain income.",
-            "whenConvenient": "When the value is inherently contained — an audit, a sprint, a specific deliverable. When you want low-friction entry points that let new clients experience your quality without a long commitment. When you're building a value ladder and need a bottom rung.",
-            "examples": "Website audits, landing page builds, one-day design sprints, homepage redesigns, one-time consulting sessions.",
-            "traps": "Defaulting to one-time without thinking about what comes next. A one-time offer with no natural next step leaves money and relationships on the table. Even if the engagement is genuinely one-time, you should know what a client who loved it would logically buy afterward.",
-            "worksWellWith": "Scope breadth — narrow. Scope depth — shallow to medium. Pricing model — flat fee. Entry point in a value ladder."
-          }
-        },
-        {
-          "name": "Time-bound",
-          "summary": [
-            "The offer runs for a defined period — a set start date, a set end date, milestones in between. The client commits to a specific window of time, not just a single event.",
-            "Same business: \"Over 6 weeks, we build and launch your website together.\" There's a kickoff, there are weekly check-ins, there are milestones along the way, and there's a launch date everyone is working toward. The structure creates momentum and accountability that a one-time sprint can't always sustain."
-          ],
-          "facets": {
-            "whatChanges": "Time-bound offers create a different psychological contract with the buyer. They're committing to a journey, not just a purchase. That raises the stakes — for both sides — and tends to produce stronger outcomes because the structure forces progress.\n\nFrom a business perspective, time-bound engagements give you a planning horizon. You know what you're delivering and when. Revenue for the period is predictable once the client is enrolled. The challenge is filling the pipeline with new time-bound engagements before the current cohort finishes.",
-            "whenConvenient": "When the outcome requires sustained effort over time rather than a single burst. When milestones and accountability are part of what makes the offer work. When you want to build a deeper relationship without committing to an indefinite engagement.",
-            "examples": "Coaching programs, build-with-you projects, cohort courses, fixed-term advisory engagements, sprint-based consulting.",
-            "traps": "Over-engineering the timeline. Six weeks is a commitment — for you and for the client. If the work could realistically be done in two weeks but you've stretched it to six for structure's sake, the engagement feels slow and the client loses momentum halfway through. Match the duration to what the work actually requires.",
-            "worksWellWith": "Delivery model — DWY or DFY. Participation format — cohort or 1:1. Interaction timing — hybrid. Buyer participation intensity — medium to high."
-          }
-        },
-        {
-          "name": "Ongoing",
-          "summary": [
-            "The offer continues indefinitely, renewing until canceled or explicitly concluded. There's no fixed end date built into the original commitment.",
-            "Same business: \"We manage and improve your website every month.\" The client pays monthly. You deliver monthly. The relationship continues as long as it's generating value for both sides.",
-            "Ongoing offers are the foundation of predictable revenue. You know, at the start of each month, approximately what you'll earn. That changes how you plan, how you hire, and how you invest in the business."
-          ],
-          "facets": {
-            "whatChanges": "Ongoing relationships compound in ways one-time and time-bound engagements can't. You get better at serving the client over time because you understand their context more deeply. They get more value over time for the same price because your quality improves without the cost going up. Trust deepens. Referrals come more naturally.\n\nThe challenge is churn. An ongoing offer that stops generating obvious value gets canceled. You have to keep earning the renewal — not just at the start, but every month. That requires consistent delivery, visible results, and a relationship the client would actually miss if it ended.",
-            "whenConvenient": "When the value is genuinely continuous — maintenance, optimization, growth, management. When recurring revenue is a strategic priority. When the client relationship benefits from long-term context that a short engagement can't build.",
-            "examples": "Website maintenance retainers, SEO and content programs, growth partnerships, monthly advisory relationships, managed service subscriptions.",
-            "traps": "Selling ongoing work that the client should really only need once. If the problem is fixed after month three and you're billing month four for diminishing marginal value, the client will notice before you do. Structure ongoing offers around problems that are genuinely continuous — growth, optimization, maintenance — not around problems that have natural completion points.",
-            "worksWellWith": "Pricing model — subscription or retainer. System impact — medium to high. Scope breadth — medium to broad. Engagement structure — defined monthly deliverables or clear value metrics."
-          }
-        }
-      ],
-      "notes": [
-        {
-          "heading": "How long the game lasts",
-          "body": [
-            "The same domain can support all three effort durations simultaneously, stacked as a value ladder:",
-            "One-time: homepage redesign. The client gets something fast and contained.",
-            "Time-bound: 6-week full website project. The client gets a complete outcome with structure and accountability.",
-            "Ongoing: monthly growth and maintenance. The client gets continuous improvement and a partner who knows their business.",
-            "Each rung attracts a different buyer at a different stage of readiness. Some clients start at the bottom and climb. Others enter at the level that fits their situation right now."
-          ]
-        }
-      ],
-      "whyItMatters": [
-        "Effort duration shapes your business model as much as it shapes the client experience. One-time offers produce lumpy revenue and require constant new business. Ongoing offers produce predictable income and compound relationships. Time-bound offers sit in between — structured, finite, and repeatable. The right mix depends on where your business is and where you want it to go."
-      ]
-    },
-    {
-      "id": "reversibility",
-      "name": "Commitment reversibility",
-      "question": "How easy is it for the buyer to exit after saying yes?",
-      "intro": [
-        "The commitment reversibility lever answers one question: how easy is it for the buyer to exit after saying yes?",
-        "Not how long the engagement lasts — that's effort duration. This lever is about perceived risk and flexibility. Once the client commits, how trapped do they feel? How difficult is it to change course, pause, or walk away if things don't go as expected?",
-        "When you move this lever, you're changing: how easy the first yes is, how much trust the buyer needs before buying, what happens to your revenue when clients leave, and how strong your lock-in is once they're in.",
-        "Three core values: high reversibility, medium reversibility, and low reversibility."
-      ],
-      "values": [
-        {
-          "name": "High reversibility",
-          "summary": [
-            "Easy to stop, cancel, switch, or back out. The buyer can change their mind without much consequence.",
-            "For a \"build a website\" business: \"Monthly website support, cancel anytime.\" The client pays month to month. If they're unhappy, they stop paying. No penalties, no long notice period, no sunk cost holding them in place.",
-            "High reversibility lowers the barrier to the first yes. The buyer doesn't have to be certain before committing — they just have to be willing to try. That's a much easier threshold to clear."
-          ],
-          "facets": {
-            "whatChanges": "High-reversibility offers convert more easily. The risk of being wrong feels manageable, so buyers say yes faster and with less due diligence. That's especially valuable when you're building a new audience or trying to get first clients.\n\nThe trade-off is churn. When leaving is easy, leaving happens more often. Clients who are slightly dissatisfied or simply distracted cancel instead of pushing through. Your revenue depends on continuously delivering visible value — the moment you stop being obviously worth it, the relationship ends.",
-            "whenConvenient": "When you're entering a new market and need to lower the barrier to trial. When your service generates ongoing, demonstrable value that keeps clients enrolled without contractual pressure. When trust is the primary barrier to purchase and you want to remove the risk objection entirely.",
-            "examples": "Month-to-month subscriptions, pay-per-session models, cancel-anytime memberships, small trial projects, satisfaction guarantees.",
-            "traps": "Using high reversibility as a substitute for quality. \"Cancel anytime\" doesn't fix a weak offer — it just makes it easier to cancel faster. The clients who stay in a high-reversibility model do so because they genuinely want to. Earn that, don't assume it.",
-            "worksWellWith": "Effort duration — ongoing. Pricing model — subscription or retainer. Entry-level offers in a value ladder."
-          }
-        },
-        {
-          "name": "Medium reversibility",
-          "summary": [
-            "Some commitment exists, but there are clear exit points or manageable switching costs. The buyer isn't locked in, but changing course requires deliberate effort.",
-            "Same business: \"6-week website project with milestone approvals.\" The client commits to the full engagement, but at each milestone they review and approve before work continues. If something goes wrong early, there's a natural checkpoint to address it before more resources are invested.",
-            "Medium reversibility signals seriousness. Both sides are committing to something real, not just dipping a toe in."
-          ],
-          "facets": {
-            "whatChanges": "Medium-reversibility offers attract more committed buyers. Someone who agrees to a defined project with checkpoints is more invested than someone paying month to month. They're more likely to show up, provide good input, and see the engagement through — which tends to produce better outcomes.\n\nThe sales conversation is slightly longer. Buyers do more due diligence before committing to something that's harder to exit. That's appropriate — you want clients who've genuinely decided, not clients who signed up impulsively and will question everything.",
-            "whenConvenient": "When the offer requires sustained effort from both sides to work well. When you want buyers who are committed to the process, not just sampling. When the project has natural phases that create legitimate review points without making exit feel punitive.",
-            "examples": "Fixed-scope project engagements, cohort programs with milestone reviews, staged-payment packages, time-bound advisory agreements.",
-            "traps": "Designing medium reversibility as a way to trap clients rather than structure the engagement. Milestone approvals should be genuine checkpoints where both sides assess progress — not fine-print gates that make cancellation technically possible but practically difficult. Clients who feel manipulated don't come back and don't refer.",
-            "worksWellWith": "Effort duration — time-bound. Delivery model — DFY or DWY. Buyer participation intensity — medium to high."
-          }
-        },
-        {
-          "name": "Low reversibility",
-          "summary": [
-            "Hard to undo after buying. The commitment is substantial, the switching cost is high, or the structure makes exit genuinely difficult.",
-            "Same business: \"12-month managed website contract with a custom proprietary stack.\" The client signs for a year. Switching away means migrating off a platform built specifically for this engagement, rebuilding integrations, and finding a new provider who understands the setup. Even if they want to leave, the cost of leaving is significant.",
-            "Low reversibility isn't inherently predatory. Annual contracts in exchange for lower pricing are a legitimate trade. Proprietary stacks can be genuinely better than alternatives. The question is whether the lock-in is earned by real value or manufactured by friction."
-          ],
-          "facets": {
-            "whatChanges": "Low-reversibility offers are harder to sell — buyers think longer and scrutinize more before committing to something they can't easily undo. Sales cycles lengthen. Trust requirements go up. You need more proof, more reputation, or more relationship before the buyer takes the leap.\n\nWhat you get in return: stable revenue and reduced churn. A client locked into an annual contract doesn't cancel impulsively. That predictability is genuinely valuable for planning and investment.",
-            "whenConvenient": "When the offer generates clearly compounding value over time that justifies the commitment. When switching costs are a natural function of the offer's depth, not an artificial barrier. When the client relationship is well-established enough that the commitment feels natural rather than pressured.",
-            "examples": "Annual contracts, large upfront custom builds, enterprise SaaS with implementation dependencies, long-term managed service agreements.",
-            "traps": "Building lock-in as a substitute for ongoing value. If the main reason clients stay is that leaving is hard, that's not a strong business — it's a hostage situation. Low reversibility works when clients would choose to stay even if leaving were easy. Everything else is borrowed time.",
-            "worksWellWith": "Effort duration — ongoing or long time-bound. System impact — medium to high. Pricing model — annual or value-based."
-          }
-        }
-      ],
-      "notes": [
-        {
-          "heading": "Reversibility vs. duration",
-          "body": [
-            "These two levers are easy to conflate. They're independent.",
-            "Effort duration is about how long the engagement runs. Commitment reversibility is about how easy it is to leave during that run.",
-            "A 12-month contract with monthly cancellation rights: long duration, high reversibility.",
-            "A one-time $20,000 non-refundable project: short duration, low reversibility.",
-            "The combination you choose sends a clear signal to buyers. Long duration plus low reversibility says: \"This is a serious commitment.\" Short duration plus high reversibility says: \"Try it, see how it feels.\" Both are valid. The right combination depends on who your buyer is and what they need to feel confident enough to say yes."
-          ]
-        }
-      ],
-      "whyItMatters": [
-        "Reversibility is one of the most underrated levers in the framework — not because it's subtle, but because most people set it by default rather than by design. They use annual contracts because that's what they've seen others do, or cancel-anytime because they're afraid of commitment objections. Neither of those is a strategy.",
-        "Set your reversibility deliberately. Ask what level of commitment your buyer actually needs to get a good outcome, and what level of risk they need to feel comfortable enough to start. Then design the offer around both answers."
-      ]
-    },
-    {
       "id": "pricingModel",
+      "control": "checkbox",
       "name": "Pricing model",
       "question": "What logic determines how the buyer pays?",
       "intro": [
@@ -1017,13 +512,14 @@
     },
     {
       "id": "priceFraming",
+      "control": "checkbox",
       "name": "Price framing",
       "question": "What economic lens does the buyer use to evaluate the price?",
       "intro": [
         "The price framing lever answers one question: what economic lens does the buyer use to evaluate the price?",
         "Not how much you charge — that's the pricing model. This lever is about the buyer's mental model when they look at your number. Do they see money leaving their pocket, or money being deployed to make more money? The same price can feel like a burden or a bargain depending entirely on how it's framed.",
         "This isn't copywriting. It's a structural choice that affects how you justify the offer, what proof you need to back it up, and who is likely to buy it.",
-        "Three core values: expense-framed, ROI-framed, and hybrid."
+        "Two core values: expense-framed and ROI-framed. Checking both is the hybrid frame."
       ],
       "values": [
         {
@@ -1055,21 +551,6 @@
             "traps": "Using ROI framing without the evidence to support it. \"This will change your business\" is not ROI framing — it's a vague promise. Real ROI framing is specific: \"Our clients typically see X results within Y timeframe.\" If you can't say something that specific and truthful, don't frame it as ROI.",
             "worksWellWith": "Source of value — human or system. System impact — medium to high. Proof requirement — case studies, data, track record. Pricing model — value-based or fixed at premium."
           }
-        },
-        {
-          "name": "Hybrid",
-          "summary": [
-            "The offer is framed as both a useful thing and a source of economic upside. The buyer gets the deliverable and the return, and the framing makes both visible.",
-            "Same business: \"Modern website rebuilt to improve credibility, speed, and lead flow.\" The buyer sees quality and professionalism (expense logic) and better lead generation (ROI logic) in the same sentence. Neither claim dominates, but together they make the offer feel more complete than either framing alone.",
-            "Hybrid framing works when the offer genuinely delivers both. It's not a hedge — it's an honest description of a multi-dimensional offer."
-          ],
-          "facets": {
-            "whatChanges": "Hybrid framing expands the pool of buyers who connect with the pitch. Some buyers respond to quality and craft. Others respond to economic logic. A hybrid frame speaks to both without overcommitting to either.\n\nThe risk is dilution. When you claim everything, buyers sometimes register nothing. The clearest framing tends to win. Hybrid works best when the two dimensions are genuinely complementary and one naturally leads to the other — the better the website looks, the more credible the business, the more leads it generates.",
-            "whenConvenient": "When the offer has real value on both dimensions and your buyers care about both. When pure ROI framing would feel overblown but pure expense framing undersells the outcome. When you want to speak to a broader audience without misrepresenting what the offer does.",
-            "examples": "Premium professional services that also improve business performance, high-quality production work with measurable impact, brand investment with lead-generation implications.",
-            "traps": "Using hybrid as a way to avoid committing to a clear value proposition. The strongest offers usually have a primary frame and a supporting one — not two equally weighted claims that compete for attention. Know which dimension leads.",
-            "worksWellWith": "Source of value — human or asset. Scope depth — medium to deep. Buyer — business owner with both aesthetic and performance goals."
-          }
         }
       ],
       "notes": [
@@ -1080,7 +561,7 @@
             "The same $2,000:",
             "Expense frame: \"A website costs $2,000.\" The buyer compares it to other websites.",
             "ROI frame: \"Invest $2,000 to add $10,000 in sales.\" The buyer compares it to $10,000.",
-            "Hybrid frame: \"A premium website that improves credibility and lead generation for $2,000.\" The buyer compares it to both quality and outcome alternatives.",
+            "Both — the hybrid frame: \"A premium website that improves credibility and lead generation for $2,000.\" The buyer compares it to both quality and outcome alternatives.",
             "Same number. Three different buying conversations. The frame you choose determines which one you're in."
           ]
         }
@@ -1091,7 +572,526 @@
       ]
     },
     {
+      "id": "touchIntensity",
+      "control": "slider",
+      "name": "Touch intensity",
+      "question": "How much direct human attention does each client receive?",
+      "intro": [
+        "The touch intensity lever answers one question: how much direct human attention does each client receive?",
+        "Not what you deliver, and not how often you interact — this lever is about the density of personal involvement during delivery. How close are you to the client's experience? How quickly do you respond? How often do you step in?",
+        "When you move this lever, you're changing: how much time each client requires, how premium the offer feels, how much accountability you provide, your margins, and how many clients you can serve at once.",
+        "Three core values: high touch, medium touch, and low touch."
+      ],
+      "values": [
+        {
+          "name": "High touch",
+          "summary": [
+            "Frequent, direct, personal involvement throughout the engagement. The client has real access to you, and you're actively present in their process.",
+            "For a \"build a website\" business: \"I meet with you weekly, review your progress, give detailed feedback, and help you make decisions at every step.\" You're in it with them. They don't get stuck for long because you're close enough to see it happening.",
+            "The value comes from confidence, responsiveness, and accountability. Clients don't just buy the outcome — they buy the feeling that someone is watching and will catch problems early."
+          ],
+          "facets": {
+            "whatChanges": "High touch commands higher prices. The personal involvement is the product, and it's genuinely scarce — there are only so many clients you can hold at this level without degrading the experience. Delivery load is significant, and it doesn't automate easily.\n\nWhat you get in return is high satisfaction and high retention. Clients who feel taken care of don't churn. And they refer others.",
+            "whenConvenient": "When the outcome is high-stakes or complex. When accountability is part of what drives results. When you're charging premium prices and need the delivery to justify it. When client confidence is a key part of what you're selling.",
+            "examples": "Executive coaching, premium consulting, high-end DFY services, VIP programs.",
+            "traps": "Defaulting to high touch because you're uncomfortable letting go. Every client check-in you do out of habit rather than necessity is time you're not spending on things that actually move the work forward. Audit your touch points. Some of them are for your comfort, not theirs.",
+            "worksWellWith": "Delivery model — DFY or DWY. Interaction timing — synchronous or hybrid. Source of value — human. Pricing model — premium or value-based."
+          }
+        },
+        {
+          "name": "Medium touch",
+          "summary": [
+            "Some direct support, but limited and structured. Clients know when they'll hear from you and what they can expect — it's not unlimited access, but it's not radio silence either.",
+            "Same business: \"We start with a strategy call, you get two review sessions, and there's email support between them.\" The client has touchpoints, but they're defined. You're available, but not on-demand.",
+            "The value comes from the balance: clients feel supported without becoming dependent, and you can manage more of them without burning out."
+          ],
+          "facets": {
+            "whatChanges": "Medium touch is where most scalable offers land. You maintain enough personal involvement to build trust and catch problems, while keeping your time manageable. Pricing sits below high touch but above low touch — which is appropriate, because the value delivered is genuinely between the two.\n\nThe challenge is setting expectations clearly. Medium touch only works when both sides understand the boundaries. If the client expects high touch and receives medium, they feel underserved. Over-promise and you end up in high touch at medium touch prices.",
+            "whenConvenient": "When the process is well-defined enough that clients don't need constant guidance. When you want to serve more clients without sacrificing the relationship. When structured support is enough to keep momentum without requiring daily involvement.",
+            "examples": "Productized services with defined revision rounds, group coaching with office hours, advisory retainers with monthly calls, cohort courses with limited Q&A access.",
+            "traps": "Letting medium touch creep into high touch over time. A \"quick question\" here and a \"just checking in\" there can add up to a full second job. Define the scope at the start, stick to it, and upsell high touch to clients who genuinely need more.",
+            "worksWellWith": "Delivery model — DFY at scale or DWY. Interaction timing — hybrid. Participation format — 1:group or cohort. Pricing model — flat fee or retainer."
+          }
+        },
+        {
+          "name": "Low touch",
+          "summary": [
+            "Minimal direct involvement. The client buys and moves forward largely on their own, using what you've created.",
+            "Same business: \"Buy the template pack and follow the step-by-step lessons to build it yourself.\" You made the materials. They do the work. Your involvement after purchase is close to zero — maybe a help center, maybe occasional support tickets, but no ongoing personal presence.",
+            "The value comes from affordability, speed, and autonomy. Clients who want to move at their own pace, on their own schedule, without depending on your availability."
+          ],
+          "facets": {
+            "whatChanges": "Low touch is where scale lives. Once the content or system is built, adding another client costs you almost nothing. Margins are high. Your time is no longer the limiting factor.\n\nThe trade-off: accountability disappears. Without someone checking in, many clients won't follow through. Completion rates drop. Results become harder to guarantee. That's not a problem to fix — it's a reality to design around. Low touch offers attract self-directed clients, and you need to market to that profile specifically.",
+            "whenConvenient": "When the offer is designed for independent learners. When the outcome is achievable through a well-structured system without live guidance. When you want to reach price points that high or medium touch can't serve profitably.",
+            "examples": "Template packs, recorded courses, ebooks, self-serve tools, public content libraries.",
+            "traps": "Applying low touch to an offer that actually requires human accountability to work. If your clients need someone to keep them on track, a self-serve product won't deliver — no matter how good the content is. The touch intensity has to match what the outcome actually requires.",
+            "worksWellWith": "Delivery model — DIY. Interaction timing — async. Participation format — 1:n. Source of value — system or asset. Pricing model — one-time or subscription."
+          }
+        }
+      ],
+      "notes": [
+        {
+          "heading": "How to identify it",
+          "body": [
+            "Ask: how much direct human attention does each client receive after buying?",
+            "Frequent and personal → High touch. Some, but structured and bounded → Medium touch. Minimal, mostly self-serve → Low touch.",
+            "Same \"build a website\" offer, three touch levels:",
+            "Offer A: weekly calls, detailed feedback at every step, ongoing support. → High touch.",
+            "Offer B: kickoff call, two review sessions, email support in between. → Medium touch.",
+            "Offer C: template pack plus recorded lessons, no direct involvement. → Low touch.",
+            "Same category. Very different delivery loads, price points, and client experiences."
+          ]
+        }
+      ],
+      "whyItMatters": [
+        "Touch intensity is one of the most direct levers on your time. Change it and you change how many clients you can serve, what you need to charge to make the math work, and how much of yourself each engagement requires.",
+        "It's also one of the levers that clients feel most acutely. They may not understand your delivery model or your pricing structure — but they know immediately whether they feel taken care of or left alone. Get the touch intensity right for your audience and your offer earns its price. Get it wrong and no amount of good content fixes the experience."
+      ]
+    },
+    {
+      "id": "scopeBreadth",
+      "control": "slider",
+      "name": "Scope breadth",
+      "question": "How much of the client's journey are you responsible for?",
+      "intro": [
+        "The scope breadth lever answers one question: how much of the client's journey are you responsible for?",
+        "Not how deeply you solve any one part — that's scope depth. This lever is about territory. Do you own one specific result, an entire business function, or the full chain from first contact to final outcome?",
+        "When you move this lever, you're changing: how you position the offer, how high the price ceiling goes, what the client sees as your remit, and how naturally the relationship extends over time.",
+        "Three core values: outcome, domain, and end-to-end."
+      ],
+      "values": [
+        {
+          "name": "Outcome",
+          "summary": [
+            "You solve one specific result or deliverable. Clear scope, clear finish line.",
+            "For a \"build a website\" business: \"I build you a landing page that converts.\" Not the full site. Not the brand. Not the traffic strategy. One result, done well.",
+            "Narrow doesn't mean small. A high-converting landing page for the right business is worth serious money. But outcome-level breadth means the offer doesn't try to own adjacent territory — it's precise about what it handles and what it doesn't."
+          ],
+          "facets": {
+            "whatChanges": "Outcome offers are the easiest to sell. The client knows exactly what they're buying, and the value is easy to understand and evaluate. Sales cycles are short. Commitment is bounded. Trust requirements are lower because the scope is small enough to grasp in one sentence.\n\nThey're also the easiest to deliver at high quality. Focused scope means you can invest your full attention in one thing, build a repeatable process around it, and get very good at it fast.",
+            "whenConvenient": "When you're entering a new market and need quick wins. When you want a low-friction entry point into a client relationship. When positioning clarity matters more than revenue per client.",
+            "examples": "Landing page builds, homepage redesigns, website audits, speed fixes, specific feature setups.",
+            "traps": "Staying outcome-level when your clients consistently need more. If every engagement ends with the client asking \"can you also help with X?\", that's the market telling you your scope is too tight. Outcome is a great starting point — it doesn't have to be a permanent ceiling.",
+            "worksWellWith": "Scope depth — any. Pricing model — flat fee or one-time. Effort duration — one-time or short time-bound. Entry point in a value ladder."
+          }
+        },
+        {
+          "name": "Domain",
+          "summary": [
+            "You handle an entire business function or area. The client isn't hiring you to solve one problem — they're handing you ownership of a whole territory.",
+            "Same business: \"I take care of your whole website presence.\" Design, copy, strategy, ongoing management — everything related to the website as a business asset. The client doesn't have to think about the website domain because you own it.",
+            "Domain breadth is where most full-service offers live. The client gets coherent ownership of a function, not a collection of separate deliverables they have to integrate themselves."
+          ],
+          "facets": {
+            "whatChanges": "Domain offers justify meaningfully higher prices than outcome offers because the value isn't one result — it's ongoing ownership and accountability across an entire function. The client isn't comparing you to a landing page builder. They're comparing you to having no one managing this area at all, or to hiring someone in-house.\n\nDelivery complexity increases. More territory means more decisions, more coordination, and more places things can go wrong. The offer has to be well-scoped and clearly communicated — what's inside the domain, and what requires a separate conversation.",
+            "whenConvenient": "When your clients' problems cluster around a coherent business function. When you have enough experience to own the whole domain without degrading quality across it. When you want to increase revenue per client without expanding into territory that doesn't belong in the core offer.",
+            "examples": "Full website management, complete brand identity, end-to-end content production, ongoing marketing function ownership.",
+            "traps": "Scope creep disguised as domain breadth. \"Full website presence\" means different things to different clients. Define what the domain includes and what it doesn't — explicitly and upfront. Ambiguity at this level is where margin disappears.",
+            "worksWellWith": "Pricing model — retainer or flat fee. Effort duration — ongoing or time-bound. System impact — medium. Source of value — human or system."
+          }
+        },
+        {
+          "name": "End-to-end",
+          "summary": [
+            "You own the complete chain connected to a business result — not just one function, but everything from the starting point to the final outcome.",
+            "Same business: \"We build and run the full system that turns strangers into customers.\" The website is in there, but so is the traffic strategy, the funnel, the CRM, the lead follow-up, the booking system. The client isn't buying web presence. They're buying a growth engine.",
+            "At this level, you're not solving a function. You're solving a business outcome — and owning all the pieces that make it happen."
+          ],
+          "facets": {
+            "whatChanges": "End-to-end offers unlock the highest price ceilings. When you're responsible for the full chain, the value conversation changes entirely. You're not competing on \"what does a website cost\" — you're competing on \"what is a functioning client acquisition system worth to your business?\" Those are different conversations with different numbers.\n\nEnd-to-end also locks in the relationship. A client whose entire growth infrastructure runs through you doesn't switch easily. Retention is structural, not just relational.\n\nThe challenge is delivery. End-to-end scope requires more team, more coordination, and consistent quality across more domains. Selling it before you can reliably deliver it is the fastest way to damage a reputation.",
+            "whenConvenient": "When you have the infrastructure to deliver across multiple functions without degrading quality in any of them. When your clients are sophisticated enough to value the full chain. When you want to build long-term relationships around business outcomes rather than deliverables.",
+            "examples": "Full-service agencies, fractional CMO or COO engagements, client acquisition system builds, managed growth partnerships.",
+            "traps": "Over-promising on breadth and under-delivering on depth. An end-to-end offer where every component is mediocre is worse than a focused domain offer done well. Don't sell the chain until you can deliver each link at quality.",
+            "worksWellWith": "Pricing model — retainer or value-based. System impact — high. Touch intensity — medium to high. Scope depth — medium to deep."
+          }
+        }
+      ],
+      "notes": [
+        {
+          "heading": "The value ladder",
+          "body": [
+            "One of the most practical uses of scope breadth is building a coherent offer stack in the same market. Clients don't have to start at the top. They can begin narrow, experience your quality, and expand as trust grows.",
+            "Same domain, ascending breadth:",
+            "- $300 landing page audit → Outcome\n- $2,500 full website build → Domain\n- $8,000 client acquisition system → End-to-end",
+            "Each offer is complete on its own. But they form a natural path — a client who gets the audit and loves it is already a candidate for the full build. A client who gets the build is thinking about what happens next. Scope breadth isn't just a positioning decision. It's architecture for how clients move through your business over time."
+          ]
+        }
+      ],
+      "whyItMatters": [
+        "Breadth determines how much territory your offer claims — and therefore how many problems it solves, how high you can price it, and how long the client relationship can last. Narrow offers are easy to sell and easy to deliver. End-to-end offers unlock higher value and deeper retention. Most businesses benefit from having both, stacked intentionally."
+      ]
+    },
+    {
+      "id": "scopeDepth",
+      "control": "slider",
+      "name": "Scope depth",
+      "question": "How far into the problem do you go?",
+      "intro": [
+        "The scope depth lever answers one question: how far into the problem do you go?",
+        "Scope breadth is about how many areas you cover. Scope depth is about how thoroughly you solve one of them. You can go wide and shallow, narrow and deep, or anywhere in between. This lever controls the vertical dimension of your offer — how far down the rabbit hole you're willing and able to go.",
+        "When you move this lever, you're changing: how much expertise the delivery requires, how long it takes, how much the client's situation actually changes, how high you can price the offer, and how hard you are to compete with.",
+        "Three core values: shallow, medium, and deep."
+      ],
+      "values": [
+        {
+          "name": "Shallow",
+          "summary": [
+            "You address the surface-level need. Fast, affordable, contained. The client gets something real and useful without a long engagement or a heavy commitment.",
+            "For a \"build a website\" business: \"I build you a clean 3-page site so you can launch fast.\" Or: \"I review your website, identify the main issues, and give you a fix roadmap.\" The problem isn't fully solved, but the client has something they can act on today.",
+            "Shallow doesn't mean low-quality. A sharp, well-executed audit that gives a client a clear action plan is a legitimate high-value offer. The depth is intentionally limited — not because you can't go further, but because the client doesn't need you to right now."
+          ],
+          "facets": {
+            "whatChanges": "Shallow offers are fast to deliver and easy to scope. Sales cycles are short. Risk is low for both sides. They work especially well as entry points — a client who gets real value from a shallow engagement has every reason to come back for more.\n\nThe ceiling is real, though. There's only so much transformation you can create when you're working at the surface. If the client's core problem requires going deeper, a shallow offer leaves that problem unsolved.",
+            "whenConvenient": "When speed and affordability matter more than comprehensive transformation. When you want a low-friction way for new clients to experience your quality. When the client's need is genuinely surface-level and doesn't require more.",
+            "examples": "Website audits, homepage refreshes, template setups, starter packages, diagnostic reports, quick-launch builds.",
+            "traps": "Underpricing shallow work because it feels \"small.\" A well-executed audit that saves a client from a costly redesign is worth serious money. Price based on the value of the clarity you deliver, not just the hours you spend.",
+            "worksWellWith": "Scope breadth — narrow. Sales cycle — short. Entry point in a value ladder. Pricing model — flat fee."
+          }
+        },
+        {
+          "name": "Medium",
+          "summary": [
+            "You solve the problem more completely. You're not just treating the surface symptom — you're delivering a functional outcome the client can build on.",
+            "Same business: \"I build a complete website optimized to generate leads.\" Custom pages, conversion-focused copy, mobile optimization, analytics setup, forms that actually work. The client doesn't just have a website — they have a site that's doing a job."
+          ],
+          "facets": {
+            "whatChanges": "Medium depth is where most full-service offers live. The client gets a meaningful outcome, not just a starting point. You're solving the stated problem end-to-end, even if you're not going into the deeper layers underneath it.\n\nDelivery takes longer and requires more coordination. The quality bar is higher because the client is measuring results, not just receiving a deliverable. And because the stakes are higher, the sales conversation takes longer too — the client needs more confidence before committing.",
+            "whenConvenient": "When the client has a real, functional need that requires a complete solution. When you have enough experience to deliver consistently at this level. When the offer's value is in solving the whole problem, not just a piece of it.",
+            "examples": "Custom website builds, full rebrands, complete onboarding systems, end-to-end campaign setups, comprehensive training programs.",
+            "traps": "Treating medium as the permanent ceiling when your clients' results suggest you could go deeper. If clients consistently come back asking for more after a medium-depth engagement, that's a signal that the underlying problem is bigger than what you're solving.",
+            "worksWellWith": "Scope breadth — narrow to medium. Delivery model — DFY or DWY. Source of value — human or system."
+          }
+        },
+        {
+          "name": "Deep",
+          "summary": [
+            "You go into root causes, structural layers, and underlying systems. You're not building pages — you're solving a business performance problem.",
+            "Same business: \"We rebuild your website as a revenue engine based on customer psychology and data.\" Or: \"We redesign your entire online presence, offer positioning, funnel flow, and lead capture system so growth becomes structurally easier.\" The website is still there, but it's now downstream of a deeper diagnosis.",
+            "Deep work asks different questions. Not \"what pages do you need?\" but \"why isn't this converting?\" Not \"what should the site look like?\" but \"what does your ideal client actually need to believe before they buy, and is any of that true in the current site?\""
+          ],
+          "facets": {
+            "whatChanges": "Deep offers require real expertise. You can't fake root-cause work — clients notice quickly when someone is going deep in form but shallow in substance. The delivery takes longer, involves more discovery, and often surfaces problems the client didn't know they had.\n\nThe upside: deep offers are the hardest to compete with. Anyone can build a website. Few people can redesign the business model that sits behind it. The deeper your scope, the more unique your offer becomes, and the harder it is for a client to find an equivalent elsewhere.",
+            "whenConvenient": "When the client's problem is structural and surface solutions have already been tried. When you have the expertise and track record to operate at this level. When the client is sophisticated enough to understand and value root-cause work — and willing to pay for it.",
+            "examples": "Strategic repositioning engagements, conversion rate optimization programs, full funnel architecture, organizational design, long-term advisory relationships.",
+            "traps": "Going deep without the authority to back it up. Clients sense when someone is improvising at this level. Deep work requires not just more effort but a different kind of knowledge — systems thinking, pattern recognition across many clients, and the ability to connect surface problems to underlying causes. Build to that level before you sell it.",
+            "worksWellWith": "Source of value — human. Touch intensity — high. Scope breadth — narrow to medium (deep and broad simultaneously is rare and hard to deliver). Pricing model — value-based."
+          }
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Depth and breadth together",
+          "body": [
+            "The two scope levers combine to define the overall shape of your offer. Four useful combinations:",
+            "- Narrow + shallow: fast, affordable, entry-level. A landing page audit. Easy to sell, easy to deliver.\n- Narrow + deep: highly specialized. A landing page rebuilt from scratch with full conversion research and testing. Premium positioning in a specific domain.\n- Broad + shallow: wide coverage, light execution. A full digital setup with basic implementation across many channels. Often productized.\n- Broad + deep: rare and demanding. A full business growth system built and optimized thoroughly across every channel. Requires significant team, time, and client trust.",
+            "Most offers live in the middle of this grid. The value of naming your position is that it becomes a deliberate choice rather than an accident."
+          ]
+        }
+      ],
+      "whyItMatters": [
+        "Depth is one of the most direct levers on pricing power and competitive resistance. The deeper you go, the fewer people can do what you do, the more transformation you create, and the harder your offer is to compare against alternatives. Moving down the depth axis is often the most reliable path to charging more in the same domain — without necessarily covering more ground."
+      ]
+    },
+    {
+      "id": "systemImpact",
+      "control": "slider",
+      "name": "System impact",
+      "question": "How much does the client's business actually change because of this offer?",
+      "intro": [
+        "The system impact lever answers one question: how much does the client's business actually change because of this offer?",
+        "Not how deep the work goes — that's scope depth. Not how many areas it covers — that's scope breadth. This lever measures something different: the ripple effect. Once the offer is delivered, how much of the client's underlying system — their habits, processes, team behavior, revenue engine — is different from what it was before?",
+        "When you move this lever, you're changing: how the client perceives your ROI, how sticky the relationship is, how easy you are to replace, and what kind of referrals and retention the offer generates.",
+        "Three core values: low, medium, and high impact."
+      ],
+      "values": [
+        {
+          "name": "Low impact",
+          "summary": [
+            "The offer creates a standalone result. The deliverable is real and useful, but the business operates mostly the same way after receiving it.",
+            "For a \"build a website\" business: \"I build your website and hand it over.\" The client has a new website. That's a genuine improvement. But their sales process, their lead capture, their team workflows — none of that changed. The website sits alongside the existing system without integrating into it.",
+            "Low-impact offers aren't a problem. They're the right design for many situations. A client who just needs a clean site to point people to doesn't need a system overhaul."
+          ],
+          "facets": {
+            "whatChanges": "Low-impact offers are easier to scope, faster to deliver, and less likely to surface unexpected complexity. The client knows what they're getting and can evaluate it easily. The trade-off: perceived ROI is limited to the deliverable itself, and switching to a different provider next time carries little cost.",
+            "whenConvenient": "When the client's real need is a standalone output. When they're not ready or willing to change their underlying operations. When you want a fast, contained engagement that demonstrates your quality without requiring deep integration.",
+            "examples": "Website builds handed off at completion, logo design, template installation, one-time audits, standalone content assets.",
+            "traps": "Delivering low-impact work when the client's actual problem requires a system change. If the root issue is that no one is following up with leads, a beautiful website doesn't fix that. Diagnosing system impact early helps you set accurate expectations — and sometimes reveals that the client needs more than they're asking for.",
+            "worksWellWith": "Scope breadth — narrow. Scope depth — shallow to medium. Delivery model — DFY. Engagement duration — short."
+          }
+        },
+        {
+          "name": "Medium impact",
+          "summary": [
+            "The offer improves connected workflows and creates ongoing operational benefits. The business doesn't just have a new asset — it works better because of how that asset connects to everything else.",
+            "Same business: \"We build your website and connect it to lead capture, bookings, and reporting.\" Now when someone visits the site, there's a form that goes into a CRM. Appointments book automatically. The client can see what's working. The website isn't just a brochure — it's doing work in the business every day."
+          ],
+          "facets": {
+            "whatChanges": "Medium-impact offers generate ongoing value beyond the delivery date. The client feels the benefit every time the system runs — every lead that comes in automatically, every booking that self-schedules, every report that doesn't require manual assembly. That recurring value justifies higher prices and creates a natural reason to maintain the relationship.\n\nIt also raises the switching cost. Ripping out a website is easy. Ripping out a website, CRM integration, booking flow, and analytics setup is a project. The deeper the integration, the stickier the engagement.",
+            "whenConvenient": "When the client's problem is operational as much as it is a deliverable problem. When you have the expertise to connect the pieces well, not just build them individually. When recurring value — not just point-in-time value — is part of what justifies the price.",
+            "examples": "Website plus CRM integration, content management systems with workflow automation, onboarding flows connected to email sequences, analytics dashboards built into daily operations.",
+            "traps": "Building integrations the client won't actually use. A CRM connection that no one checks is medium effort for low impact. Before connecting systems, make sure the client has the habits and team capacity to benefit from the connection. Unused infrastructure isn't an upgrade — it's complexity without payoff.",
+            "worksWellWith": "Scope breadth — medium. Scope depth — medium. Touch intensity — medium. Delivery model — DFY or DWY."
+          }
+        },
+        {
+          "name": "High impact",
+          "summary": [
+            "The offer changes core business mechanics. The client's revenue engine, decision-making process, or operating infrastructure is fundamentally different after this engagement than it was before.",
+            "Same business: \"We redesign your website, funnel, messaging, and operating flow so client acquisition becomes systematic.\" The website is one piece. But the offer also repositioned how the business talks about itself, rebuilt the sales pipeline, automated follow-up, and gave the team a new process for handling inbound leads. Now the business grows differently — not just faster, but through a different mechanism.",
+            "High-impact offers don't just solve a problem. They change how the business solves problems in that domain going forward."
+          ],
+          "facets": {
+            "whatChanges": "High-impact work generates the strongest ROI perception, the deepest retention, and the most valuable referrals. Clients who experience real systemic change don't forget who caused it. They refer others, they come back, and they trust your judgment on the next problem.\n\nIt also requires the most from both sides. You need the expertise to understand the system, not just the deliverable. The client needs to be willing to change — not just receive — which not every client is ready for. High-impact engagements require buy-in, time, and organizational capacity that some clients simply don't have yet.",
+            "whenConvenient": "When the client's problem is structural. When they've already tried surface-level solutions and they didn't hold. When the client is sophisticated enough to understand what systemic change means and willing to commit to the process of getting there.",
+            "examples": "Full business repositioning, sales infrastructure rebuilds, client acquisition system design, operational redesigns, long-term strategic advisory.",
+            "traps": "Promising high impact but delivering medium. High-impact work is measurable — the client's business either operates differently or it doesn't. If you're selling system transformation but the client still has the same habits and workflows six months later, the impact didn't land regardless of what was delivered. Only sell the impact level you can actually produce.",
+            "worksWellWith": "Scope depth — deep. Touch intensity — high. Source of value — human. Pricing model — value-based. Engagement duration — long."
+          }
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Scope depth vs. system impact",
+          "body": [
+            "These two levers measure different things and don't move together automatically.",
+            "Scope depth is about how thoroughly you solve a specific problem. System impact is about how much of the surrounding system changes as a result.",
+            "A deep copy rewrite on a single homepage page: deep scope, potentially low system impact if the rest of the funnel stays the same.",
+            "A basic CRM integration that automates follow-up: medium scope, potentially high system impact if it changes how the sales team operates every day.",
+            "You can go deep on a narrow piece of the problem and create high system impact if that piece is load-bearing. You can also go broad and deep and create surprisingly low system impact if the client doesn't change how they operate around what you built.",
+            "The question to ask before designing any offer: if this works exactly as planned, what else changes automatically? That answer tells you the system impact level."
+          ]
+        }
+      ],
+      "whyItMatters": [
+        "Clients pay for deliverables. They remember — and talk about — transformation. The higher the system impact, the harder you are to replace, the stronger the ROI story, and the more naturally the relationship extends over time. Moving this lever up is often the highest-leverage change you can make to an offer's perceived and actual value."
+      ]
+    },
+    {
+      "id": "buyerParticipation",
+      "control": "slider",
+      "name": "Buyer participation intensity",
+      "question": "How much does the client have to do for this to work?",
+      "intro": [
+        "The buyer participation intensity lever answers one question: how much does the client have to do for this to work?",
+        "Not how much you do — that's touch intensity. This lever is specifically about the client's workload. How much effort, time, input, and ongoing involvement does the buyer need to contribute to get the result they paid for?",
+        "When you move this lever, you're changing: how convenient the offer feels, what kind of buyer it attracts, how often clients follow through, how much support they need, and how consistent the outcomes are across different clients.",
+        "Three core values: low, medium, and high participation."
+      ],
+      "values": [
+        {
+          "name": "Low participation",
+          "summary": [
+            "The buyer has minimal involvement. They hand things off and receive the result.",
+            "For a \"build a website\" business: \"Send us your details and we handle the rest.\" The client fills an intake form, sends the logo and some photos, approves the draft, and signs off at the end. They're present at a few key moments but not doing any real work.",
+            "The value here is convenience. Busy buyers — the ones who have the money but not the time — gravitate toward low-participation offers. They're not paying for the experience of building. They're paying to have it done."
+          ],
+          "facets": {
+            "whatChanges": "Low-participation offers convert well to buyers who have the money and the desire but not the bandwidth. The sales conversation is short: \"You do nothing, we handle it.\" That's a simple, attractive promise.\n\nThe challenge is that results become entirely your responsibility. If the website doesn't perform, the client didn't fail to show up — you did. That's appropriate accountability when you're charging a premium, but it means your delivery has to hold up without the client's input making it better.",
+            "whenConvenient": "When the buyer's time is genuinely scarce and that scarcity is a real constraint, not an excuse. When your process is tight enough to produce good results with minimal client involvement. When you want to attract high-value buyers who pay for outcomes, not experiences.",
+            "examples": "Full-service agencies, productized DFY services, white-glove packages, concierge programs.",
+            "traps": "Designing for low participation when the outcome actually requires client input to be good. A website that perfectly reflects the client's brand, voice, and positioning requires real information about those things. If you skip the discovery because it's \"low participation,\" you often end up building something technically complete but strategically wrong — and revisions undo the efficiency you were trying to create.",
+            "worksWellWith": "Delivery model — DFY. Touch intensity — high. Source of value — human or system. Scope breadth — narrow to medium."
+          }
+        },
+        {
+          "name": "Medium participation",
+          "summary": [
+            "The buyer contributes meaningful input at key moments but isn't doing sustained work throughout the engagement.",
+            "Same business: \"We guide the project, but you'll review pages and provide feedback weekly.\" The client shows up for a kickoff call, reviews drafts, gives feedback at defined checkpoints, and makes decisions when decisions are needed. Between those touchpoints, the work moves forward without them.",
+            "This is the most common configuration in well-run service businesses. The client has real ownership without being in the weeds. You have the information you need to do the work well without scheduling around a passive buyer."
+          ],
+          "facets": {
+            "whatChanges": "Medium participation balances quality and convenience. The client's input makes the output better — decisions get made faster, feedback loops stay short, and the client feels genuinely involved in something that's being built for them specifically.\n\nThe friction point is coordination. Medium participation requires the client to actually show up at the agreed moments. When they don't — when feedback is late, when the kickoff gets rescheduled, when approvals drag — the whole engagement slows down. Clear expectations upfront about what \"medium participation\" means in practice are essential.",
+            "whenConvenient": "When client input genuinely improves the output. When the buyer has time for checkpoints but not for sustained daily involvement. When you want a collaborative relationship without making the buyer responsible for doing the work.",
+            "examples": "Project-based services with defined review rounds, coaching programs with between-session assignments, advisory retainers with monthly input sessions.",
+            "traps": "Letting medium drift into low when the client goes quiet. If the client stops showing up for reviews and you keep building anyway, you're doing low-participation work without the pricing or clarity to match it. Hold the structure — delay before proceeding without the input you need.",
+            "worksWellWith": "Delivery model — DFY or DWY. Touch intensity — medium. Interaction timing — hybrid. Participation format — 1:1 or small group."
+          }
+        },
+        {
+          "name": "High participation",
+          "summary": [
+            "The buyer actively works throughout the process. They're not a passenger — they're a co-builder, learner, or implementer. The result comes from their effort as much as yours.",
+            "Same business: \"We coach you to build the website with us, and you complete tasks each week.\" The client writes copy, gathers assets, makes design decisions, and implements pieces themselves — with your guidance at every step. At the end, they have a website they understand and can maintain, built largely by their own hands.",
+            "High participation is where the strongest learning outcomes live. When the client does the work, they build the skill. They don't just have a website — they know how to have a website."
+          ],
+          "facets": {
+            "whatChanges": "High-participation offers attract a specific kind of buyer: someone who wants the skill, not just the result. Someone motivated, self-directed, and willing to invest their time alongside their money. These buyers tend to be deeply engaged and get strong outcomes when they follow through.\n\nThe conversion challenge is real. Many buyers think they want high participation until they realize what it actually requires. The gap between \"I want to learn this\" and \"I'm willing to do homework every week for six weeks\" is wide. Your marketing has to attract buyers who genuinely match the participation level, not just aspire to it.",
+            "whenConvenient": "When learning is part of the value. When the buyer's involvement in the process improves the outcome in ways you can't replicate by doing it for them. When you want to serve self-directed, motivated clients who are less likely to churn or blame you for lack of results.",
+            "examples": "Cohort courses with weekly deliverables, coaching programs with implementation requirements, workshops with between-session work, guided DIY builds.",
+            "traps": "Underestimating how many buyers will drop off. High-participation offers have inherently lower completion rates. Not because the offer is bad — because life gets in the way, and motivation fades. Design for this: build in accountability mechanisms, celebrate early wins, reduce friction on the hardest tasks. And make peace with the fact that not everyone finishes. That's not a design failure. It's the nature of high-participation work.",
+            "worksWellWith": "Delivery model — DWY or DIY. Touch intensity — medium to high. Interaction timing — hybrid. Source of value — human or system."
+          }
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Touch intensity vs. buyer participation intensity",
+          "body": [
+            "These two levers are easy to conflate. They're not the same.",
+            "Touch intensity measures how much attention you give the client. Buyer participation intensity measures how much work the client puts in. Both can be high or low independently.",
+            "A concierge DFY service: high touch (you're constantly involved), low buyer participation (the client barely has to show up).",
+            "A self-paced course with no support: low touch, high buyer participation. The client does all the work. You're nowhere to be found.",
+            "A guided cohort build: medium to high touch, high buyer participation. You're present and engaged, and so are they.",
+            "The combination matters. High touch plus high buyer participation creates the most intense engagement — and often the best outcomes, if the client is ready for it. Low touch plus low participation is the lightest possible offer. Most offers live somewhere in between, and the right combination depends on who you're serving and what outcome you're promising."
+          ]
+        }
+      ],
+      "whyItMatters": [
+        "Many buyers say they want transformation but actually buy convenience. Understanding participation intensity helps you match the offer to what the client will actually do — not just what they say they want. The gap between those two things is where unmet expectations and refund requests come from. Get this lever right and client satisfaction goes up, outcomes improve, and your reputation compounds."
+      ]
+    },
+    {
+      "id": "effortDuration",
+      "control": "slider",
+      "name": "Effort duration",
+      "question": "How long does the commitment last?",
+      "intro": [
+        "The effort duration lever answers one question: how long does the commitment last?",
+        "Not how intense the work is during that time — that's touch intensity. Not how many areas it covers — that's scope breadth. This lever is specifically about the time structure of the engagement. When does it start, when does it end, and is there a fixed end at all?",
+        "When you move this lever, you're changing: how predictable your revenue is, what kind of buyer commitment you require, how you structure delivery, and whether the client relationship is transactional or ongoing.",
+        "Three core values: one-time, time-bound, and ongoing."
+      ],
+      "values": [
+        {
+          "name": "One-time",
+          "summary": [
+            "A single delivery event or short burst of effort, then it ends. One clear scope, one clear finish line.",
+            "For a \"build a website\" business: \"We build your website this week and hand it over.\" The client buys once. You deliver once. The engagement closes when the deliverable is complete.",
+            "One-time offers are the cleanest to sell and the simplest to deliver. The buyer knows exactly what they're committing to, and so do you."
+          ],
+          "facets": {
+            "whatChanges": "One-time offers create urgency in the sale — the client is buying a thing, not entering a relationship. That makes the conversion easier in some ways (low commitment) and harder in others (no recurring revenue, no natural next step unless you create one).\n\nThey also create the revenue volatility problem that plagues most freelancers and agencies. When every project ends, every project has to be replaced. One-time offers require constant new client acquisition to sustain income.",
+            "whenConvenient": "When the value is inherently contained — an audit, a sprint, a specific deliverable. When you want low-friction entry points that let new clients experience your quality without a long commitment. When you're building a value ladder and need a bottom rung.",
+            "examples": "Website audits, landing page builds, one-day design sprints, homepage redesigns, one-time consulting sessions.",
+            "traps": "Defaulting to one-time without thinking about what comes next. A one-time offer with no natural next step leaves money and relationships on the table. Even if the engagement is genuinely one-time, you should know what a client who loved it would logically buy afterward.",
+            "worksWellWith": "Scope breadth — narrow. Scope depth — shallow to medium. Pricing model — flat fee. Entry point in a value ladder."
+          }
+        },
+        {
+          "name": "Time-bound",
+          "summary": [
+            "The offer runs for a defined period — a set start date, a set end date, milestones in between. The client commits to a specific window of time, not just a single event.",
+            "Same business: \"Over 6 weeks, we build and launch your website together.\" There's a kickoff, there are weekly check-ins, there are milestones along the way, and there's a launch date everyone is working toward. The structure creates momentum and accountability that a one-time sprint can't always sustain."
+          ],
+          "facets": {
+            "whatChanges": "Time-bound offers create a different psychological contract with the buyer. They're committing to a journey, not just a purchase. That raises the stakes — for both sides — and tends to produce stronger outcomes because the structure forces progress.\n\nFrom a business perspective, time-bound engagements give you a planning horizon. You know what you're delivering and when. Revenue for the period is predictable once the client is enrolled. The challenge is filling the pipeline with new time-bound engagements before the current cohort finishes.",
+            "whenConvenient": "When the outcome requires sustained effort over time rather than a single burst. When milestones and accountability are part of what makes the offer work. When you want to build a deeper relationship without committing to an indefinite engagement.",
+            "examples": "Coaching programs, build-with-you projects, cohort courses, fixed-term advisory engagements, sprint-based consulting.",
+            "traps": "Over-engineering the timeline. Six weeks is a commitment — for you and for the client. If the work could realistically be done in two weeks but you've stretched it to six for structure's sake, the engagement feels slow and the client loses momentum halfway through. Match the duration to what the work actually requires.",
+            "worksWellWith": "Delivery model — DWY or DFY. Participation format — cohort or 1:1. Interaction timing — hybrid. Buyer participation intensity — medium to high."
+          }
+        },
+        {
+          "name": "Ongoing",
+          "summary": [
+            "The offer continues indefinitely, renewing until canceled or explicitly concluded. There's no fixed end date built into the original commitment.",
+            "Same business: \"We manage and improve your website every month.\" The client pays monthly. You deliver monthly. The relationship continues as long as it's generating value for both sides.",
+            "Ongoing offers are the foundation of predictable revenue. You know, at the start of each month, approximately what you'll earn. That changes how you plan, how you hire, and how you invest in the business."
+          ],
+          "facets": {
+            "whatChanges": "Ongoing relationships compound in ways one-time and time-bound engagements can't. You get better at serving the client over time because you understand their context more deeply. They get more value over time for the same price because your quality improves without the cost going up. Trust deepens. Referrals come more naturally.\n\nThe challenge is churn. An ongoing offer that stops generating obvious value gets canceled. You have to keep earning the renewal — not just at the start, but every month. That requires consistent delivery, visible results, and a relationship the client would actually miss if it ended.",
+            "whenConvenient": "When the value is genuinely continuous — maintenance, optimization, growth, management. When recurring revenue is a strategic priority. When the client relationship benefits from long-term context that a short engagement can't build.",
+            "examples": "Website maintenance retainers, SEO and content programs, growth partnerships, monthly advisory relationships, managed service subscriptions.",
+            "traps": "Selling ongoing work that the client should really only need once. If the problem is fixed after month three and you're billing month four for diminishing marginal value, the client will notice before you do. Structure ongoing offers around problems that are genuinely continuous — growth, optimization, maintenance — not around problems that have natural completion points.",
+            "worksWellWith": "Pricing model — subscription or retainer. System impact — medium to high. Scope breadth — medium to broad. Engagement structure — defined monthly deliverables or clear value metrics."
+          }
+        }
+      ],
+      "notes": [
+        {
+          "heading": "How long the game lasts",
+          "body": [
+            "The same domain can support all three effort durations simultaneously, stacked as a value ladder:",
+            "One-time: homepage redesign. The client gets something fast and contained.",
+            "Time-bound: 6-week full website project. The client gets a complete outcome with structure and accountability.",
+            "Ongoing: monthly growth and maintenance. The client gets continuous improvement and a partner who knows their business.",
+            "Each rung attracts a different buyer at a different stage of readiness. Some clients start at the bottom and climb. Others enter at the level that fits their situation right now."
+          ]
+        }
+      ],
+      "whyItMatters": [
+        "Effort duration shapes your business model as much as it shapes the client experience. One-time offers produce lumpy revenue and require constant new business. Ongoing offers produce predictable income and compound relationships. Time-bound offers sit in between — structured, finite, and repeatable. The right mix depends on where your business is and where you want it to go."
+      ]
+    },
+    {
+      "id": "reversibility",
+      "control": "slider",
+      "name": "Commitment reversibility",
+      "question": "How easy is it for the buyer to exit after saying yes?",
+      "intro": [
+        "The commitment reversibility lever answers one question: how easy is it for the buyer to exit after saying yes?",
+        "Not how long the engagement lasts — that's effort duration. This lever is about perceived risk and flexibility. Once the client commits, how trapped do they feel? How difficult is it to change course, pause, or walk away if things don't go as expected?",
+        "When you move this lever, you're changing: how easy the first yes is, how much trust the buyer needs before buying, what happens to your revenue when clients leave, and how strong your lock-in is once they're in.",
+        "Three core values: high reversibility, medium reversibility, and low reversibility."
+      ],
+      "values": [
+        {
+          "name": "High reversibility",
+          "summary": [
+            "Easy to stop, cancel, switch, or back out. The buyer can change their mind without much consequence.",
+            "For a \"build a website\" business: \"Monthly website support, cancel anytime.\" The client pays month to month. If they're unhappy, they stop paying. No penalties, no long notice period, no sunk cost holding them in place.",
+            "High reversibility lowers the barrier to the first yes. The buyer doesn't have to be certain before committing — they just have to be willing to try. That's a much easier threshold to clear."
+          ],
+          "facets": {
+            "whatChanges": "High-reversibility offers convert more easily. The risk of being wrong feels manageable, so buyers say yes faster and with less due diligence. That's especially valuable when you're building a new audience or trying to get first clients.\n\nThe trade-off is churn. When leaving is easy, leaving happens more often. Clients who are slightly dissatisfied or simply distracted cancel instead of pushing through. Your revenue depends on continuously delivering visible value — the moment you stop being obviously worth it, the relationship ends.",
+            "whenConvenient": "When you're entering a new market and need to lower the barrier to trial. When your service generates ongoing, demonstrable value that keeps clients enrolled without contractual pressure. When trust is the primary barrier to purchase and you want to remove the risk objection entirely.",
+            "examples": "Month-to-month subscriptions, pay-per-session models, cancel-anytime memberships, small trial projects, satisfaction guarantees.",
+            "traps": "Using high reversibility as a substitute for quality. \"Cancel anytime\" doesn't fix a weak offer — it just makes it easier to cancel faster. The clients who stay in a high-reversibility model do so because they genuinely want to. Earn that, don't assume it.",
+            "worksWellWith": "Effort duration — ongoing. Pricing model — subscription or retainer. Entry-level offers in a value ladder."
+          }
+        },
+        {
+          "name": "Medium reversibility",
+          "summary": [
+            "Some commitment exists, but there are clear exit points or manageable switching costs. The buyer isn't locked in, but changing course requires deliberate effort.",
+            "Same business: \"6-week website project with milestone approvals.\" The client commits to the full engagement, but at each milestone they review and approve before work continues. If something goes wrong early, there's a natural checkpoint to address it before more resources are invested.",
+            "Medium reversibility signals seriousness. Both sides are committing to something real, not just dipping a toe in."
+          ],
+          "facets": {
+            "whatChanges": "Medium-reversibility offers attract more committed buyers. Someone who agrees to a defined project with checkpoints is more invested than someone paying month to month. They're more likely to show up, provide good input, and see the engagement through — which tends to produce better outcomes.\n\nThe sales conversation is slightly longer. Buyers do more due diligence before committing to something that's harder to exit. That's appropriate — you want clients who've genuinely decided, not clients who signed up impulsively and will question everything.",
+            "whenConvenient": "When the offer requires sustained effort from both sides to work well. When you want buyers who are committed to the process, not just sampling. When the project has natural phases that create legitimate review points without making exit feel punitive.",
+            "examples": "Fixed-scope project engagements, cohort programs with milestone reviews, staged-payment packages, time-bound advisory agreements.",
+            "traps": "Designing medium reversibility as a way to trap clients rather than structure the engagement. Milestone approvals should be genuine checkpoints where both sides assess progress — not fine-print gates that make cancellation technically possible but practically difficult. Clients who feel manipulated don't come back and don't refer.",
+            "worksWellWith": "Effort duration — time-bound. Delivery model — DFY or DWY. Buyer participation intensity — medium to high."
+          }
+        },
+        {
+          "name": "Low reversibility",
+          "summary": [
+            "Hard to undo after buying. The commitment is substantial, the switching cost is high, or the structure makes exit genuinely difficult.",
+            "Same business: \"12-month managed website contract with a custom proprietary stack.\" The client signs for a year. Switching away means migrating off a platform built specifically for this engagement, rebuilding integrations, and finding a new provider who understands the setup. Even if they want to leave, the cost of leaving is significant.",
+            "Low reversibility isn't inherently predatory. Annual contracts in exchange for lower pricing are a legitimate trade. Proprietary stacks can be genuinely better than alternatives. The question is whether the lock-in is earned by real value or manufactured by friction."
+          ],
+          "facets": {
+            "whatChanges": "Low-reversibility offers are harder to sell — buyers think longer and scrutinize more before committing to something they can't easily undo. Sales cycles lengthen. Trust requirements go up. You need more proof, more reputation, or more relationship before the buyer takes the leap.\n\nWhat you get in return: stable revenue and reduced churn. A client locked into an annual contract doesn't cancel impulsively. That predictability is genuinely valuable for planning and investment.",
+            "whenConvenient": "When the offer generates clearly compounding value over time that justifies the commitment. When switching costs are a natural function of the offer's depth, not an artificial barrier. When the client relationship is well-established enough that the commitment feels natural rather than pressured.",
+            "examples": "Annual contracts, large upfront custom builds, enterprise SaaS with implementation dependencies, long-term managed service agreements.",
+            "traps": "Building lock-in as a substitute for ongoing value. If the main reason clients stay is that leaving is hard, that's not a strong business — it's a hostage situation. Low reversibility works when clients would choose to stay even if leaving were easy. Everything else is borrowed time.",
+            "worksWellWith": "Effort duration — ongoing or long time-bound. System impact — medium to high. Pricing model — annual or value-based."
+          }
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Reversibility vs. duration",
+          "body": [
+            "These two levers are easy to conflate. They're independent.",
+            "Effort duration is about how long the engagement runs. Commitment reversibility is about how easy it is to leave during that run.",
+            "A 12-month contract with monthly cancellation rights: long duration, high reversibility.",
+            "A one-time $20,000 non-refundable project: short duration, low reversibility.",
+            "The combination you choose sends a clear signal to buyers. Long duration plus low reversibility says: \"This is a serious commitment.\" Short duration plus high reversibility says: \"Try it, see how it feels.\" Both are valid. The right combination depends on who your buyer is and what they need to feel confident enough to say yes."
+          ]
+        }
+      ],
+      "whyItMatters": [
+        "Reversibility is one of the most underrated levers in the framework — not because it's subtle, but because most people set it by default rather than by design. They use annual contracts because that's what they've seen others do, or cancel-anytime because they're afraid of commitment objections. Neither of those is a strategy.",
+        "Set your reversibility deliberately. Ask what level of commitment your buyer actually needs to get a good outcome, and what level of risk they need to feel comfortable enough to start. Then design the offer around both answers."
+      ]
+    },
+    {
       "id": "authorityDynamic",
+      "control": "slider",
       "name": "Authority dynamic",
       "question": "What role do you occupy in relation to the buyer's decisions?",
       "intro": [
