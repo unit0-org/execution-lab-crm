@@ -14,14 +14,16 @@ export const railStyle = {
 }
 
 export const ticksStyle = {
-  position: 'absolute', inset: '0 8px', display: 'flex',
-  alignItems: 'center', justifyContent: 'space-between',
-  pointerEvents: 'none'
+  position: 'absolute', inset: '0', pointerEvents: 'none'
 }
 
-// The active stop hides (the thumb sits on it — a dot behind it just peeks
-// out); the rest are solid, full-colour stops.
-export const dotStyle = (active) => ({
+// Each dot is centred on its stop: the thumb travels from 8px to
+// (100% - 8px), so stop `i` sits at that fraction and translateX(-50%)
+// puts the dot's centre — not its edge — on the stop.
+export const dotStyle = (fraction, active) => ({
+  position: 'absolute', top: '50%',
+  left: `calc(8px + ${fraction} * (100% - 16px))`,
+  transform: 'translate(-50%, -50%)',
   width: '8px', height: '8px', borderRadius: '999px',
   background: color.border.strong,
   visibility: active ? 'hidden' : 'visible'
