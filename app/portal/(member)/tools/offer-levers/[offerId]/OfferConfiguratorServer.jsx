@@ -19,7 +19,11 @@ export async function OfferConfiguratorServer({ params }) {
   if (!offer) notFound()
 
   const initial = await listInputs(member.contactId, offerId)
+  const version = {
+    version_major: offer.version_major,
+    version_minor: offer.version_minor
+  }
 
   return <OfferLeversView initial={initial} offerId={offerId}
-    offerName={offer.name} />
+    offerName={offer.name} offerVersion={version} />
 }

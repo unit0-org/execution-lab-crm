@@ -11,3 +11,8 @@ export const footerStyle = {
   marginTop: 'auto', display: 'flex', alignItems: 'center',
   justifyContent: 'space-between', gap: space[2]
 }
+
+// The footer's left cluster: version badge next to the created date.
+export const metaLeadStyle = {
+  display: 'flex', alignItems: 'center', gap: space[2]
+}
