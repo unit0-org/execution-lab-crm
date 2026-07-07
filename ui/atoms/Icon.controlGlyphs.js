@@ -5,6 +5,7 @@ export const controlGlyphs = {
   pencil: 'M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4',
   trash: 'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13',
   chevron: 'M6 9l6 6 6-6',
+  chevronUp: 'M6 15l6-6 6 6',
   chevronLeft: 'M15 18l-6-6 6-6',
   chevronRight: 'M9 18l6-6-6-6',
   panelLeft:

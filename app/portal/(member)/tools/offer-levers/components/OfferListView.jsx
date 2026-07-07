@@ -20,7 +20,8 @@ export function OfferListView({ initial }) {
   return (
     <Stack gap="lg">
       <OfferListHeader onCreate={offers.create} />
-      <OfferCards offers={offers.offers} onRemove={setPending} />
+      <OfferCards offers={offers.offers} onRemove={setPending}
+        onBumpVersion={offers.bumpVersion} />
       <OfferDeleteConfirm offer={pending} onConfirm={confirm}
         onCancel={() => setPending(null)} />
     </Stack>
