@@ -9,18 +9,18 @@ const box = {
   whiteSpace: 'pre-wrap', overflowWrap: 'break-word'
 }
 
-// Textarea on top, transparent so the pill mirror shows through.
+// Transparent textarea on top; owns the border so the focus ring shows.
 export const areaStyle = {
   ...textAreaStyle, ...box, position: 'relative', zIndex: 1,
   color: 'transparent', background: 'transparent',
-  caretColor: color.text.primary, border: '1px solid transparent'
+  caretColor: color.text.primary, border: `1px solid ${color.border.default}`
 }
 
-// Mirror behind it: the visible box, text, and mention pills.
+// Mirror behind: visible fill, text and pills; textarea draws the border.
 export const mirrorStyle = {
   ...box, position: 'absolute', inset: 0, overflow: 'hidden',
   color: color.text.primary, background: color.bg.sunken,
-  border: `1px solid ${color.border.default}`, pointerEvents: 'none'
+  border: '1px solid transparent', pointerEvents: 'none'
 }
 
 // A picked @-mention, chip-styled without altering text layout.
