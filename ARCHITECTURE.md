@@ -223,7 +223,8 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `notification` | cascade | `claimContactRecords` (reassign) |
 | `portal_member` | cascade | `mergePortalMembers` (dedupe per contact) |
 | `portal_tool_access` | cascade | `mergeToolAccess` (idempotent, contact_id+tool_key) |
-| `offer_generator_input` | cascade | `claimContactRecords` (reassign) |
+| `offer` | cascade | `claimContactRecords` (reassign) |
+| `offer_generator_input` | cascade (→ `offer`) | folded via `offer` (reassign the offer; inputs ride along `offer_id`) |
 | `contact_google_link` | cascade | **not migrated** (sync artifact; re-sync recreates) |
 | `sync_conflict` | cascade | **not migrated** (sync artifact) |
 

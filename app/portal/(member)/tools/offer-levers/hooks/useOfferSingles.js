@@ -5,11 +5,11 @@ import { useDebouncer } from '@/ui/molecules/useDebouncer'
 
 // setField (debounced autosave for text singles) and setLever (immediate,
 // since a slider change is discrete). Both flag the field saved on success.
-export function useOfferSingles({ setValues, saved }) {
+export function useOfferSingles({ setValues, saved, offerId }) {
   const debounce = useDebouncer()
 
   const save = (type, value) =>
-    setOfferFieldAction(type, value).then(() => saved.mark(type))
+    setOfferFieldAction(offerId, type, value).then(() => saved.mark(type))
 
   const setField = (type) => (event) => {
     const { value } = event.target
