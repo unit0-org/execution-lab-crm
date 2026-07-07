@@ -23,7 +23,7 @@ export const dotStyle = (fraction, active) => ({
   left: `calc(8px + ${fraction} * (100% - 16px))`,
   transform: 'translate(-50%, -50%)',
   width: '8px', height: '8px', borderRadius: '999px',
-  background: color.border.strong,
+  background: color.text.muted,
   visibility: active ? 'hidden' : 'visible'
 })
 
