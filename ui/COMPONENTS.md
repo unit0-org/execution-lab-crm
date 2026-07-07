@@ -49,6 +49,7 @@ Conventions (from `AGENTS.md`):
 | `LabelBadge` | `name`, `color` | Colored contact-label chip |
 | `LabelDot` | `color`, `size=8` | Small colored status dot |
 | `Link` | `href`, `children` | Internal app navigation link |
+| `LinkCard` | `href`, `label`, `children` | Card whose whole surface links to `href` (stretched-link overlay; lifts on hover). Wrap any control inside in `RaisedControl` |
 | `MonoLabel` | `tone='muted'`, `size=11`, `caps`, `align`, `children` | Monospaced micro-label/kicker; `tone` picks a brand/neutral color, `align` blocks + aligns (portal) |
 | `MonoLink` | `href`, `size=11`, `underline`, `external=true`, `children` | Monospaced accent link; new tab by default, `external={false}` for in-app nav (portal) |
 | `NavIcon` / `NavLink` | `icon` / `href`, `active`, `icon`, `children`, `newTab` | Sidebar navigation entries (`newTab` opens the link in a new tab) |
@@ -56,6 +57,7 @@ Conventions (from `AGENTS.md`):
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`) |
 | `ProgressBar` | — | Indeterminate top-of-page progress |
 | `Radio` | `checked`, `onChange`, `label` | Single radio option |
+| `RaisedControl` | `children` | Lifts a control above a `LinkCard`'s stretched link so it stays clickable |
 | `Select` | `label`, `options`, `...rest` | Native dropdown select; `options` are strings or `{value,label}` |
 | `Skeleton` | `height` | Loading placeholder sized to final content |
 | `Slider` | `options`, `value`, `onChange`, `...rest` | Discrete slider over an ordered `options` list; thumb snaps to each stop, `onChange` receives the picked option string (not a DOM event) |
