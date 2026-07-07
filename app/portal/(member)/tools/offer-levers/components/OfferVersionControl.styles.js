@@ -1,17 +1,17 @@
 import { space } from '@/ui/tokens/space'
+import { color } from '@/ui/tokens/color'
+import { radius } from '@/ui/tokens/radius'
 
-// The version field on the edit page: a label above a row of steppers.
-export const fieldStyle = {
-  display: 'flex', flexDirection: 'column', gap: space[2],
-  alignItems: 'flex-start'
+// The version field: a label above a compact bordered stepper box.
+export const fieldStyle = { display: 'grid', gap: space[1] }
+
+// The box mirrors the name input: same sunken fill, border, and radius, so
+// the two controls read as siblings on the row.
+export const boxStyle = {
+  display: 'inline-flex', alignItems: 'center', gap: space[1],
+  padding: `${space[1]} ${space[2]}`, background: color.bg.sunken,
+  borderRadius: radius.md, border: `1px solid ${color.border.default}`
 }
 
-// The stepper row: the two parts (major, minor) laid out left to right.
-export const rowStyle = {
-  display: 'flex', alignItems: 'center', gap: space[1]
-}
-
-// One version part: up chevron, number, down chevron stacked and centered.
-export const digitStyle = {
-  display: 'flex', flexDirection: 'column', alignItems: 'center'
-}
+// One version part: the number flanked by its down/up chevrons.
+export const partStyle = { display: 'inline-flex', alignItems: 'center' }

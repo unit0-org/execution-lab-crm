@@ -13,7 +13,7 @@ export function OfferLeversHeader({ offerId, name, version }) {
   const ver = useOfferVersion(offerId, version)
 
   return (
-    <GrowRow align="start">
+    <GrowRow align="end">
       <TextField label="Offer name" value={offer.name} autoFocus
         placeholder="Untitled offer"
         onChange={offer.onChange} onBlur={offer.save} />

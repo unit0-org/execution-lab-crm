@@ -1,20 +1,20 @@
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
-import { Text } from '@/ui/atoms/Text'
-import { digitStyle } from './OfferVersionControl.styles'
+import { MonoLabel } from '@/ui/atoms/MonoLabel'
+import { partStyle } from './OfferVersionControl.styles'
 
-// One version part (major or minor): the number with an up chevron above
-// and a down chevron below to bump it.
-export function VersionDigit({ label, value, onUp, onDown }) {
+// One version part (major or minor): the number flanked by a down chevron
+// on the left and an up chevron on the right.
+export function VersionDigit({ label, value, onDown, onUp }) {
   return (
-    <div style={digitStyle}>
-      <IconButton label={'Increase ' + label} onClick={onUp}>
-        <Icon name="chevronUp" size={14} />
-      </IconButton>
-      <Text size="sm">{value}</Text>
+    <span style={partStyle}>
       <IconButton label={'Decrease ' + label} onClick={onDown}>
-        <Icon name="chevron" size={14} />
+        <Icon name="chevronLeft" size={16} />
       </IconButton>
-    </div>
+      <MonoLabel tone="primary" size={14}>{value}</MonoLabel>
+      <IconButton label={'Increase ' + label} onClick={onUp}>
+        <Icon name="chevronRight" size={16} />
+      </IconButton>
+    </span>
   )
 }
