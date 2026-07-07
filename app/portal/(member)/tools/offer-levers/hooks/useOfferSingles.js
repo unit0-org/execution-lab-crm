@@ -1,6 +1,7 @@
 'use client'
 
 import { setOfferFieldAction } from '../actions/setOfferField'
+import { toStored } from '../leverStorage'
 import { useDebouncer } from '@/ui/molecules/useDebouncer'
 
 // setField (debounced autosave for text singles) and setLever (immediate,
@@ -20,7 +21,7 @@ export function useOfferSingles({ setValues, saved, offerId }) {
 
   const setLever = (id) => (value) => {
     setValues((cur) => ({ ...cur, [id]: value }))
-    save(id, value)
+    save(id, toStored(id, value))
   }
 
   return { setField, setLever }

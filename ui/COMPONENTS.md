@@ -131,6 +131,7 @@ Conventions (from `AGENTS.md`):
 | `Chip` | `href`, `children` | Link chip |
 | `Token` | `label`, `onRemove` | Removable tag/token |
 | `MultiSelect` (+`Option`/`Trigger`) | `options`, `selected`, `onToggle`, `placeholder` | Multi-select dropdown |
+| `CheckList` (+`Item`) | `options`=`[{value,label,desc}]`, `selected`, `onToggle` | Always-visible multi-select checkbox list (label + description per row) |
 | `SwatchSelect` (+`SwatchMenu`/`SwatchTrigger`) | `value`, `onPick`, `options` | Color picker |
 | `Popover` | `open`, `onClose`, `trigger`, `children` | Anchored popover |
 | `Collapsible` | `title`, `preview`, `defaultOpen`, `children` | Expand/collapse section; `preview` shows only while collapsed |
