@@ -11,7 +11,8 @@ export function OfferLeversHeader({ offerId, name }) {
 
   return (
     <Stack gap="xs">
-      <TextField label="Offer name" value={offer.name}
+      <TextField label="Offer name" value={offer.name} autoFocus
+        placeholder="Untitled offer"
         onChange={offer.onChange} onBlur={offer.save} />
       <Text size="sm" tone="muted">
         Describe your offer, set the structural levers, then copy a
