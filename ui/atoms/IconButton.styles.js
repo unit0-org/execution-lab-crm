@@ -7,9 +7,9 @@ const tones = {
   danger: color.status.errorText
 }
 
-export const iconButtonStyle = (tone = 'default') => ({
+export const iconButtonStyle = (tone = 'default', size = 32) => ({
   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-  width: '32px', height: '32px', padding: 0, flexShrink: 0,
+  width: size, height: size, padding: 0, flexShrink: 0,
   background: 'none', border: 'none', borderRadius: radius.sm,
   color: tones[tone], cursor: 'pointer'
 })

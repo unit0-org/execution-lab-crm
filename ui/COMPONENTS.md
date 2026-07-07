@@ -45,7 +45,7 @@ Conventions (from `AGENTS.md`):
 | `HeatDots` | `rating=0` | Dot-scale rating indicator |
 | `HoverReveal` | `children` | Reveal children on hover of the host row |
 | `Icon` | `name`, `size=18` | SVG icon by name — see `Icon.paths.js` (`plus`, `trash`, …) |
-| `IconButton` | `tone='default'`, `label`, `children`, `...rest` | Icon-only button; `label` is the aria-label |
+| `IconButton` | `tone='default'`, `label`, `size=32`, `children`, `...rest` | Icon-only button; `label` is the aria-label; `size` sets the square px |
 | `LabelBadge` | `name`, `color` | Colored contact-label chip |
 | `LabelDot` | `color`, `size=8` | Small colored status dot |
 | `Link` | `href`, `children` | Internal app navigation link |
