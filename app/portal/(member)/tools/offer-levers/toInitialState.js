@@ -15,7 +15,7 @@ export function toInitialState(rows) {
 
     const list = lists[row.input_type] || []
 
-    list.push({ id: row.id, value: row.value })
+    list.push({ id: row.id, value: row.value, active: row.active })
     lists[row.input_type] = list
   }
 

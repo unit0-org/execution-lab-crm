@@ -4,7 +4,9 @@ import { RepeatableInput } from './RepeatableInput'
 
 // One repeatable type: its label over each added input. Renders nothing
 // until the type has at least one input.
-export function RepeatableInputs({ field, items, saved, onUpdate, onRemove }) {
+export function RepeatableInputs(props) {
+  const { field, items, saved, onUpdate, onRemove, onActive } = props
+
   if (!items?.length) return null
 
   return (
@@ -13,7 +15,8 @@ export function RepeatableInputs({ field, items, saved, onUpdate, onRemove }) {
       {items.map((item) => (
         <RepeatableInput key={item.id} field={field} item={item}
           saved={saved[item.id]} onUpdate={onUpdate(field.inputType, item.id)}
-          onRemove={onRemove(field.inputType, item.id)} />
+          onRemove={onRemove(field.inputType, item.id)}
+          onActive={onActive} />
       ))}
     </Stack>
   )

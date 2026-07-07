@@ -16,3 +16,8 @@ export const footerStyle = {
 export const metaLeadStyle = {
   display: 'flex', alignItems: 'center', gap: space[2]
 }
+
+// Wraps a card with its active-offers toggle + tree in one column.
+export const cardWrapStyle = {
+  display: 'flex', flexDirection: 'column', gap: space[2]
+}

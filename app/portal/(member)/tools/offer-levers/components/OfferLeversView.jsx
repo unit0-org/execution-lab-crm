@@ -11,8 +11,8 @@ export function OfferLeversView(props) {
   const { initial, offerId, offerName, offerVersion } = props
   const offer = useOfferLevers(initial, offerId)
   const on = {
-    field: offer.setField, add: offer.add,
-    update: offer.update, remove: offer.remove
+    field: offer.setField, add: offer.add, update: offer.update,
+    remove: offer.remove, active: offer.setActive
   }
 
   return (
