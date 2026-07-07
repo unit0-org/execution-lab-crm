@@ -19,9 +19,12 @@ export const ticksStyle = {
   pointerEvents: 'none'
 }
 
-export const dotStyle = (on) => ({
+// The active stop hides (the thumb sits on it — a dot behind it just peeks
+// out); the rest are solid, full-colour stops.
+export const dotStyle = (active) => ({
   width: '8px', height: '8px', borderRadius: '999px',
-  background: on ? color.accent.solid : color.border.strong
+  background: color.border.strong,
+  visibility: active ? 'hidden' : 'visible'
 })
 
 export const rangeStyle = { position: 'relative', display: 'block' }

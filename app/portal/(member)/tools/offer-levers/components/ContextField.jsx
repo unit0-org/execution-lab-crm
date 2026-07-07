@@ -8,11 +8,13 @@ import { fieldLabel } from '../fieldLabel'
 export function ContextField({ field, value, onChange, saved }) {
   const props = {
     label: fieldLabel(field), value, onChange,
-    required: field.required, placeholder: field.placeholder,
-    trailing: <SavedCheck show={saved} />
+    required: field.required, placeholder: field.placeholder
   }
 
   if (field.type === 'area') return <TextArea {...props} />
 
-  return <TextField {...props} />
+  return (
+    <TextField {...props} saved={saved}
+      trailing={<SavedCheck show={saved} />} />
+  )
 }

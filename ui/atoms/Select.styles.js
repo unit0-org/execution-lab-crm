@@ -10,6 +10,6 @@ export const selectStyle = {
 
 export const chevronStyle = {
   position: 'absolute', top: '50%', right: space[3],
-  transform: 'translateY(-50%)',
+  transform: 'translateY(-50%)', display: 'flex',
   pointerEvents: 'none', color: color.text.muted
 }

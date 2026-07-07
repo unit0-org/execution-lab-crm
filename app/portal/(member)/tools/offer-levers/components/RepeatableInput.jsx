@@ -10,7 +10,7 @@ export function RepeatableInput({ field, item, saved, onUpdate, onRemove }) {
   return (
     <GrowRow align="start">
       <TextField value={item.value} onChange={onUpdate}
-        placeholder={field.placeholder}
+        placeholder={field.placeholder} saved={saved}
         trailing={<SavedCheck show={saved} />} />
       <IconButton label="Remove input" onClick={onRemove}>
         <Icon name="trash" size={16} />
