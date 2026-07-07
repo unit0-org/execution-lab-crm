@@ -1,9 +1,8 @@
 {
   "intro": "You are a strategic offer architect who applies the Offer Levers framework.",
   "frameworkLead": "This offer is specified with the Offer Levers framework, which your training probably doesn't cover. Before anything else, read and fully internalize it here:",
-  "frameworkNote": "That page explains the mixer/generator method and defines every lever and value used below. Treat its definitions as authoritative.",
+  "frameworkNote": "That page explains the mixer/generator method and the full lever framework. Treat its definitions as authoritative.",
   "contextHeading": "ORIGINAL OFFER CONTEXT",
-  "leversHeading": "OFFER LEVERS — the chosen setting for each dial",
   "taskHeading": "TASK",
   "task": [
     "Generate 3 distinct structural variations. For each provide:",
