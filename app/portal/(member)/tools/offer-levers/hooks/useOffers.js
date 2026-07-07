@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { portalRoutePath } from '@/lib/portal/portalRoutePath'
 import { createOfferAction } from '../actions/createOffer'
 import { removeOfferAction } from '../actions/removeOffer'
+import { changeOfferVersionAction } from '../actions/changeOfferVersion'
 
 // Offer-list state: optimistic create (opens it) and remove.
 export function useOffers(initial) {
@@ -20,5 +21,9 @@ export function useOffers(initial) {
     removeOfferAction(id)
   }
 
-  return { offers, open, create, remove }
+  const bumpVersion = (id, dMajor, dMinor) =>
+    changeOfferVersionAction(id, dMajor, dMinor).then((v) =>
+      setOffers((cur) => cur.map((o) => (o.id === id ? { ...o, ...v } : o))))
+
+  return { offers, open, create, remove, bumpVersion }
 }
