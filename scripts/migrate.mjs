@@ -5,9 +5,14 @@ import { applyOne } from './applyMigration.mjs'
 const DIR = new URL('../supabase/migrations/', import.meta.url)
 
 async function main() {
-  const env = process.env.VERCEL_ENV
-  if (env && env !== 'production')
-    return console.log(`migrate: ${env} deploy — skipping`)
+  // Run only when explicitly asked (Cloud Run: a separate migrate step sets
+  // RUN_MIGRATIONS=true). VERCEL_ENV stays as a transition fallback so Vercel
+  // prod deploys keep migrating until Vercel is decommissioned — drop it then.
+  const shouldRun =
+    process.env.RUN_MIGRATIONS === 'true' ||
+    process.env.VERCEL_ENV === 'production'
+  if (!shouldRun)
+    return console.log('migrate: not enabled (RUN_MIGRATIONS unset) — skipping')
   const connectionString = process.env.SUPABASE_DB_URL
   if (!connectionString)
     return console.warn('migrate: SUPABASE_DB_URL unset — skipping')
