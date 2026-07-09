@@ -37,6 +37,13 @@ for role in roles/cloudbuild.builds.editor roles/storage.admin \
     --member "serviceAccount:$DEPLOYER" --role "$role" --condition=None
 done
 
+# A submitted build runs AS the COMPUTE SA (cloudbuild.yaml pins no
+# serviceAccount), so the deployer must be able to act as it — otherwise the
+# submit fails with "caller does not have permission to act as service
+# account".
+gcloud iam service-accounts add-iam-policy-binding "$COMPUTE" --project "$PROJ" \
+  --member "serviceAccount:$DEPLOYER" --role roles/iam.serviceAccountUser
+
 # 3. Cloud Build runs its steps as the COMPUTE SA — it needs to deploy Cloud
 #    Run, act as the service's runtime SA (itself), and read Secret Manager
 #    (list for the --set-secrets deploy step, access versions for migrate).
