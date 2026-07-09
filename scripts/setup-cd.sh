@@ -23,9 +23,14 @@ for role in roles/cloudbuild.builds.editor roles/storage.objectAdmin \
 done
 
 # 3. Cloud Build runs its steps as the COMPUTE SA — it needs to deploy Cloud
-#    Run and to act as the service's runtime SA (itself).
+#    Run, act as the service's runtime SA (itself), and read Secret Manager
+#    (list for the --set-secrets deploy step, access versions for migrate).
 gcloud projects add-iam-policy-binding "$PROJ" \
   --member "serviceAccount:$COMPUTE" --role roles/run.admin --condition=None
+gcloud projects add-iam-policy-binding "$PROJ" \
+  --member "serviceAccount:$COMPUTE" --role roles/secretmanager.viewer --condition=None
+gcloud projects add-iam-policy-binding "$PROJ" \
+  --member "serviceAccount:$COMPUTE" --role roles/secretmanager.secretAccessor --condition=None
 gcloud iam service-accounts add-iam-policy-binding "$COMPUTE" --project "$PROJ" \
   --member "serviceAccount:$COMPUTE" --role roles/iam.serviceAccountUser
 
