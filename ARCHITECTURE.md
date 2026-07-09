@@ -130,7 +130,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
   never an inline status check. Adding a new money aggregate means using that
   scope. The `$100` customer threshold is `CUSTOMER_MIN_PURCHASE_CENTS`.
 - **invoice** — invoices with line items, PDF generation, Stripe charge,
-  and email delivery.
+  and email delivery. Brand PDF primitives (fonts, logo, palette, and a
+  paginating flow/document toolkit) live in shared `lib/pdf/`, reused by
+  both the invoice and offer-export PDFs.
 - **notification** — member-to-member alerts. `note_mention` records who a
   member tagged (`@`) in a `contact_note`; `notification` is the recipient's
   in-app inbox item (also emailed, with a deep link to the note). Both
@@ -406,7 +408,12 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   rows (a multi lever stores its picks as a JSON array in `value`); it
   assembles those into a prompt the member copies. A generated-offer row
   can be flagged `active` (currently selling); the tool homepage lists
-  each offer's active offers via `listOffersWithActive`.
+  each offer's active offers via `listOffersWithActive`. The member can
+  also **export an offer as a branded PDF** — its context, levers, and
+  generated offers — via `[offerId]/pdf/route.js` (`buildOfferDocument`
+  shapes the model, `lib/pdf/renderDocumentPdf` draws it). The route
+  re-gates the tool and scopes to an owned offer (it does **not** live
+  under `/api`, which bypasses gates).
 
 ## Flow maps (which file does each step)
 
