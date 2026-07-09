@@ -1,7 +1,7 @@
 import { Form } from '@/ui/molecules/Form'
 import { Stack } from '@/ui/layout/Stack'
 import { TextField } from '@/ui/atoms/TextField'
-import { Button } from '@/ui/atoms/Button'
+import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { sendMagicLink } from '../actions/sendMagicLink'
 
 // Request a one-time email sign-in link. An invite link prefills the email.
@@ -11,7 +11,7 @@ export function MagicLinkForm({ defaultEmail }) {
       <Stack gap="sm">
         <TextField name="email" type="email" required label="Email"
           defaultValue={defaultEmail} placeholder="you@email.com" />
-        <Button type="submit" block>Email me a sign-in link</Button>
+        <SubmitButton block>Email me a sign-in link</SubmitButton>
       </Stack>
     </Form>
   )
