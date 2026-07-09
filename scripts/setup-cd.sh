@@ -23,15 +23,26 @@ for i in $(seq 1 15); do
   echo "waiting for $DEPLOYER to propagate ($i)..."; sleep 5
 done
 
-# 2. Deployer: submit Cloud Builds, upload build source, read build logs.
-#    serviceUsageConsumer is required for `gcloud builds submit` itself —
-#    without it the submit fails with a misleading "forbidden from accessing
-#    the bucket [PROJECT_cloudbuild]" error.
-for role in roles/cloudbuild.builds.editor roles/storage.objectAdmin \
+# 2. Deployer: submit Cloud Builds, stage build source, read build logs.
+#    Two non-obvious grants `gcloud builds submit` needs, both surfacing as
+#    the same misleading "forbidden from accessing the bucket
+#    [PROJECT_cloudbuild]" error until present:
+#    - serviceUsageConsumer (serviceusage.services.use), and
+#    - storage.admin — the submit does a bucket GET (and, on a fresh project,
+#      CREATE) of the source-staging bucket; storage.objectAdmin covers the
+#      objects but NOT the bucket itself, so it isn't enough.
+for role in roles/cloudbuild.builds.editor roles/storage.admin \
             roles/logging.viewer roles/serviceusage.serviceUsageConsumer; do
   gcloud projects add-iam-policy-binding "$PROJ" \
     --member "serviceAccount:$DEPLOYER" --role "$role" --condition=None
 done
+
+# A submitted build runs AS the COMPUTE SA (cloudbuild.yaml pins no
+# serviceAccount), so the deployer must be able to act as it — otherwise the
+# submit fails with "caller does not have permission to act as service
+# account".
+gcloud iam service-accounts add-iam-policy-binding "$COMPUTE" --project "$PROJ" \
+  --member "serviceAccount:$DEPLOYER" --role roles/iam.serviceAccountUser
 
 # 3. Cloud Build runs its steps as the COMPUTE SA — it needs to deploy Cloud
 #    Run, act as the service's runtime SA (itself), and read Secret Manager
