@@ -1,6 +1,10 @@
 # Migration runbook: Vercel → GCP Cloud Run
 
-Standalone plan so this can be picked up in a fresh chat. Status as of
+**STATUS: CUT OVER 2026-07-08.** `crm.theexecutionlab.ca` and
+`portal.theexecutionlab.ca` now serve from **GCP Cloud Run** (`us-east1`),
+each on a free Cloud Run **domain mapping** (`ghs.googlehosted.com`). Vercel
+stays deployed as rollback until decommissioned. See **Cutover — what
+actually happened** below for the outage lesson. Original plan status:
 2026-07-07.
 
 ## Why
@@ -22,8 +26,14 @@ Production on Vercel was never touched (parallel service, no cron/scheduler,
 no migrations, no DNS/config changes). The verify service is torn down after.
 
 - **Project:** `the-execution-lab-crm` (number `551994562422`), billing on.
-- **Region:** `us-east5` (Columbus OH — co-located with Supabase AWS
-  us-east-2 for low DB latency).
+- **Region:** the production service runs in **`us-east1`**, NOT us-east5.
+  us-east5 (Columbus OH) is same-city as Supabase AWS us-east-2 and was the
+  original choice, but **Cloud Run domain mappings are not allowed in
+  us-east5** (`create` → `501 UNIMPLEMENTED`; `list` misleadingly works).
+  us-east1 (South Carolina) is the nearest domain-mapping region to the DB;
+  the extra latency is negligible. The image still lives in the **us-east5**
+  Artifact Registry — the us-east1 service pulls it cross-region, which is
+  fine.
 - **APIs enabled:** run, cloudbuild, artifactregistry, secretmanager,
   cloudscheduler.
 - **Artifact Registry:** repo `crm` in us-east5. Image tag:
@@ -54,7 +64,36 @@ no migrations, no DNS/config changes). The verify service is torn down after.
 - Cloud Build using the compute SA needs `cloudbuild.builds.builder` or it
   fails with `storage.objects.get denied` on the staging bucket.
 
-## Remaining for real cutover (in order)
+## Cutover — what actually happened (2026-07-08)
+
+Steps 1–3 below shipped in migration **PR #497**. Then: built the image,
+deployed `crm` to **us-east1**, created **domain mappings for both
+`crm.` and `portal.`** on that one service (they are a single Vercel project
+= one app; portal-vs-CRM routing is **in-app by Host header**, see
+`lib/portal/isPortalHost.js` — not a Vercel rewrite), flipped both GoDaddy
+CNAMEs to `ghs.googlehosted.com`, and resumed the scheduler. Stripe key
+confirmed live (it's an `rk_live_` **restricted** key, which is fine).
+
+### ⚠️ OUTAGE LESSON — domain-mapping certs can't be pre-provisioned
+A Cloud Run domain-mapping managed cert only begins issuing **after** DNS
+points at `ghs.googlehosted.com`, so a live cutover rides an unbounded TLS
+window. Google's first ACME challenge ran before DNS had propagated →
+**1-hour backoff** → ~20 min partial outage (clients with cached Vercel DNS
+were fine; resolvers already on `ghs` got TLS `000`). What recovered it:
+**delete + recreate both mappings once DNS is globally visible**
+(`dig @8.8.8.8 crm.theexecutionlab.ca` shows `ghs`) — this forces a fresh
+challenge instead of waiting out the hour. The cert then propagated
+POP-by-POP (briefly served on one `ghs` IP, regressed, finally consistent).
+
+**For the NEXT live cutover, prefer an external HTTPS load balancer:**
+pre-provision the Google-managed cert and confirm it is **ACTIVE before
+touching DNS** → zero window. Also **lower the GoDaddy CNAME TTL** (default
+1 h) well before any flip. DNS is at GoDaddy (`domaincontrol.com` NS).
+Verify serving with `curl --resolve host:443:<ghs-ip> https://host/` — a
+`Host:`-spoofed request to the `*.run.app` URL is NOT a valid test (forwarded
+headers differ and it 404s misleadingly).
+
+## The cutover steps (in order)
 
 1. **Commit** `Dockerfile`, `.dockerignore`, `cloudbuild.yaml`, and this doc
    in a migration PR.
@@ -73,26 +112,35 @@ no migrations, no DNS/config changes). The verify service is torn down after.
    only at DNS cutover, so Vercel cron and Cloud Scheduler never both fire
    against the same prod DB (double-run → duplicate emails). Watch the
    combined 5-job run against Cloud Run CPU/time limits.
+   Use `--time-zone Etc/UTC` (Vercel crons are UTC — match the 06:00 run).
+   `create.http` uses `--headers`, not `--update-headers`, and has **no
+   `--paused` flag** — create, then `jobs pause`.
    ```
    gcloud scheduler jobs create http crm-daily-cron \
-     --location us-east4 --schedule "0 6 * * *" \
+     --location us-east4 --schedule "0 6 * * *" --time-zone Etc/UTC \
      --uri "https://<cloud-run-url>/api/cron" \
      --http-method GET \
-     --update-headers "Authorization=Bearer <CRON_SECRET>" \
-     --attempt-deadline 1800s --paused
+     --headers "Authorization=Bearer <CRON_SECRET>" \
+     --attempt-deadline 1800s
+   gcloud scheduler jobs pause crm-daily-cron --location us-east4
    ```
 4. **Deploy the production service** (name e.g. `crm`), `--min-instances=1`
    (avoid cold starts, ~few $/mo), `--set-secrets` for all 20 (build the list
    with `gcloud secrets list --format='value(name)' | awk '{print $1"="$1":latest"}' | paste -sd,`).
-5. **Domain + external URLs.** Map `crm.theexecutionlab.ca` to Cloud Run
-   (domain mapping or an external HTTPS load balancer) and update:
-   Google OAuth redirect URIs, the **Stripe webhook endpoint URL**, and
-   WorkOS/AuthKit redirect + domain — all to the new host. (`/portal`
-   redirects to `portal.theexecutionlab.ca`, handled separately.)
-6. **Confirm `STRIPE_SECRET_KEY` is the LIVE key** (`sk_live_…`), not test,
-   before flipping traffic.
-7. **Cutover:** flip DNS to Cloud Run; keep Vercel deployed as rollback until
-   stable; then decommission Vercel.
+5. **Domain.** Create a Cloud Run **domain mapping** per host
+   (`gcloud beta run domain-mappings create --service crm --domain
+   crm.theexecutionlab.ca --region us-east1`), then point the GoDaddy CNAME
+   at `ghs.googlehosted.com`. **We keep the same hostnames**, so **no
+   external URL changes are needed** — Google OAuth redirects, the Stripe
+   webhook endpoint, WorkOS/AuthKit redirects and the cookie domain all
+   already target `crm.`/`portal.theexecutionlab.ca`, and `STRIPE_WEBHOOK_SECRET`
+   stays valid. Do BOTH hosts (`crm.` and `portal.`) — one service serves
+   both. Heed the cert-window lesson above.
+6. **Confirm `STRIPE_SECRET_KEY` is LIVE** — ours is `rk_live_…` (a restricted
+   live key, fine), not `sk_test_…`. Check the prefix only, never print it.
+7. **Cutover:** flip the CNAMEs; keep Vercel deployed as rollback until
+   stable; resume the scheduler once serving is verified from GCP; then
+   decommission Vercel (and drop the `VERCEL_ENV` migrate fallback).
 
 ## Build + deploy commands (reference)
 
@@ -105,12 +153,13 @@ SECRETS=$(gcloud secrets list --project the-execution-lab-crm \
   --format='value(name)' | awk '{print $1"="$1":latest"}' | paste -sd,)
 gcloud run deploy crm \
   --image us-east5-docker.pkg.dev/the-execution-lab-crm/crm/app:latest \
-  --region us-east5 --project the-execution-lab-crm \
+  --region us-east1 --project the-execution-lab-crm \
   --set-secrets="$SECRETS" --port 8080 --min-instances 1 --allow-unauthenticated
 ```
 
 ## Rollback
 
-Production stays on Vercel until DNS is flipped and the Cloud Run service is
-confirmed healthy. Rollback = point DNS back at Vercel (kept deployed
-throughout). Nothing here is destructive to prod until the DNS cutover.
+Vercel stays deployed (same app, same code) as rollback. Rollback = point the
+`crm.` and `portal.` CNAMEs back at `47b6b837319dc90d.vercel-dns-017.com` at
+GoDaddy. Bounded by the CNAME TTL, so keep it low around a cutover. Nothing on
+the GCP side is destructive to Vercel.
