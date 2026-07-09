@@ -1,23 +1,24 @@
 'use client'
 
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { parseLabelIds, toggledSet, writeLabelIds } from './labelFilterUrl'
 
-const withToggled = (set, id) => {
-  const next = new Set(set)
-
-  if (next.has(id)) next.delete(id)
-  else next.add(id)
-
-  return next
-}
-
-// The set of label ids the contacts list is narrowed to (client-side).
+// Label-id filter for the contacts list, seeded from and mirrored to the URL
+// (?labels=…) so navigating into a contact and back restores the filter. The
+// URL write skips a server refetch; label filtering stays client-side.
 export function useLabelFilter() {
-  const [ids, setIds] = useState(() => new Set())
+  const params = useSearchParams()
+  const [ids, setIds] = useState(() => parseLabelIds(params.get('labels')))
+
+  const apply = (next) => {
+    setIds(next)
+    writeLabelIds(next)
+  }
 
   return {
     ids,
-    toggle: (id) => setIds((prev) => withToggled(prev, id)),
-    clear: () => setIds(new Set())
+    toggle: (id) => apply(toggledSet(ids, id)),
+    clear: () => apply(new Set())
   }
 }
