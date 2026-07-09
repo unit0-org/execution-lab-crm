@@ -8,6 +8,10 @@ name: Deploy to Cloud Run
 on:
   push:
     branches: [main]
+    # Docs-only pushes don't change the running app — skip the deploy.
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
 
 # Never let two prod deploys overlap; let an in-flight one finish.
 concurrency:
