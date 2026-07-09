@@ -167,7 +167,7 @@ with the shared leading select-all + trailing delete columns).
 
 | Component | Props | Use for |
 |---|---|---|
-| `Modal` | `open`, `onClose`, `wide`, `children` | Centered dialog (Esc / outside / X to close, auto-focus); `wide` widens it, and it scrolls when tall |
+| `Modal` | `open`, `onClose`, `wide`, `children` | Centered dialog (Esc / outside / X to close, auto-focus); `wide` widens it, scrolls when tall, and is resizable (drag the bottom-right corner) |
 | `TitledModal` | `open`, `title`, `onClose`, `wide`, `children` | Modal with a titled header row, so the close button stays visible and body content never sits under it. Prefer this over bare `Modal` for titled dialogs |
 | `Nav` / `Sidebar` / `SidebarFooter` / `CollapseToggle` | `items`,`currentPath` / `email`, `signOutNext` | App navigation chrome (`signOutNext` = post-logout landing) |
 | `ThemeToggle` | `onClick` | Light/dark theme switch (sidebar) |

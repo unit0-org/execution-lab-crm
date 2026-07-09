@@ -8,10 +8,13 @@ export const overlayStyle = {
   background: 'rgba(0, 0, 0, 0.6)'
 }
 
+// Sized to a comfortable default, capped to the viewport, and resizable:
+// drag the bottom-right corner to grow (up to 95vw × 85vh) or shrink.
 export const panelStyle = (wide) => ({
-  position: 'relative', width: '100%', padding: space[6],
-  maxWidth: wide ? '640px' : '420px',
-  maxHeight: '85vh', overflowY: 'auto',
+  position: 'relative', padding: space[6],
+  width: wide ? 'min(640px, 95vw)' : 'min(420px, 95vw)',
+  maxWidth: '95vw', maxHeight: '85vh',
+  overflow: 'auto', resize: 'both',
   background: color.bg.surface, borderRadius: radius.lg,
   border: `1px solid ${color.border.default}`
 })
