@@ -1,0 +1,38 @@
+name: Deploy to Cloud Run
+
+# Continuous deployment: on every merge to main, build → migrate → deploy
+# via Cloud Build (cloudbuild.yaml). Auth is keyless via Workload Identity
+# Federation — no service-account keys stored in GitHub. One-time GCP setup:
+# scripts/setup-cd.sh.
+
+on:
+  push:
+    branches: [main]
+
+# Never let two prod deploys overlap; let an in-flight one finish.
+concurrency:
+  group: deploy-cloud-run
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: the-execution-lab-crm
+          workload_identity_provider: projects/551994562422/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: github-deployer@the-execution-lab-crm.iam.gserviceaccount.com
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build, migrate, and deploy
+        run: |
+          gcloud builds submit --config cloudbuild.yaml \
+            --project the-execution-lab-crm .
