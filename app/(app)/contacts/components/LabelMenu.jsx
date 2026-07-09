@@ -22,7 +22,7 @@ export function LabelMenu({ cats, stateOf, onToggle, label }) {
         <LabelMenuPanel menu={menu} stateOf={stateOf} onToggle={onToggle}
           onManage={manage.show} />
       </Popover>
-      <Modal open={manage.open} onClose={manage.hide}>
+      <Modal open={manage.open} onClose={manage.hide} wide>
         <CategoryManager cats={cats} />
       </Modal>
     </>

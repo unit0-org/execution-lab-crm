@@ -10,7 +10,8 @@ export function ContactControls({ view }) {
     <Inline gap="sm">
       <ContactSearch value={view.search.query}
         onChange={view.search.setQuery} />
-      <LabelFilter options={view.labelOptions} filter={view.labelFilter} />
+      <LabelFilter options={view.labelOptions} filter={view.labelFilter}
+        cats={view.cats} />
       <ContactsCount count={view.search.results.length} />
     </Inline>
   )
