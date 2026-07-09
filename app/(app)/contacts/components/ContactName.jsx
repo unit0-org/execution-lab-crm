@@ -1,8 +1,5 @@
-import { fullName } from './fullName'
-
-const label = (c) =>
-  fullName(c) || c.contact_email?.[0]?.email || 'Unnamed contact'
+import { contactLabel } from '@/lib/contact/controllers/contactLabel'
 
 export function ContactName({ contact }) {
-  return <>{label(contact)}</>
+  return <>{contactLabel(contact)}</>
 }
