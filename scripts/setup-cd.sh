@@ -15,6 +15,14 @@ DEPLOYER="github-deployer@$PROJ.iam.gserviceaccount.com"
 gcloud iam service-accounts create github-deployer --project "$PROJ" \
   --display-name "GitHub Actions deployer (CD to Cloud Run)" || true
 
+# Wait for the SA to propagate before binding roles (eventual consistency;
+# otherwise the first add-iam-policy-binding fails with "does not exist").
+for i in $(seq 1 15); do
+  gcloud iam service-accounts describe "$DEPLOYER" --project "$PROJ" \
+    >/dev/null 2>&1 && break
+  echo "waiting for $DEPLOYER to propagate ($i)..."; sleep 5
+done
+
 # 2. Deployer: submit Cloud Builds, upload build source, read build logs.
 for role in roles/cloudbuild.builds.editor roles/storage.objectAdmin \
             roles/logging.viewer; do
