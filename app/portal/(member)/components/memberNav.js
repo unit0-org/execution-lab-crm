@@ -20,3 +20,8 @@ export function memberNav() {
     item('/billing', 'Billing', 'card')
   ]
 }
+
+// The lower sidebar group: settings sits apart from the main sections.
+export function memberSettingsNav() {
+  return [item('/settings', 'Settings', 'gear')]
+}

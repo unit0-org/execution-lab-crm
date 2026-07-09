@@ -1,4 +1,5 @@
 import { PortalThemeToggle } from './components/PortalThemeToggle'
+import { PortalAutoTheme } from './components/PortalAutoTheme'
 import { portalThemeScript } from '@/lib/portal/portalThemeScript'
 
 export { metadata } from '@/lib/portal/portalMetadata'
@@ -9,6 +10,7 @@ export default function PortalLayout({ children }) {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: portalThemeScript }} />
+      <PortalAutoTheme />
       <PortalThemeToggle />
       {children}
     </>
