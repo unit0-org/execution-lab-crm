@@ -24,8 +24,11 @@ for i in $(seq 1 15); do
 done
 
 # 2. Deployer: submit Cloud Builds, upload build source, read build logs.
+#    serviceUsageConsumer is required for `gcloud builds submit` itself —
+#    without it the submit fails with a misleading "forbidden from accessing
+#    the bucket [PROJECT_cloudbuild]" error.
 for role in roles/cloudbuild.builds.editor roles/storage.objectAdmin \
-            roles/logging.viewer; do
+            roles/logging.viewer roles/serviceusage.serviceUsageConsumer; do
   gcloud projects add-iam-policy-binding "$PROJ" \
     --member "serviceAccount:$DEPLOYER" --role "$role" --condition=None
 done
