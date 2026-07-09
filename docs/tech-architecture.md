@@ -65,3 +65,27 @@ One Next.js app serves two hosts (routed in-app by `Host` header via
   `CRON_SECRET`), which runs every job in `lib/cron`.
 - **DNS** at GoDaddy; **Vercel** remains deployed as rollback until
   decommissioned. Migrated from Vercel 2026-07-08.
+
+## Deploys
+- **CI (GitHub Actions, `.github/workflows/ci.yml`)** runs `pnpm lint` +
+  `pnpm build` on every PR and gates merge. It does **not** deploy.
+- **Production (Cloud Run) is currently MANUAL** — no Cloud Build trigger or
+  CD workflow yet. To ship `main`, from the repo root:
+  ```
+  gcloud builds submit --config cloudbuild.yaml --project the-execution-lab-crm .
+  SECRETS=$(gcloud secrets list --project the-execution-lab-crm \
+    --format='value(name)' | awk '{print $1"="$1":latest"}' | paste -sd,)
+  gcloud run deploy crm --region us-east1 --project the-execution-lab-crm \
+    --image us-east5-docker.pkg.dev/the-execution-lab-crm/crm/app:latest \
+    --set-secrets="$SECRETS" --port 8080 --min-instances 1 --allow-unauthenticated
+  ```
+  Cloud Run keeps prior revisions, so **rollback** = route traffic to the last
+  good revision (`gcloud run services update-traffic crm --to-revisions=…`).
+- **Migrations are a separate, manual step** (the image build never migrates).
+  For a schema change, run once against prod before/with the deploy:
+  `RUN_MIGRATIONS=true SUPABASE_DB_URL=… node scripts/migrate.mjs`
+  (idempotent — tracked in `supabase_migrations.schema_migrations`).
+- **Vercel** still auto-deploys `main` (rollback only); remove at decommission.
+- **TODO:** wire CD (a Cloud Build trigger or a GitHub Actions job) to build +
+  deploy + migrate on merge to `main`, so prod deploys aren't hand-run.
+
