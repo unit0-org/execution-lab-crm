@@ -2,7 +2,7 @@
 
 import { useContact } from '../hooks/useContact'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { contactLabel } from './contactLabel'
+import { contactLabel } from '@/lib/contact/controllers/contactLabel'
 import { ContactDetail } from './ContactDetail'
 import { NotFound } from './NotFound'
 
