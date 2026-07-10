@@ -63,7 +63,12 @@ leaves this stale is incomplete (this is a review-enforced rule in
   which they set on the Settings → Profile tab.
 - **event** — events with participants (`event_participant`) and
   per-participant registration answers; attendance = checked-in /
-  registered.
+  registered. Those answers surface as read-through nuggets in the
+  contact "What we know" panel, where they can be edited (value only —
+  the question is shared) or deleted via the contact `updateNugget` /
+  `removeNugget` actions, which route to `event` by the nugget's
+  `origin`. A Luma re-import can overwrite such an edit or recreate a
+  deleted answer, since `ParticipantAnswer.record` upserts.
 - **meeting** — meetings synced from Google Calendar or entered by hand,
   with participants (`meeting_participant`), notes, attachments,
   transcripts (`meeting_transcript`), and merge suggestions. A meeting may

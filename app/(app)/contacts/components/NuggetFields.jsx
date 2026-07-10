@@ -1,16 +1,12 @@
-import { TextField } from '@/ui/atoms/TextField'
-import { TextArea } from '@/ui/atoms/TextArea'
+import { ManualNuggetFields } from './ManualNuggetFields'
+import { EventNuggetFields } from './EventNuggetFields'
 
-export function NuggetFields({ label, value }) {
-  const labelText = label || ''
-  const valueText = value || ''
+// Editable fields for a nugget. Manual nuggets let you edit the label;
+// registration answers lock the shared question and edit only the value.
+export function NuggetFields({ origin, label, value }) {
+  if (origin === 'event') {
+    return <EventNuggetFields question={label} value={value} />
+  }
 
-  return (
-    <>
-      <TextField name="label" autoFocus defaultValue={labelText}
-        placeholder="Question or label (optional)" />
-      <TextArea name="value" defaultValue={valueText}
-        placeholder="Value" required />
-    </>
-  )
+  return <ManualNuggetFields label={label} value={value} />
 }

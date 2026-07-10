@@ -9,6 +9,8 @@ export function ConfirmDeleteNugget({ nugget, onDeleted, onCancel }) {
 
   return (
     <ConfirmDeleteForm heading="Delete nugget" action={action}
-      id={nugget.id} onCancel={onCancel} />
+      id={nugget.id} onCancel={onCancel}>
+      <input type="hidden" name="origin" value={nugget.origin} />
+    </ConfirmDeleteForm>
   )
 }
