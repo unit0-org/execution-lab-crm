@@ -11,6 +11,7 @@ export function ContactActivityBar({ act }) {
       <ContactActivityButton label="Relationship"
         onClick={act.rel.show} />
       <ContactActivityButton label="Task" onClick={act.task.show} />
+      <ContactActivityButton label="File" onClick={act.file.show} />
     </Inline>
   )
 }
