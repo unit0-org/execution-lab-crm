@@ -12,7 +12,7 @@ export function OfferCards({ offers, onRemove }) {
     )
 
   return (
-    <CardGrid>
+    <CardGrid align="start">
       {offers.map((offer) => (
         <OfferCard key={offer.id} offer={offer} onRemove={onRemove} />
       ))}

@@ -402,18 +402,23 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   metadata. **Each tool page must re-gate** via `memberHasTool(contactId,
   key)` so a revoked member can't reach it by URL. Admins toggle access
   per member in `app/(app)/portal-members` (the Tools column), through
-  `setToolAccess` (`withAdmin`). The first tool is **Offer Levers**, a
-  prompt builder: offer context, lever settings, and the AI-generated
-  offers pasted back in all persist per offer as `offer_generator_input`
-  rows (a multi lever stores its picks as a JSON array in `value`); it
-  assembles those into a prompt the member copies. A generated-offer row
-  can be flagged `active` (currently selling); the tool homepage lists
-  each offer's active offers via `listOffersWithActive`. The member can
-  also **export an offer as a branded PDF** — its context, levers, and
-  generated offers — via `[offerId]/pdf/route.js` (`buildOfferDocument`
-  shapes the model, `lib/pdf/renderDocumentPdf` draws it). The route
-  re-gates the tool and scopes to an owned offer (it does **not** live
-  under `/api`, which bypasses gates).
+  `setToolAccess` (`withAdmin`). The first tool is the **offer generator**
+  (`offer-levers` key), a prompt builder: offer context, lever settings,
+  and the AI-generated offers pasted back in all persist per offer as
+  `offer_generator_input` rows (a multi lever stores its picks as a JSON
+  array in `value`); it assembles those into a prompt the member copies. A
+  generated-offer row can be flagged `active` (currently selling); the tool
+  homepage lists each offer's active offers via `listOffersWithActive`. The
+  `offer` row carries both `created_at` and `updated_at` — every content
+  edit (rename, version bump, input add/edit/remove) bumps `updated_at` via
+  `offer.touch()`, so the card and PDF can show a last-edited date. The
+  member can also **export an offer as a branded PDF** (from the card's
+  three-dot menu) — its context, the levers as a table, and the generated
+  offers (active ones tagged), headed by the created/updated dates — via
+  `[offerId]/pdf/route.js` (`buildOfferDocument` shapes the model,
+  `lib/pdf/renderDocumentPdf` draws it). The route re-gates the tool and
+  scopes to an owned offer (it does **not** live under `/api`, which
+  bypasses gates).
 
 ## Flow maps (which file does each step)
 
