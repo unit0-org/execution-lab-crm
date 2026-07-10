@@ -161,10 +161,15 @@ leaves this stale is incomplete (this is a review-enforced rule in
   the manual **CSV import** (`mapLumaGuest`), a **live webhook**
   (`/api/luma/webhook` → `resolveWebhookEvent` verifies the
   `Webhook-Signature` HMAC against `LUMA_WEBHOOK_SECRET`, then
-  `handleGuestWebhook`), and the **`sync-luma` daily cron** backfill
-  (`syncLumaGuests` pulls the calendar via `lib/luma/api/`, keyed by
+  `dispatchLumaEvent` routes by action), and the **`sync-luma` daily cron**
+  backfill (`syncLumaGuests` pulls the calendar via `lib/luma/api/`, keyed by
   `LUMA_API_KEY`; no-ops until that env var is set). The API guest JSON is
-  mapped by `mapApiGuest`; the CSV path is unchanged.
+  mapped by `mapApiGuest`; the CSV path is unchanged. The single webhook
+  fires for **all** actions: `dispatchLumaEvent` handles guest actions
+  (`handleGuestWebhook`) and `event.created`/`event.updated`
+  (`handleEventWebhook` keeps the `OwnEvent` title/date/url in sync);
+  everything else is ignored. `event.canceled` is not yet handled (the
+  `event` table has no cancel state — a future change).
 - **drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
   API: invoice-PDF upload (narrow `drive.file` scope) plus list / download /
   move for the meeting-transcript import, which uses the broad `drive` scope
