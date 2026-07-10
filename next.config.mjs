@@ -38,12 +38,15 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  // Self-contained server bundle for a tiny Docker runtime image
+  // (only the traced node_modules ship) — faster push + container start.
+  output: 'standalone',
   // Don't advertise the framework to fingerprinting tools.
   poweredByHeader: false,
   experimental: { authInterrupts: true },
   serverExternalPackages: ['sequelize', 'pg'],
   outputFileTracingIncludes: {
-    '/api/invoices/**': ['./lib/invoice/pdf/fonts/**']
+    '/api/invoices/**': ['./lib/pdf/fonts/**']
   },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
