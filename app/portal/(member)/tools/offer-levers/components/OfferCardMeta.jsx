@@ -2,13 +2,12 @@ import { Text } from '@/ui/atoms/Text'
 import { Badge } from '@/ui/atoms/Badge'
 import { DateText } from '@/ui/atoms/DateText'
 import { RaisedControl } from '@/ui/atoms/RaisedControl'
-import { IconButton } from '@/ui/atoms/IconButton'
-import { Icon } from '@/ui/atoms/Icon'
+import { OfferCardMenu } from './OfferCardMenu'
 import { footerStyle, metaLeadStyle } from './OfferCard.styles'
 import { versionLabel } from '../versionLabel'
 
-// A card's footer: version badge + created date on the left, delete on the
-// right (raised above the card link so it stays clickable).
+// A card's footer: version badge + created date on the left, a three-dot
+// actions menu on the right (raised above the card link so it stays usable).
 export function OfferCardMeta({ offer, onRemove }) {
   return (
     <div style={footerStyle}>
@@ -19,9 +18,7 @@ export function OfferCardMeta({ offer, onRemove }) {
         </Text>
       </div>
       <RaisedControl>
-        <IconButton label="Delete offer" onClick={() => onRemove(offer)}>
-          <Icon name="trash" size={16} />
-        </IconButton>
+        <OfferCardMenu offer={offer} onRemove={onRemove} />
       </RaisedControl>
     </div>
   )

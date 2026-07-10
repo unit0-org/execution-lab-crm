@@ -80,7 +80,7 @@ Conventions (from `AGENTS.md`):
 | `Stack` | `gap='md'`, `children` | Vertical flex stack (`xs`/`sm`/`md`/`lg`) |
 | `Inline` | `gap`, `nowrap`, `align`, `children` | Horizontal flex row (`align` sets `align-items`, default `center`; e.g. `end` to bottom-align mixed-height items) |
 | `Columns` | `children` | Multi-column layout |
-| `CardGrid` | `children` | Responsive grid of cards |
+| `CardGrid` | `children`, `align` | Responsive grid of cards; `align="start"` when cards differ in height (default stretches to equal heights) |
 | `GrowRow` | `align`, `children` | Row where the first child grows, rest content-width |
 | `EndRow` | `children` | Row aligned to the end |
 | `StickyBar` | `active`, `children` | Sticky action bar |
