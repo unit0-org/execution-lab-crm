@@ -9,8 +9,6 @@ export function NuggetTools({ nugget, onChanged }) {
   const edit = useReveal()
   const remove = useReveal()
 
-  if (nugget.origin !== 'manual') return null
-
   return (
     <>
       <NuggetButtons onEdit={edit.show} onDelete={remove.show} />

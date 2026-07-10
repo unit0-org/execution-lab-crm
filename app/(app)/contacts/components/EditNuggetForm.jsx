@@ -15,9 +15,11 @@ export function EditNuggetForm({ nugget, onSaved, onCancel }) {
   return (
     <Form action={action}>
       <input type="hidden" name="id" value={nugget.id} />
+      <input type="hidden" name="origin" value={nugget.origin} />
       <Stack gap="md">
         <Heading level={3}>Edit nugget</Heading>
-        <NuggetFields label={nugget.question} value={nugget.answer} />
+        <NuggetFields origin={nugget.origin}
+          label={nugget.question} value={nugget.answer} />
         <FormError message={error} />
         <DialogActions label="Save" onCancel={onCancel} />
       </Stack>
