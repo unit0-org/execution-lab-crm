@@ -54,9 +54,16 @@ leaves this stale is incomplete (this is a review-enforced rule in
 ## Domain map (`lib/`)
 
 - **contacts** — the core entity. A contact has emails, phones, categories,
-  facts (a.k.a. nuggets: optional label + value), relationships, and
-  optional birthday/LinkedIn/photo. **Merge** folds duplicates together
-  (see the invariant below).
+  facts (a.k.a. nuggets: optional label + value), relationships, files
+  (attachments), and optional birthday/LinkedIn/photo. **Merge** folds
+  duplicates together (see the invariant below). **Attachments**
+  (`contact_file`) keep only metadata in Postgres — the bytes live in the
+  **private `contact-file` Supabase Storage bucket** at `bucket_path`,
+  reached via short-lived signed URLs generated server-side with the service
+  role. The Storage client is encapsulated in **`lib/storage/`** (bucket +
+  signed upload/download URLs + object removal); no feature code touches the
+  Supabase Storage client directly. Deleting a `contact_file` row also
+  removes its object (`deleteContactFile`).
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
@@ -170,7 +177,22 @@ leaves this stale is incomplete (this is a review-enforced rule in
   (one row per org: `send_hour`, `last_sent_at`) is edited on Settings →
   Digest, which also has a "Send it now" button. Not contact-owned (no
   contact-merge fold-in).
-- **luma / drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
+- **luma** — Luma event guests flow into `event`/`event_participant` (NOT
+  `registration`/`cohort` — separate subsystems). Three intake paths share
+  one seam (`importMappedGuest`: upsert contact → participation → answers):
+  the manual **CSV import** (`mapLumaGuest`), a **live webhook**
+  (`/api/luma/webhook` → `resolveWebhookEvent` verifies the
+  `Webhook-Signature` HMAC against `LUMA_WEBHOOK_SECRET`, then
+  `dispatchLumaEvent` routes by action), and the **`sync-luma` daily cron**
+  backfill (`syncLumaGuests` pulls the calendar via `lib/luma/api/`, keyed by
+  `LUMA_API_KEY`; no-ops until that env var is set). The API guest JSON is
+  mapped by `mapApiGuest`; the CSV path is unchanged. The single webhook
+  fires for **all** actions: `dispatchLumaEvent` handles guest actions
+  (`handleGuestWebhook`) and `event.created`/`event.updated`
+  (`handleEventWebhook` keeps the `OwnEvent` title/date/url in sync);
+  everything else is ignored. `event.canceled` is not yet handled (the
+  `event` table has no cancel state — a future change).
+- **drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
   API: invoice-PDF upload (narrow `drive.file` scope) plus list / download /
   move for the meeting-transcript import, which uses the broad `drive` scope
   (`driveAccessToken(raw, scope)`). The **`import-meetings`** cron job
@@ -238,6 +260,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `contact_fact` | cascade | `claimContactRecords` (reassign) |
 | `contact_note` | cascade | `claimContactRecords` (reassign) |
 | `contact_task` | cascade | `claimContactRecords` (reassign; `google_task_id` untouched) |
+| `contact_file` | cascade | `mergeContactFiles` (reassign; objects never dedupe) |
 | `event_participant` | cascade | `mergeParticipations` (dedupe per event, fold answers) |
 | `meeting_participant` | cascade | `mergeMeetingParticipations` (dedupe per meeting) |
 | `contact_category_link` | cascade | `mergeCategoryLinks` (idempotent, composite key) |
