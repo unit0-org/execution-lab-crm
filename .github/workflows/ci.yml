@@ -2,6 +2,9 @@ name: CI
 
 on:
   pull_request:
+  # Required checks must also run on the merge queue's batched commit,
+  # or the queue waits forever for a check that never starts.
+  merge_group:
 
 jobs:
   verify:

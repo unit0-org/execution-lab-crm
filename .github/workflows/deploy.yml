@@ -28,7 +28,32 @@ env:
   CACHE: us-east5-docker.pkg.dev/the-execution-lab-crm/crm/app:buildcache
 
 jobs:
+  # Coalesce a burst of merges into one deploy: after a short debounce,
+  # bail if this commit is no longer the tip of main (a newer merge
+  # superseded it). Merge-queue batching already collapses queued PRs into
+  # one push; this also covers PRs merged directly, back-to-back.
+  guard:
+    runs-on: ubuntu-latest
+    outputs:
+      proceed: ${{ steps.check.outputs.proceed }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sleep 30
+          latest=$(gh api \
+            repos/${{ github.repository }}/commits/main --jq .sha)
+          if [ "$latest" = "${{ github.sha }}" ]; then
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Superseded by $latest — skipping this deploy."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          fi
+
   deploy:
+    needs: guard
+    if: needs.guard.outputs.proceed == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
