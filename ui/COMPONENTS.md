@@ -133,7 +133,7 @@ Conventions (from `AGENTS.md`):
 | `MultiSelect` (+`Option`/`Trigger`) | `options`, `selected`, `onToggle`, `placeholder` | Multi-select dropdown |
 | `CheckList` (+`Item`) | `options`=`[{value,label,desc}]`, `selected`, `onToggle` | Always-visible multi-select checkbox list (label + description per row) |
 | `SwatchSelect` (+`SwatchMenu`/`SwatchTrigger`) | `value`, `onPick`, `options` | Color picker |
-| `Popover` | `open`, `onClose`, `trigger`, `children` | Anchored popover |
+| `Popover` | `open`, `onClose`, `trigger`, `align`, `children` | Anchored popover; panel is portaled to `<body>` so a scrolling, overflow, or hover-transformed ancestor can't clip or mis-anchor it |
 | `Collapsible` | `title`, `preview`, `defaultOpen`, `children` | Expand/collapse section; `preview` shows only while collapsed |
 | `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; override `message`/`confirmLabel`/`tone` for non-destructive confirms |
 | `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table; reveals when `count > 0` and Delete opens the shared `ConfirmDialog` before firing `onDelete` |
@@ -150,7 +150,9 @@ Conventions (from `AGENTS.md`):
 Helpers: `matchOptions(options, query, limit=5)` and
 `hasExactLabel(options, query)` back `Autocomplete`'s filtering.
 
-Hooks: `useToggle(initial)`, `useOutsideClose(ref, onClose, open)`,
+Hooks: `useToggle(initial)`,
+`useOutsideClose(ref, onClose, open, extraRef?)` (`extraRef` also stays open
+for clicks inside a portaled panel),
 `useEscClose(onClose, open)`, `useAutoFocus(open)`, `useClipboard()`,
 `useBackdropClose(onClose)`, `useToasts()`, `useAnchorRect(ref, open)`,
 `useTableSort(rows, columns, initialKey, initialDir)`,
