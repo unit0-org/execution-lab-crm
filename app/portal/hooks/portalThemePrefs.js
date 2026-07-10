@@ -8,7 +8,7 @@ const KEYS = {
   dayAt: 'portalDayAt'
 }
 
-export const DEFAULTS = { mode: 'light', darkAt: '18:00', dayAt: '06:00' }
+export const DEFAULTS = { mode: 'auto', darkAt: '18:00', dayAt: '06:00' }
 
 export function readPref(name) {
   const legacy = name === 'mode' ? localStorage.getItem('portalTheme') : null
