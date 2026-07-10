@@ -5,6 +5,7 @@ import { ConflictsServer } from './ConflictsServer'
 import { EmailTemplatesServer } from './EmailTemplatesServer'
 import { CompanyServer } from './CompanyServer'
 import { InvoicingServer } from './InvoicingServer'
+import { DigestServer } from './DigestServer'
 import { AppearanceView } from './components/AppearanceView'
 
 const PANELS = {
@@ -15,6 +16,7 @@ const PANELS = {
   emails: EmailTemplatesServer,
   company: CompanyServer,
   invoicing: InvoicingServer,
+  digest: DigestServer,
   appearance: AppearanceView
 }
 

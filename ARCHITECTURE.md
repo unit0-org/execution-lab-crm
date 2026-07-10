@@ -155,6 +155,21 @@ leaves this stale is incomplete (this is a review-enforced rule in
   always-CC address (`abel@theexecutionlab.ca`, override `ALWAYS_CC`) via
   `withAlwaysCc`, deduped against the recipient and any existing CC, so
   every outgoing email CCs that address.
+- **digest** — the weekly staff insights email (`lib/digest/`). `buildDigest`
+  gathers four sections for the last 7 days — follow-ups (contacts never
+  contacted or idle ≥ `STALE_DAYS` (60), never-contacted first then
+  longest-stale, capped at `MAX_FOLLOW_UPS` (15) with a "+N more"),
+  first-time event attendees, new customers (first qualifying purchase or
+  first paid registration this week), and upcoming birthdays (next 7 days,
+  business tz) — reusing the dashboard signal helpers and the
+  `CUSTOMER_MIN_PURCHASE_CENTS` rule. `renderDigestHtml` composes a
+  self-contained HTML email (untrusted contact/event names are escaped).
+  `sendWeeklyDigest` emails every staff member (`listMembers`) via `sendEmail`
+  and stamps `digest_setting.last_sent_at`; `sendWeeklyDigestIfDue` (the
+  cron entry) gates it to Mondays and once per week. `digest_setting`
+  (one row per org: `send_hour`, `last_sent_at`) is edited on Settings →
+  Digest, which also has a "Send it now" button. Not contact-owned (no
+  contact-merge fold-in).
 - **luma / drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
   API: invoice-PDF upload (narrow `drive.file` scope) plus list / download /
   move for the meeting-transcript import, which uses the broad `drive` scope
@@ -174,7 +189,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
   and a Run button that calls the same `runJob`, with the full run history
   below it on the same page. **Add a job by appending to `CRON_JOBS`** — it
   then runs daily and appears on the Cron page automatically; never add a
-  second Vercel cron entry (the plan allows one daily cron).
+  second Vercel cron entry (the plan allows one daily cron). A job that
+  should fire less often gates itself inside its `run` and no-ops otherwise
+  — e.g. **`weekly-digest`** (`sendWeeklyDigestIfDue`) sends only on the
+  business-tz Monday run, once per week.
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).
   Irreversible/financial tools (`delete_*`, `merge_*`, `approve_invoice`,
   `send_invoice(s)`, `void_invoice`) are wrapped by `guardDestructive`: they
