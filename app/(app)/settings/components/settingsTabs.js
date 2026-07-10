@@ -7,6 +7,7 @@ export const SETTINGS_TABS = [
   { value: 'emails', label: 'Email templates' },
   { value: 'company', label: 'Company info' },
   { value: 'invoicing', label: 'Invoicing' },
+  { value: 'digest', label: 'Digest' },
   { value: 'appearance', label: 'Appearance' }
 ]
 
