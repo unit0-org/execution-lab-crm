@@ -23,16 +23,21 @@ for i in $(seq 1 15); do
   echo "waiting for $DEPLOYER to propagate ($i)..."; sleep 5
 done
 
-# 2. Deployer: submit Cloud Builds, stage build source, read build logs.
-#    Two non-obvious grants `gcloud builds submit` needs, both surfacing as
-#    the same misleading "forbidden from accessing the bucket
-#    [PROJECT_cloudbuild]" error until present:
-#    - serviceUsageConsumer (serviceusage.services.use), and
-#    - storage.admin — the submit does a bucket GET (and, on a fresh project,
-#      CREATE) of the source-staging bucket; storage.objectAdmin covers the
-#      objects but NOT the bucket itself, so it isn't enough.
+# 2. Deployer roles. deploy.yml now builds, pushes, migrates, and deploys
+#    straight from the GitHub runner (running AS this SA) — no
+#    `gcloud builds submit` round-trip — so the deployer itself needs:
+#    - artifactregistry.writer  — push the image + read/write the build cache
+#    - run.admin                — deploy a new Cloud Run revision
+#    - secretmanager.secretAccessor — read build args + the migrate DB URL
+#    - secretmanager.viewer     — list secrets for the --set-secrets step
+#    The cloudbuild.editor/storage.admin/serviceUsageConsumer grants stay so
+#    cloudbuild.yaml remains a working manual fallback (`gcloud builds
+#    submit`); storage.admin also surfaces as the misleading "forbidden from
+#    accessing the bucket [PROJECT_cloudbuild]" error until present.
 for role in roles/cloudbuild.builds.editor roles/storage.admin \
-            roles/logging.viewer roles/serviceusage.serviceUsageConsumer; do
+            roles/logging.viewer roles/serviceusage.serviceUsageConsumer \
+            roles/artifactregistry.writer roles/run.admin \
+            roles/secretmanager.secretAccessor roles/secretmanager.viewer; do
   gcloud projects add-iam-policy-binding "$PROJ" \
     --member "serviceAccount:$DEPLOYER" --role "$role" --condition=None
 done
