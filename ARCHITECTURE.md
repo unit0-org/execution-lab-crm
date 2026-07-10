@@ -54,9 +54,16 @@ leaves this stale is incomplete (this is a review-enforced rule in
 ## Domain map (`lib/`)
 
 - **contacts** — the core entity. A contact has emails, phones, categories,
-  facts (a.k.a. nuggets: optional label + value), relationships, and
-  optional birthday/LinkedIn/photo. **Merge** folds duplicates together
-  (see the invariant below).
+  facts (a.k.a. nuggets: optional label + value), relationships, files
+  (attachments), and optional birthday/LinkedIn/photo. **Merge** folds
+  duplicates together (see the invariant below). **Attachments**
+  (`contact_file`) keep only metadata in Postgres — the bytes live in the
+  **private `contact-file` Supabase Storage bucket** at `bucket_path`,
+  reached via short-lived signed URLs generated server-side with the service
+  role. The Storage client is encapsulated in **`lib/storage/`** (bucket +
+  signed upload/download URLs + object removal); no feature code touches the
+  Supabase Storage client directly. Deleting a `contact_file` row also
+  removes its object (`deleteContactFile`).
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
@@ -220,6 +227,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `contact_fact` | cascade | `claimContactRecords` (reassign) |
 | `contact_note` | cascade | `claimContactRecords` (reassign) |
 | `contact_task` | cascade | `claimContactRecords` (reassign; `google_task_id` untouched) |
+| `contact_file` | cascade | `mergeContactFiles` (reassign; objects never dedupe) |
 | `event_participant` | cascade | `mergeParticipations` (dedupe per event, fold answers) |
 | `meeting_participant` | cascade | `mergeMeetingParticipations` (dedupe per meeting) |
 | `contact_category_link` | cascade | `mergeCategoryLinks` (idempotent, composite key) |
