@@ -154,7 +154,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
   paid cohort registration** (comp seats included — a comp is a paid
   registration with `amount_total` 0) is a *customer*; everyone else is a
   *lead* (`toSignal` → `isCustomer`). Customers are excluded from lead
-  views (`excludedLeadIds`).
+  views (`excludedLeadIds`). Powers hot leads/segments for the MCP
+  `dashboard_summary` tool; the `/dashboard` **page** now renders the
+  weekly-**digest** payload (`buildDigest`), not a separate summary.
 - **google** — OAuth accounts, contact/calendar sync, and a review queue
   for sync conflicts (`sync_conflict`, `contact_google_link`).
 - **email** — templated transactional email (Resend) + editable templates.
@@ -162,15 +164,20 @@ leaves this stale is incomplete (this is a review-enforced rule in
   always-CC address (`abel@theexecutionlab.ca`, override `ALWAYS_CC`) via
   `withAlwaysCc`, deduped against the recipient and any existing CC, so
   every outgoing email CCs that address.
-- **digest** — the weekly staff insights email (`lib/digest/`). `buildDigest`
-  gathers four sections for the last 7 days — follow-ups (contacts never
-  contacted or idle ≥ `STALE_DAYS` (60), never-contacted first then
-  longest-stale, capped at `MAX_FOLLOW_UPS` (15) with a "+N more"),
-  first-time event attendees, new customers (first qualifying purchase or
-  first paid registration this week), and upcoming birthdays (next 7 days,
-  business tz) — reusing the dashboard signal helpers and the
-  `CUSTOMER_MIN_PURCHASE_CENTS` rule. `renderDigestHtml` composes a
-  self-contained HTML email (untrusted contact/event names are escaped).
+- **digest** — the weekly staff insights payload (`lib/digest/`). `buildDigest`
+  is the single generator, feeding two display functions off one payload:
+  the email (`renderDigestHtml`) and the **dashboard** (`/dashboard` →
+  `DigestBoard`). It gathers hot leads (top leads by heat, reusing the
+  dashboard `mergeSignals`/`hotLeads`) plus four last-7-day sections —
+  follow-ups (contacts never contacted or idle ≥ `STALE_DAYS` (60),
+  never-contacted first then longest-stale, capped at `MAX_FOLLOW_UPS` (15)
+  with a "+N more"), first-time event attendees, new customers (first
+  qualifying purchase or first paid registration this week), and upcoming
+  birthdays (next 7 days, business tz) — reusing the dashboard signal helpers
+  and the `CUSTOMER_MIN_PURCHASE_CENTS` rule. The four sections share
+  view-models (`*View` → `{title, emptyText, rows}`) across both displays;
+  `renderDigestHtml` composes a self-contained HTML email (untrusted
+  contact/event names are escaped).
   `sendWeeklyDigest` emails every staff member (`listMembers`) via `sendEmail`
   and stamps `digest_setting.last_sent_at`; `sendWeeklyDigestIfDue` (the
   cron entry) gates it to Mondays and once per week. `digest_setting`
