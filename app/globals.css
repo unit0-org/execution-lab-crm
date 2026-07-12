@@ -200,6 +200,7 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
   [data-hover-host] [data-hover-reveal]:focus-within { opacity: 1; }
 }
 
+[data-nav-item] { display: flex; }
 [data-nav-item]:not([data-active]) { color: var(--color-text-secondary); }
 [data-nav-item]:not([data-active]):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
 [data-nav-item][data-active] { color: var(--color-accent); background: var(--color-accent-soft); }
