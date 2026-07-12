@@ -204,6 +204,16 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 [data-nav-item]:not([data-active]):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
 [data-nav-item][data-active] { color: var(--color-accent); background: var(--color-accent-soft); }
 [data-nav-item][data-active] [data-nav-icon] { color: var(--color-accent); }
+
+/* Sidebar category groups — a tappable header over collapsible children. */
+[data-nav-group-header] { color: var(--color-text-secondary); cursor: pointer; }
+[data-nav-group-header]:hover { color: var(--color-text-primary); }
+[data-nav-group]:not([data-open]) [data-nav-item] { display: none; }
+[data-nav-group][data-open] [data-nav-chevron] { transform: rotate(90deg); }
+/* Collapsed rail: hide headers, show every leaf icon regardless of open. */
+.sidebar-collapsed [data-nav-group-header] { display: none; }
+.sidebar-collapsed [data-nav-group] [data-nav-item] { display: flex; }
+
 [data-chip-interactive]:hover { background: var(--color-bg-subtle) !important; color: var(--color-text-primary) !important; }
 
 /* App shell — left sidebar on desktop, hamburger drawer on mobile. */

@@ -1,20 +1,12 @@
-import { NavLink } from '../atoms/NavLink'
+import { NavEntry } from './NavEntry'
 import { navStyle } from './Nav.styles'
 
 export function Nav({ items, currentPath, onNavigate }) {
   return (
     <nav style={navStyle}>
-      {items.map((item) => (
-        <NavLink
-          key={item.href}
-          href={item.href}
-          icon={item.icon}
-          active={currentPath === item.href}
-          onNavigate={onNavigate}
-          newTab={item.newTab}
-        >
-          {item.label}
-        </NavLink>
+      {items.map((entry) => (
+        <NavEntry key={entry.label} entry={entry}
+          currentPath={currentPath} onNavigate={onNavigate} />
       ))}
     </nav>
   )
