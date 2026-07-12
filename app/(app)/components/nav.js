@@ -1,29 +1,22 @@
-export const NAV = [
-  { href: '/dashboard', label: 'Dashboard', icon: 'grid' },
-  { href: '/contacts', label: 'Contacts', icon: 'users' },
-  { href: '/events', label: 'Events', icon: 'calendar' },
-  { href: '/meetings', label: 'Meetings', icon: 'video' },
-  { href: '/cohorts', label: 'Cohorts', icon: 'users' },
-  { href: '/purchases', label: 'Purchases', icon: 'card' },
-  { href: '/invoices', label: 'Invoices', icon: 'file' }
-]
+import {
+  DASHBOARD, CRM, EVENTS, SALES, COHORTS, PORTAL_MEMBERS, SETTINGS
+} from './navItems'
 
-const CRON = { href: '/cron', label: 'Cron', icon: 'refresh' }
-const SETTINGS = { href: '/settings', label: 'Settings', icon: 'gear' }
-const PORTAL_MEMBERS =
-  { href: '/portal-members', label: 'Portal Members', icon: 'users' }
+// Programs group: Cohorts for all; Portal Members is admin-only.
+function programsGroup(role) {
+  const items = [COHORTS]
 
-// The main nav. Portal Members (invite/revoke) is admin-only; Settings
-// lives separately, at the bottom.
-export function navFor(role) {
-  if (role === 'admin') return [...NAV, PORTAL_MEMBERS]
+  if (role === 'admin') items.push(PORTAL_MEMBERS)
 
-  return NAV
+  return { label: 'Programs', items }
 }
 
-// Bottom-of-sidebar nav: Settings for every member; Cron stays admin-only.
-export function settingsNav(role) {
-  if (role === 'admin') return [CRON, SETTINGS]
+// The main sidebar: a top link plus the category groups.
+export function navFor(role) {
+  return [DASHBOARD, CRM, EVENTS, programsGroup(role), SALES]
+}
 
+// Bottom of the sidebar: Settings (Cron now lives in the Settings page).
+export function settingsNav() {
   return [SETTINGS]
 }

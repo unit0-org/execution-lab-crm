@@ -6,6 +6,7 @@ import { EmailTemplatesServer } from './EmailTemplatesServer'
 import { CompanyServer } from './CompanyServer'
 import { InvoicingServer } from './InvoicingServer'
 import { DigestServer } from './DigestServer'
+import { CronServer } from '../cron/CronServer'
 import { AppearanceView } from './components/AppearanceView'
 
 const PANELS = {
@@ -17,6 +18,7 @@ const PANELS = {
   company: CompanyServer,
   invoicing: InvoicingServer,
   digest: DigestServer,
+  cron: CronServer,
   appearance: AppearanceView
 }
 

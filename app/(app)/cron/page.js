@@ -1,10 +1,6 @@
-import { Page } from '@/ui/layout/Page'
-import { CronServer } from './CronServer'
+import { redirect } from 'next/navigation'
 
+// Cron now lives inside Settings; keep the old URL working.
 export default function CronPage() {
-  return (
-    <Page width="wide">
-      <CronServer />
-    </Page>
-  )
+  redirect('/settings?tab=cron')
 }

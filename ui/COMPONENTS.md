@@ -171,7 +171,7 @@ with the shared leading select-all + trailing delete columns).
 |---|---|---|
 | `Modal` | `open`, `onClose`, `wide`, `children` | Centered dialog (Esc / outside / X to close, auto-focus); `wide` widens it, scrolls when tall, and is resizable (drag the bottom-right corner) |
 | `TitledModal` | `open`, `title`, `onClose`, `wide`, `children` | Modal with a titled header row, so the close button stays visible and body content never sits under it. Prefer this over bare `Modal` for titled dialogs |
-| `Nav` / `Sidebar` / `SidebarFooter` / `CollapseToggle` | `items`,`currentPath` / `email`, `signOutNext` | App navigation chrome (`signOutNext` = post-logout landing) |
+| `Nav` / `NavEntry` / `NavGroup` / `Sidebar` / `SidebarFooter` / `CollapseToggle` | `items`,`currentPath` / `email`, `signOutNext` | App navigation chrome — `items` may be plain links or `{label,items}` category groups (`NavGroup` renders a tappable header that expands its children; collapses to an icon rail). `signOutNext` = post-logout landing |
 | `ThemeToggle` | `onClick` | Light/dark theme switch (sidebar) |
 | `Toaster` | — | Toast outlet — mount once at the root |
 | `UserEmail` | `value` | Signed-in user email display |
