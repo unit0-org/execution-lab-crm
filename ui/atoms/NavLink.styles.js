@@ -1,8 +1,10 @@
 import { space } from '../tokens/space'
 import { radius } from '../tokens/radius'
 
+// No `display` here: it's set in globals.css so the nav-group collapse
+// rule ([data-nav-group]:not([data-open]) → display:none) can win. An
+// inline display would beat the stylesheet and never let items hide.
 export const navLinkStyle = {
-  display: 'flex',
   alignItems: 'center',
   gap: space[3],
   padding: `${space[2]} ${space[3]}`,
