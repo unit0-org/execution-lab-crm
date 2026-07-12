@@ -1,12 +1,12 @@
 import { Inline } from '@/ui/layout/Inline'
-import { Text } from '@/ui/atoms/Text'
+import { RowPrimary } from './RowPrimary'
 import { RowSecondary } from './RowSecondary'
 
-// One digest row: a primary label with an optional muted detail.
+// One digest row: a contact link (or label) with an optional muted detail.
 export function DigestRow({ row }) {
   return (
     <Inline gap="sm">
-      <Text>{row.primary}</Text>
+      <RowPrimary text={row.primary} href={row.href} />
       <RowSecondary text={row.secondary} />
     </Inline>
   )
