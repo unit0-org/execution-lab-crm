@@ -1,14 +1,8 @@
-import { dashboardSummaryAction } from './actions/dashboardSummary'
-import { DashboardBody } from './components/DashboardBody'
+import { digestAction } from './actions/digest'
+import { DigestBoard } from './components/DigestBoard'
 
 export async function DashboardServer() {
-  const data = await dashboardSummaryAction()
+  const digest = await digestAction()
 
-  return (
-    <DashboardBody
-      stats={data.stats}
-      hotLeads={data.hotLeads}
-      segments={data.segments}
-    />
-  )
+  return <DigestBoard digest={digest} />
 }
