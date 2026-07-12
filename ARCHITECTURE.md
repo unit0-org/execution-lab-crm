@@ -193,7 +193,12 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `dispatchLumaEvent` routes by action), and the **`sync-luma` daily cron**
   backfill (`syncLumaGuests` pulls the calendar via `lib/luma/api/`, keyed by
   `LUMA_API_KEY`; no-ops until that env var is set). The API guest JSON is
-  mapped by `mapApiGuest`; the CSV path is unchanged. The single webhook
+  mapped by `mapApiGuest`; the CSV path is unchanged. All three paths funnel
+  through `upsertEvent`, which **dedupes**: a Luma event (which carries a
+  `url`) matches by `url`, else **adopts a pre-existing url-less same-title
+  import** (`findAdoptableOrphan`, setting its url) instead of creating a
+  duplicate — so a historical CSV import and its live Luma event converge to
+  one `own_event` row. The single webhook
   fires for **all** actions: `dispatchLumaEvent` handles guest actions
   (`handleGuestWebhook`) and `event.created`/`event.updated`
   (`handleEventWebhook` keeps the `OwnEvent` title/date/url in sync), and
