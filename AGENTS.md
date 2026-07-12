@@ -27,6 +27,20 @@ them (so adding one never renumbers the rest).
   something it documents — a contact-owned table, an FK, a registration
   field, a cross-module flow, a business rule — update the doc alongside
   the code. A structural change that leaves it stale is incomplete.
+- **The Feature Spec is the source of truth for *what the product does*.**
+  It records every feature as a **user story** (who / what / why) with the
+  behaviours to verify under each, grouped by domain, and folds system-wide
+  **Guarantees** into the feature they protect. It is generated and maintained
+  with Claude Code from a full read of the codebase, and lives as a private
+  Claude Artifact (owner: Abel), not in the repo:
+  <https://claude.ai/code/artifact/fd545738-ce15-44a3-b719-8eb6467e8666>.
+  Where it and `ARCHITECTURE.md` overlap, `ARCHITECTURE.md` owns *structure*
+  and the Feature Spec owns *behaviour*.
+- **Update the Feature Spec first, and get it approved — before any code.**
+  Every feature request or change begins by updating the matching user story
+  in the Feature Spec and having **Abel approve the change**. Only then is
+  code written. Writing code ahead of an approved spec update is out of
+  process — the spec drives the work, not the other way around.
 
 ## Naming
 
