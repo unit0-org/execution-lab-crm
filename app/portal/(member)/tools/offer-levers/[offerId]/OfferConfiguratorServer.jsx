@@ -1,12 +1,15 @@
-import { redirect, notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { currentPortalMember } from '@/lib/portalMember/controllers'
 import { memberCanUseTool } from '@/lib/portalTool/controllers'
 import { getOffer, listInputs } from '@/lib/offerGenerator/controllers'
 import { portalRoutePath } from '@/lib/portal/portalRoutePath'
 import { OfferLeversView } from '../components/OfferLeversView'
+import { SharedOfferServer } from './SharedOfferServer'
+import { offerVersionOf } from './offerVersionOf'
 
-// Gate the tool, resolve the offer (404 if it isn't the member's), and load
-// its inputs so the configurator hydrates scoped to that offer.
+// Gate the tool, then resolve the offer: the owner gets the editable
+// configurator; a member it's shared with gets the read-only view; anyone
+// else 404s (inside SharedOfferServer).
 export async function OfferConfiguratorServer({ params }) {
   const member = await currentPortalMember()
   const granted = member && await memberCanUseTool(member, 'offer-levers')
@@ -16,14 +19,10 @@ export async function OfferConfiguratorServer({ params }) {
   const { offerId } = await params
   const offer = await getOffer(member.contactId, offerId)
 
-  if (!offer) notFound()
+  if (!offer) return <SharedOfferServer member={member} offerId={offerId} />
 
   const initial = await listInputs(member.contactId, offerId)
-  const version = {
-    version_major: offer.version_major,
-    version_minor: offer.version_minor
-  }
 
   return <OfferLeversView initial={initial} offerId={offerId}
-    offerName={offer.name} offerVersion={version} />
+    offerName={offer.name} offerVersion={offerVersionOf(offer)} />
 }

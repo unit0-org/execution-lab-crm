@@ -290,6 +290,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `contact_email_message` | cascade | `mergeEmailMessages` (dedupe per `gmail_message_id`) |
 | `offer` | cascade | `claimContactRecords` (reassign) |
 | `offer_generator_input` | cascade (→ `offer`) | folded via `offer` (reassign the offer; inputs ride along `offer_id`) |
+| `offer_share` | cascade (→ `offer` & `contact`) | `mergeOfferShares` (move loser's shares to winner; skip/clear self-shares once winner owns the offer; runs **after** `claimContactRecords`) |
 | `contact_google_link` | cascade | **not migrated** (sync artifact; re-sync recreates) |
 | `sync_conflict` | cascade | **not migrated** (sync artifact) |
 
@@ -479,6 +480,20 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   `lib/pdf/renderDocumentPdf` draws it). The route re-gates the tool and
   scopes to an owned offer (it does **not** live under `/api`, which
   bypasses gates).
+  An owner can **share an offer** (view + comment, never edit) with other
+  portal members via `offer_share` (`offer_id`, shared-with `contact_id`).
+  Owner-only management (`shareOffer`/`unshareOffer`/`listShareCandidates`
+  verify `Offer.getOwned` first); tag/comment features build on this in
+  later PRs. Visibility widens accordingly: `getSharedOffer` /
+  `listSharedInputs` gate on `OfferShare.isSharedWith`, and
+  `OfferConfiguratorServer` branches — the owner gets the editable
+  `OfferLeversView`, a shared member the **read-only** `OfferReadView`
+  (same URL, same `buildOfferDocument` model rendered as HTML), everyone
+  else 404s. The list screen shows offers shared with me under
+  "Shared with me" (`listOffersSharedWith`). Editing still scopes to the
+  owner (`getOwned`), so a sharee's view has no edit controls. `offer_share`
+  is contact-owned on the shared-with side — folded by `mergeOfferShares`
+  (see the merge invariant).
 
 ## Flow maps (which file does each step)
 
