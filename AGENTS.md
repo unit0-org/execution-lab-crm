@@ -115,6 +115,15 @@ them (so adding one never renumbers the rest).
   no `await`.
 - **No conditionals inside JSX** — no ternaries, no `&&`. Use an early return
   or a named component. **[lint]**
+- **Identity & permission checks belong in a HOC — never in a presentational
+  component.** A component must not decide whether to render itself based on
+  who is viewing or what they may do (ownership, role, permission): no
+  `if (viewer !== owner) return null`, no `{isAdmin && …}`. Lift the decision
+  into a gating **higher-order component** in `ui/hocs/` (e.g.
+  `withOwnership`) that consumes the identity props and renders the wrapped
+  control only when allowed — the presentational component stays unaware of
+  identity. (Server Components gate before render with `redirect()` /
+  `forbidden()`; that's the server-side equivalent, and stays there.)
 - **Avoid `useCallback`/`useMemo`** unless absolutely necessary. **[lint]**
 - **Avoid clever/"weird" JS.** Clean Code: boring, obvious, readable wins.
 - **Files ≤ 30 lines, lines ≤ 80 chars.** **[lint]** Exceptions: lockfiles,

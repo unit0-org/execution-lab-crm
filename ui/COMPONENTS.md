@@ -179,6 +179,16 @@ with the shared leading select-all + trailing delete columns).
 | `HeroPanel` | `tone='launch'`, `main`, `aside` | Featured-cohort panel: glowing tone-bordered surface with a brand gradient edge; `main`/`aside` stack on mobile (portal) |
 | `AccentPanel` | `tone='mint'`, `children` | Glowing tone-bordered surface with a brand gradient top stripe (confirmation/celebration) |
 
+## HOCs — `ui/hocs/`
+
+Higher-order components that gate rendering on identity/permission, so
+presentational components never embed an authorization check (see the HOC
+rule in `AGENTS.md`). Wrap a component: `export const X = withOwnership(XBody)`.
+
+| HOC | Props on the wrapped component | Use for |
+|---|---|---|
+| `withOwnership` | `ownerId`, `viewerId` (+ the wrapped component's own props) | Owner-only controls: renders the wrapped component only when `viewerId === ownerId` (e.g. delete-your-own). Consumes `ownerId`/`viewerId`; passes the rest through |
+
 ## Tokens — `ui/tokens/`
 
 `color`, `labelColors`, `statusColors`, `tone`, `space`, `radius`,

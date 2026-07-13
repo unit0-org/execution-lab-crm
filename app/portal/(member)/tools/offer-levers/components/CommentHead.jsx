@@ -17,8 +17,9 @@ export function CommentHead({ comment, viewerContactId, onChanged }) {
         <Text size="sm" gutter="none">{authorName(comment)}</Text>
         <DateText value={comment.createdAt} withTime />
       </Inline>
-      <CommentDelete comment={comment} onChanged={onChanged}
-        viewerContactId={viewerContactId} />
+      <CommentDelete ownerId={comment.authorContactId}
+        viewerId={viewerContactId} commentId={comment.id}
+        onChanged={onChanged} />
     </GrowRow>
   )
 }
