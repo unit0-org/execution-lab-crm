@@ -6,8 +6,11 @@ import { useOutsideClose } from './useOutsideClose'
 import { useAnchorRect } from './useAnchorRect'
 import { PopoverPanel } from './PopoverPanel'
 
-// A trigger with a panel that opens beneath it; closes on outside click. The
-// panel is portaled to <body> (see PopoverPanel) so nothing clips it.
+/**
+ * Anchored popover, closing on outside click; the panel is portaled to
+ * `<body>` so a scrolling, overflow, or hover-transformed ancestor
+ * can't clip or mis-anchor it.
+ */
 export function Popover({ open, onClose, trigger, align, children }) {
   const ref = useRef(null)
   const panelRef = useRef(null)

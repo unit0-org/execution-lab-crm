@@ -7,7 +7,7 @@ import { Heading } from '../atoms/Heading'
 import { Text } from '../atoms/Text'
 import { Button } from '../atoms/Button'
 
-// Confirm modal; defaults to a destructive Delete, overridable per call.
+/** Confirmation modal; `message`/`confirmLabel`/`tone` are overridable. */
 export function ConfirmDialog({
   open, title, onConfirm, onCancel,
   message = 'This cannot be undone.',

@@ -1,5 +1,6 @@
 import { hamburgerStyle } from './Hamburger.styles'
 
+/** Mobile menu toggle. */
 export function Hamburger({ onClick }) {
   return (
     <button

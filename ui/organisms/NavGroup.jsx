@@ -3,7 +3,10 @@ import { NavGroupHeader } from './NavGroupHeader'
 import { useNavGroup } from './useNavGroup'
 import { navGroupStyle } from './NavGroup.styles'
 
-// A collapsible sidebar category: a tappable header over its child links.
+/**
+ * A nav category: a tappable header that expands its child links, open
+ * when one of them matches `currentPath`.
+ */
 export function NavGroup({ label, items, currentPath, onNavigate }) {
   const { open, toggle } = useNavGroup(items, currentPath)
   const expanded = open || undefined

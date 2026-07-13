@@ -1,6 +1,6 @@
 import { trackStyle, fillStyle } from './ProgressBar.styles'
 
-// Indeterminate progress: a fill that sweeps across the track.
+/** Indeterminate top-of-page progress: a fill sweeping across a track. */
 export function ProgressBar() {
   return (
     <div style={trackStyle} role="progressbar" aria-label="Working">

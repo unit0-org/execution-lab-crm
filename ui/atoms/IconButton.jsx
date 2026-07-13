@@ -1,5 +1,8 @@
 import { iconButtonStyle } from './IconButton.styles'
 
+/**
+ * Icon-only button; `label` is the aria-label; `size` sets the square px.
+ */
 export function IconButton(props) {
   const { tone = 'default', label, size, children, ...rest } = props
   const type = rest.type || 'button'

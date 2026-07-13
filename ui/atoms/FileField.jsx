@@ -1,5 +1,6 @@
 import { fieldStyle } from './TextField.styles'
 
+/** File input field. */
 export function FileField({ label, ...rest }) {
   return (
     <label style={fieldStyle}>

@@ -1,6 +1,10 @@
 import { buttonStyle } from './Button.styles'
 import { Pending } from './Pending'
 
+/**
+ * Primary/secondary actions; `tone` from `Button.tones`; `loading` shows
+ * a spinner + disables while keeping size (no CLS).
+ */
 export function Button({
   tone = 'default', size, block, loading, disabled, children, ...rest
 }) {

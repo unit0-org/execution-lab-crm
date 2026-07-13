@@ -3,7 +3,7 @@ import { railStyle, itemStyle, markerStyle, dotStyle }
   from './TimelineRail.styles'
 import { Connector } from './Connector'
 
-// Vertical list with a dotted line linking each item's dot to the next.
+/** Vertical timeline rail: a dotted line links each item's dot to the next. */
 export function TimelineRail({ children }) {
   const items = Children.toArray(children)
   const last = items.length - 1

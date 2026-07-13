@@ -1,6 +1,6 @@
 import { Text } from './Text'
 
-// Inline form error; renders nothing when there is no message.
+/** Inline field error; renders nothing when there is no message. */
 export function FieldError({ message }) {
   if (!message) return null
 

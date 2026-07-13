@@ -1,6 +1,6 @@
 import { lineStyle } from './TimelineRail.styles'
 
-// A dotted vertical segment from one timeline dot down to the next.
+/** Timeline connector: a dotted segment from one dot down to the next. */
 export function Connector({ show }) {
   if (!show) return null
 

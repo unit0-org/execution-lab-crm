@@ -7,9 +7,10 @@ import { Button } from '@/ui/atoms/Button'
 import { ConfirmDialog } from './ConfirmDialog'
 import { useToggle } from './useToggle'
 
-// Shared bulk-delete bar for a selectable table: "N selected → Delete /
-// Cancel", pinned (no CLS), revealed when count > 0. Delete opens the same
-// confirm modal as a single-row delete; `onCancel` clears the selection.
+/**
+ * Sticky "N selected → Delete / Cancel" bar for a selectable table;
+ * reveals when `count > 0`, and Delete opens the shared `ConfirmDialog`.
+ */
 export function BulkDeleteBar({ count, onDelete, onCancel }) {
   const confirm = useToggle()
   const run = () => { confirm.hide(); onDelete() }

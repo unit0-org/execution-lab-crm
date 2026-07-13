@@ -2,6 +2,7 @@ import { headingStyle } from './Heading.styles'
 
 const TAGS = { 1: 'h1', 2: 'h2', 3: 'h3' }
 
+/** Section headings h1–h3 (uppercase). */
 export function Heading({ level = 1, gutter = 'md', children }) {
   const Tag = TAGS[level]
 

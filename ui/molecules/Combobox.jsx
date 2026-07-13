@@ -7,7 +7,10 @@ import { useToggle } from './useToggle'
 import { useOutsideClose } from './useOutsideClose'
 import { wrapStyle } from './Combobox.styles'
 
-// A text field that suggests options as you type; pick one to choose it.
+/**
+ * Lower-level field that just renders the `options` you pass (no
+ * filtering or create). Prefer `Autocomplete`.
+ */
 export function Combobox({ label, value, onChange, options, onPick, hint }) {
   const ref = useRef(null)
   const menu = useToggle()

@@ -1,6 +1,6 @@
 import { tileStyle, valueStyle, labelStyle } from './StatTile.styles'
 
-// A big stat (value over a mono caption) in a bordered tile.
+/** Big stat over a mono caption, in a bordered tile (portal). */
 export function StatTile({ value, label, tone = 'cold' }) {
   return (
     <div style={tileStyle}>

@@ -4,7 +4,7 @@ import { Toast } from '@/ui/molecules/Toast'
 import { useToasts } from '@/ui/molecules/useToasts'
 import { toasterStyle } from './Toaster.styles'
 
-// App-wide stack of transient toasts (bottom-centered).
+/** Toast outlet — mount once at the root; stacks toasts bottom-center. */
 export function Toaster() {
   const { toasts } = useToasts()
 

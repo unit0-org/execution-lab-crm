@@ -4,7 +4,7 @@ import { barGeometry } from './barGeometry'
 import { ChartBar } from './ChartBar'
 import { ChartEmpty } from './ChartEmpty'
 
-// Responsive SVG bar chart. Data: [{ label, value, valueLabel }].
+/** Bar chart; `data` = `[{ label, value, valueLabel }]`. */
 export function BarChart({ data }) {
   if (!data.length) return <ChartEmpty />
 

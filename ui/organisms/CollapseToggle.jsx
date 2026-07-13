@@ -2,8 +2,10 @@ import { IconButton } from '../atoms/IconButton'
 import { Icon } from '../atoms/Icon'
 import { toggleStyle, tipStyle } from './Sidebar.styles'
 
-// Sidebar show/hide toggle — the panel icon when open, an arrow when
-// collapsed (pointing the way it would expand).
+/**
+ * Sidebar show/hide toggle — the panel icon when open, an arrow when
+ * collapsed (pointing the way it would expand).
+ */
 export function CollapseToggle({ onClick }) {
   return (
     <div data-collapse-toggle style={toggleStyle}>

@@ -39,6 +39,8 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   globalIgnores([
     "**/.next/**", "out/**", "build/**", "next-env.d.ts", ".claude/**",
+    // Storybook's static build — bundled vendor code, never ours to lint.
+    "storybook-static/**",
   ]),
   {
     files: [
@@ -47,7 +49,10 @@ const eslintConfig = defineConfig([
     ],
     rules: {
       "max-len": ["error", { code: 80, tabWidth: 2, ignoreUrls: true }],
-      "max-lines": ["error", { max: 30 }],
+      // 30 lines of CODE. Comments don't count: a component's doc block is
+      // what ui/COMPONENTS.md is generated from, and documentation must not
+      // compete with logic for the line budget.
+      "max-lines": ["error", { max: 30, skipComments: true }],
       "comma-dangle": ["error", "never"],
       "padding-line-between-statements": ["error", blankBefore],
       "no-restricted-syntax": ["error", ...common],

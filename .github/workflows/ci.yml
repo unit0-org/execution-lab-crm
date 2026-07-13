@@ -20,4 +20,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint --max-warnings=0
+      # ui/COMPONENTS.md is generated from the components' doc blocks.
+      # Fails when a component's props or doc block changed without it
+      # being regenerated (pnpm docs:ui), so the catalog can't go stale.
+      - run: pnpm docs:ui --check
       - run: pnpm build

@@ -1,6 +1,7 @@
 import { Scrim } from './Scrim'
 import { shellStyle, mainStyle, asideStyle } from './Shell.styles'
 
+/** App shell wrapper. */
 export function Shell(props) {
   const { sidebar, open, onClose, children } = props
   const isOpen = open || undefined

@@ -1,6 +1,6 @@
 import { scrimStyle } from './Scrim.styles'
 
-// Mobile backdrop behind the open sidebar drawer; tap to close.
+/** Dim backdrop behind overlays (mobile sidebar drawer); tap to close. */
 export function Scrim({ open, onClick }) {
   const shown = open || undefined
 

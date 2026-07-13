@@ -4,7 +4,7 @@ import {
   lockupStyle, colStyle, titleStyle, logoStyle
 } from './BrandLockup.styles'
 
-// Logo + product kicker + product title, linking home.
+/** Logo + product kicker + title, linking home (portal). */
 export function BrandLockup({ kicker, title, logoSrc, logoAlt, href = '/' }) {
   return (
     <a href={href} style={lockupStyle} data-brand-lockup>

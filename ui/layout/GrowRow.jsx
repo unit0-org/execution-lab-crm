@@ -1,7 +1,7 @@
 import { Children } from 'react'
 import { rowStyle, growStyle } from './GrowRow.styles'
 
-// A flex row whose first child grows and the rest stay at content width.
+/** Row where the first child grows, the rest stay content-width. */
 export function GrowRow({ align, children }) {
   const items = Children.toArray(children)
 

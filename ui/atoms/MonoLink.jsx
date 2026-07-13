@@ -1,8 +1,10 @@
 import NextLink from 'next/link'
 import { monoLinkStyle } from './MonoLink.styles'
 
-// Monospaced accent link. External by default (opens a new tab); pass
-// external={false} for in-app navigation in the same tab.
+/**
+ * Monospaced accent link; new tab by default, `external={false}` for
+ * in-app nav in the same tab (portal).
+ */
 export function MonoLink(props) {
   const { href, size = 11, underline, external = true, children } = props
   const style = monoLinkStyle(size, underline)

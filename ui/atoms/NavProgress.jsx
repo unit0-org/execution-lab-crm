@@ -3,8 +3,10 @@
 import { useLinkStatus } from 'next/link'
 import { navProgressStyle, navBarStyle } from './NavProgress.styles'
 
-// A thin brand-gradient bar at the very top of the page while a Link
-// navigation is pending — sleek loading feedback, no layout skeleton.
+/**
+ * Fixed top progress bar (thin brand-gradient) shown while a `Link`
+ * navigation is pending; rendered inside the link atoms, not directly.
+ */
 export function NavProgress() {
   const { pending } = useLinkStatus()
 

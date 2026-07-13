@@ -6,8 +6,11 @@ import { useEscClose } from '../molecules/useEscClose'
 import { useAutoFocus } from '../molecules/useAutoFocus'
 import { useBackdropClose } from '../molecules/useBackdropClose'
 
-// Centered dialog over a dimmed backdrop; click outside, Esc, or the
-// X to close. Focuses its first field on open.
+/**
+ * Centered dialog over a dimmed backdrop — Esc, click outside, or the X
+ * closes it; focuses its first field on open. `wide` widens it, scrolls
+ * when tall, and is resizable (drag the bottom-right corner).
+ */
 export function Modal({ open, onClose, wide, children }) {
   useEscClose(onClose, open)
   const panel = useAutoFocus(open)

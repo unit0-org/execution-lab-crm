@@ -2,8 +2,10 @@ import { tabsStyle } from './Tabs.styles'
 import { FilterChip } from './FilterChip'
 import { buildTabs } from './buildTabs'
 
-// A row of tab links; the active tab is highlighted. URL-driven so it
-// is deep-linkable and survives refreshes.
+/**
+ * URL-driven tab navigation; the active tab is highlighted, so tabs are
+ * deep-linkable and survive a refresh.
+ */
 export function Tabs({ tabs, active, basePath, param }) {
   const items = buildTabs(tabs, basePath, param, active)
 

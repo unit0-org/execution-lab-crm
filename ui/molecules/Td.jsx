@@ -1,5 +1,6 @@
 import { tdStyle, truncateStyle } from './Table.styles'
 
+/** Table cell; `truncate` ellipsizes content that overflows. */
 export function Td({ truncate, children }) {
   if (truncate) {
     return (

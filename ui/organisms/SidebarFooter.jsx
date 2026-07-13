@@ -4,6 +4,10 @@ import { UserEmail } from './UserEmail'
 import { SignOutForm } from '../molecules/SignOutForm'
 import { footerStyle } from './Sidebar.styles'
 
+/**
+ * Sidebar footer: the signed-in `email` over a sign-out control (an icon
+ * when collapsed). `signOutNext` = post-logout landing path.
+ */
 export function SidebarFooter({ email, signOutNext }) {
   return (
     <div style={footerStyle}>

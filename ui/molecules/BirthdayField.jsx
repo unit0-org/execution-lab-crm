@@ -1,6 +1,10 @@
 import { Inline } from '../layout/Inline'
 import { TextField } from '../atoms/TextField'
 
+/**
+ * Day/month/year inputs for a `Form`
+ * (`birth_day`/`birth_month`/`birth_year`).
+ */
 export function BirthdayField({ day, month, year }) {
   return (
     <Inline gap="sm">

@@ -2,9 +2,10 @@ import { syncBadgeStyle } from './SyncBadge.styles'
 
 const LABEL = 'Google'
 
-// A soft pill marking a contact as synced with Google. With an `href`
-// it links out (new tab) to the Google Contacts person; without one it
-// renders as a plain chip.
+/**
+ * Soft pill marking a contact as synced with Google; links out to Google
+ * Contacts (new tab) when `href` is set, else renders as a plain chip.
+ */
 export function SyncBadge({ href }) {
   if (!href) return <span style={syncBadgeStyle}>{LABEL}</span>
 

@@ -2,8 +2,10 @@ import { IconButton } from '../atoms/IconButton'
 import { Icon } from '../atoms/Icon'
 import { themeToggleStyle } from './ThemeToggle.styles'
 
-// Floating top-right light/dark switch; icon shows the mode you'd switch to.
-// Dimmed when idle, solid on hover (see globals.css [data-theme-toggle]).
+/**
+ * Light/dark theme switch — a floating top-right toggle whose icon shows
+ * the mode you'd switch to; dimmed when idle, solid on hover.
+ */
 export function ThemeToggle({ onClick }) {
   return (
     <div data-theme-toggle style={themeToggleStyle}>

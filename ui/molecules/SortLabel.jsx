@@ -6,6 +6,7 @@ import { Checkbox } from '../atoms/Checkbox'
 
 const text = (col) => (typeof col === 'string' ? col : col.label)
 
+/** Header cell: a sort button, plain text, or the select-all box. */
 export function SortLabel({ col, sort, onSort }) {
   if (col?.select) {
     return <Checkbox checked={col.checked} onChange={col.onToggle}

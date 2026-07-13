@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { initials } from './initials'
 import { imageStyle, fallbackStyle } from './Avatar.styles'
 
+/** Circular profile photo, or tokened initials fallback. */
 export function Avatar({ src, name, size = 40 }) {
   const alt = name || ''
 

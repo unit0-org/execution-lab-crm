@@ -3,7 +3,7 @@ import { Text } from '@/ui/atoms/Text'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { SyncIcon } from './SyncIcon'
 
-// A compact sync status line with a refresh button (right-aligned).
+/** Sync action + status: a status line with a refresh button. */
 export function SyncControl({ label, syncing, onSync }) {
   return (
     <EndRow>

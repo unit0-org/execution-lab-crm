@@ -1,7 +1,7 @@
 import { Field } from './Field'
 import { FieldInput } from '@/ui/atoms/FieldInput'
 
-// The common case: a labelled portal text input in one tag.
+/** Portal labelled text input (`Field` + `FieldInput`). */
 export function FieldText({ label, hint, required, ...rest }) {
   return (
     <Field label={label} required={required} hint={hint}>

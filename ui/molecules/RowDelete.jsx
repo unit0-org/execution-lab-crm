@@ -5,7 +5,7 @@ import { IconButton } from '../atoms/IconButton'
 import { Icon } from '../atoms/Icon'
 import { ConfirmDialog } from './ConfirmDialog'
 
-// A trash icon that opens a confirm dialog before firing onConfirm.
+/** Delete control with confirm: a trash icon that asks first. */
 export function RowDelete({ onConfirm, title = 'Delete' }) {
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)

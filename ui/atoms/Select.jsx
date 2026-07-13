@@ -7,6 +7,7 @@ import { toSelectOption } from './toSelectOption'
 import { FieldLabel } from './FieldLabel'
 import { useRestoredField } from './useRestoredField'
 
+/** Native dropdown select; `options` are strings or `{value,label}`. */
 export function Select({ label, options, ...rest }) {
   const items = options.map(toSelectOption)
   const field = useRestoredField(rest)

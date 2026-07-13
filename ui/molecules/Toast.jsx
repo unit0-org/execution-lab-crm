@@ -1,6 +1,6 @@
 import { toastStyle } from './Toast.styles'
 
-// A single transient notification pill.
+/** Transient feedback pill (raise one with `showToast`). */
 export function Toast({ message }) {
   return <div style={toastStyle}>{message}</div>
 }

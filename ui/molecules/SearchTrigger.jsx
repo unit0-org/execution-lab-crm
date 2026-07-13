@@ -1,8 +1,10 @@
 import { Icon } from '../atoms/Icon'
 import { triggerStyle, textStyle, kbdStyle } from './SearchTrigger.styles'
 
-// A search-field-shaped button that opens the command palette: a
-// magnifier, muted placeholder, and a keyboard-shortcut hint chip.
+/**
+ * Search-field-shaped button — magnifier, muted placeholder, and a
+ * key hint — that opens a command palette.
+ */
 export function SearchTrigger({ placeholder, hint, onClick }) {
   return (
     <button type="button" onClick={onClick} style={triggerStyle}>
