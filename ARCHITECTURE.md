@@ -49,6 +49,30 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - Frontend: `app/[module]/{pages,components,hooks,actions}/`, one server
   action per file. UI primitives in `ui/` (atoms → molecules → organisms);
   see `ui/COMPONENTS.md`.
+- Tests: `e2e/` (its own `package.json`, ESM; exempt from the app lint rules).
+
+## Testing: every user story, verified as the user (`e2e/`)
+
+The Feature Spec artifact owns *behaviour*: 52 user stories (`US-1`…`US-52`),
+each listing the behaviours that must hold — **one test each**. `e2e/` verifies
+them against a **running app**, never by importing app code:
+
+- `e2e/catalog/` — the machine-readable mirror of the artifact (one file per
+  domain). **A new or changed user story must be updated here too**, or the
+  report silently stops covering it.
+- `e2e/us/<domain>/US-<n>-*.spec.js` — the tests. Each behaviour is one
+  Playwright test titled `US-<n> · <behaviour>`; that id is how results join
+  back to the catalog.
+- `e2e/report/` — `pnpm report` turns the run into a self-contained HTML page
+  listing every story as pass / partial / fail / **not implemented**.
+- `e2e/helpers/` — `db.js` (migrate/truncate/seed over `SUPABASE_DB_URL`),
+  `session.js` (mints a real Supabase session into a Playwright
+  `storageState` cookie, so tests sign in as a real staff/member user).
+
+Runs against a **dedicated Supabase test project** via `.env.test`, which is
+truncated and re-seeded on every run — the `E2E_TEST_DB=1` interlock exists so
+it can never be pointed at dev or production. No service-role key is needed:
+test auth users are seeded into `auth.users` and signed in normally.
 
 ## Domain map (`lib/`)
 
