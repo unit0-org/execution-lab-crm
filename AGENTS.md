@@ -164,18 +164,20 @@ them (so adding one never renumbers the rest).
 - **Module layout for backend code:** `lib/[module]/{models,controllers}/`
   (e.g. `lib/contact/models/`, `lib/contact/controllers/`). The shared
   Sequelize instance stays in `lib/db/sequelize.js`.
-- **One model per folder — `lib/[module]/models/[Model]/`.** The model
-  definition + `associate(models)` live in its `index.js`; columns in
-  `fields.js`; and **each behaviour method in its own file**, one method per
-  file, under `classMethods/[method].js` or `instanceMethods/[method].js`
-  (a class method runs on the model — `Model.x()`; an instance method on a
-  row — `row.x()`). `index.js` only defines the model, wires `fields`,
-  declares `associate`, and attaches the imported methods.
+- **A model with behaviour methods lives in its own folder —
+  `lib/[module]/models/[Model]/`.** The model definition + `associate(models)`
+  (+ any scopes) live in its `index.js`; columns in `fields.js`; and **each
+  behaviour method in its own file**, one method per file, under
+  `classMethods/[method].js` or `instanceMethods/[method].js` (a class method
+  runs on the model — `Model.x()`; an instance method on a row — `row.x()`,
+  and each uses `this` for the model/row). `index.js` only defines the model,
+  wires `fields`, declares `associate`/scopes, and attaches the imported
+  methods. A **trivial model with no methods** (just `fields` + `associate`)
+  may stay a single `Model.js` file — no folder needed until it grows a
+  method.
 - **Never dump methods into a `*.statics.js` grab-bag.** They aren't
   "statics" — they're class or instance methods, and each gets its own file
-  per the layout above. (Older models still use the flat
-  `Model.js` + `Model.statics.js` layout — migrate a model to the folder
-  layout when you next touch it.)
+  per the layout above.
 - **Logic lives in the models, not the controllers.** Prefer Sequelize hooks,
   scopes, validations, getters/setters, and class/instance methods over
   procedural code. A model owns its own behaviour and its associations
