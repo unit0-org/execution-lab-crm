@@ -119,10 +119,12 @@ them (so adding one never renumbers the rest).
   component.** A component must not decide whether to render itself based on
   who is viewing or what they may do (ownership, role, permission): no
   `if (viewer !== owner) return null`, no `{isAdmin && …}`. Lift the decision
-  into a gating **higher-order component** in `ui/hocs/` (e.g.
-  `withOwnership`) that consumes the identity props and renders the wrapped
-  control only when allowed — the presentational component stays unaware of
-  identity. (Server Components gate before render with `redirect()` /
+  into a gating **higher-order component** that consumes the identity props
+  and renders the wrapped control only when allowed — the presentational
+  component stays unaware of identity. **A HOC lives in the module it belongs
+  to** (beside that module's `components/` — a feature's own folder, or the
+  `(app)` shell's), like any other module code — **not** in a shared `ui/`
+  bucket. (Server Components gate before render with `redirect()` /
   `forbidden()`; that's the server-side equivalent, and stays there.)
 - **Avoid `useCallback`/`useMemo`** unless absolutely necessary. **[lint]**
 - **Avoid clever/"weird" JS.** Clean Code: boring, obvious, readable wins.
@@ -162,10 +164,18 @@ them (so adding one never renumbers the rest).
 - **Module layout for backend code:** `lib/[module]/{models,controllers}/`
   (e.g. `lib/contact/models/`, `lib/contact/controllers/`). The shared
   Sequelize instance stays in `lib/db/sequelize.js`.
-- **Sequelize models live in `lib/[module]/models/`** — one model per file.
-- **Keep model files short.** When a model gets long, move its column
-  definitions into a sibling `*.fields.js` (e.g. `user.fields.js`) and import
-  them — the same way components split structure/style/behavior.
+- **One model per folder — `lib/[module]/models/[Model]/`.** The model
+  definition + `associate(models)` live in its `index.js`; columns in
+  `fields.js`; and **each behaviour method in its own file**, one method per
+  file, under `classMethods/[method].js` or `instanceMethods/[method].js`
+  (a class method runs on the model — `Model.x()`; an instance method on a
+  row — `row.x()`). `index.js` only defines the model, wires `fields`,
+  declares `associate`, and attaches the imported methods.
+- **Never dump methods into a `*.statics.js` grab-bag.** They aren't
+  "statics" — they're class or instance methods, and each gets its own file
+  per the layout above. (Older models still use the flat
+  `Model.js` + `Model.statics.js` layout — migrate a model to the folder
+  layout when you next touch it.)
 - **Logic lives in the models, not the controllers.** Prefer Sequelize hooks,
   scopes, validations, getters/setters, and class/instance methods over
   procedural code. A model owns its own behaviour and its associations

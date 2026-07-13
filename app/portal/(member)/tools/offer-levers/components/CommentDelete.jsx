@@ -4,7 +4,7 @@ import { useToggle } from '@/ui/molecules/useToggle'
 import { IconButton } from '@/ui/atoms/IconButton'
 import { Icon } from '@/ui/atoms/Icon'
 import { ConfirmDialog } from '@/ui/molecules/ConfirmDialog'
-import { withOwnership } from '@/ui/hocs/withOwnership'
+import { withOwnership } from './withOwnership'
 import { useRemoveComment } from '../hooks/useRemoveComment'
 
 // The delete control for a comment (trash + confirm). Presentational — it
