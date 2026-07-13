@@ -1,6 +1,0 @@
-{
-  "name": "crm-e2e",
-  "private": true,
-  "type": "module",
-  "description": "End-to-end 'as the user' test suite + user-story report. ESM is scoped here so the CommonJS repo root is untouched."
-}

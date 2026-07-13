@@ -35,8 +35,8 @@ yarn-error.log*
 !.env.local.example
 !.env.test.example
 
-# e2e test suite: generated report, results, minted sessions
-e2e/results/
+# test suite: generated report, results, minted sessions
+testing/results/
 
 # vercel
 .vercel

@@ -39,12 +39,12 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   globalIgnores([
     "**/.next/**", "out/**", "build/**", "next-env.d.ts", ".claude/**",
-    // The e2e suite is ESM test tooling (own package.json), intentionally
-    // exempt from the app's Clean-Code rules (file length, line length, async).
-    "e2e/**",
   ]),
   {
-    files: ["app/**/*.{js,jsx}", "lib/**/*.{js,jsx}", "ui/**/*.{js,jsx}", "proxy.js"],
+    files: [
+      "app/**/*.{js,jsx}", "lib/**/*.{js,jsx}", "ui/**/*.{js,jsx}",
+      "testing/**/*.js", "proxy.js",
+    ],
     rules: {
       "max-len": ["error", { code: 80, tabWidth: 2, ignoreUrls: true }],
       "max-lines": ["error", { max: 30 }],

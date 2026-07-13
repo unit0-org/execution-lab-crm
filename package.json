@@ -9,9 +9,9 @@
     "start": "next start",
     "lint": "eslint",
     "backup:db": "./scripts/backup-db.sh",
-    "test:e2e": "playwright test -c e2e/playwright.config.js",
-    "test:e2e:list": "playwright test -c e2e/playwright.config.js --list",
-    "report": "node e2e/report/generate.js"
+    "test": "playwright test -c testing/playwright.config.js",
+    "test:list": "playwright test -c testing/playwright.config.js --list",
+    "test:report": "node testing/report/generateReport.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.26.0",
