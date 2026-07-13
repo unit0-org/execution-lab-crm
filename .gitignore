@@ -59,3 +59,6 @@ next-env.d.ts
 
 # Local database backups (never commit dumps)
 backups/
+
+# storybook
+/storybook-static

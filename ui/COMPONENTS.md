@@ -6,6 +6,14 @@ component that fits, use it, and never re-create what's here. If nothing
 fits and a new `ui/` primitive is genuinely needed, **ask first** — then
 add it here.
 
+**See them, don't just read about them:** `pnpm storybook` renders this
+catalog — every atom's tones, sizes and states, in light and dark. This
+table stays the written source of truth for props; Storybook is how you
+find the component that looks right. A new atom gets a
+`Thing.stories.jsx` beside it, as well as a row here. Story files obey the
+same 30-line limit as the rest of `ui/`, so a big variant matrix splits
+into its own file (`Button.sizes.stories.jsx`).
+
 Conventions (from `AGENTS.md`):
 
 - Components receive **props** (data, state, handlers) — never raw
