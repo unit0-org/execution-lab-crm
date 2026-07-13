@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-23',
+  implemented: true,
   role: 'System',
   guarantee: true,
   title: 'Staff and member areas each guard themselves',

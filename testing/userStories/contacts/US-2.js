@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-2',
+  implemented: 'partial',
+  gaps: [
+    'Editing is limited to the fields that are meant to be ' +
+      'editable.'
+  ],
   role: 'Staff',
   title: "Update a contact's details",
   story:

@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-20',
+  implemented: 'partial',
+  gaps: [
+    'Two people are never invited to the same opening at once, ' +
+      'even under load.'
+  ],
   role: 'Client',
   title: 'Join the waitlist and get invited',
   story:

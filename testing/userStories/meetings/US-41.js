@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-41',
+  implemented: true,
   role: 'Staff',
   title: 'Enrich contacts from a transcript',
   story:

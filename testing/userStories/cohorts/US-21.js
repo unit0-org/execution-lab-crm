@@ -1,5 +1,9 @@
 const userStory = {
   id: 'US-21',
+  implemented: 'partial',
+  gaps: [
+    'A cohort can be created with a capacity of exactly 0.'
+  ],
   role: 'Staff',
   title: 'Manage cohorts, status & resources',
   story:

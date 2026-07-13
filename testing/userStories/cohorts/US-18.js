@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-18',
+  implemented: true,
   role: 'System',
   guarantee: true,
   title: 'Registration details flow to the contact',

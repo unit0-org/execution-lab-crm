@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-13',
+  implemented: true,
   role: 'Client',
   title: 'Register and pay for a cohort',
   story:

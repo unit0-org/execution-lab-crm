@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-4',
+  implemented: true,
   role: 'Staff',
   title: "Manage a contact's emails",
   story:

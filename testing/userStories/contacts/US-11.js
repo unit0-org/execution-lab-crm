@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-11',
+  implemented: true,
   role: 'Staff',
   title: 'Bulk-delete and search contacts',
   story:

@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-3',
+  implemented: true,
   role: 'Staff',
   title: 'Find-or-add a person by email then phone',
   story:

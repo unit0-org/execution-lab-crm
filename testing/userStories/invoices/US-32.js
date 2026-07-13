@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-32',
+  implemented: 'partial',
+  gaps: [
+    "Re-approving a paid invoice doesn't reset it back to " +
+      'approved.'
+  ],
   role: 'Staff',
   title: 'Move an invoice through its lifecycle',
   story:

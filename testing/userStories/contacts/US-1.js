@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-1',
+  implemented: 'partial',
+  gaps: [
+    "Adding an email that's already in use shows a clear " +
+      'message, and the contact is still created.'
+  ],
   role: 'Staff',
   title: 'Create a contact',
   story:

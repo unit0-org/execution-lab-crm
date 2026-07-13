@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-44',
+  implemented: true,
   role: 'Staff',
   title: 'Connect Google accounts',
   story:

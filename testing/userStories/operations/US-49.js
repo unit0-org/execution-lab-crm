@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-49',
+  implemented: 'partial',
+  gaps: [
+    "Bulk 'mark invoices sent' requires confirmation like the " +
+      'other money-changing tools.'
+  ],
   role: 'System',
   title: 'Keep assistant (MCP) tools safe',
   story:

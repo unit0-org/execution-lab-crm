@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-51',
+  implemented: true,
   role: 'System',
   guarantee: true,
   title: 'Re-running any sync or import never duplicates',

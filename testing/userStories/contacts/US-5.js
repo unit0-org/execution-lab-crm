@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-5',
+  implemented: 'partial',
+  gaps: [
+    'Adding the same number twice to one person is handled ' +
+      'gracefully.'
+  ],
   role: 'Staff',
   title: "Manage a contact's phones",
   story:

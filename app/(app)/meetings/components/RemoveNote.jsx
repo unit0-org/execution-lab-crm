@@ -1,20 +1,13 @@
 'use client'
 
-import { Form } from '@/ui/molecules/Form'
-import { IconButton } from '@/ui/atoms/IconButton'
-import { Icon } from '@/ui/atoms/Icon'
-import { useFormAction } from '@/app/(app)/hooks/useFormAction'
+import { RowDelete } from '@/ui/molecules/RowDelete'
+import { useActionHandler } from '@/app/(app)/hooks/useActionHandler'
 import { removeMeetingNoteAction } from '../actions/removeMeetingNote'
 
 export function RemoveNote({ id, onChanged }) {
-  const { action } = useFormAction(removeMeetingNoteAction, onChanged)
+  const remove = useActionHandler(removeMeetingNoteAction, {
+    onDone: onChanged
+  })
 
-  return (
-    <Form action={action}>
-      <input type="hidden" name="id" value={id} />
-      <IconButton type="submit" tone="danger" label="Remove note">
-        <Icon name="trash" size={14} />
-      </IconButton>
-    </Form>
-  )
+  return <RowDelete onConfirm={() => remove(id)} title="Remove note" />
 }

@@ -1,5 +1,11 @@
 const userStory = {
   id: 'US-37',
+  implemented: 'partial',
+  gaps: [
+    'Deleting a meeting is recoverable (a soft delete).',
+    "A deleted synced meeting doesn't collide with its calendar " +
+      'event on the next sync.'
+  ],
   role: 'Staff',
   title: 'Create and manage meetings',
   story:

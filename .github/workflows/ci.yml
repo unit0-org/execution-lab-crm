@@ -24,4 +24,7 @@ jobs:
       # Fails when a component's props or doc block changed without it
       # being regenerated (pnpm docs:ui), so the catalog can't go stale.
       - run: pnpm docs:ui --check
+      # Every user story must say whether it is actually built, and name the
+      # behaviours that aren't. Stops a story being spec'd and never shipped.
+      - run: pnpm spec:status
       - run: pnpm build

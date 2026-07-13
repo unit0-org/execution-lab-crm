@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-17',
+  implemented: true,
   role: 'System',
   title: 'Confirm a paid checkout',
   story:

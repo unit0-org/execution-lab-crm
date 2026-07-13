@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-9',
+  implemented: true,
   role: 'Staff',
   guarantee: true,
   title: 'Merging duplicates never loses information',

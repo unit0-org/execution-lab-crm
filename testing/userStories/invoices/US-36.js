@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-36',
+  implemented: true,
   role: 'Admin',
   title: 'Manage company & invoice settings',
   story:

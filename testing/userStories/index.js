@@ -7,9 +7,12 @@ import * as portal from './portal/index.js';
 import * as invoices from './invoices/index.js';
 import * as meetings from './meetings/index.js';
 import * as operations from './operations/index.js';
+import * as lookandfeel from './lookandfeel/index.js';
 import { toDomain } from './toDomain.js';
 
-const modules = [contacts, cohorts, portal, invoices, meetings, operations];
+const modules = [
+  contacts, cohorts, portal, invoices, meetings, operations, lookandfeel
+];
 
 export const domains = modules.map(toDomain);
 

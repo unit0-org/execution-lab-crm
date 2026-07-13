@@ -1,11 +1,15 @@
 'use client'
 
-import { FormDelete } from './FormDelete'
+import { RowDelete } from '@/ui/molecules/RowDelete'
+import { useActionHandler } from '@/app/(app)/hooks/useActionHandler'
 import { removeRelationshipAction } from '../actions/removeRelationship'
 
 export function RemoveRelationship({ id, onChanged }) {
+  const remove = useActionHandler(removeRelationshipAction, {
+    onDone: onChanged
+  })
+
   return (
-    <FormDelete action={removeRelationshipAction} id={id}
-      label="Remove relationship" onChanged={onChanged} />
+    <RowDelete onConfirm={() => remove(id)} title="Remove relationship" />
   )
 }

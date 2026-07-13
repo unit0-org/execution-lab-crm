@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-42',
+  implemented: true,
   role: 'System',
   title: 'Import meeting transcripts on a schedule',
   story:

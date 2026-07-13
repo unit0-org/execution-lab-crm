@@ -48,6 +48,7 @@ Conventions (from `AGENTS.md`):
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square; ringed when it's the chosen one. |
 | `DateText` | `value`, `withTime` | Display-only date, UTC-safe (so a date-only value never drifts a day in the viewer's timezone). `withTime` adds the time. |
 | `Display` | `size='md'`, `children` | Oversized uppercase display headline (`sm`/`md`/`lg`/`xl`) for portal hero/section titles. Renders an `<h1>`. |
+| `Divider` | — | Hairline rule separating rows in an inline list. |
 | `EditableText` | `value`, `onClick` | View-mode text that opens an editor on click: left-aligned and input-sized, so the `TextField` swaps in with no layout shift. |
 | `ExternalLink` | `href`, `children` | Link to an external URL — opens safely in a new tab. |
 | `FieldError` | `message` | Inline field error; renders nothing when there is no message. |
@@ -112,7 +113,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `Scrim` | `open`, `onClick` | Dim backdrop behind overlays (mobile sidebar drawer); tap to close. |
 | `Shell` | `sidebar`, `open`, `onClose`, `children` | App shell wrapper. |
 | `SidebarLayout` | `main`, `aside` | Content + a sticky aside that stacks below on mobile (portal forms). |
-| `Stack` | `gap='md'`, `children` | Vertical flex stack (`xs`/`sm`/`md`/`lg`). |
+| `Stack` | `gap='md'`, `id`, `hoverHost`, `children` | Vertical flex stack (`xs`/`sm`/`md`/`lg`). |
 | `StickyBar` | `active`, `children` | Sticky action bar, pinned to the top of the scroll area. It stays in normal flow, so its height is always reserved (no CLS), and hides its contents — staying pinned but invisible — when inactive. |
 | `TimelineRail` | `children` | Vertical timeline rail: a dotted line links each item's dot to the next. |
 | `Topbar` | `children` | Sticky bar at the top of the scrolling main area (global command bar): the mobile menu hamburger, global search, primary actions. Horizontal padding lives in globals.css, so breakpoints can tune it. |

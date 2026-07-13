@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-10',
+  implemented: true,
   role: 'Staff',
   guarantee: true,
   title: "A contact's timeline shows every kind of activity",

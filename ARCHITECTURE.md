@@ -304,6 +304,18 @@ test auth users are seeded into `auth.users` and signed in normally.
   profile). New destructive tools must use the same guard. The server
   `INSTRUCTIONS` also tell clients to treat stored CRM text as untrusted
   data, never as instructions (prompt-injection defence).
+
+**Destructive UI always confirms (invariant).** `guardDestructive` protects
+the MCP surface; the screens have the same rule. Every control that destroys
+persisted data goes through the one shared `ui/molecules/ConfirmDialog` —
+usually via `RowDelete` (trash + confirm) or `BulkDeleteBar`, and a contact
+merge only ever runs from the `MergeReview` modal, never straight off the
+toolbar. There is deliberately **no no-confirm delete primitive**: the old
+`FormDelete` was removed precisely because it made one-click destruction
+easy to reach for. Dropping a not-yet-saved row from a form being filled in
+(e.g. an invoice line item) is not destruction and does not confirm. A new
+delete/remove control must route through `ConfirmDialog`, or it violates
+this invariant.
 - **enrichment** (`lib/enrichment/`) — the transcript-enricher's write ops,
   exposed as additive, idempotent MCP tools (`apply_meeting_enrichment` and
   the `upsert_contact` / `upsert_meeting` / `attach_meeting_transcript` /

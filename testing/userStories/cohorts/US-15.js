@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-15',
+  implemented: true,
   role: 'System',
   guarantee: true,
   title: 'One discount applies — never stacked',

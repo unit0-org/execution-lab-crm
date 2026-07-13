@@ -1,5 +1,12 @@
 const userStory = {
   id: 'US-8',
+  implemented: 'partial',
+  gaps: [
+    "A person can't be related to themselves, and duplicate " +
+      'relationships are prevented.',
+    'A directed relationship reads correctly from both sides - ' +
+      'it inverts (e.g. "reports to" / "manages").'
+  ],
   role: 'Staff',
   title: 'Link contacts with relationships',
   story:
@@ -12,7 +19,9 @@ const userStory = {
     "A person can't be related to themselves, and duplicate relationships " +
       'are prevented.',
     'A directed relationship reads correctly from both sides — it inverts ' +
-      '(e.g. "reports to" ↔ "manages").'
+      '(e.g. "reports to" ↔ "manages").',
+    'Removing a relationship asks me to confirm first — one stray click ' +
+      'never unlinks two people.'
   ]
 };
 

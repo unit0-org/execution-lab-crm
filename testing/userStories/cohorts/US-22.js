@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-22',
+  implemented: true,
   role: 'Client',
   title: 'Browse programs on the public site',
   story:

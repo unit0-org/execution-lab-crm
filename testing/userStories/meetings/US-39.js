@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-39',
+  implemented: true,
   role: 'System',
   title: 'Match transcripts to the right meeting',
   story:

@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-24',
+  implemented: true,
   role: 'Member',
   title: 'Sign in with a magic link',
   story:

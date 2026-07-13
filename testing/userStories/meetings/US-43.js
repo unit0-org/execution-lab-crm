@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-43',
+  implemented: true,
   role: 'Staff',
   title: 'Track events & import attendees',
   story:

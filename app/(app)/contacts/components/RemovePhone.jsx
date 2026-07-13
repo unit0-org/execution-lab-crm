@@ -1,11 +1,11 @@
 'use client'
 
-import { FormDelete } from './FormDelete'
+import { RowDelete } from '@/ui/molecules/RowDelete'
+import { useActionHandler } from '@/app/(app)/hooks/useActionHandler'
 import { removePhoneAction } from '../actions/removePhone'
 
 export function RemovePhone({ phoneId, onChanged }) {
-  return (
-    <FormDelete action={removePhoneAction} id={phoneId}
-      label="Remove phone" onChanged={onChanged} />
-  )
+  const remove = useActionHandler(removePhoneAction, { onDone: onChanged })
+
+  return <RowDelete onConfirm={() => remove(phoneId)} title="Remove phone" />
 }
