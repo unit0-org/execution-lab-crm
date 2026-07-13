@@ -67,7 +67,8 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
-  which they set on the Settings → Profile tab.
+  which they set on the Preferences page (`/preferences`, reached via the
+  sidebar email), alongside the light/dark theme.
 - **event** — events with participants (`event_participant`) and
   per-participant registration answers; attendance = checked-in /
   registered. Those answers surface as read-through nuggets in the
@@ -181,9 +182,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
   `sendWeeklyDigest` emails every staff member (`listMembers`) via `sendEmail`
   and stamps `digest_setting.last_sent_at`; `sendWeeklyDigestIfDue` (the
   cron entry) gates it to Mondays and once per week. `digest_setting`
-  (one row per org: `send_hour`, `last_sent_at`) is edited on Settings →
-  Digest, which also has a "Send it now" button. Not contact-owned (no
-  contact-merge fold-in).
+  (one row per org: `send_hour`, `last_sent_at`) is edited from the
+  **dashboard** gear (`/dashboard` → `DigestSettings` modal), which also has
+  a "Send it now" button. Not contact-owned (no contact-merge fold-in).
 - **luma** — Luma event guests flow into `event`/`event_participant` (NOT
   `registration`/`cohort` — separate subsystems). Three intake paths share
   one seam (`importMappedGuest`: upsert contact → participation → answers):

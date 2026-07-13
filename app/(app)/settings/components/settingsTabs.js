@@ -1,15 +1,14 @@
-// The settings tabs, in display order. The first is the default.
+// The settings tabs, in display order. The first is the default. Personal
+// preferences (profile, appearance) live on /preferences; the weekly digest
+// moved to the dashboard gear — so those are no longer tabs here.
 export const SETTINGS_TABS = [
-  { value: 'profile', label: 'Profile' },
   { value: 'members', label: 'Members' },
   { value: 'google', label: 'Google Contacts' },
   { value: 'conflicts', label: 'Sync conflicts' },
   { value: 'emails', label: 'Email templates' },
   { value: 'company', label: 'Company info' },
   { value: 'invoicing', label: 'Invoicing' },
-  { value: 'digest', label: 'Digest' },
-  { value: 'cron', label: 'Cron' },
-  { value: 'appearance', label: 'Appearance' }
+  { value: 'cron', label: 'Cron' }
 ]
 
 const ADMIN_ONLY = new Set(['members', 'cron'])
