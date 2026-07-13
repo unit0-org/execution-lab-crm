@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-29',
+  implemented: true,
   role: 'Owner',
   title: 'Have full access to everything',
   story:

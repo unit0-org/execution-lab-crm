@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-31',
+  implemented: 'partial',
+  gaps: [
+    'Two invoices reserving a number at the same instant get ' +
+      'distinct numbers.'
+  ],
   role: 'Staff',
   title: 'Create an invoice with line items',
   story:

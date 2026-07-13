@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-52',
+  implemented: true,
   role: 'Staff',
   title: 'Sign in safely to the back office',
   story:

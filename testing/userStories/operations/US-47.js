@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-47',
+  implemented: true,
   role: 'Staff',
   title: 'Get notified about @-mentions',
   story:

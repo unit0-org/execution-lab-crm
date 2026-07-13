@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-48',
+  implemented: true,
   role: 'System',
   title: 'Run daily scheduled jobs',
   story:

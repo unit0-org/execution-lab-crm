@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-38',
+  implemented: true,
   role: 'System',
   title: 'Sync meetings from Google Calendar',
   story:

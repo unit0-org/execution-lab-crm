@@ -2,26 +2,21 @@
 
 import { useState } from 'react'
 import { mergeContactsAction } from '../actions/mergeContacts'
-import { planMerge, loserIds } from './planMerge'
+import { loserIds } from './planMerge'
 
+// A merge permanently deletes every contact that isn't kept, so it always
+// goes through the review modal — there is no straight-to-merge path.
 export function useMergeFlow(onDone) {
   const [review, setReview] = useState(null)
 
-  const run = (winnerId, contacts) =>
-    mergeContactsAction(winnerId, loserIds(contacts, winnerId))
+  const run = (winnerId) =>
+    mergeContactsAction(winnerId, loserIds(review, winnerId))
       .then(() => { setReview(null); onDone() })
 
-  const start = (contacts) => {
-    const plan = planMerge(contacts)
-
-    if (plan.winnerId) return run(plan.winnerId, contacts)
-
-    setReview(contacts)
-  }
-
   return {
-    review, start,
-    confirm: (winnerId) => run(winnerId, review),
+    review,
+    start: (contacts) => setReview(contacts),
+    confirm: run,
     cancel: () => setReview(null)
   }
 }

@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-19',
+  implemented: true,
   role: 'Staff',
   title: 'Send payment reminders & follow-ups',
   story:

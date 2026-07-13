@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-25',
+  implemented: true,
   role: 'Member',
   title: 'Access resources for my cohorts',
   story:

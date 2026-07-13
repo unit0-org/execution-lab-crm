@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-28',
+  implemented: true,
   role: 'Admin',
   title: 'Invite and revoke portal members',
   story:

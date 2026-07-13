@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-40',
+  implemented: true,
   role: 'Staff',
   guarantee: true,
   title: 'Merging meetings never loses data',

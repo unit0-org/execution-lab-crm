@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-30',
+  implemented: 'partial',
+  gaps: [
+    'The invoice-PDF column is restricted to the owner or staff ' +
+      'in every row.'
+  ],
   role: 'Reference',
   title: 'The full authorization matrix',
   story:

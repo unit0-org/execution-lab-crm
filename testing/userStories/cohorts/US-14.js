@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-14',
+  implemented: 'partial',
+  gaps: [
+    "A registration paid after its hold lapsed doesn't silently " +
+      'overfill the cohort.'
+  ],
   role: 'System',
   guarantee: true,
   title: '"A taken seat" means the same thing everywhere',

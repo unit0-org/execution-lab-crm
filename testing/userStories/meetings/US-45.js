@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-45',
+  implemented: true,
   role: 'System',
   title: 'Sync contacts with Google both ways',
   story:

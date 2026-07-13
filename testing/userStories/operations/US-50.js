@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-50',
+  implemented: true,
   role: 'System',
   guarantee: true,
   title: 'New data tables are private & migrations are unique',

@@ -1,6 +1,5 @@
 import { GrowRow } from '@/ui/layout/GrowRow'
-import { IconButton } from '@/ui/atoms/IconButton'
-import { Icon } from '@/ui/atoms/Icon'
+import { RowDelete } from '@/ui/molecules/RowDelete'
 import { RepeatableControl } from './RepeatableControl'
 
 // One added input for a repeatable type: its control (text field or textarea)
@@ -12,9 +11,7 @@ export function RepeatableInput(props) {
     <GrowRow align="start">
       <RepeatableControl field={field} item={item} saved={saved}
         onUpdate={onUpdate} onActive={onActive} />
-      <IconButton label="Remove input" onClick={onRemove}>
-        <Icon name="trash" size={16} />
-      </IconButton>
+      <RowDelete onConfirm={onRemove} title="Remove input" />
     </GrowRow>
   )
 }

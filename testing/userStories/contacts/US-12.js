@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-12',
+  implemented: true,
   role: 'Staff',
   title: 'Track birthday, LinkedIn and photo',
   story:

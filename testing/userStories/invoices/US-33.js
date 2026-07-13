@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-33',
+  implemented: true,
   role: 'System',
   guarantee: true,
   title: 'Every invoice email CCs the office, once',

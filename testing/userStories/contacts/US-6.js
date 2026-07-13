@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-6',
+  implemented: true,
   role: 'Staff',
   title: 'Organize contacts with categories',
   story:

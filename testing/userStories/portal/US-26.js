@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-26',
+  implemented: 'partial',
+  gaps: [
+    "Only the invoice's owner (or staff) can open its PDF - a " +
+      'guessed link is refused.'
+  ],
   role: 'Member',
   title: 'View and download my invoices',
   story:

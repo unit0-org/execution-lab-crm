@@ -1,5 +1,10 @@
 const userStory = {
   id: 'US-34',
+  implemented: 'partial',
+  gaps: [
+    'Two charges in the same second get distinct receipt ' +
+      'numbers.'
+  ],
   role: 'System',
   title: 'Auto-invoice a Stripe purchase',
   story:

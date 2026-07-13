@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-16',
+  implemented: true,
   role: 'Client',
   title: 'Earn early-bird / pre-registration pricing',
   story:

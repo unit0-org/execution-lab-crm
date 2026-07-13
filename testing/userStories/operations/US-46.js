@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-46',
+  implemented: true,
   role: 'Staff',
   title: 'See leads, customers & hot prospects',
   story:

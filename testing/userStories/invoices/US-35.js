@@ -1,5 +1,6 @@
 const userStory = {
   id: 'US-35',
+  implemented: true,
   role: 'System',
   title: 'Sync purchases & classify customers',
   story:

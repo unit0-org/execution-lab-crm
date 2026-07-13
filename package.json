@@ -14,7 +14,8 @@
     "test:report": "node testing/report/generateReport.js",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "docs:ui": "node scripts/generateComponentsDoc.mjs"
+    "docs:ui": "node scripts/generateComponentsDoc.mjs",
+    "spec:status": "node scripts/checkStoryStatus.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.26.0",
