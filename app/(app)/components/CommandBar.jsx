@@ -5,6 +5,7 @@ import { Hamburger } from '@/ui/layout/Hamburger'
 import { SearchTrigger } from '@/ui/molecules/SearchTrigger'
 import { Button } from '@/ui/atoms/Button'
 import { Notifications } from './Notifications'
+import { AutomationMenu } from './AutomationMenu'
 import { CommandOverlays } from './CommandOverlays'
 import { useCommandBar } from '../hooks/useCommandBar'
 
@@ -19,10 +20,9 @@ export function CommandBar({ onMenu, unread }) {
         <Hamburger onClick={onMenu} />
         <SearchTrigger placeholder={PLACEHOLDER} hint="Ctrl K"
           onClick={bar.palette.show} />
+        <AutomationMenu />
         <Notifications unread={unread} />
-        <Button tone="default" onClick={bar.log.show}>
-          Log note
-        </Button>
+        <Button tone="default" onClick={bar.log.show}>Log note</Button>
       </Topbar>
       <CommandOverlays bar={bar} />
     </>

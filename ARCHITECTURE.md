@@ -229,6 +229,25 @@ leaves this stale is incomplete (this is a review-enforced rule in
   should fire less often gates itself inside its `run` and no-ops otherwise
   — e.g. **`weekly-digest`** (`sendWeeklyDigestIfDue`) sends only on the
   business-tz Monday run, once per week.
+- **automation** (`lib/automation/`) — user-built "when *trigger* then
+  *action*" rules, managed on the **Actions** page (`/automations`, reached
+  from the topbar lightning menu). An `automation` row pairs a `trigger_type`
+  (+ optional `trigger_config` filter, e.g. a `categoryId`) with an
+  `action_type` (+ `action_config`). Single-tenant, so rules are **global**
+  (no `organization_id`). Firing is a **bridge pattern like note-mentions**:
+  each choke-point controller calls a thin `dispatch<Trigger>` bridge →
+  `dispatchTrigger(type, ctx)`, which runs every `Automation.scope('active')`
+  for that type, applies the filter (`matchesConfig`), runs the action
+  (`send_email` via `sendTemplatedEmail`, `create_task` via `createTask`;
+  each resolves the missing contact/email side from the other), and logs an
+  `automation_run`. **`dispatchTrigger` never throws** — automations must not
+  break the operation that triggered them. Wired triggers: `contact_created`
+  (`create`/`upsertContact`), `category_added` (`addCategoryToContacts`),
+  `waitlist_joined` (`onWaitlistJoined`); the catalog in
+  `lib/automation/catalog/` lists the rest (unwired until PR3, incl. a
+  cron-based `contact_birthday`). **`automation_run` deliberately has no
+  contact FK** — it stays out of the contact-merge fold-in invariant (the
+  affected person is free-text in `detail` only).
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).
   Irreversible/financial tools (`delete_*`, `merge_*`, `approve_invoice`,
   `send_invoice(s)`, `void_invoice`) are wrapped by `guardDestructive`: they
