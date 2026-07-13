@@ -1,17 +1,12 @@
-import { relative } from 'node:path';
-import { resultsDir } from '../config/paths.js';
+import { readAttachment } from './readAttachment.js';
 
-// Screenshots and traces, linked relative to the report — which sits next to
-// the artifacts directory they live in.
+// Playwright can report the same file twice; keep one of each.
 export function specAttachments(result) {
   const byPath = new Map();
 
   for (const item of result.attachments || []) {
-    if (item.path) byPath.set(item.path, item.name);
+    if (item.path) byPath.set(item.path, item);
   }
 
-  return [...byPath].map(([path, name]) => ({
-    name,
-    href: relative(resultsDir, path)
-  }));
+  return [...byPath.values()].map(readAttachment);
 }
