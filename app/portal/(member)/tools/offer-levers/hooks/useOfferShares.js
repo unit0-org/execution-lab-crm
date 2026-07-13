@@ -2,29 +2,26 @@
 
 import { useState, useEffect } from 'react'
 import { listShareCandidatesAction } from '../actions/listShareCandidates'
-import { shareOfferAction } from '../actions/shareOffer'
-import { unshareOfferAction } from '../actions/unshareOffer'
-import { toShareToggle } from '../toShareToggle'
+import { useSharePicks } from './useSharePicks'
+import { useShareSubmit } from './useShareSubmit'
+import { shareView } from '../shareView'
 
-// Share-dialog state: load who this offer can be shared with when it opens,
-// then optimistically toggle each person on/off, persisting via the actions.
-export function useOfferShares(offerId, open) {
-  const [people, setPeople] = useState([])
+const loadCandidates = (offerId, setLoaded) =>
+  listShareCandidatesAction(offerId).then((rows) =>
+    setLoaded({ offerId, rows: Array.isArray(rows) ? rows : [] }))
+
+// Share-dialog state for one offer: load who it can be shared with whenever
+// the dialog opens on an offer, then stage picks and persist them. The rows
+// are tagged with their offer, so a previous offer's people never show.
+export function useOfferShares(offerId) {
+  const [loaded, setLoaded] = useState({ offerId: null, rows: [] })
+  const picks = useSharePicks()
+  const reload = () => loadCandidates(offerId, setLoaded)
+  const people = loaded.offerId === offerId ? loaded.rows : []
 
   useEffect(() => {
-    if (!open) return
+    if (offerId) loadCandidates(offerId, setLoaded)
+  }, [offerId])
 
-    listShareCandidatesAction(offerId)
-      .then((rows) => setPeople(Array.isArray(rows) ? rows : []))
-  }, [offerId, open])
-
-  const toggle = (contactId) => {
-    const person = people.find((p) => p.contactId === contactId)
-    const run = person?.shared ? unshareOfferAction : shareOfferAction
-
-    setPeople((cur) => toShareToggle(cur, contactId))
-    run(offerId, contactId)
-  }
-
-  return { people, toggle }
+  return shareView(people, picks, useShareSubmit(offerId, picks, reload))
 }

@@ -484,9 +484,18 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   bypasses gates).
   An owner can **share an offer** (view + comment, never edit) with other
   portal members via `offer_share` (`offer_id`, shared-with `contact_id`).
-  Owner-only management (`shareOffer`/`unshareOffer`/`listShareCandidates`
-  verify `Offer.getOwned` first); tag/comment features build on this in
-  later PRs. Visibility widens accordingly: `getSharedOffer` /
+  Owner-only management (`shareOfferWith`/`unshareOffer`/
+  `listShareCandidates` verify `Offer.getOwned` first). Sharing is reached
+  from an offer card's **⋯ menu** (`ShareOfferMenuItem`), whose dialog is
+  hoisted to `OfferListView` — never nested inside the card's link surface.
+  The dialog adds **several people at once**: an `Autocomplete` over the
+  candidates stages picks as `Token`s, **Share** grants them all
+  (`shareOfferWith` → `OfferShare.shareWithMany`, idempotent), and a table
+  of current sharees revokes access per row. Everyone **newly** added is
+  **emailed** — best-effort via `notifyOfferShare` →
+  `sendTemplatedEmail('offer_shared')` with a `portalUrl` deep link, so a
+  send failure never blocks the share; already-shared people are skipped, so
+  nobody is emailed twice. Visibility widens accordingly: `getSharedOffer` /
   `listSharedInputs` gate on `OfferShare.isSharedWith`, and
   `OfferConfiguratorServer` branches — the owner gets the editable
   `OfferLeversView`, a shared member the **read-only** `OfferReadView`

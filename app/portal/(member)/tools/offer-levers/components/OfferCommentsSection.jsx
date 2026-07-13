@@ -7,7 +7,7 @@ import { useOfferComments } from '../hooks/useOfferComments'
 import { AddCommentModal } from './AddCommentModal'
 import { CommentList } from './CommentList'
 
-// The offer's discussion thread (oldest first) with a + to add a comment.
+// The offer's comment thread (oldest first) with a + to add a comment.
 export function OfferCommentsSection(props) {
   const { offerId, initial, audience, viewerContactId } = props
   const { comments, reload } = useOfferComments(offerId, initial)
@@ -19,7 +19,7 @@ export function OfferCommentsSection(props) {
 
   return (
     <Stack gap="sm">
-      <SectionHeader title="Discussion" addLabel="Add comment"
+      <SectionHeader title="Comments" addLabel="Add comment"
         onAdd={add.show} />
       <AddCommentModal open={add.open} offerId={offerId} audience={audience}
         onSaved={saved} onClose={add.hide} />

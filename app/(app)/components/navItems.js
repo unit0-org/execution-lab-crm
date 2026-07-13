@@ -16,7 +16,9 @@ export const SALES = { label: 'Sales', items: [
   { href: '/invoices', label: 'Invoices', icon: 'file' }
 ] }
 
+// Contacts keeps `users`; these two carry their own glyph so the collapsed
+// rail — which is icon-only — never shows the same shape twice.
 export const COHORTS =
-  { href: '/cohorts', label: 'Cohorts', icon: 'users' }
+  { href: '/cohorts', label: 'Cohorts', icon: 'graduation' }
 export const PORTAL_MEMBERS =
-  { href: '/portal-members', label: 'Portal Members', icon: 'users' }
+  { href: '/portal-members', label: 'Portal Members', icon: 'userCheck' }
