@@ -41,7 +41,10 @@ const eslintConfig = defineConfig([
     "**/.next/**", "out/**", "build/**", "next-env.d.ts", ".claude/**",
   ]),
   {
-    files: ["app/**/*.{js,jsx}", "lib/**/*.{js,jsx}", "ui/**/*.{js,jsx}", "proxy.js"],
+    files: [
+      "app/**/*.{js,jsx}", "lib/**/*.{js,jsx}", "ui/**/*.{js,jsx}",
+      "testing/**/*.js", "proxy.js",
+    ],
     rules: {
       "max-len": ["error", { code: 80, tabWidth: 2, ignoreUrls: true }],
       "max-lines": ["error", { max: 30 }],

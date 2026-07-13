@@ -1,0 +1,6 @@
+{
+  "name": "crm-testing",
+  "private": true,
+  "type": "module",
+  "description": "End-to-end tests that exercise the app as the user, plus the user-story report. ESM is scoped here so the CommonJS repo root is untouched."
+}

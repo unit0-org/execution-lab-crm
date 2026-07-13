@@ -50,6 +50,34 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - Frontend: `app/[module]/{pages,components,hooks,actions}/`, one server
   action per file. UI primitives in `ui/` (atoms → molecules → organisms);
   see `ui/COMPONENTS.md`.
+- Tests: `testing/` (its own `package.json` for ESM; held to the same rules).
+
+## Testing: every user story, verified as the user (`testing/`)
+
+The Feature Spec artifact owns *behaviour*: 52 user stories (`US-1`…`US-52`),
+each listing the behaviours that must hold — **one test each**. `testing/`
+verifies them against a **running app**, never by importing app code:
+
+- `testing/userStories/<domain>/US-<n>.js` — one story per file, the
+  machine-readable mirror of the artifact. **A new or changed user story must
+  be mirrored here**, or the report silently stops covering it.
+- `testing/tests/<domain>/US-<n>/<behaviour>.spec.js` — one behaviour per
+  file. `verifyBehaviour(id, index, run)` titles the test `US-<n> ·
+  <behaviour>`; that id is how results join back to the story.
+- `testing/framework/` — the only place Playwright is imported; tests use
+  `verifyBehaviour`, `asStaff`, `skipUntil`, never the vendor lib directly.
+- `testing/report/` — `pnpm test:report` turns a run into a self-contained
+  HTML page listing every story as pass / partial / fail / **not implemented**.
+- `testing/database/` + `testing/session/` — migrate/truncate/seed over
+  `SUPABASE_DB_URL`, and minting a real Supabase session into a Playwright
+  `storageState` cookie so tests sign in as a genuine staff/member user.
+
+Runs against a **dedicated Supabase test project** via `.env.test`, which is
+truncated and re-seeded on every run — the `E2E_TEST_DB=1` interlock exists so
+it can never be pointed at dev or production. No service-role key is needed:
+test auth users are seeded into `auth.users` and signed in normally.
+
+    pnpm test && pnpm test:report
 
 ## Domain map (`lib/`)
 
