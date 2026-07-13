@@ -11,7 +11,9 @@
     "backup:db": "./scripts/backup-db.sh",
     "test": "playwright test -c testing/playwright.config.js",
     "test:list": "playwright test -c testing/playwright.config.js --list",
-    "test:report": "node testing/report/generateReport.js"
+    "test:report": "node testing/report/generateReport.js",
+    "storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.26.0",
@@ -34,9 +36,15 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
+    "@storybook/addon-a11y": "^10.5.0",
+    "@storybook/addon-docs": "^10.5.0",
+    "@storybook/addon-themes": "^10.5.0",
+    "@storybook/nextjs-vite": "^10.5.0",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
-    "tailwindcss": "^4"
+    "storybook": "^10.5.0",
+    "tailwindcss": "^4",
+    "vite": "^7.3.6"
   }
 }

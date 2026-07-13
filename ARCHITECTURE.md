@@ -50,6 +50,12 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - Frontend: `app/[module]/{pages,components,hooks,actions}/`, one server
   action per file. UI primitives in `ui/` (atoms → molecules → organisms);
   see `ui/COMPONENTS.md`.
+- Stories: `ui/**/Thing.stories.jsx`, beside the component. Storybook
+  (`pnpm storybook`) is the visual catalog — it loads `app/globals.css`
+  and the real `next/font` families, and its theme toggle drives the same
+  `:root[data-theme]` attribute as `app/themeScript.js`, so a primitive is
+  reviewed against real tokens in both themes. Config in `.storybook/`.
+  Stories are held to the same lint rules as the rest of `ui/`.
 - Tests: `testing/` (its own `package.json` for ESM; held to the same rules).
 
 ## Testing: every user story, verified as the user (`testing/`)
