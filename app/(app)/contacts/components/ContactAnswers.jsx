@@ -2,10 +2,11 @@
 
 import { Stack } from '@/ui/layout/Stack'
 import { useContactAnswers } from '../hooks/useContactAnswers'
-import { KnowHeader } from './KnowHeader'
 import { AddNuggetModal } from './AddNuggetModal'
 import { NuggetsBody } from './NuggetsBody'
 
+// The section heading, its `+` and its collapse all belong to Collapsible
+// (inside NuggetsBody) — there is no hand-rolled header here.
 export function ContactAnswers({ contactId, initial, reveal }) {
   const { nuggets, reload } = useContactAnswers(contactId, initial)
 
@@ -16,10 +17,9 @@ export function ContactAnswers({ contactId, initial, reveal }) {
 
   return (
     <Stack gap="sm">
-      <KnowHeader onAdd={reveal.show} />
       <AddNuggetModal open={reveal.shown} contactId={contactId}
         onSaved={saved} onClose={reveal.hide} />
-      <NuggetsBody nuggets={nuggets} onChanged={reload} />
+      <NuggetsBody nuggets={nuggets} onChanged={reload} onAdd={reveal.show} />
     </Stack>
   )
 }

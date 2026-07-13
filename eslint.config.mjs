@@ -29,6 +29,17 @@ const promiseSelectors = [
 
 const common = [...jsx(NO_JSX), memo("Callback"), memo("Memo")];
 
+// A collapse, a dialog or a menu is a ui/ primitive — never hand-rolled in a
+// feature folder. Raw <details>/<summary>/<dialog> outside ui/ means one was
+// rebuilt: use Collapsible / Modal / ConfirmDialog / Popover instead.
+const NO_REBUILD =
+  "This is a ui/ primitive — use Collapsible/Modal/Popover, don't rebuild it.";
+
+const noRebuild = ["details", "summary", "dialog"].map((tag) => ({
+  selector: `JSXOpeningElement[name.name='${tag}']`,
+  message: NO_REBUILD,
+}));
+
 const blankBefore = {
   blankLine: "always",
   prev: "*",
@@ -62,7 +73,11 @@ const eslintConfig = defineConfig([
     // Hooks: function stays synchronous (no async/await); a 3rd-party promise
     // may be consumed inside useEffect to set React state.
     files: ["app/**/hooks/**/*.{js,jsx}"],
-    rules: { "no-restricted-syntax": ["error", ...common, ...asyncSelectors] },
+    rules: {
+      "no-restricted-syntax": [
+        "error", ...common, ...asyncSelectors, ...noRebuild,
+      ],
+    },
   },
   {
     // Components, ui primitives, and pages: fully synchronous — no Promises.
@@ -75,6 +90,17 @@ const eslintConfig = defineConfig([
     rules: {
       "no-restricted-syntax": [
         "error", ...common, ...asyncSelectors, ...promiseSelectors,
+      ],
+    },
+  },
+  {
+    // Feature components may not rebuild a ui/ primitive. `ui/` itself is
+    // excluded above — that's where <details> and <dialog> belong.
+    files: ["app/**/components/**/*.{js,jsx}"],
+    rules: {
+      "no-restricted-syntax": [
+        "error", ...common, ...asyncSelectors, ...promiseSelectors,
+        ...noRebuild,
       ],
     },
   },

@@ -60,6 +60,21 @@ them (so adding one never renumbers the rest).
   `pnpm storybook` renders the same catalog visually. If no existing
   primitive fits and a **new `ui/` component is genuinely required, ask
   first** before building it.
+- **Never rebuild a `ui/` primitive's behaviour inside a module.** The rule
+  above is about *where the file lands*; this one is about *what it does*.
+  Re-implementing an interaction that a `ui/` primitive already owns —
+  collapse/disclosure, modal, confirm, menu, popover, toast, tabs, delete —
+  is a violation **even when the new component sits in
+  `[module]/components/`** and never touches `ui/`. Writing a chevron, an
+  `open`/`toggle` state, a "Show more" button, or a bespoke dialog in a
+  feature folder is the smell: the primitive exists, use it. **A section
+  that collapses uses `Collapsible`** — it owns the title, the optional
+  collapsed-only preview body, the `+` create action, and the toggle, so
+  every collapsible section behaves identically.
+- **If the primitive *almost* fits, extend the primitive — don't fork it.**
+  Add the missing prop to the `ui/` component (and ask first, as above), so
+  the improvement reaches every call site. Copying it into a module to tweak
+  it forks the design system and is never the answer.
 - **`ui/COMPONENTS.md` is generated — never hand-edit it.** A component
   documents itself: its **`/** doc block */`** is the catalog's "Use for"
   column, and the props column is read straight off its destructured
