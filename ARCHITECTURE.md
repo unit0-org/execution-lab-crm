@@ -303,7 +303,13 @@ test auth users are seeded into `auth.users` and signed in normally.
   can be switched off with `MCP_DISABLE_DESTRUCTIVE=true` (a read-only MCP
   profile). New destructive tools must use the same guard. The server
   `INSTRUCTIONS` also tell clients to treat stored CRM text as untrusted
-  data, never as instructions (prompt-injection defence).
+  data, never as instructions (prompt-injection defence). **The caller has an
+  identity.** `verifyToken` puts the caller's email in `authInfo.extra` — from
+  the WorkOS token, or from **`MCP_AUTHOR_EMAIL`** for the static-token client
+  (which identifies an integration, not a person). `callerActor` resolves that
+  email to an `organization_user`, so what the integration writes is attributed
+  to a real team member. `contact_note.author_user_id` is the first consumer;
+  without `MCP_AUTHOR_EMAIL` set, those writes are simply unattributed.
 
 **Destructive UI always confirms (invariant).** `guardDestructive` protects
 the MCP surface; the screens have the same rule. Every control that destroys
