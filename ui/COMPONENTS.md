@@ -179,6 +179,10 @@ with the shared leading select-all + trailing delete columns).
 | `HeroPanel` | `tone='launch'`, `main`, `aside` | Featured-cohort panel: glowing tone-bordered surface with a brand gradient edge; `main`/`aside` stack on mobile (portal) |
 | `AccentPanel` | `tone='mint'`, `children` | Glowing tone-bordered surface with a brand gradient top stripe (confirmation/celebration) |
 
+(HOCs are **not** `ui/` primitives — a gating HOC lives in the module it
+belongs to, beside that module's `components/`; see the HOC rule in
+`AGENTS.md`.)
+
 ## Tokens — `ui/tokens/`
 
 `color`, `labelColors`, `statusColors`, `tone`, `space`, `radius`,

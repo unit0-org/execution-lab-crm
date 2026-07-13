@@ -6,10 +6,10 @@ import { portalRoutePath } from '@/lib/portal/portalRoutePath'
 import { OfferLeversView } from '../components/OfferLeversView'
 import { SharedOfferServer } from './SharedOfferServer'
 import { offerVersionOf } from './offerVersionOf'
+import { loadDiscussion } from '../loadDiscussion'
 
 // Gate the tool, then resolve the offer: the owner gets the editable
-// configurator; a member it's shared with gets the read-only view; anyone
-// else 404s (inside SharedOfferServer).
+// configurator; a sharee the read-only view; else 404 (SharedOfferServer).
 export async function OfferConfiguratorServer({ params }) {
   const member = await currentPortalMember()
   const granted = member && await memberCanUseTool(member, 'offer-levers')
@@ -22,7 +22,9 @@ export async function OfferConfiguratorServer({ params }) {
   if (!offer) return <SharedOfferServer member={member} offerId={offerId} />
 
   const initial = await listInputs(member.contactId, offerId)
+  const discussion = await loadDiscussion(member.contactId, offerId)
 
   return <OfferLeversView initial={initial} offerId={offerId}
-    offerName={offer.name} offerVersion={offerVersionOf(offer)} />
+    offerName={offer.name} offerVersion={offerVersionOf(offer)}
+    discussion={discussion} viewerContactId={member.contactId} />
 }

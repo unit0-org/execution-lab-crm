@@ -3,12 +3,12 @@
 import { Stack } from '@/ui/layout/Stack'
 import { useOfferLevers } from '../hooks/useOfferLevers'
 import { OfferLeversHeader } from './OfferLeversHeader'
-import { OfferContextSection } from './OfferContextSection'
-import { LeversSection } from './LeversSection'
-import { GeneratedOffersSection } from './GeneratedOffersSection'
+import { OfferLeversBody } from './OfferLeversBody'
+import { OfferCommentsSection } from './OfferCommentsSection'
 
 export function OfferLeversView(props) {
   const { initial, offerId, offerName, offerVersion } = props
+  const { discussion, viewerContactId } = props
   const offer = useOfferLevers(initial, offerId)
   const on = {
     field: offer.setField, add: offer.add, update: offer.update,
@@ -19,12 +19,9 @@ export function OfferLeversView(props) {
     <Stack gap="lg">
       <OfferLeversHeader offerId={offerId} name={offerName}
         version={offerVersion} />
-      <OfferContextSection values={offer.values} lists={offer.lists}
-        saved={offer.saved} on={on} />
-      <LeversSection values={offer.values} onField={offer.setLever}
-        onCopy={offer.copyPrompt} />
-      <GeneratedOffersSection lists={offer.lists} saved={offer.saved}
-        on={on} />
+      <OfferLeversBody offer={offer} on={on} />
+      <OfferCommentsSection offerId={offerId} initial={discussion.comments}
+        audience={discussion.audience} viewerContactId={viewerContactId} />
     </Stack>
   )
 }
