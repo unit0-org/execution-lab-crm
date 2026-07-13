@@ -14,6 +14,10 @@ export const titleStyle = {
   textTransform: 'uppercase', letterSpacing: '0.06em'
 }
 
+export const actionsStyle = {
+  display: 'flex', alignItems: 'center', gap: space[2]
+}
+
 export const previewStyle = { marginTop: space[2] }
 
 export const bodyStyle = { marginTop: space[3] }

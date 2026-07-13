@@ -1,19 +1,18 @@
-'use client'
+import { Collapsible } from '@/ui/molecules/Collapsible'
+import { NuggetRows } from './NuggetRows'
+import { NuggetList } from './NuggetList'
 
-import { Stack } from '@/ui/layout/Stack'
-import { useDisclosure } from '../hooks/useDisclosure'
-import { NuggetsPanel } from './NuggetsPanel'
-import { NuggetsToggle } from './NuggetsToggle'
+const PREVIEW_COUNT = 3
 
-// Starts collapsed, previewing the newest facts as rows; expanding reveals
-// every fact in the full card layout.
-export function NuggetsBody({ nuggets, onChanged }) {
-  const { open, toggle } = useDisclosure()
+// Collapsed → the newest 3 facts as rows; expanded → every fact in the full
+// card layout, where it can be edited, removed and read for provenance.
+export function NuggetsBody({ nuggets, onChanged, onAdd }) {
+  const preview = <NuggetRows nuggets={nuggets.slice(0, PREVIEW_COUNT)} />
 
   return (
-    <Stack gap="sm">
-      <NuggetsPanel nuggets={nuggets} open={open} onChanged={onChanged} />
-      <NuggetsToggle count={nuggets.length} open={open} onToggle={toggle} />
-    </Stack>
+    <Collapsible title="What we know" defaultOpen={false}
+      addLabel="Add nugget" onAdd={onAdd} preview={preview}>
+      <NuggetList nuggets={nuggets} onChanged={onChanged} />
+    </Collapsible>
   )
 }
