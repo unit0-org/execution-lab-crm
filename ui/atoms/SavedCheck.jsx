@@ -1,8 +1,10 @@
 import { Icon } from '@/ui/atoms/Icon'
 import { savedCheckStyle } from './SavedCheck.styles'
 
-// A success check shown for a moment after a field autosaves. Always
-// occupies its space (opacity toggles) so nothing shifts.
+/**
+ * Success check that fades in briefly after an autosave; always reserves
+ * its space (opacity toggles), so nothing shifts.
+ */
 export function SavedCheck({ show }) {
   return (
     <span style={savedCheckStyle(show)}>

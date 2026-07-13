@@ -1,7 +1,10 @@
 import { NavLink } from '../atoms/NavLink'
 import { NavGroup } from './NavGroup'
 
-// One sidebar entry: a collapsible group (has items) or a plain link.
+/**
+ * One nav entry: a `{label,items}` category group when it has `items`,
+ * otherwise a plain link, active when it matches `currentPath`.
+ */
 export function NavEntry({ entry, currentPath, onNavigate }) {
   if (entry.items)
     return (

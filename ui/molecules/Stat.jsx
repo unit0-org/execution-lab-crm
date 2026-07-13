@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 import { StatBody } from './StatBody'
 import { statLinkStyle } from './Stat.styles'
 
-// A headline metric; when `href` is set the whole card links there.
+/** Stat tile: a headline metric; `href` links the whole card. */
 export function Stat({ label, value, tone, href }) {
   if (!href) return <StatBody label={label} value={value} tone={tone} />
 

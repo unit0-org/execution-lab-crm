@@ -1,7 +1,7 @@
 import { Text } from '@/ui/atoms/Text'
 import { insightStyle } from './Insight.styles'
 
-// A system-derived insight, styled apart from manual nuggets.
+/** Insight tile: system-derived, styled apart from manual nuggets. */
 export function Insight({ label, value }) {
   return (
     <div style={insightStyle}>

@@ -17,6 +17,9 @@ document.documentElement.classList.add(sans.variable, mono.variable);
 
 /** @type {import('@storybook/nextjs-vite').Preview} */
 const preview = {
+  // Every component gets a Docs page built from its /** doc block */ —
+  // the same text ui/COMPONENTS.md is generated from.
+  tags: ['autodocs'],
   decorators: [
     // The app themes off data-theme on :root (see app/themeScript.js);
     // the toolbar toggle drives the same attribute.

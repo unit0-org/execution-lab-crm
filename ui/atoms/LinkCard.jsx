@@ -2,9 +2,11 @@ import NextLink from 'next/link'
 import { NavProgress } from './NavProgress'
 import { linkCardStyle, overlayStyle } from './LinkCard.styles'
 
-// A Card whose entire surface links to `href`. The link is a stretched
-// overlay, so a control raised above it (see RaisedControl) stays
-// clickable — no invalid button-inside-anchor. Lifts on hover.
+/**
+ * Card whose whole surface links to `href` (stretched-link overlay; lifts
+ * on hover), so no invalid button-inside-anchor. Wrap any control inside
+ * in `RaisedControl` to keep it clickable.
+ */
 export function LinkCard({ href, label, children }) {
   return (
     <div data-card-lift data-hover-host style={linkCardStyle}>

@@ -1,7 +1,7 @@
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { rowStyle, itemStyle, checkStyle } from './FeatureChecks.styles'
 
-// A list of mono "✓ item" highlights — a wrapped row, or a column.
+/** Mono "✓ item" highlights — a wrapped row, or a column (portal). */
 export function FeatureChecks({ items, column }) {
   return (
     <div style={rowStyle(column)}>

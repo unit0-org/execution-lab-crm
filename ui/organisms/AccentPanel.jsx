@@ -1,7 +1,9 @@
 import { panelStyle, stripeStyle } from './AccentPanel.styles'
 
-// A glowing, tone-bordered surface with a brand gradient top stripe — for
-// celebratory/confirmation cards.
+/**
+ * Glowing tone-bordered surface with a brand gradient top stripe — for
+ * confirmation/celebration cards.
+ */
 export function AccentPanel({ tone = 'mint', children }) {
   return (
     <div style={panelStyle(tone)}>

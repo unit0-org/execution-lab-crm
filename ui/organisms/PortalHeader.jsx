@@ -3,8 +3,10 @@ import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { MonoLink } from '@/ui/atoms/MonoLink'
 import { headerStyle, rightStyle } from './PortalHeader.styles'
 
-// Portal masthead: brand lockup + cohort meta and program link. `aside`
-// renders an extra node (e.g. a member sign-in link) in the right column.
+/**
+ * Portal masthead: brand lockup + cohort meta and program link. `aside`
+ * renders an extra node (e.g. a member sign-in link) in the right column.
+ */
 export function PortalHeader({
   kicker, title, infoLabel, linkLabel, linkHref, logoSrc, logoAlt, aside
 }) {

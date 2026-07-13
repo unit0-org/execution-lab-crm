@@ -2,8 +2,10 @@ import { filterBarStyle } from './FilterBar.styles'
 import { FilterChip } from './FilterChip'
 import { buildFilterChips } from './buildFilterChips'
 
-// A row of selectable filter chips; the active one is highlighted.
-// Fixed height so switching filters never shifts the list below it.
+/**
+ * URL-driven filter chips; the active one is highlighted. Fixed height,
+ * so switching filters never shifts the list below it.
+ */
 export function FilterBar({ options, active, basePath, param }) {
   const chips = buildFilterChips(options, basePath, param, active)
 

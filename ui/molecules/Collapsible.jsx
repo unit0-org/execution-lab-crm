@@ -2,9 +2,10 @@ import { Icon } from '../atoms/Icon'
 import { summaryStyle, rowStyle, titleStyle, previewStyle, bodyStyle }
   from './Collapsible.styles'
 
-// A titled card section that expands/collapses in place. Native <details>
-// owns the open state — no JS. Pass `preview` to show a summary line that's
-// visible only while collapsed; defaultOpen={false} starts collapsed.
+/**
+ * Expand/collapse section; `preview` shows only while collapsed. Native
+ * `<details>` owns the open state — no JS.
+ */
 export function Collapsible({ title, preview, defaultOpen = true, children }) {
   const initial = defaultOpen ? { open: true } : {}
   const previewNode = preview

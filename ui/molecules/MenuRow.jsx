@@ -1,9 +1,11 @@
 import { rowStyle, activeStyle, textStyle, labelStyle, subtitleStyle }
   from './MenuRow.styles'
 
-// A full-width clickable row for menus/palettes: a leading slot (icon or
-// avatar), a label with an optional subtitle below it, and optional
-// trailing meta. Hover is in globals.css; `active` pre-highlights it.
+/**
+ * Full-width clickable menu/palette row: leading slot + label (with an
+ * optional `subtitle` below) + optional trailing meta. `active`
+ * pre-highlights it (keyboard-selected).
+ */
 export function MenuRow({ leading, label, subtitle, meta, active, onClick }) {
   const style = active ? { ...rowStyle, ...activeStyle } : rowStyle
 

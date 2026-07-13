@@ -2,7 +2,10 @@ import NextLink from 'next/link'
 import { NavProgress } from './NavProgress'
 import { buttonStyle } from './Button.styles'
 
-// A navigation link that looks like a Button (shares buttonStyle).
+/**
+ * Navigation link styled as a Button (shares `buttonStyle`);
+ * `target="_blank"` opens a new tab.
+ */
 export function ButtonLink({
   href, tone = 'default', size, block, target, children
 }) {

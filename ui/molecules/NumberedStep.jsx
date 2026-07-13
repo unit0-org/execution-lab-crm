@@ -1,7 +1,7 @@
 import { Text } from '@/ui/atoms/Text'
 import { rowStyle, numStyle, titleStyle } from './NumberedStep.styles'
 
-// A numbered step: a circled index + a title and description.
+/** Circled index + title + description (waitlist explainer). */
 export function NumberedStep({ n, title, desc }) {
   return (
     <div style={rowStyle}>

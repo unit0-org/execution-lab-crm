@@ -1,6 +1,6 @@
 import { shellStyle, innerStyle } from './PortalShell.styles'
 
-// The portal's dark, centered page frame (no-login client surface).
+/** Dark, centered page frame for the no-login client portal. */
 export function PortalShell({ children, max = 1080 }) {
   return (
     <div style={shellStyle}>

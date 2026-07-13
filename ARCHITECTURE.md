@@ -49,7 +49,10 @@ leaves this stale is incomplete (this is a review-enforced rule in
   controllers stay thin and return plain objects (`.toJSON()`).
 - Frontend: `app/[module]/{pages,components,hooks,actions}/`, one server
   action per file. UI primitives in `ui/` (atoms → molecules → organisms);
-  see `ui/COMPONENTS.md`.
+  see `ui/COMPONENTS.md` — which is **generated** from the components' own
+  doc blocks + destructured props (`pnpm docs:ui`, CI-checked), so the
+  catalog cannot drift from the code. A doc block is what marks a component
+  as public API; internal sub-components have none and stay out.
 - Stories: `ui/**/Thing.stories.jsx`, beside the component. Storybook
   (`pnpm storybook`) is the visual catalog — it loads `app/globals.css`
   and the real `next/font` families, and its theme toggle drives the same

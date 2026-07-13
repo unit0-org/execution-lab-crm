@@ -1,9 +1,10 @@
 import { Stack } from '../layout/Stack'
 import { CheckListItem } from './CheckListItem'
 
-// A vertical, always-visible multi-select checkbox list.
-// `options`=[{value,label,desc}], `selected`=picked values[],
-// `onToggle`=value=>void (fires with the clicked option's value).
+/**
+ * Always-visible multi-select checkbox list (label + description per
+ * row). `options`=`[{value,label,desc}]`; `onToggle` gets the value.
+ */
 export function CheckList({ options, selected, onToggle }) {
   return (
     <Stack gap="sm">

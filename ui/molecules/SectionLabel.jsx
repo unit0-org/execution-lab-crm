@@ -2,7 +2,7 @@ import {
   rowStyle, numStyle, labelStyle, ruleStyle
 } from './SectionLabel.styles'
 
-// A numbered section divider: "01" + label + a rule line.
+/** Numbered section divider ("01 · label" + rule). */
 export function SectionLabel({ n, children }) {
   return (
     <div style={rowStyle}>

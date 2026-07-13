@@ -1,6 +1,6 @@
 import { rowStyle, mainStyle, asideStyle } from './SidebarLayout.styles'
 
-// Form/content + a sticky aside that stacks below it on mobile.
+/** Content + a sticky aside that stacks below on mobile (portal forms). */
 export function SidebarLayout({ main, aside }) {
   return (
     <div style={rowStyle}>

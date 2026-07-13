@@ -1,5 +1,6 @@
 import { cardStyle } from './Card.styles'
 
+/** Surface container for grouped content. */
 export function Card({ tone, hoverHost, id, children }) {
   const host = hoverHost || undefined
 

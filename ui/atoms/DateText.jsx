@@ -12,9 +12,10 @@ const format = (value, withTime) => {
   return new Date(value).toLocaleString('en-US', opts)
 }
 
-// Renders a calendar date (formatted in UTC so a date-only value never
-// drifts a day in the viewer's timezone). Pass withTime to add the time.
-// Display-only.
+/**
+ * Display-only date, UTC-safe (so a date-only value never drifts a day in
+ * the viewer's timezone). `withTime` adds the time.
+ */
 export function DateText({ value, withTime }) {
   return <>{format(value, withTime)}</>
 }

@@ -37,6 +37,22 @@ toolbar's theme switch drives `data-theme` on `:root` — the same attribute
 click away. Stories live beside their component (`ui/atoms/Button.jsx` →
 `ui/atoms/Button.stories.jsx`).
 
+## The UI catalog is generated
+
+`ui/COMPONENTS.md` is **not hand-written**. A component documents itself:
+its `/** doc block */` becomes the catalog's "Use for" column, and the
+props column is read straight off its destructured parameters — so neither
+can drift from the code. Storybook's Docs tab renders the same doc blocks.
+
+```bash
+pnpm docs:ui          # regenerate ui/COMPONENTS.md
+pnpm docs:ui --check  # fail if stale (CI runs this)
+```
+
+Add a doc block to a new component and it joins the catalog; an internal
+sub-component has none and stays out. Prose (conventions, hooks, helpers,
+tokens) lives in `ui/COMPONENTS.template.md`.
+
 ## Required env vars
 
 ```

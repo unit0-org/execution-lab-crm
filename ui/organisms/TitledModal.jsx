@@ -2,9 +2,11 @@ import { Modal } from './Modal'
 import { Stack } from '../layout/Stack'
 import { Heading } from '../atoms/Heading'
 
-// A Modal with a titled header row: the title sits top-left while the
-// built-in close button sits top-right, so body content never hides under
-// the close. Use for any dialog that wants a heading + visible close.
+/**
+ * Modal with a titled header row: the title sits top-left, the close
+ * button top-right, so body content never sits under it. Prefer this
+ * over a bare `Modal` for any titled dialog.
+ */
 export function TitledModal({ open, title, onClose, wide, children }) {
   return (
     <Modal open={open} onClose={onClose} wide={wide}>

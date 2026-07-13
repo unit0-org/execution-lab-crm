@@ -1,7 +1,9 @@
 import { monoLabelStyle } from './MonoLabel.styles'
 
-// Monospaced micro-label (JetBrains Mono) for technical/data text and
-// kickers. Tone picks a brand or neutral color; `caps` uppercases it.
+/**
+ * Monospaced micro-label/kicker (JetBrains Mono); `tone` picks a
+ * brand/neutral color, `caps` uppercases, `align` blocks + aligns (portal).
+ */
 export function MonoLabel(props) {
   const { tone = 'muted', size = 11, caps, align, children } = props
 

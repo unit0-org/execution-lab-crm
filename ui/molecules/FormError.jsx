@@ -1,6 +1,6 @@
 import { Text } from '../atoms/Text'
 
-// Inline form error message; renders nothing when there's no message.
+/** Form-level error message; renders nothing when there is none. */
 export function FormError({ message }) {
   if (!message) return null
 

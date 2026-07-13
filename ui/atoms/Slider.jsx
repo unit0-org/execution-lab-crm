@@ -3,8 +3,10 @@
 import { SliderTicks } from './SliderTicks'
 import { wrapStyle, railStyle, rangeStyle } from './Slider.styles'
 
-// A discrete slider over an ordered `options` list. The thumb snaps to each
-// stop; `onChange` receives the picked option (not the DOM event).
+/**
+ * Discrete slider over an ordered `options` list; the thumb snaps to each
+ * stop, `onChange` receives the picked option string (not a DOM event).
+ */
 export function Slider({ options, value, onChange, ...rest }) {
   const max = options.length - 1
   const index = Math.max(0, options.indexOf(value))

@@ -13,7 +13,7 @@ function AddButton({ label, onAdd }) {
   )
 }
 
-// A section heading with an optional "+" action that opens a create form.
+/** Section heading with an optional `+` create action. */
 export function SectionHeader({ title, addLabel, onAdd }) {
   return (
     <Inline gap="sm">

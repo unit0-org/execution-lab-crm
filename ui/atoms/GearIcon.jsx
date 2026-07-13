@@ -1,7 +1,9 @@
 import { GEAR_TEETH } from './GearIcon.teeth'
 
-// A cog: a ring with eight teeth and a centre hole. Custom SVG (not an
-// emoji) so it always renders, inheriting the current text colour.
+/**
+ * Settings gear glyph: a ring with eight teeth and a centre hole. Custom
+ * SVG (not an emoji) so it always renders, inheriting the text colour.
+ */
 export function GearIcon({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"

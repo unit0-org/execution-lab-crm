@@ -6,7 +6,7 @@ import { useToggle } from './useToggle'
 import { MultiSelectTrigger } from './MultiSelectTrigger'
 import { MultiSelectOption } from './MultiSelectOption'
 
-// A dropdown of checkboxes; the trigger shows the chosen labels.
+/** Multi-select dropdown; the trigger shows the chosen labels. */
 export function MultiSelect({ options, selected, onToggle, placeholder }) {
   const menu = useToggle()
   const trigger = (

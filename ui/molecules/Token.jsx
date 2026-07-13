@@ -1,6 +1,6 @@
 import { tokenStyle, removeStyle } from './Token.styles'
 
-// A removable pill: a label plus a small × that calls onRemove.
+/** Removable tag/token: a label plus a small × that calls `onRemove`. */
 export function Token({ label, onRemove }) {
   return (
     <span style={tokenStyle}>

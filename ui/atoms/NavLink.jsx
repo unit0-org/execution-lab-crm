@@ -3,6 +3,10 @@ import { NavIcon } from './NavIcon'
 import { NavProgress } from './NavProgress'
 import { navLinkStyle, navIconStyle } from './NavLink.styles'
 
+/**
+ * Sidebar navigation entry: icon + label, marked when `active`
+ * (`newTab` opens the link in a new tab).
+ */
 export function NavLink(props) {
   const { href, active, icon, children, onNavigate, newTab } = props
   const current = active || undefined

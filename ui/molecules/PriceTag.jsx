@@ -9,8 +9,10 @@ function Regular({ value, size }) {
   return <span style={regularStyle(size)}>{value}</span>
 }
 
-// A price line: optional struck regular, the price, and a currency code.
-// Amounts are pre-formatted strings (e.g. "$1,500"); `size` is in px.
+/**
+ * Price line: optional struck regular + price + currency; takes
+ * pre-formatted strings, e.g. "$1,500" (portal). `size` is in px.
+ */
 export function PriceTag({ price, regular, currency = 'CAD', size = 30 }) {
   if (!price) return null
 

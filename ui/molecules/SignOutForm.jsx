@@ -1,8 +1,10 @@
 import { InlineForm } from './InlineForm'
 import { TextButton } from '../atoms/TextButton'
 
-// Inline sign-out form that POSTs to /auth/signout. Pass `next` to choose
-// where to land after (e.g. the portal sign-in); defaults to staff login.
+/**
+ * Sign-out form (POSTs to /auth/signout); `next` is the post-logout
+ * landing path, defaulting to staff login.
+ */
 export function SignOutForm({ children = 'sign out', next }) {
   const action = next ? `/auth/signout?next=${next}` : '/auth/signout'
 

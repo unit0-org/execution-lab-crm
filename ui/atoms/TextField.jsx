@@ -5,6 +5,10 @@ import { TrailingSlot } from './TrailingSlot'
 import { FieldLabel } from './FieldLabel'
 import { useRestoredField } from './useRestoredField'
 
+/**
+ * Text/email/number/date input (pass `type`, `value`, `onChange`,
+ * `placeholder`).
+ */
 export function TextField({ label, trailing, saved, ...rest }) {
   const field = useRestoredField(rest)
 

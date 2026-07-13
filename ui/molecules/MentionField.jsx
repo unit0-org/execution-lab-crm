@@ -7,8 +7,11 @@ import { SuggestionList } from './SuggestionList'
 import { MentionInput } from './MentionInput'
 import { useMentionField } from './useMentionField'
 
-// A textarea with @-mention autocomplete: type @ to tag a member (Tab or
-// Enter accepts the first match), posting picked ids under `idsName`.
+/**
+ * Textarea with an `@`-mention autocomplete: type `@` to tag a member from
+ * `options`=`[{value,label}]`; `Tab`/`Enter` accepts the first match. The
+ * picked mentions' ids post under `idsName`.
+ */
 export function MentionField(props) {
   const { label, name, idsName, defaultValue, options, ...rest } = props
   const anchor = useRef(null)

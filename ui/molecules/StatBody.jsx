@@ -1,7 +1,7 @@
 import { Card } from '../atoms/Card'
 import { statLabel, statValue } from './Stat.styles'
 
-// A metric card body: a small uppercase label over a coloured value.
+/** Stat tile body: a small uppercase label over a coloured value. */
 export function StatBody({ label, value, tone }) {
   return (
     <Card tone={tone}>

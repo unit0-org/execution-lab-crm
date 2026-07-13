@@ -9,7 +9,11 @@ function StateDot({ state }) {
   return <GlowDot color={stateDotColor(state)} />
 }
 
-// Mono uppercase status label, neon-colored by cohort state.
+/**
+ * Mono uppercase cohort-status label, neon-colored by `state`
+ * (launch/open/wave/waitlist/full/soon/closed), with a glow dot on live
+ * states; `full` (sold out) renders a filled red pill (portal).
+ */
 export function StateTag({ state, label, size = 11 }) {
   return (
     <span style={stateTagStyle(state, size)}>

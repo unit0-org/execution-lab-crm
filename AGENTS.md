@@ -57,9 +57,17 @@ them (so adding one never renumbers the rest).
 - **Check the catalog before building any UI.** Before creating a frontend
   component, read `ui/COMPONENTS.md` to find which existing `ui/` components
   fit the need and pick the best one — never re-create what already exists.
-  If no existing primitive fits and a **new `ui/` component is genuinely
-  required, ask first** before building it; once added, update
-  `ui/COMPONENTS.md` in the same change.
+  `pnpm storybook` renders the same catalog visually. If no existing
+  primitive fits and a **new `ui/` component is genuinely required, ask
+  first** before building it.
+- **`ui/COMPONENTS.md` is generated — never hand-edit it.** A component
+  documents itself: its **`/** doc block */`** is the catalog's "Use for"
+  column, and the props column is read straight off its destructured
+  parameters. Give every new `ui/` component a doc block (that block is
+  also what makes it public API — an internal sub-component has none and
+  stays out of the catalog), then run **`pnpm docs:ui`** and commit the
+  regenerated file. CI (`pnpm docs:ui --check`) fails if it is stale. Edit
+  the prose/hooks/tokens sections in `ui/COMPONENTS.template.md`.
 - **Atomic design.** Build UI from atoms → molecules → organisms.
 - **All UI components live in `ui/`**, in a **2-level-max** folder structure,
   e.g. `ui/atoms/Button.jsx`.
@@ -128,8 +136,11 @@ them (so adding one never renumbers the rest).
   `forbidden()`; that's the server-side equivalent, and stays there.)
 - **Avoid `useCallback`/`useMemo`** unless absolutely necessary. **[lint]**
 - **Avoid clever/"weird" JS.** Clean Code: boring, obvious, readable wins.
-- **Files ≤ 30 lines, lines ≤ 80 chars.** **[lint]** Exceptions: lockfiles,
-  generated files, `*.md`, config. Compose aggressively to stay under. Also
+- **Files ≤ 30 lines of code, lines ≤ 80 chars.** **[lint]** **Comments
+  don't count toward the 30** (`skipComments`) — a component's doc block is
+  what `ui/COMPONENTS.md` is generated from, and documentation must never
+  compete with logic for the line budget. Exceptions: lockfiles, generated
+  files, `*.md`, config. Compose aggressively to stay under. Also
   **[lint]**: a blank line before any `if`/`for`/`while`/`switch`/`return`/`try`
   that follows other code; no trailing comma on the last array/object element.
 - **Every action gives feedback:** an on-screen mutation (the UI changes) or,

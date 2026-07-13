@@ -6,8 +6,11 @@ import { useAutocomplete } from './useAutocomplete'
 import { matchOptions, hasExactLabel } from './matchOptions'
 import { wrapStyle } from './Combobox.styles'
 
-// A contact/label-style autocomplete: a field, the top matching options,
-// and an optional inline "+ New …" row when the query matches nothing.
+/**
+ * **Preferred** typeahead: filters to the top 5 matches and shows an
+ * inline `+ New <createLabel> "<query>"` row when nothing matches (omit
+ * `onCreate` to disable).
+ */
 export function Autocomplete(props) {
   const { label, value, onType, options, onPick } = props
   const { onCreate, createLabel, hint } = props
