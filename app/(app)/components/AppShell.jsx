@@ -1,21 +1,16 @@
 'use client'
 
-import { ExclusiveAccess } from './ExclusiveAccess'
 import { AppFrame } from './AppFrame'
-import { useMembership } from '../hooks/useMembership'
+import { withMembership } from './withMembership'
 
-// Gate the app on org membership: blank while loading, the WIP notice
-// for non-members, otherwise the full app frame.
-export function AppShell({ email, unread, children }) {
-  const membership = useMembership()
-
-  if (membership === undefined) return null
-
-  if (membership === null) return <ExclusiveAccess />
-
+// The app frame for a confirmed member. Membership gating (loading /
+// non-member) lives in withMembership; this stays presentational.
+function AppShellBody({ membership, email, unread, children }) {
   return (
     <AppFrame role={membership.role} email={email} unread={unread}>
       {children}
     </AppFrame>
   )
 }
+
+export const AppShell = withMembership(AppShellBody)
