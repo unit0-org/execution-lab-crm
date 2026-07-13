@@ -3,21 +3,18 @@
 import { GrowRow } from '@/ui/layout/GrowRow'
 import { Text } from '@/ui/atoms/Text'
 import { Checkbox } from '@/ui/atoms/Checkbox'
-import { IconButton } from '@/ui/atoms/IconButton'
-import { Icon } from '@/ui/atoms/Icon'
-import { useAutomationRow } from '../hooks/useAutomationRow'
+import { useToggleAutomation } from '../hooks/useToggleAutomation'
+import { DeleteAutomation } from './DeleteAutomation'
 
 export function AutomationRow({ automation, onChanged }) {
-  const row = useAutomationRow(automation, onChanged)
+  const toggle = useToggleAutomation(automation, onChanged)
 
   return (
     <GrowRow>
       <Text>{automation.name}</Text>
-      <Checkbox checked={automation.is_active} onChange={row.toggle}
+      <Checkbox checked={automation.is_active} onChange={toggle}
         label="Active" />
-      <IconButton label="Delete automation" onClick={row.remove}>
-        <Icon name="trash" size={16} />
-      </IconButton>
+      <DeleteAutomation automation={automation} onChanged={onChanged} />
     </GrowRow>
   )
 }

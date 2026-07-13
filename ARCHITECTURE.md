@@ -231,7 +231,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
   business-tz Monday run, once per week.
 - **automation** (`lib/automation/`) — user-built "when *trigger* then
   *action*" rules, managed on the **Actions** page (`/automations`, reached
-  from the topbar lightning menu). An `automation` row pairs a `trigger_type`
+  from the topbar lightning menu). **Admin-only** — the page (`forbidden()`),
+  the mutating actions (`withAdmin`), and the lightning menu (a
+  `withAdminOnly` HOC) are all gated. An `automation` row pairs a `trigger_type`
   (+ optional `trigger_config` filter, e.g. a `categoryId`) with an
   `action_type` (+ `action_config`). Single-tenant, so rules are **global**
   (no `organization_id`). Firing is a **bridge pattern like note-mentions**:

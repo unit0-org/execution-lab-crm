@@ -1,10 +1,12 @@
 'use server'
 
-import { withMember } from '@/lib/auth/withMember'
+import { withAdmin } from '@/lib/auth/withAdmin'
 import { deleteAutomation } from '@/lib/automation/controllers/deleteAutomation'
 
-export const deleteAutomationAction = withMember(async (id) => {
-  await deleteAutomation(id)
+export const deleteAutomationAction = withAdmin(
+  async (organizationId, id) => {
+    await deleteAutomation(id)
 
-  return { ok: true }
-})
+    return { ok: true }
+  }
+)
