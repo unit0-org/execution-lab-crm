@@ -6,12 +6,10 @@ import { renderPage } from './renderPage.js';
 import { printSummary } from './printSummary.js';
 
 function generateReport() {
-  const results = readResults();
-  const summary = summarizeRun(results);
-  const runLabel = results ? new Date().toISOString() : 'no test run yet';
+  const summary = summarizeRun(readResults());
 
   mkdirSync(resultsDir, { recursive: true });
-  writeFileSync(reportFile, renderPage(summary, runLabel));
+  writeFileSync(reportFile, renderPage(summary));
   printSummary(summary);
 }
 

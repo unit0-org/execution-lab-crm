@@ -19,5 +19,5 @@ export function summarizeRun(report) {
     stories: domain.stories.map((story) => withResults(story, specs))
   }));
 
-  return { results, ...tallyResults(results) };
+  return { results, run: report?.stats || null, ...tallyResults(results) };
 }

@@ -1,15 +1,15 @@
-import { escapeHtml } from './escapeHtml.js';
 import { reportStyles } from './styles/index.js';
 import { renderStats } from './renderStats.js';
 import { renderDomain, renderLegend } from './renderDomain.js';
+import { renderRunMeta } from './renderRunMeta.js';
 
-export function renderPage(summary, runLabel) {
+export function renderPage(summary) {
   return `<title>User Stories — Test Report</title>
 ${reportStyles}
 <div class="app">
   <header class="top">
     <div class="brand">The Execution Lab · <b>Test Report</b></div>
-    <div class="when">${escapeHtml(runLabel)}</div>
+    <div class="when">${renderRunMeta(summary.run)}</div>
   </header>
   <main class="wrap">
     <h1>User stories — verified as the user</h1>

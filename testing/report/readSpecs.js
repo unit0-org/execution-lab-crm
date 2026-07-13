@@ -1,25 +1,20 @@
-// Walks Playwright's nested {suites:[{suites,specs}]} tree.
-function* eachSpec(node) {
-  for (const spec of node.specs || []) yield spec;
-
-  for (const child of node.suites || []) yield* eachSpec(child);
-}
-
-function outcomeOf(spec) {
-  const statuses = (spec.tests || []).map((test) => test.status);
-  const allSkipped =
-    statuses.length && statuses.every((status) => status === 'skipped');
-
-  if (allSkipped) return 'skipped';
-
-  return spec.ok ? 'passed' : 'failed';
-}
+import { eachSpec, outcomeOf, lastResult } from './specWalk.js';
+import { specLog } from './specLog.js';
+import { specAttachments } from './specAttachments.js';
 
 export function readSpecs(report) {
   const specs = [];
 
   for (const spec of eachSpec(report || {})) {
-    specs.push({ title: spec.title || '', outcome: outcomeOf(spec) });
+    const result = lastResult(spec);
+
+    specs.push({
+      title: spec.title || '',
+      outcome: outcomeOf(spec),
+      duration: result.duration || 0,
+      log: specLog(result),
+      attachments: specAttachments(result)
+    });
   }
 
   return specs;

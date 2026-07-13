@@ -1,4 +1,5 @@
 import { escapeHtml } from './escapeHtml.js';
+import { formatDuration } from './formatDuration.js';
 
 function stat(value, label, tone = '') {
   return (
@@ -9,8 +10,9 @@ function stat(value, label, tone = '') {
 
 // Summary before detail: what needs attention reads at a glance.
 export function renderStats(summary) {
-  const { counts, storyCount } = summary;
+  const { counts, storyCount, run } = summary;
   const behaviours = `${summary.behavioursPassed}/${summary.behavioursTotal}`;
+  const runTime = run ? formatDuration(run.duration) : '—';
 
   return `<div class="stats">
       ${stat(storyCount, 'Stories')}
@@ -19,5 +21,6 @@ export function renderStats(summary) {
       ${stat(counts.fail, 'Fail', 'crit')}
       ${stat(counts.notImplemented, 'Not implemented', 'faint')}
       ${stat(behaviours, 'Behaviours')}
+      ${stat(runTime, 'Run time')}
     </div>`;
 }
