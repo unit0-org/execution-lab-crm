@@ -328,6 +328,20 @@ table that references `contact_id` and isn't explicitly reassigned is
 either **CASCADE-deleted** (data lost) or **SET NULL** (orphaned) when the
 loser is removed. PR #310 fixed exactly this.
 
+**The trap has a second half: the contact's own columns.** A field stored
+*on* `contact` (not in a child table) has no FK to carry it anywhere — it
+is simply destroyed with the loser row, and no amount of table-folding
+saves it. `fillMissingProfileFields` closes this: it fills every column the
+winner left **blank** from the oldest loser that has one (the winner's own
+values always stand). The birthday moves as a **unit** — `birth_day` +
+`birth_month` + `birth_year` together — so a day is never paired with a
+year from a different person; a year alone is not a birthday.
+
+**So: add a table that references `contact_id` → add its folder below. Add
+a column to `contact` → fold it in `fillMissingProfileFields`.** Columns
+folded today: `first_name`, `last_name`, `linkedin_url`, `photo_url`,
+`birth_day`/`birth_month`/`birth_year`.
+
 **If you add a table that references `contact_id`, you MUST update the
 merge** (and pick the FK on-delete deliberately). Current state:
 
