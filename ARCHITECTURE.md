@@ -241,11 +241,19 @@ leaves this stale is incomplete (this is a review-enforced rule in
   (`send_email` via `sendTemplatedEmail`, `create_task` via `createTask`;
   each resolves the missing contact/email side from the other), and logs an
   `automation_run`. **`dispatchTrigger` never throws** — automations must not
-  break the operation that triggered them. Wired triggers: `contact_created`
-  (`create`/`upsertContact`), `category_added` (`addCategoryToContacts`),
-  `waitlist_joined` (`onWaitlistJoined`); the catalog in
-  `lib/automation/catalog/` lists the rest (unwired until PR3, incl. a
-  cron-based `contact_birthday`). **`automation_run` deliberately has no
+  break the operation that triggered them. Triggers fire from the relevant
+  choke-point controllers: `contact_created` (`create`/`upsertContact`),
+  `category_added` (`addCategoryToContacts`), `waitlist_joined`
+  (`onWaitlistJoined`), `registration_paid`
+  (`handlePaidCheckout`/`markRegistrationPaidManually`), `note_added`
+  (`addNote`), `luma_subscriber` (`importMappedGuest`, on a new contact),
+  `event_registered` (`upsertParticipant`, on a new participant),
+  `purchase_made` (`importCharge`, on a new purchase). The one time-based
+  trigger, `contact_birthday`, rides the daily cron: the
+  **`automation-birthdays`** job (`runContactBirthdays`) finds every contact
+  whose birthday is today (business-local `todayIso`) and dispatches. The
+  full catalog lives in `lib/automation/catalog/`. **`automation_run`
+  deliberately has no
   contact FK** — it stays out of the contact-merge fold-in invariant (the
   affected person is free-text in `detail` only).
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).
