@@ -4,7 +4,7 @@ import { OfferCard } from './OfferCard'
 
 // The offers as a responsive grid of cards, or an empty state prompting
 // the first one.
-export function OfferCards({ offers, onRemove }) {
+export function OfferCards({ offers, onShare, onRemove }) {
   if (!offers.length)
     return (
       <EmptyState title="No offers yet"
@@ -14,7 +14,8 @@ export function OfferCards({ offers, onRemove }) {
   return (
     <CardGrid align="start">
       {offers.map((offer) => (
-        <OfferCard key={offer.id} offer={offer} onRemove={onRemove} />
+        <OfferCard key={offer.id} offer={offer} onShare={onShare}
+          onRemove={onRemove} />
       ))}
     </CardGrid>
   )

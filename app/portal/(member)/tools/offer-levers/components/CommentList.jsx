@@ -1,14 +1,10 @@
 import { Stack } from '@/ui/layout/Stack'
-import { EmptyState } from '@/ui/molecules/EmptyState'
 import { CommentCard } from './CommentCard'
 
-// The comment thread, oldest first; an empty state when there are none.
+// The comment thread, oldest first. Renders nothing until there's a comment —
+// the section's + is prompt enough.
 export function CommentList({ comments, viewerContactId, onChanged }) {
-  if (!comments.length)
-    return (
-      <EmptyState title="No comments yet"
-        message="Start the discussion with the first comment." />
-    )
+  if (!comments.length) return null
 
   return (
     <Stack gap="sm">

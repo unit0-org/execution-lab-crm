@@ -207,7 +207,7 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 [data-nav-item][data-active] [data-nav-icon] { color: var(--color-accent); }
 
 /* Sidebar category groups — a tappable header over collapsible children. */
-[data-nav-group-header] { color: var(--color-text-secondary); cursor: pointer; }
+[data-nav-group-header] { display: flex; color: var(--color-text-secondary); cursor: pointer; }
 [data-nav-group-header]:hover { color: var(--color-text-primary); }
 [data-nav-group]:not([data-open]) [data-nav-item] { display: none; }
 [data-nav-group][data-open] [data-nav-chevron] { transform: rotate(90deg); }

@@ -8,7 +8,7 @@ import { versionLabel } from '../versionLabel'
 
 // A card's footer: version badge + created date on the left, a three-dot
 // actions menu on the right (raised above the card link so it stays usable).
-export function OfferCardMeta({ offer, onRemove }) {
+export function OfferCardMeta({ offer, onShare, onRemove }) {
   return (
     <div style={footerStyle}>
       <div style={metaLeadStyle}>
@@ -18,7 +18,7 @@ export function OfferCardMeta({ offer, onRemove }) {
         </Text>
       </div>
       <RaisedControl>
-        <OfferCardMenu offer={offer} onRemove={onRemove} />
+        <OfferCardMenu offer={offer} onShare={onShare} onRemove={onRemove} />
       </RaisedControl>
     </div>
   )

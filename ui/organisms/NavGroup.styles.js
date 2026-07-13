@@ -6,8 +6,11 @@ export const navGroupStyle = {
   gap: space[1]
 }
 
+// No `display` here (same trap as navLinkStyle): it's set in globals.css so
+// the collapsed-rail rule (.sidebar-collapsed → display:none) can win. An
+// inline display would beat the stylesheet and strand the header's chevron
+// in the icon rail.
 export const navGroupHeaderStyle = {
-  display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   gap: space[3],

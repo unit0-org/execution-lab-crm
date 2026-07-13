@@ -1,18 +1,23 @@
 'use client'
 
+import { Stack } from '@/ui/layout/Stack'
 import { TitledModal } from '@/ui/organisms/TitledModal'
 import { useOfferShares } from '../hooks/useOfferShares'
-import { toShareOptions } from '../toShareOptions'
-import { ShareList } from './ShareList'
+import { SharePicker } from './SharePicker'
+import { SharedWithTable } from './SharedWithTable'
 
-// Owner dialog to pick which portal people can view + comment on this offer.
-export function ShareOfferModal({ offerId, open, onClose }) {
-  const { people, toggle } = useOfferShares(offerId, open)
-  const { options, selected } = toShareOptions(people)
+// Owner dialog: add portal people to this offer (view + comment, emailing
+// each), and see or revoke who it is already shared with. Open when an
+// offer is passed — the offers list owns that state.
+export function ShareOfferModal({ offer, onClose }) {
+  const shares = useOfferShares(offer?.id)
 
   return (
-    <TitledModal open={open} title="Share offer" onClose={onClose}>
-      <ShareList options={options} selected={selected} onToggle={toggle} />
+    <TitledModal open={Boolean(offer)} title="Share offer" onClose={onClose}>
+      <Stack gap="md">
+        <SharePicker shares={shares} />
+        <SharedWithTable people={shares.shared} onRemove={shares.onUnshare} />
+      </Stack>
     </TitledModal>
   )
 }
