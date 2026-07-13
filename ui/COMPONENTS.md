@@ -216,7 +216,7 @@ with the shared leading select-all + trailing delete columns).
 | `ThemeToggle` | `onClick` | Light/dark theme switch — a floating top-right toggle whose icon shows the mode you'd switch to; dimmed when idle, solid on hover. |
 | `TitledModal` | `open`, `title`, `onClose`, `wide`, `children` | Modal with a titled header row: the title sits top-left, the close button top-right, so body content never sits under it. Prefer this over a bare `Modal` for any titled dialog. |
 | `Toaster` | — | Toast outlet — mount once at the root; stacks toasts bottom-center. |
-| `UserEmail` | `value` | Signed-in user email display. Passed in from the server, so it's there on the first paint — no skeleton, no layout shift. |
+| `UserEmail` | `value`, `href` | The signed-in user's email. Loaded on the server and passed in, so it's present on the first paint — no skeleton, no layout shift. When an href is given the email links there (the footer points it at /preferences). |
 
 (HOCs are **not** `ui/` primitives — a gating HOC lives in the module it
 belongs to, beside that module's `components/`; see the HOC rule in

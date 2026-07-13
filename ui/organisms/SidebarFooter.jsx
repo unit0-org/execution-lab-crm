@@ -13,7 +13,7 @@ export function SidebarFooter({ email, signOutNext }) {
     <div style={footerStyle}>
       <div data-sidebar-when-expanded>
         <Stack gap="xs">
-          <UserEmail value={email} />
+          <UserEmail value={email} href="/preferences" />
           <SignOutForm next={signOutNext}>Log out</SignOutForm>
         </Stack>
       </div>

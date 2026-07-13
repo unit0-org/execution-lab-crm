@@ -18,5 +18,6 @@ export const objectGlyphs = {
   tag: 'M3 3h8l10 10-8 8L3 11V3zM7 7h.01',
   file: 'M6 2h8l4 4v16H6zM14 2v4h4M9 13h6M9 17h6',
   folder: 'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0'
-    + ' 1 2 2z'
+    + ' 1 2 2z',
+  bolt: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z'
 }
