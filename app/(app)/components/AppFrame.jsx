@@ -19,7 +19,7 @@ export function AppFrame({ role, email, unread, children }) {
   return (
     <>
       <Shell sidebar={sidebar} open={nav.open} onClose={nav.close}>
-        <CommandBar onMenu={nav.toggle} unread={unread} />
+        <CommandBar onMenu={nav.toggle} unread={unread} role={role} />
         {children}
       </Shell>
       <Toaster />

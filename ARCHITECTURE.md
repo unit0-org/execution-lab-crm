@@ -258,6 +258,35 @@ test auth users are seeded into `auth.users` and signed in normally.
   should fire less often gates itself inside its `run` and no-ops otherwise
   — e.g. **`weekly-digest`** (`sendWeeklyDigestIfDue`) sends only on the
   business-tz Monday run, once per week.
+- **automation** (`lib/automation/`) — user-built "when *trigger* then
+  *action*" rules, managed on the **Actions** page (`/automations`, reached
+  from the topbar lightning menu). **Admin-only** — the page (`forbidden()`),
+  the mutating actions (`withAdmin`), and the lightning menu (a
+  `withAdminOnly` HOC) are all gated. An `automation` row pairs a `trigger_type`
+  (+ optional `trigger_config` filter, e.g. a `categoryId`) with an
+  `action_type` (+ `action_config`). Single-tenant, so rules are **global**
+  (no `organization_id`). Firing is a **bridge pattern like note-mentions**:
+  each choke-point controller calls a thin `dispatch<Trigger>` bridge →
+  `dispatchTrigger(type, ctx)`, which runs every `Automation.scope('active')`
+  for that type, applies the filter (`matchesConfig`), runs the action
+  (`send_email` via `sendTemplatedEmail`, `create_task` via `createTask`;
+  each resolves the missing contact/email side from the other), and logs an
+  `automation_run`. **`dispatchTrigger` never throws** — automations must not
+  break the operation that triggered them. Triggers fire from the relevant
+  choke-point controllers: `contact_created` (`create`/`upsertContact`),
+  `category_added` (`addCategoryToContacts`), `waitlist_joined`
+  (`onWaitlistJoined`), `registration_paid`
+  (`handlePaidCheckout`/`markRegistrationPaidManually`), `note_added`
+  (`addNote`), `luma_subscriber` (`importMappedGuest`, on a new contact),
+  `event_registered` (`upsertParticipant`, on a new participant),
+  `purchase_made` (`importCharge`, on a new purchase). The one time-based
+  trigger, `contact_birthday`, rides the daily cron: the
+  **`automation-birthdays`** job (`runContactBirthdays`) finds every contact
+  whose birthday is today (business-local `todayIso`) and dispatches. The
+  full catalog lives in `lib/automation/catalog/`. **`automation_run`
+  deliberately has no
+  contact FK** — it stays out of the contact-merge fold-in invariant (the
+  affected person is free-text in `detail` only).
 - **mcp** — exposes selected controllers as MCP tools (`lib/mcp/tools/`).
   Irreversible/financial tools (`delete_*`, `merge_*`, `approve_invoice`,
   `send_invoice(s)`, `void_invoice`) are wrapped by `guardDestructive`: they
