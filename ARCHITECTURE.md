@@ -290,7 +290,9 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `contact_email_message` | cascade | `mergeEmailMessages` (dedupe per `gmail_message_id`) |
 | `offer` | cascade | `claimContactRecords` (reassign) |
 | `offer_generator_input` | cascade (→ `offer`) | folded via `offer` (reassign the offer; inputs ride along `offer_id`) |
-| `offer_share` | cascade (→ `offer` & `contact`) | `mergeOfferShares` (move loser's shares to winner; skip/clear self-shares once winner owns the offer; runs **after** `claimContactRecords`) |
+| `offer_share` | cascade (→ `offer` & `contact`) | `foldOfferCollab`→`mergeOfferShares` (move loser's shares to winner; skip/clear self-shares once winner owns the offer; runs **after** `claimContactRecords`) |
+| `offer_comment` | cascade (→ `offer` & `contact`) | `foldOfferCollab`→`mergeOfferComments` (reassign `author_contact_id`) |
+| `offer_comment_mention` | cascade (→ `offer_comment` & `contact`) | `foldOfferCollab`→`mergeOfferCommentMentions` (dedupe reassign `mentioned_contact_id`) |
 | `contact_google_link` | cascade | **not migrated** (sync artifact; re-sync recreates) |
 | `sync_conflict` | cascade | **not migrated** (sync artifact) |
 
@@ -494,6 +496,19 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   owner (`getOwned`), so a sharee's view has no edit controls. `offer_share`
   is contact-owned on the shared-with side — folded by `mergeOfferShares`
   (see the merge invariant).
+  Both the owner and every sharee share **one discussion thread** per offer
+  (`OfferCommentsSection`, mounted on both `OfferLeversView` and
+  `OfferReadView`): comments (`offer_comment`, oldest-first) that anyone who
+  can see the offer may post — gated by `canViewOffer` (owner **or**
+  `OfferShare.isSharedWith`); an author may delete only their own. A comment
+  can **@-tag** people via `MentionField`, limited to the offer's **audience**
+  (owner + sharees, `offerAudience` / `listOfferAudience`); each tag is an
+  `offer_comment_mention` row, and each newly-tagged member (never the author)
+  is **emailed** once — best-effort via `notifyOfferMentions` →
+  `sendTemplatedEmail('offer_comment_mention')` with a `portalUrl` deep link,
+  so a send failure never blocks the comment. `offer_comment` (author) and
+  `offer_comment_mention` (tagged) are contact-owned — folded by
+  `foldOfferCollab` (see the merge invariant).
 
 ## Flow maps (which file does each step)
 
