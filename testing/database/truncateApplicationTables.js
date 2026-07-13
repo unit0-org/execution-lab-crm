@@ -11,9 +11,10 @@ async function listApplicationTables() {
     .map((name) => `"public"."${name}"`);
 }
 
-// Wipes every application table plus the test auth users, so each run starts
-// clean. The migration ledger is left intact.
-export async function truncateAllTables() {
+// Wipes the application's own tables. Deliberately leaves auth.users alone —
+// truncating it mid-run would delete the signed-in staff user out from under
+// the session every back-office test depends on.
+export async function truncateApplicationTables() {
   assertTestDatabase();
 
   const tables = await listApplicationTables();
@@ -23,5 +24,4 @@ export async function truncateAllTables() {
   await database().query(
     `truncate table ${tables.join(', ')} restart identity cascade`
   );
-  await database().query('delete from auth.users');
 }
