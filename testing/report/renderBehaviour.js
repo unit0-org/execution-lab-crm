@@ -11,9 +11,11 @@ export function renderBehaviour(story, behaviour) {
   const outcome = OUTCOME_MARKS[spec ? spec.outcome : 'missing'];
   const took = spec ? formatDuration(spec.duration) : '';
 
+  const log = renderSpecLog(spec, story, behaviour);
+
   return `<li class="beh ${outcome.tone}">
       <span class="mk">${outcome.mark}</span>
-      <span class="bt">${escapeHtml(behaviour)}${renderSpecLog(spec)}</span>
+      <span class="bt">${escapeHtml(behaviour)}${log}</span>
       <span class="dur">${took}</span>
     </li>`;
 }

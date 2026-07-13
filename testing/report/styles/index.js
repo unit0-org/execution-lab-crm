@@ -5,6 +5,7 @@ import { storyCard } from './storyCard.js';
 import { behaviourList } from './behaviourList.js';
 import { logs } from './logs.js';
 import { evidence } from './evidence.js';
+import { copyButton } from './copyButton.js';
 
 const sheets = [
   tokens,
@@ -13,7 +14,8 @@ const sheets = [
   storyCard,
   behaviourList,
   logs,
-  evidence
+  evidence,
+  copyButton
 ];
 
 export const reportStyles = `<style>${sheets.join('')}</style>`;

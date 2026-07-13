@@ -2,6 +2,7 @@ import { reportStyles } from './styles/index.js';
 import { renderStats } from './renderStats.js';
 import { renderDomain, renderLegend } from './renderDomain.js';
 import { renderRunMeta } from './renderRunMeta.js';
+import { reportScript } from './reportScript.js';
 
 export function renderPage(summary) {
   return `<title>User Stories — Test Report</title>
@@ -19,5 +20,6 @@ ${reportStyles}
     <div class="legend">${renderLegend()}</div>
     ${summary.results.map(renderDomain).join('')}
   </main>
-</div>`;
+</div>
+${reportScript}`;
 }
