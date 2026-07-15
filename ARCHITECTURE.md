@@ -542,7 +542,11 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   (`PortalHeader` `aside`). `/auth` and `/api`
   are **shared routes** (`isSharedRoute`) excluded from the portal-host
   rewrite so the OTP callback and sign-out resolve on the portal
-  subdomain. The portal sign-in is **email magic link only**; the callback
+  subdomain. The portal-host rewrite **also refreshes the Supabase session
+  cookies as it rewrites** (`portalRewrite` → `makeProxyClient`, mirroring
+  `updateSession` on the CRM host), so a member's session rolls forward on
+  the portal host instead of dying at the access-token TTL and forcing a
+  fresh magic link every visit. The portal sign-in is **email magic link only**; the callback
   skips `rememberGoogleToken` for `flow=portal` (`afterSession`), so an OTP
   session never stores Google tokens. **Magic-link fallback:** if the
   portal callback URL isn't allow-listed in Supabase, the verify endpoint
