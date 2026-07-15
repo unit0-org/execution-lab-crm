@@ -143,7 +143,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (`Field` + `FieldInput`). |
 | `FilterBar` | `options`, `active`, `basePath`, `param` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. |
 | `FilterChip` | `href`, `label`, `active` | One URL-driven filter chip: a pill link, highlighted when active. |
-| `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, and typed values survive a failed submit (uncontrolled `TextField`/ `TextArea`/`Select` repopulate automatically). |
+| `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, its first editable field autofocuses on mount, and typed values survive a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate). |
 | `FormError` | `message` | Form-level error message; renders nothing when there is none. |
 | `IconUpload` | `label`, `title`, `onPick` | File upload trigger: a hidden CSV input behind an upload glyph. |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form — no block layout, sits with its siblings. |

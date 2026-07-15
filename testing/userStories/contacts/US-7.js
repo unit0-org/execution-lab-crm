@@ -20,7 +20,12 @@ const userStory = {
       "author's avatar and name, and how long ago it was written.",
     'A note written through the assistant (MCP) is attributed to the team ' +
       'member whose integration wrote it; notes that predate authorship ' +
-      'read as the workspace owner.'
+      'read as the workspace owner.',
+    "Only a note's author sees its edit and delete controls, and the " +
+      'server refuses any attempt by anyone else to change or remove it.',
+    'A note is written in an always-present composer at the top of the ' +
+      "thread (a comment box, not a +-opened modal); the activity bar's " +
+      'Note quick action focuses it.'
   ]
 };
 

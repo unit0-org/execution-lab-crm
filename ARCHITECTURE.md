@@ -310,6 +310,11 @@ test auth users are seeded into `auth.users` and signed in normally.
   email to an `organization_user`, so what the integration writes is attributed
   to a real team member. `contact_note.author_user_id` is the first consumer;
   without `MCP_AUTHOR_EMAIL` set, those writes are simply unattributed.
+  Editing and deleting a note are **gated to its author**: `listNotes` marks
+  each note `mine` for the viewer so the UI shows the edit/delete controls
+  only on your own notes, and `updateNote`/`removeNote` re-check server-side
+  with `authoredBy` — a non-author's (or unattributed note's) edit or delete
+  is a silent no-op.
 
 **Destructive UI always confirms (invariant).** `guardDestructive` protects
 the MCP surface; the screens have the same rule. Every control that destroys
