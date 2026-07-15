@@ -2,7 +2,7 @@ import { Table } from '@/ui/molecules/Table'
 import { Text } from '@/ui/atoms/Text'
 import { RegistrationRow } from './RegistrationRow'
 
-const COLS = ['Name', 'Email', 'Payment', 'Registered', '']
+const COLS = ['Name', 'Email', 'Payment', 'Amount', 'Registered', '']
 
 // The roster of registrations for a cohort, or an empty-state message.
 export function RegistrationsTable({ registrations }) {
