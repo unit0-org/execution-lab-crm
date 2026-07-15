@@ -125,6 +125,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `ArrowItem` | `children` | A "→ text" step line (what-happens-next lists). |
 | `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). |
 | `BarChart` | `data` | Bar chart; `data` = `[{ label, value, valueLabel }]`. |
+| `BareForm` | `action`, `children`, `formRef` | Bare form bound to a server action — the primitive `Form` builds on, and the form for always-present cases (the notes composer) that must not grab focus on mount. Ctrl/Cmd+Enter submits from any field, and typed values survive a failed submit. Pass `formRef` to place a ref on the `<form>`. |
 | `BirthdayField` | `day`, `month`, `year` | Day/month/year inputs for a `Form` (`birth_day`/`birth_month`/`birth_year`). |
 | `BrandLockup` | `kicker`, `title`, `logoSrc`, `logoAlt`, `href='/'` | Logo + product kicker + title, linking home (portal). |
 | `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table; reveals when `count > 0`, and Delete opens the shared `ConfirmDialog`. |
@@ -143,7 +144,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (`Field` + `FieldInput`). |
 | `FilterBar` | `options`, `active`, `basePath`, `param` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. |
 | `FilterChip` | `href`, `label`, `active` | One URL-driven filter chip: a pill link, highlighted when active. |
-| `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, and typed values survive a failed submit (uncontrolled `TextField`/ `TextArea`/`Select` repopulate automatically). |
+| `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, its first editable field autofocuses on mount, and typed values survive a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate). |
 | `FormError` | `message` | Form-level error message; renders nothing when there is none. |
 | `IconUpload` | `label`, `title`, `onPick` | File upload trigger: a hidden CSV input behind an upload glyph. |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form — no block layout, sits with its siblings. |
