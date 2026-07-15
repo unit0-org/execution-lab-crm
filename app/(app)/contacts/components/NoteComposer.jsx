@@ -1,6 +1,6 @@
 'use client'
 
-import { Form } from '@/ui/molecules/Form'
+import { BareForm } from '@/ui/molecules/BareForm'
 import { GrowRow } from '@/ui/layout/GrowRow'
 import { MentionField } from '@/ui/molecules/MentionField'
 import { SubmitButton } from '@/ui/atoms/SubmitButton'
@@ -17,7 +17,7 @@ export function NoteComposer({ contactId, onSaved }) {
   const options = useMentionOptions()
 
   return (
-    <Form action={action}>
+    <BareForm action={action}>
       <input type="hidden" name="contact_id" value={contactId} />
       <GrowRow align="end">
         <MentionField name="body" idsName="mention_user_ids" rows={2}
@@ -26,6 +26,6 @@ export function NoteComposer({ contactId, onSaved }) {
         <SubmitButton size="sm">Add</SubmitButton>
       </GrowRow>
       <FormError message={error} />
-    </Form>
+    </BareForm>
   )
 }

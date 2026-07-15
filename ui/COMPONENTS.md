@@ -125,6 +125,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `ArrowItem` | `children` | A "→ text" step line (what-happens-next lists). |
 | `Autocomplete` | `label`, `value`, `onType`, `options`, `onPick` | **Preferred** typeahead: filters to the top 5 matches and shows an inline `+ New <createLabel> "<query>"` row when nothing matches (omit `onCreate` to disable). |
 | `BarChart` | `data` | Bar chart; `data` = `[{ label, value, valueLabel }]`. |
+| `BareForm` | `action`, `children`, `formRef` | Bare form bound to a server action — the primitive `Form` builds on, and the form for always-present cases (the notes composer) that must not grab focus on mount. Ctrl/Cmd+Enter submits from any field, and typed values survive a failed submit. Pass `formRef` to place a ref on the `<form>`. |
 | `BirthdayField` | `day`, `month`, `year` | Day/month/year inputs for a `Form` (`birth_day`/`birth_month`/`birth_year`). |
 | `BrandLockup` | `kicker`, `title`, `logoSrc`, `logoAlt`, `href='/'` | Logo + product kicker + title, linking home (portal). |
 | `BulkDeleteBar` | `count`, `onDelete`, `onCancel` | Sticky "N selected → Delete / Cancel" bar for a selectable table; reveals when `count > 0`, and Delete opens the shared `ConfirmDialog`. |

@@ -3,9 +3,8 @@ const userStory = {
   implemented: true,
   role: 'Staff',
   title: 'Record facts and notes on a contact',
-  story:
-    'As a staff member, I can capture structured facts and free-text notes, ' +
-    'so that context lives on the person.',
+  story: 'As a staff member, I can capture structured facts and ' +
+    'free-text notes, so that context lives on the person.',
   behaviours: [
     'A fact must have a value; its label is optional.',
     'Re-adding a fact with an existing label does not overwrite its value.',
@@ -28,5 +27,4 @@ const userStory = {
       'Note quick action focuses it.'
   ]
 };
-
 export default userStory;
