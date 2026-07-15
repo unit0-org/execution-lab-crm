@@ -2,6 +2,7 @@ import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
 import { DateText } from '@/ui/atoms/DateText'
 import { PaymentStatus } from './PaymentStatus'
+import { RegistrantAmount } from './RegistrantAmount'
 import { RegistrationAction } from './RegistrationAction'
 import { RegistrantName } from './RegistrantName'
 
@@ -12,6 +13,7 @@ export function RegistrationRow({ registration }) {
       <Td truncate><RegistrantName registration={registration} /></Td>
       <Td truncate>{registration.email}</Td>
       <Td><PaymentStatus registration={registration} /></Td>
+      <Td><RegistrantAmount registration={registration} /></Td>
       <Td><DateText value={registration.created_at} /></Td>
       <Td><RegistrationAction registration={registration} /></Td>
     </Tr>
