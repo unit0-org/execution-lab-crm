@@ -462,10 +462,13 @@ seat released), mirroring the scope read-time from `created_at`. The
 `PaymentStatus` badge shows this, so a lapsed hold never keeps reading
 `pending`.
 
-`cohortStats` counts `filled` from that scope (revenue still sums only paid
-rows, whose `amount_total` is set on payment); it feeds the portal scarcity
-label, sold-out / `cohortIsFull` checks, and waitlist openings. Change what
-counts as a taken seat in the scope, not in each view.
+`cohortStats` counts `filled` from that scope; **revenue is derived** by
+reconciling each seat to its real Stripe charge in `purchase`
+(`attachPaidCharges` → `tallyByCohort`), never by summing the stored
+`amount_total` — money lives once, in `purchase` (see the "derive amounts"
+database rule). It feeds the portal scarcity label, sold-out /
+`cohortIsFull` checks, and waitlist openings. Change what counts as a taken
+seat in the scope, not in each view.
 
 ## Invariant: one discount applies, resolved in a single place
 

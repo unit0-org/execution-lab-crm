@@ -180,6 +180,12 @@ them (so adding one never renumbers the rest).
 
 - **Always normalized.** No data ambiguity; no `status`/flag columns standing
   in for relations.
+- **Derive amounts — never store a duplicated one.** Money lives once, at its
+  source (a `purchase` = a real Stripe charge). A registrant's paid amount, a
+  cohort's revenue, any total — **compute it at read time** from that source;
+  never persist a copy (a per-row `amount_total`, a summed `revenue` column)
+  that can drift from the money actually captured. This is the money-specific
+  case of preferring read-time derivation over stored, denormalized data.
 - **Stupidly simple.** Prefer the obvious schema.
 - **Naming:** `snake_case`, **singular** table names (`contact`,
   `contact_email`); `snake_case` columns; **UUID v4** primary keys.
