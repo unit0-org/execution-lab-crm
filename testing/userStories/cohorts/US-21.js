@@ -13,8 +13,10 @@ const userStory = {
     'A cohort needs a name and start date; the open date must be before the ' +
       'close date.',
     'Only "open" cohorts take registrations or advance the waitlist.',
-    'The registration roster shows what each registrant paid; an unpaid ' +
-      'seat reads as a dash, not $0.',
+    'The registration roster and registrant file show what each registrant ' +
+      'actually paid — the real amount captured in Stripe, not the seat ' +
+      'list price — and link out to the Stripe transaction; an unpaid seat ' +
+      'reads as a dash, not $0.',
     "Members see a cohort's resources only if they hold a confirmed seat; " +
       'recordings embed as video.',
     'A cohort can be created with a capacity of exactly 0.'
