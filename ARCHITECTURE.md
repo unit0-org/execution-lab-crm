@@ -231,7 +231,14 @@ test auth users are seeded into `auth.users` and signed in normally.
   `dispatchLumaEvent` routes by action), and the **`sync-luma` daily cron**
   backfill (`syncLumaGuests` pulls the calendar via `lib/luma/api/`, keyed by
   `LUMA_API_KEY`; no-ops until that env var is set). The API guest JSON is
-  mapped by `mapApiGuest`; the CSV path is unchanged. All three paths funnel
+  mapped by `mapApiGuest`; the CSV path is unchanged. The API guest list is
+  keyed by the event's **`id`** (`evt-…`), sent as the `event_id` param —
+  the calendar list returns flat event objects (no `api_id`), so
+  `syncOneLumaEvent` reads `e.api_id || e.id`. An event's **online/in-person
+  type** is derived from Luma's location via `eventTypeFromLocation`
+  (`location_type === 'offline'` or a geo address → in-person, else online)
+  and **backfilled** onto existing rows that lack one (`backfillEventType`).
+  All three paths funnel
   through `upsertEvent`, which **dedupes**: a Luma event (which carries a
   `url`) matches by `url`, else **adopts a pre-existing url-less same-title
   import** (`findAdoptableOrphan`, setting its url) instead of creating a
