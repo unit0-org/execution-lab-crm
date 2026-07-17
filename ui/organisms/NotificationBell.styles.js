@@ -11,7 +11,7 @@ export const badgeWrapStyle = {
 }
 
 export const panelWrapStyle = {
-  width: '320px',
+  width: '100%',
   maxHeight: '420px',
   overflowY: 'auto'
 }

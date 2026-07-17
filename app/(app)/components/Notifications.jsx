@@ -10,6 +10,6 @@ export function Notifications({ unread }) {
   return (
     <NotificationBell open={n.open} unread={n.unread} items={n.items}
       onToggle={n.toggle} onClose={n.close} onItem={n.item}
-      onMarkAll={n.markAll} />
+      onMarkRead={n.markRead} onMarkAll={n.markAll} />
   )
 }

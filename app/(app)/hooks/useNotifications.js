@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { loadList, clearAll, openItem } from './notificationOps'
+import { loadList, openItem, markItemRead, markAllRead }
+  from './notificationOps'
 
-// Bell state: SSR-seeded unread count, the list lazy-loaded on open, and
-// mark-read on click / mark-all.
+// Bell state: SSR-seeded unread count, list lazy-loaded on open, plus
+// per-item and mark-all read handlers.
 export function useNotifications(initialUnread) {
   const [open, setOpen] = useState(false)
   const [unread, setUnread] = useState(initialUnread || 0)
@@ -18,10 +19,10 @@ export function useNotifications(initialUnread) {
     if (next) loadList().then(setItems)
   }
 
-  const markAll = () => clearAll().then(() => setUnread(0))
-
   return {
-    open, unread, items, toggle, item: openItem, markAll,
+    open, unread, items, toggle, item: openItem,
+    markRead: markItemRead(setItems, setUnread),
+    markAll: markAllRead(setItems, setUnread, setOpen),
     close: () => setOpen(false)
   }
 }
