@@ -125,7 +125,11 @@ test auth users are seeded into `auth.users` and signed in normally.
   (`resolveMeeting` → `findMeetingMatch`) adopts an un-synced row that
   matches by title+minute, or — under a different (e.g. transcript-derived)
   title — shares a participant within ~15 min (looser matches up to ±2h
-  raise a merge suggestion instead of auto-adopting).
+  raise a merge suggestion instead of auto-adopting). A recurring series
+  expands (`singleEvents`) to one occurrence per date, each matching a
+  single hand-made meeting by title, so `listSuggestions` **collapses to
+  the closest occurrence per manual meeting** (`closestSuggestionPerManual`)
+  and dismiss/merge act on that whole manual group, not one occurrence.
 - **cohort** — a program cohort with capacity, pricing (Stripe), and a
   registration window. `cohortStats` gives per-cohort filled head count
   (paid, plus pending seats still inside their hold — see the confirmed-scope
