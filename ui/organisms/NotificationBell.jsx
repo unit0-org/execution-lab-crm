@@ -13,7 +13,7 @@ export function NotificationBell(props) {
   return (
     <Popover open={open} onClose={onClose} trigger={trigger} align="end">
       <NotificationList items={items} onItem={props.onItem}
-        onMarkAll={props.onMarkAll} />
+        onMarkRead={props.onMarkRead} onMarkAll={props.onMarkAll} />
     </Popover>
   )
 }

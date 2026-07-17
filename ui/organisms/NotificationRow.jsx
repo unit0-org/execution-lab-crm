@@ -1,11 +1,19 @@
 import { MenuRow } from '../molecules/MenuRow'
+import { IconButton } from '../atoms/IconButton'
+import { Icon } from '../atoms/Icon'
+import { GrowRow } from '../layout/GrowRow'
 import { mentionLabel } from './mentionLabel'
 
-// One notification as a menu row linking to the exact note; marks itself
-// read via onItem on click.
-export function NotificationRow({ item, onItem }) {
+// One notification: a menu row opening the exact note, plus a check that
+// marks just this item read (its row drops, the panel stays open).
+export function NotificationRow({ item, onItem, onMarkRead }) {
   return (
-    <MenuRow label={mentionLabel(item)} subtitle={item.snippet}
-      onClick={() => onItem(item)} />
+    <GrowRow>
+      <MenuRow label={mentionLabel(item)} subtitle={item.snippet}
+        onClick={() => onItem(item)} />
+      <IconButton label="Mark as read" onClick={() => onMarkRead(item)}>
+        <Icon name="check" />
+      </IconButton>
+    </GrowRow>
   )
 }
