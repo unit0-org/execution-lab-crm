@@ -1,0 +1,28 @@
+'use client'
+
+import { IconButton } from '../atoms/IconButton'
+import { Icon } from '../atoms/Icon'
+import { MonoLabel } from '../atoms/MonoLabel'
+import { navStyle } from './Pagination.styles'
+
+/**
+ * Page navigator: prev/next chevrons around a "page / total" label.
+ * Hides itself when there is only one page. Pair with `usePagination`.
+ */
+export function Pagination({ page, pageCount, onPage }) {
+  if (pageCount < 2) return null
+
+  return (
+    <nav style={navStyle} aria-label="Pagination">
+      <IconButton label="Previous page" disabled={page <= 1}
+        onClick={() => onPage(page - 1)}>
+        <Icon name="chevronLeft" size={16} />
+      </IconButton>
+      <MonoLabel>{`${page} / ${pageCount}`}</MonoLabel>
+      <IconButton label="Next page" disabled={page >= pageCount}
+        onClick={() => onPage(page + 1)}>
+        <Icon name="chevronRight" size={16} />
+      </IconButton>
+    </nav>
+  )
+}
