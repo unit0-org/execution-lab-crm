@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { syncMeetingsAction } from '../actions/syncMeetings'
 
-export function useMeetingSync(onSynced) {
-  const [lastSyncedAt, setLastSyncedAt] = useState(null)
-  const [syncing, setSyncing] = useState(true)
+// Sync runs in the background (cron), so the page no longer syncs on load.
+// It seeds the last-sync time from the server and offers a manual refresh.
+export function useMeetingSync(onSynced, initialLastSyncedAt) {
+  const [lastSyncedAt, setLastSyncedAt] = useState(initialLastSyncedAt || null)
+  const [syncing, setSyncing] = useState(false)
 
   const apply = (r) => {
     setLastSyncedAt(r?.lastSyncedAt || null)
@@ -17,11 +19,6 @@ export function useMeetingSync(onSynced) {
     setSyncing(true)
     syncMeetingsAction(true).then(apply).finally(() => setSyncing(false))
   }
-
-  useEffect(() => {
-    syncMeetingsAction(false).then(apply).finally(() => setSyncing(false))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return { lastSyncedAt, syncing, force }
 }

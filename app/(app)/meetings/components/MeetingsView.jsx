@@ -9,9 +9,9 @@ import { MergeSuggestions } from './MergeSuggestions'
 import { MeetingsToolbar } from './MeetingsToolbar'
 import { NewMeetingModal } from './NewMeetingModal'
 
-export function MeetingsView({ initialMeetings }) {
+export function MeetingsView({ initialMeetings, lastSyncedAt }) {
   const { meetings, sync, suggestions, selection, modal, onCreated, onMerged } =
-    useMeetingsView(initialMeetings)
+    useMeetingsView(initialMeetings, lastSyncedAt)
 
   return (
     <Stack gap="md">
