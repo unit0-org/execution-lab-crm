@@ -13,7 +13,7 @@ export function useSuggestionActions(suggestion, onChanged) {
       })
 
   const dismiss = () =>
-    dismissSuggestionAction(suggestion.id).then(onChanged)
+    dismissSuggestionAction(suggestion.manual.id).then(onChanged)
 
   return { merge, dismiss }
 }
