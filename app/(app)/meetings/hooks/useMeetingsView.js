@@ -7,9 +7,9 @@ import { useMeetingSync } from './useMeetingSync'
 import { useMergeSuggestions } from './useMergeSuggestions'
 import { useRowSelection } from '@/ui/molecules/useRowSelection'
 
-export function useMeetingsView(initialMeetings) {
+export function useMeetingsView(initialMeetings, lastSyncedAt) {
   const meetings = useMeetings(initialMeetings)
-  const sync = useMeetingSync(meetings.reload)
+  const sync = useMeetingSync(meetings.reload, lastSyncedAt)
   const suggestions = useMergeSuggestions()
   const selection = useRowSelection(meetings.meetings)
   const modal = useToggle()

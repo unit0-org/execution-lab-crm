@@ -269,8 +269,11 @@ test auth users are seeded into `auth.users` and signed in normally.
   **Cron** page (`/cron`, in the sidebar) lists each job with its last run
   and a Run button that calls the same `runJob`, with the full run history
   below it on the same page. **Add a job by appending to `CRON_JOBS`** — it
-  then runs daily and appears on the Cron page automatically; never add a
-  second Vercel cron entry (the plan allows one daily cron). A job that
+  then runs daily and appears on the Cron page automatically. A scheduler
+  may also hit **`/api/cron?job=<name>`** to run a single job on its own
+  cadence (a frequent Cloud Scheduler drives **`sync-meetings`** so the
+  Meetings page no longer syncs on load — it reads `last_synced_at` server
+  side and only force-syncs on the manual refresh). A job that
   should fire less often gates itself inside its `run` and no-ops otherwise
   — e.g. **`weekly-digest`** (`sendWeeklyDigestIfDue`) sends only on the
   business-tz Monday run, once per week.
