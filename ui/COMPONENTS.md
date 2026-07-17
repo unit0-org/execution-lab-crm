@@ -154,6 +154,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `MetaRow` | `label`, `value` | Label/value detail row with a bottom rule (order summary). |
 | `MultiSelect` | `options`, `selected`, `onToggle`, `placeholder` | Multi-select dropdown; the trigger shows the chosen labels. |
 | `NumberedStep` | `n`, `title`, `desc` | Circled index + title + description (waitlist explainer). |
+| `Pagination` | `page`, `pageCount`, `onPage` | Page navigator: prev/next chevrons around a "page / total" label. Hides itself when there is only one page. Pair with `usePagination`. |
 | `Popover` | `open`, `onClose`, `trigger`, `align`, `children` | Anchored popover, closing on outside click; the panel is portaled to `<body>` so a scrolling, overflow, or hover-transformed ancestor can't clip or mis-anchor it. |
 | `PriceTag` | `price`, `regular`, `currency='CAD'`, `size=30` | Price line: optional struck regular + price + currency; takes pre-formatted strings, e.g. "$1,500" (portal). `size` is in px. |
 | `RadioCards` | `label`, `name`, `options`, `required`, `hint` | Portal radio-card group (native radios; choice submits). |
