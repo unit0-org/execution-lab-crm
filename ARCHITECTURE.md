@@ -100,7 +100,13 @@ test auth users are seeded into `auth.users` and signed in normally.
   role. The Storage client is encapsulated in **`lib/storage/`** (bucket +
   signed upload/download URLs + object removal); no feature code touches the
   Supabase Storage client directly. Deleting a `contact_file` row also
-  removes its object (`deleteContactFile`).
+  removes its object (`deleteContactFile`). **An email belongs to exactly
+  one contact** (`contact_email` is unique on `lower(email)`), so creating a
+  contact with an email that is already in use keeps that email where it is:
+  `insertEmails` attaches the free ones, returns the taken ones
+  (`ContactEmail.findTakenEmails`), and the create redirect carries them to
+  the contact page, which says so. The contact is still created — a taken
+  email is never silently dropped, and never moved.
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
