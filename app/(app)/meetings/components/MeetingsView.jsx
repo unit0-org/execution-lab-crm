@@ -4,7 +4,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { SectionHeader } from '@/ui/molecules/SectionHeader'
 import { useMeetingsView } from '../hooks/useMeetingsView'
 import { SyncStatus } from './SyncStatus'
-import { MeetingsList } from './MeetingsList'
+import { MeetingsListPaged } from './MeetingsListPaged'
 import { MergeSuggestions } from './MergeSuggestions'
 import { MeetingsToolbar } from './MeetingsToolbar'
 import { NewMeetingModal } from './NewMeetingModal'
@@ -22,7 +22,7 @@ export function MeetingsView({ initialMeetings, lastSyncedAt }) {
       <MergeSuggestions suggestions={suggestions.items} onChanged={onMerged} />
       <MeetingsToolbar meetings={meetings.meetings} selection={selection}
         onMerged={onMerged} />
-      <MeetingsList meetings={meetings.meetings} selection={selection} />
+      <MeetingsListPaged meetings={meetings} selection={selection} />
       <NewMeetingModal open={modal.open} onClose={modal.hide}
         onCreated={onCreated} />
     </Stack>
