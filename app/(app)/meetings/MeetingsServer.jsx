@@ -1,14 +1,13 @@
-import { listMeetingsAction } from './actions/listMeetings'
+import { meetingsPageAction } from './actions/meetingsPage'
 import { meetingSyncStatusAction } from './actions/meetingSyncStatus'
 import { MeetingsView } from './components/MeetingsView'
-import { PAGE_SIZE } from './pageSize'
 
 export async function MeetingsServer() {
-  const meetings = await listMeetingsAction(PAGE_SIZE)
+  const first = await meetingsPageAction(0)
   const status = await meetingSyncStatusAction()
 
   return (
-    <MeetingsView initialMeetings={meetings}
+    <MeetingsView initialMeetings={first.meetings} total={first.total}
       lastSyncedAt={status.lastSyncedAt} />
   )
 }

@@ -1,15 +1,16 @@
 'use client'
 
 import { MeetingsList } from './MeetingsList'
-import { LoadMore } from './LoadMore'
+import { Pager } from '@/ui/molecules/Pager'
 
-// The meetings table plus its "Load more" pager, driven by the useMeetings
-// hook object (its rows, hasMore flag, and loadMore handler).
+// The meetings table plus its prev/next pager, driven by the useMeetings
+// hook object (its rows, current page, page count, and goTo handler).
 export function MeetingsListPaged({ meetings, selection }) {
   return (
     <>
       <MeetingsList meetings={meetings.meetings} selection={selection} />
-      <LoadMore show={meetings.hasMore} onClick={meetings.loadMore} />
+      <Pager at={meetings.page} total={meetings.pageCount}
+        onMove={meetings.goTo} label="page" />
     </>
   )
 }
