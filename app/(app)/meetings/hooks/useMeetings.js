@@ -1,24 +1,25 @@
 'use client'
 
 import { useState } from 'react'
-import { listMeetingsAction } from '../actions/listMeetings'
+import { meetingsPageAction } from '../actions/meetingsPage'
 import { PAGE_SIZE } from '../pageSize'
 
-export function useMeetings(initialMeetings) {
+export function useMeetings(initialMeetings, initialTotal) {
   const [meetings, setMeetings] = useState(initialMeetings)
-  const [hasMore, setHasMore] = useState(initialMeetings.length === PAGE_SIZE)
+  const [total, setTotal] = useState(initialTotal)
+  const [page, setPage] = useState(0)
 
-  const receive = (page, offset) => {
-    setMeetings((rows) => offset ? [...rows, ...page] : page)
-    setHasMore(page.length === PAGE_SIZE)
+  const goTo = (next) =>
+    meetingsPageAction(next * PAGE_SIZE).then((res) => {
+      setMeetings(res.meetings)
+      setTotal(res.total)
+      setPage(next)
+    })
+
+  const pageCount = Math.ceil(total / PAGE_SIZE) || 1
+
+  return {
+    meetings, page, pageCount, loading: false,
+    goTo, reload: () => goTo(page)
   }
-
-  const loadMore = () =>
-    listMeetingsAction(PAGE_SIZE, meetings.length)
-      .then((page) => receive(page, meetings.length))
-
-  const reload = () =>
-    listMeetingsAction(PAGE_SIZE, 0).then((page) => receive(page, 0))
-
-  return { meetings, loading: false, hasMore, loadMore, reload }
 }
