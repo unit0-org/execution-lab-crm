@@ -13,9 +13,10 @@ import { useMentionField } from './useMentionField'
  * picked mentions' ids post under `idsName`.
  */
 export function MentionField(props) {
-  const { label, name, idsName, defaultValue, options, ...rest } = props
+  const { label, name, idsName, defaultValue, options, onValue, ...rest }
+    = props
   const anchor = useRef(null)
-  const m = useMentionField(defaultValue, options)
+  const m = useMentionField(defaultValue, options, onValue)
   const ids = m.picked.map((p) => p.value).join(',')
   const labels = m.picked.map((p) => p.label)
 

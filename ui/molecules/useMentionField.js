@@ -6,7 +6,7 @@ import { mentionQuery, insertMention } from './mentionText'
 import { pickFirstOnKey } from './pickFirstOnKey'
 
 // Track text + caret + the open @-token; insert picks and accept on key.
-export function useMentionField(defaultValue, options) {
+export function useMentionField(defaultValue, options, onValue = () => {}) {
   const [value, setValue] = useState(defaultValue || '')
   const [caret, setCaret] = useState(0)
   const [picked, setPicked] = useState([])
@@ -17,6 +17,7 @@ export function useMentionField(defaultValue, options) {
     setValue(e.target.value)
     setCaret(e.target.selectionStart)
     setQuery(mentionQuery(e.target.value, e.target.selectionStart))
+    onValue(e.target.value)
   }
   const pick = (option) => {
     setValue((v) => insertMention(v, caret, option.label))
