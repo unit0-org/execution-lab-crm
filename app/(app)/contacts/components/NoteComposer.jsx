@@ -1,30 +1,32 @@
 'use client'
-
+import { useState } from 'react'
 import { BareForm } from '@/ui/molecules/BareForm'
-import { GrowRow } from '@/ui/layout/GrowRow'
+import { Stack } from '@/ui/layout/Stack'
 import { MentionField } from '@/ui/molecules/MentionField'
-import { SubmitButton } from '@/ui/atoms/SubmitButton'
 import { FormError } from './FormError'
+import { NoteSendButton } from './NoteSendButton'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { useMentionOptions } from '../hooks/useMentionOptions'
 import { addNoteAction } from '../actions/addNote'
 
-// The always-present composer at the top of the notes thread — a comment
-// box (type @ to tag a teammate), matching the Figma. A new note is dated
-// now, so there is no date field.
+// Always-present Figma-style comment composer: a mention box over a round
+// send button that's disabled until there's text, so it's never a dead
+// click (no silent native-validation block on an invisible field).
 export function NoteComposer({ contactId, onSaved }) {
   const { action, error } = useFormAction(addNoteAction, onSaved)
   const options = useMentionOptions()
+  const [empty, setEmpty] = useState(true)
 
   return (
     <BareForm action={action}>
       <input type="hidden" name="contact_id" value={contactId} />
-      <GrowRow align="end">
+      <Stack gap="xs">
         <MentionField name="body" idsName="mention_user_ids" rows={2}
-          options={options} required aria-label="Add a note"
+          options={options} aria-label="Add a note"
+          onValue={(v) => setEmpty(!v.trim())}
           placeholder="Add a note — type @ to tag a teammate" />
-        <SubmitButton size="sm">Add</SubmitButton>
-      </GrowRow>
+        <NoteSendButton disabled={empty} />
+      </Stack>
       <FormError message={error} />
     </BareForm>
   )

@@ -149,7 +149,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `IconUpload` | `label`, `title`, `onPick` | File upload trigger: a hidden CSV input behind an upload glyph. |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form — no block layout, sits with its siblings. |
 | `Insight` | `label`, `value` | Insight tile: system-derived, styled apart from manual nuggets. |
-| `MentionField` | `label`, `name`, `idsName`, `defaultValue`, `options`, `...rest` | Textarea with an `@`-mention autocomplete: type `@` to tag a member from `options`=`[{value,label}]`; `Tab`/`Enter` accepts the first match. The picked mentions' ids post under `idsName`. |
+| `MentionField` | `label`, `name`, `idsName`, `defaultValue`, `options`, `onValue`, `...rest` | Textarea with an `@`-mention autocomplete: type `@` to tag a member from `options`=`[{value,label}]`; `Tab`/`Enter` accepts the first match. The picked mentions' ids post under `idsName`. |
 | `MenuRow` | `leading`, `label`, `subtitle`, `meta`, `active`, `onClick` | Full-width clickable menu/palette row: leading slot + label (with an optional `subtitle` below) + optional trailing meta. `active` pre-highlights it (keyboard-selected). |
 | `MetaRow` | `label`, `value` | Label/value detail row with a bottom rule (order summary). |
 | `MultiSelect` | `options`, `selected`, `onToggle`, `placeholder` | Multi-select dropdown; the trigger shows the chosen labels. |
