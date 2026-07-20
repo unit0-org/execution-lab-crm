@@ -5,7 +5,7 @@ export function Card({ tone, hoverHost, id, children }) {
   const host = hoverHost || undefined
 
   return (
-    <div id={id} data-hover-host={host} style={cardStyle(tone)}>
+    <div id={id} data-hover-host={host} data-hover-bg style={cardStyle(tone)}>
       {children}
     </div>
   )
