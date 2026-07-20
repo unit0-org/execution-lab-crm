@@ -193,6 +193,10 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 [data-card-lift]:hover { transform: translateY(-1px); box-shadow: 0 8px 24px -16px rgba(0,0,0,0.6); border-color: var(--color-border-strong) !important; }
 [data-row-hover]:hover { background: var(--color-bg-subtle); }
 [data-editable]:hover { background: var(--color-bg-subtle); }
+/* Shared surface hover: cards, note rows and any opted-in Stack tint to the
+   subtle surface. !important beats the primitives' inline base background. */
+[data-hover-bg] { transition: background var(--motion-quick) var(--motion-ease); }
+[data-hover-bg]:hover { background: var(--color-bg-subtle) !important; }
 
 @media (hover: hover) {
   [data-hover-host] [data-hover-reveal] { opacity: 0; transition: opacity 120ms ease; }

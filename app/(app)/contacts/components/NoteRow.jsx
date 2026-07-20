@@ -8,7 +8,7 @@ import { NoteHeader } from './NoteHeader'
 // The id anchors the link an @-mention email sends the reader to.
 export function NoteRow({ note, onChanged }) {
   return (
-    <Stack gap="xs" hoverHost id={`note-${note.id}`}>
+    <Stack gap="xs" hoverHost hoverBg id={`note-${note.id}`}>
       <NoteHeader note={note} onChanged={onChanged} />
       <Text gutter="none">{note.body}</Text>
     </Stack>

@@ -66,7 +66,7 @@ Conventions (from `AGENTS.md`):
 | `LabelBadge` | `name`, `color` | Colored contact-label chip: a pill with a dot + the label name. |
 | `LabelDot` | `color`, `size=8` | Small colored status dot, from a label's palette key. |
 | `Link` | `href`, `children`, `newTab` | Internal app navigation link. |
-| `LinkCard` | `href`, `label`, `children` | Card whose whole surface links to `href` (stretched-link overlay; lifts on hover), so no invalid button-inside-anchor. Wrap any control inside in `RaisedControl` to keep it clickable. |
+| `LinkCard` | `href`, `label`, `children` | Card whose whole surface links to `href` (stretched-link overlay; tints on hover), so no invalid button-inside-anchor. Wrap any control inside in `RaisedControl` to keep it clickable. |
 | `MonoLabel` | `tone='muted'`, `size=11`, `caps`, `align`, `children` | Monospaced micro-label/kicker (JetBrains Mono); `tone` picks a brand/neutral color, `caps` uppercases, `align` blocks + aligns (portal). |
 | `MonoLink` | `href`, `size=11`, `underline`, `external=true`, `children` | Monospaced accent link; new tab by default, `external={false}` for in-app nav in the same tab (portal). |
 | `NavIcon` | `icon` | Sidebar nav glyph: the cog for Settings, otherwise a line icon. |
@@ -113,7 +113,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `Scrim` | `open`, `onClick` | Dim backdrop behind overlays (mobile sidebar drawer); tap to close. |
 | `Shell` | `sidebar`, `open`, `onClose`, `children` | App shell wrapper. |
 | `SidebarLayout` | `main`, `aside` | Content + a sticky aside that stacks below on mobile (portal forms). |
-| `Stack` | `gap='md'`, `id`, `hoverHost`, `children` | Vertical flex stack (`xs`/`sm`/`md`/`lg`). |
+| `Stack` | `gap='md'`, `id`, `hoverHost`, `hoverBg`, `children` | Vertical flex stack (`xs`/`sm`/`md`/`lg`); `hoverBg` tints on hover. |
 | `StickyBar` | `active`, `children` | Sticky action bar, pinned to the top of the scroll area. It stays in normal flow, so its height is always reserved (no CLS), and hides its contents — staying pinned but invisible — when inactive. |
 | `TimelineRail` | `children` | Vertical timeline rail: a dotted line links each item's dot to the next. |
 | `Topbar` | `children` | Sticky bar at the top of the scrolling main area (global command bar): the mobile menu hamburger, global search, primary actions. Horizontal padding lives in globals.css, so breakpoints can tune it. |
