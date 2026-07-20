@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { TaskFields } from './TaskFields'
 import { FormError } from './FormError'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { addTaskAction } from '../actions/addTask'
 
@@ -20,7 +20,7 @@ export function TaskForm(props) {
         <Heading level={3}>{heading}</Heading>
         <TaskFields />
         <FormError message={error} />
-        <DialogActions label={label} onCancel={onCancel} />
+        <FormActions label={label} onCancel={onCancel} />
       </Stack>
     </Form>
   )

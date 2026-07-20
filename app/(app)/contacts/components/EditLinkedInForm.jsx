@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { TextField } from '@/ui/atoms/TextField'
 import { FormError } from './FormError'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { updateContactAction } from '../actions/updateContact'
 
@@ -22,7 +22,7 @@ export function EditLinkedInForm({ contactId, url, onSaved, onCancel }) {
         <TextField label="LinkedIn URL" name="value"
           defaultValue={current} autoFocus />
         <FormError message={error} />
-        <DialogActions label="Save" onCancel={onCancel} />
+        <FormActions label="Save" onCancel={onCancel} />
       </Stack>
     </Form>
   )

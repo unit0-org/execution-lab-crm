@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from './FormError'
 import { NuggetFields } from './NuggetFields'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { addNuggetAction } from '../actions/addNugget'
 
@@ -19,7 +19,7 @@ export function AddNuggetForm({ contactId, onSaved, onCancel }) {
         <Heading level={3}>Add nugget</Heading>
         <NuggetFields />
         <FormError message={error} />
-        <DialogActions label="Add" onCancel={onCancel} />
+        <FormActions label="Add" onCancel={onCancel} />
       </Stack>
     </Form>
   )

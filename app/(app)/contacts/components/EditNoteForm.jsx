@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from './FormError'
 import { NoteFields } from './NoteFields'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { useMentionOptions } from '../hooks/useMentionOptions'
 import { updateNoteAction } from '../actions/updateNote'
@@ -22,7 +22,7 @@ export function EditNoteForm({ note, onSaved, onCancel }) {
         <NoteFields body={note.body} notedAt={note.date}
           options={options} />
         <FormError message={error} />
-        <DialogActions label="Save" onCancel={onCancel} />
+        <FormActions label="Save" onCancel={onCancel} />
       </Stack>
     </Form>
   )

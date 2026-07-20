@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from './FormError'
 import { NuggetFields } from './NuggetFields'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { updateNuggetAction } from '../actions/updateNugget'
 
@@ -21,7 +21,7 @@ export function EditNuggetForm({ nugget, onSaved, onCancel }) {
         <NuggetFields origin={nugget.origin}
           label={nugget.question} value={nugget.answer} />
         <FormError message={error} />
-        <DialogActions label="Save" onCancel={onCancel} />
+        <FormActions label="Save" onCancel={onCancel} />
       </Stack>
     </Form>
   )

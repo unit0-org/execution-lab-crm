@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { BirthdayField } from '@/ui/molecules/BirthdayField'
 import { FormError } from './FormError'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { setBirthdayAction } from '../actions/setBirthday'
 
@@ -20,7 +20,7 @@ export function EditBirthdayForm(props) {
         <Heading level={3}>Edit birthday</Heading>
         <BirthdayField day={day} month={month} year={year} />
         <FormError message={error} />
-        <DialogActions label="Save" onCancel={onCancel} />
+        <FormActions label="Save" onCancel={onCancel} />
       </Stack>
     </Form>
   )

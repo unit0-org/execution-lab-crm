@@ -2,10 +2,9 @@
 
 import { Modal } from '../organisms/Modal'
 import { Stack } from '../layout/Stack'
-import { Inline } from '../layout/Inline'
 import { Heading } from '../atoms/Heading'
 import { Text } from '../atoms/Text'
-import { Button } from '../atoms/Button'
+import { FormActions } from './FormActions'
 
 /** Confirmation modal; `message`/`confirmLabel`/`tone` are overridable. */
 export function ConfirmDialog({
@@ -18,12 +17,8 @@ export function ConfirmDialog({
       <Stack gap="md">
         <Heading level={3}>{title}</Heading>
         <Text size="sm">{message}</Text>
-        <Inline gap="sm">
-          <Button tone={tone} size="sm" onClick={onConfirm}>
-            {confirmLabel}
-          </Button>
-          <Button size="sm" onClick={onCancel}>Cancel</Button>
-        </Inline>
+        <FormActions label={confirmLabel} tone={tone}
+          onConfirm={onConfirm} onCancel={onCancel} />
       </Stack>
     </Modal>
   )

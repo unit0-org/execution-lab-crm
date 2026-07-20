@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { NoteFields } from './NoteFields'
 import { NoteFormHeading } from './NoteFormHeading'
 import { FormError } from './FormError'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { useMentionOptions } from '../hooks/useMentionOptions'
 import { addNoteAction } from '../actions/addNote'
@@ -22,7 +22,7 @@ export function NoteForm(props) {
         <NoteFormHeading text={heading} />
         <NoteFields options={options} />
         <FormError message={error} />
-        <DialogActions label={label} onCancel={onCancel} />
+        <FormActions label={label} onCancel={onCancel} />
       </Stack>
     </Form>
   )
