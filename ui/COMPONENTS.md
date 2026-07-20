@@ -145,6 +145,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `FilterBar` | `options`, `active`, `basePath`, `param` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. |
 | `FilterChip` | `href`, `label`, `active` | One URL-driven filter chip: a pill link, highlighted when active. |
 | `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, its first editable field autofocuses on mount, and typed values survive a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate). |
+| `FormActions` | `label='Save'`, `tone='primary'`, `size='sm'` | The one form/dialog action row: a primary button — a submit by default, or an `onConfirm` click action — with an optional Cancel, aligned to the RIGHT so every form and modal places its buttons the same way. |
 | `FormError` | `message` | Form-level error message; renders nothing when there is none. |
 | `IconUpload` | `label`, `title`, `onPick` | File upload trigger: a hidden CSV input behind an upload glyph. |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form — no block layout, sits with its siblings. |

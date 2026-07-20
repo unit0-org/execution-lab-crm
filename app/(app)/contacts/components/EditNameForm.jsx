@@ -5,7 +5,7 @@ import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
 import { FormError } from './FormError'
 import { NameFields } from './NameFields'
-import { DialogActions } from './DialogActions'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { updateContactNameAction } from '../actions/updateContactName'
 
@@ -19,7 +19,7 @@ export function EditNameForm({ contact, onSaved, onCancel }) {
         <Heading level={3}>Edit name</Heading>
         <NameFields contact={contact} />
         <FormError message={error} />
-        <DialogActions label="Save" onCancel={onCancel} />
+        <FormActions label="Save" onCancel={onCancel} />
       </Stack>
     </Form>
   )
