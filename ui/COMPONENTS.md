@@ -46,7 +46,7 @@ Conventions (from `AGENTS.md`):
 | `Card` | `tone`, `hoverHost`, `id`, `children` | Surface container for grouped content. |
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`). |
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square; ringed when it's the chosen one. |
-| `DateText` | `value`, `withTime` | Display-only date, UTC-safe (so a date-only value never drifts a day in the viewer's timezone). `withTime` adds the time. |
+| `DateText` | `value`, `withTime` | Display-only date. A date-only value renders UTC-safe (so it never drifts a day in the viewer's timezone); `withTime` adds the time in the business timezone, so a timestamp shows the real Pacific wall-clock, not UTC. |
 | `Display` | `size='md'`, `children` | Oversized uppercase display headline (`sm`/`md`/`lg`/`xl`) for portal hero/section titles. Renders an `<h1>`. |
 | `Divider` | — | Hairline rule separating rows in an inline list. |
 | `EditableText` | `value`, `onClick` | View-mode text that opens an editor on click: left-aligned and input-sized, so the `TextField` swaps in with no layout shift. |
