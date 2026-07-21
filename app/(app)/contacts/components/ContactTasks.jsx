@@ -19,7 +19,7 @@ export function ContactTasks({ contactId, initial, reveal }) {
       <TasksHeader onAdd={reveal.show} />
       <AddTaskModal open={reveal.shown} contactId={contactId}
         onSaved={saved} onClose={reveal.hide} />
-      <TasksBody tasks={tasks} onToggle={toggle} />
+      <TasksBody tasks={tasks} onToggle={toggle} onChanged={reload} />
     </Stack>
   )
 }

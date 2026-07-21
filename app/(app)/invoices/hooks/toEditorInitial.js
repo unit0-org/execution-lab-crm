@@ -1,6 +1,6 @@
 import { toEditorClient } from './toEditorClient'
 import { toEditorLine } from './toEditorLine'
-import { toDateInput } from './toDateInput'
+import { toDateInput } from '@/ui/atoms/toDateInput'
 
 // A loaded invoice → editable editor state.
 export function toEditorInitial(invoice) {
