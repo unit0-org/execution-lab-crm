@@ -12,7 +12,7 @@ export function useMeetingSync(onSynced, initialLastSyncedAt) {
   const apply = (r) => {
     setLastSyncedAt(r?.lastSyncedAt || null)
 
-    if (r?.imported) onSynced()
+    if (r?.imported || r?.updated) onSynced()
   }
 
   const force = () => {
