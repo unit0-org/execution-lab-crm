@@ -29,7 +29,8 @@ leaves this stale is incomplete (this is a review-enforced rule in
 - **Single-tenant** (PR #237). There is one real org. `organization_id`
   has been dropped from the domain entities (contact, cohort, event,
   meeting, registration, waitlist, google sync, purchase, …); only
-  **billing** (`invoice`, `invoice_setting`, `company_profile`) and **org
+  **billing** (`invoice`, `invoice_setting`, `organization_profile` — the
+  seller's own invoice letterhead) and **org
   membership** (`organization`, `organization_user`) still carry it. Those
   billing/membership actions use `withOrg` (injects the org id);
   everything else uses `withMember` (auth gate only). Secrets live in env.
