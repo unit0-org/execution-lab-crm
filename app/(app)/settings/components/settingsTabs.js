@@ -6,7 +6,7 @@ export const SETTINGS_TABS = [
   { value: 'google', label: 'Google Contacts' },
   { value: 'conflicts', label: 'Sync conflicts' },
   { value: 'emails', label: 'Email templates' },
-  { value: 'company', label: 'Company info' },
+  { value: 'organization', label: 'Organization' },
   { value: 'invoicing', label: 'Invoicing' },
   { value: 'cron', label: 'Cron' }
 ]
