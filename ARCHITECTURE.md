@@ -722,10 +722,12 @@ file trails for the flows you'll touch most — follow them top to bottom.
   re-consent.
 - **Contact tasks → Google Tasks:** a `contact_task` (title + optional due
   date) is a contact-owned follow-up created from the contact page's Tasks
-  section (and the `create_task` MCP tool). On create/toggle it is mirrored
-  to the **primary** connected account's default Google Tasks list
-  (`lib/google/tasks/`), so it shows in Google Calendar; the push is
-  best-effort (a Google hiccup never fails the CRM write) and stores
-  `google_task_id` for the link. Needs the `tasks` OAuth scope (re-consent).
-  It appears both in the Tasks section and on the activity timeline. *(The
-  daily two-way reconcile cron lands in a follow-up PR.)*
+  section (and the `create_task` MCP tool). On create, toggle, edit and
+  delete it is mirrored to the **primary** connected account's default Google
+  Tasks list (`lib/google/tasks/`: `pushNewTask`/`pushTaskUpdate`/
+  `pushTaskDelete`), so it shows in Google Calendar; a delete removes the
+  linked Google task. Every push is best-effort (a Google hiccup never fails
+  the CRM write) and stores `google_task_id` for the link. Needs the `tasks`
+  OAuth scope (re-consent). It appears both in the Tasks section and on the
+  activity timeline. *(The daily two-way reconcile cron — the Google→CRM
+  direction — lands in a follow-up PR.)*
