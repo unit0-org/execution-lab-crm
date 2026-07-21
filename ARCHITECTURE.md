@@ -720,12 +720,23 @@ file trails for the flows you'll touch most — follow them top to bottom.
   `contact_email_message` — the body stays in Gmail, linked by thread.
   Requires the `gmail.readonly` OAuth scope, so connected accounts must
   re-consent.
-- **Contact tasks → Google Tasks:** a `contact_task` (title + optional due
-  date) is a contact-owned follow-up created from the contact page's Tasks
-  section (and the `create_task` MCP tool). On create/toggle it is mirrored
-  to the **primary** connected account's default Google Tasks list
-  (`lib/google/tasks/`), so it shows in Google Calendar; the push is
+- **Contact tasks ⇄ Google Tasks (two-way):** a `contact_task` (title +
+  optional due date) is a contact-owned follow-up created from the contact
+  page's Tasks section (and the `create_task` MCP tool). **CRM → Google:** on
+  create, toggle, edit and delete it is mirrored to the **primary** connected
+  account's default Google Tasks list (`lib/google/tasks/`:
+  `pushNewTask`/`pushTaskUpdate`/`pushTaskDelete`), so it shows in Google
+  Calendar; a delete removes the linked Google task. Every push is
   best-effort (a Google hiccup never fails the CRM write) and stores
-  `google_task_id` for the link. Needs the `tasks` OAuth scope (re-consent).
-  It appears both in the Tasks section and on the activity timeline. *(The
-  daily two-way reconcile cron lands in a follow-up PR.)*
+  `google_task_id` for the link. **Google → CRM:** the `sync-tasks` job
+  (`SYNC_JOBS`; `syncAllTasks` → `syncAccountTasks` → `reconcileTask`) polls
+  each account's default list incrementally (a `sync-tasks` `sync_state`
+  watermark + `updatedMin`, with `showDeleted`/`showHidden`) and reflects
+  edits, completions and deletions onto the linked row. **Only CRM-originated
+  tasks** (matched by `google_task_id`) are reconciled — Google-native tasks
+  are ignored, never orphan-imported. Conflicts resolve **last-write-wins**
+  by `updated_at` (the reconcile adopts Google's `updated`, so no ping-pong).
+  It runs in the daily cron and, for ~15-min freshness, off a Cloud Scheduler
+  hitting `/api/cron?job=sync-tasks`. Needs the `tasks` OAuth scope
+  (re-consent). It appears both in the Tasks section and on the activity
+  timeline.
