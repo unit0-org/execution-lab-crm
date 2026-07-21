@@ -15,7 +15,7 @@ const label = (c) =>
 
 export function SurvivorOption({ contact, checked, onPick }) {
   return (
-    <Inline gap="sm">
+    <Inline gap="sm" nowrap align="start">
       <Radio checked={checked} onChange={() => onPick(contact.id)}
         label="Keep this contact" />
       <Text size="sm">{label(contact)}</Text>
