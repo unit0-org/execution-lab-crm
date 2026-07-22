@@ -7,3 +7,5 @@ export const navStyle = {
   gap: space[2],
   marginTop: space[4]
 }
+
+export const sizeStyle = { width: '8.5rem' }

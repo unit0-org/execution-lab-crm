@@ -1,10 +1,10 @@
 import { Avatar } from '@/ui/atoms/Avatar'
 import { MenuRow } from '@/ui/molecules/MenuRow'
 
-// One person row in the palette; selecting it opens that contact. Shows
-// the full name with the email below it.
+// One result row in the palette (a person or a company); selecting it
+// opens that record. Shows the name with its subtitle below.
 export function PalettePerson({ person, active, onPick }) {
-  const choose = () => onPick(person.id)
+  const choose = () => onPick(person.href)
   const avatar = <Avatar size={28} src={person.photo} name={person.name} />
 
   return (
