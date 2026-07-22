@@ -3,13 +3,15 @@
 import { IconButton } from '../atoms/IconButton'
 import { Icon } from '../atoms/Icon'
 import { MonoLabel } from '../atoms/MonoLabel'
+import { PageSizeSelect } from './PageSizeSelect'
 import { navStyle } from './Pagination.styles'
 
 /**
- * Page navigator: prev/next chevrons around a "page / total" label.
- * Hides itself when there is only one page. Pair with `usePagination`.
+ * Page navigator: prev/next chevrons around a "page / total" label, with an
+ * optional page-size select (pass `perPage` + `onPerPage`). Hides when
+ * there is only one page. Pair with `usePagination`.
  */
-export function Pagination({ page, pageCount, onPage }) {
+export function Pagination({ page, pageCount, onPage, perPage, onPerPage }) {
   if (pageCount < 2) return null
 
   return (
@@ -23,6 +25,7 @@ export function Pagination({ page, pageCount, onPage }) {
         onClick={() => onPage(page + 1)}>
         <Icon name="chevronRight" size={16} />
       </IconButton>
+      <PageSizeSelect perPage={perPage} onPerPage={onPerPage} />
     </nav>
   )
 }

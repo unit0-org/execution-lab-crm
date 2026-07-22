@@ -7,9 +7,9 @@ import { Heading } from '../atoms/Heading'
  * button top-right, so body content never sits under it. Prefer this
  * over a bare `Modal` for any titled dialog.
  */
-export function TitledModal({ open, title, onClose, wide, children }) {
+export function TitledModal({ open, title, onClose, wide, align, children }) {
   return (
-    <Modal open={open} onClose={onClose} wide={wide}>
+    <Modal open={open} onClose={onClose} wide={wide} align={align}>
       <Stack gap="md">
         <Heading level={3} gutter="none">{title}</Heading>
         {children}

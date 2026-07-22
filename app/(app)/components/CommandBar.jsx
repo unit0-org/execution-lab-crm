@@ -9,7 +9,7 @@ import { AdminAutomationMenu } from './AdminAutomationMenu'
 import { CommandOverlays } from './CommandOverlays'
 import { useCommandBar } from '../hooks/useCommandBar'
 
-const PLACEHOLDER = 'Search people…'
+const PLACEHOLDER = 'Search people or companies…'
 
 export function CommandBar({ onMenu, unread, role }) {
   const bar = useCommandBar()

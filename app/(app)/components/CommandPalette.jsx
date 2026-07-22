@@ -6,18 +6,20 @@ import { TextField } from '@/ui/atoms/TextField'
 import { PaletteResults } from './PaletteResults'
 import { usePalette } from '../hooks/usePalette'
 import { usePaletteKeys } from '../hooks/usePaletteKeys'
+import { useIsMobile } from '@/ui/molecules/useIsMobile'
 
-const FIND = 'Find someone…'
+const FIND = 'Search people or companies…'
 
 export function CommandPalette({ open, people, onPick, onAdd, onClose }) {
   const palette = usePalette(people)
+  const align = useIsMobile() ? 'top' : 'center'
   const close = () => { palette.clear(); onClose() }
-  const pick = (id) => { palette.clear(); onPick(id) }
+  const pick = (href) => { palette.clear(); onPick(href) }
   const add = () => { palette.clear(); onAdd() }
   const onKeyDown = usePaletteKeys(palette.results, pick)
 
   return (
-    <TitledModal open={open} title="Search" onClose={close}>
+    <TitledModal open={open} title="Search" onClose={close} align={align}>
       <Stack gap="md">
         <TextField value={palette.query} onChange={palette.onType}
           onKeyDown={onKeyDown} placeholder={FIND} autoComplete="off" />

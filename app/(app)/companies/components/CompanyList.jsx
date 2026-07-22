@@ -9,17 +9,18 @@ import { columns } from './companyColumns'
 
 export function CompanyList({ companies, onChanged }) {
   const { sorted, sort, toggle } = useTableSort(companies, columns, 'name')
-  const { paged, page, pageCount, setPage } = usePagination(sorted, 25)
+  const p = usePagination(sorted)
 
   return (
     <>
       <Table cols={columns} sort={sort} onSort={toggle}>
-        {paged.map((company) => (
+        {p.paged.map((company) => (
           <CompanyRow key={company.id} company={company}
             onChanged={onChanged} />
         ))}
       </Table>
-      <Pagination page={page} pageCount={pageCount} onPage={setPage} />
+      <Pagination page={p.page} pageCount={p.pageCount} onPage={p.setPage}
+        perPage={p.perPage} onPerPage={p.setPerPage} />
     </>
   )
 }

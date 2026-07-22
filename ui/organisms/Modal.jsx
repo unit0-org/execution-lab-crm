@@ -9,9 +9,10 @@ import { useBackdropClose } from '../molecules/useBackdropClose'
 /**
  * Centered dialog over a dimmed backdrop — Esc, click outside, or the X
  * closes it; focuses its first field on open. `wide` widens it, scrolls
- * when tall, and is resizable (drag the bottom-right corner).
+ * when tall, and is resizable (drag the bottom-right corner). `align="top"`
+ * pins it to the top instead of centering.
  */
-export function Modal({ open, onClose, wide, children }) {
+export function Modal({ open, onClose, wide, align, children }) {
   useEscClose(onClose, open)
   const panel = useAutoFocus(open)
   const backdrop = useBackdropClose(onClose)
@@ -19,7 +20,7 @@ export function Modal({ open, onClose, wide, children }) {
   if (!open) return null
 
   return (
-    <div style={overlayStyle} {...backdrop}>
+    <div style={overlayStyle(align)} {...backdrop}>
       <div ref={panel} style={panelStyle(wide)}>
         <ModalClose onClose={onClose} />
         {children}
