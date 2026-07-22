@@ -17,6 +17,8 @@ const userStory = {
       'subtotal.',
     'Amounts entered as text parse sensibly ("$1,250.00", "99.99"), strip ' +
       'negatives, and treat garbage as 0.',
+    'An invoice bills either a person or a company (mutually exclusive); ' +
+      'billing a company fills the bill-to from the company.',
     'Two invoices reserving a number at the same instant get distinct ' +
       'numbers.'
   ]

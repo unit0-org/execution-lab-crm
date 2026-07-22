@@ -1,8 +1,7 @@
 'use client'
 
 import { Stack } from '@/ui/layout/Stack'
-import { ContactAutocomplete } from
-  '@/app/(app)/contacts/components/ContactAutocomplete'
+import { ClientPicker } from './ClientPicker'
 import { InvoiceNumberField } from './InvoiceNumberField'
 import { InvoiceDateFields } from './InvoiceDateFields'
 import { InvoiceLineItems } from './InvoiceLineItems'
@@ -18,8 +17,7 @@ export function InvoiceEditor({ mode, initial }) {
   return (
     <Stack gap="md">
       <InvoiceNumberField fields={fields} />
-      <ContactAutocomplete label="Client" value={fields.client}
-        onChange={fields.setClient} allowCreate />
+      <ClientPicker client={fields.client} onChange={fields.setClient} />
       <InvoiceDateFields fields={fields} />
       <InvoiceLineItems items={items} />
       <GstCheckbox gst={fields.gst} onGst={fields.onGst} />

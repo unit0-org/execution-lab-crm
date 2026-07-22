@@ -13,6 +13,7 @@ const userStory = {
       'number, invoice email and website.',
     'A company page shows its details and the table of contacts linked ' +
       'to it.',
+    'A company page shows its activity — the invoices raised for it.',
     'I can edit a company, and the change is reflected.',
     'Deleting a company asks for confirmation first.'
   ]
