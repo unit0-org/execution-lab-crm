@@ -17,6 +17,8 @@ export const thStyle = {
 }
 export const tdStyle = cell
 
+export const headerRowStyle = { borderBottom: cell.borderBottom }
+
 export const truncateStyle = {
   display: 'block', maxWidth: '480px', overflow: 'hidden',
   textOverflow: 'ellipsis', whiteSpace: 'nowrap'
