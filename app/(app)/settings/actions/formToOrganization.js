@@ -3,8 +3,8 @@ const FIELDS = [
   'address_line2', 'city', 'region', 'postal_code', 'country'
 ]
 
-// Collect the company-profile form fields into a plain object.
-export function formToCompany(formData) {
+// Collect the organization-profile form fields into a plain object.
+export function formToOrganization(formData) {
   const data = {}
 
   for (const field of FIELDS) {

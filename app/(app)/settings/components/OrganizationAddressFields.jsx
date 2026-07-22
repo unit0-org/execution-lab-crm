@@ -1,6 +1,6 @@
 import { TextField } from '@/ui/atoms/TextField'
 
-export function CompanyAddressFields({ profile }) {
+export function OrganizationAddressFields({ profile }) {
   return (
     <>
       <TextField name="address_line1" placeholder="Address line 1"

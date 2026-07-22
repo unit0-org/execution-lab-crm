@@ -2,7 +2,7 @@ import { MembersServer } from './MembersServer'
 import { GoogleServer } from './GoogleServer'
 import { ConflictsServer } from './ConflictsServer'
 import { EmailTemplatesServer } from './EmailTemplatesServer'
-import { CompanyServer } from './CompanyServer'
+import { OrganizationServer } from './OrganizationServer'
 import { InvoicingServer } from './InvoicingServer'
 import { CronServer } from '../cron/CronServer'
 
@@ -11,7 +11,7 @@ const PANELS = {
   google: GoogleServer,
   conflicts: ConflictsServer,
   emails: EmailTemplatesServer,
-  company: CompanyServer,
+  organization: OrganizationServer,
   invoicing: InvoicingServer,
   cron: CronServer
 }

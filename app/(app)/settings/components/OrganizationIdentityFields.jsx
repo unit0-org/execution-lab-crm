@@ -1,6 +1,6 @@
 import { TextField } from '@/ui/atoms/TextField'
 
-export function CompanyIdentityFields({ profile }) {
+export function OrganizationIdentityFields({ profile }) {
   return (
     <>
       <TextField name="legal_name" placeholder="Legal name"
