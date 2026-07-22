@@ -19,5 +19,10 @@ export const objectGlyphs = {
   file: 'M6 2h8l4 4v16H6zM14 2v4h4M9 13h6M9 17h6',
   folder: 'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0'
     + ' 1 2 2z',
-  bolt: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z'
+  bolt: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+  building:
+    'M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z'
+    + 'M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2'
+    + 'M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2'
+    + 'M10 6h4M10 10h4M10 14h4M10 18h4'
 }
