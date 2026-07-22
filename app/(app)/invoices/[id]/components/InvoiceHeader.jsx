@@ -1,13 +1,11 @@
-import { GrowRow } from '@/ui/layout/GrowRow'
+import { PageHeader } from '@/ui/organisms/PageHeader'
 import { InvoiceTitle } from './InvoiceTitle'
 import { InvoiceLinks } from './InvoiceLinks'
 
-// Title + status on the left, Edit / Download buttons on the right.
+// Title + status on the left, Edit / Download page actions on the right.
 export function InvoiceHeader({ invoice }) {
   return (
-    <GrowRow align="start">
-      <InvoiceTitle invoice={invoice} />
-      <InvoiceLinks id={invoice.id} />
-    </GrowRow>
+    <PageHeader title={<InvoiceTitle invoice={invoice} />}
+      actions={<InvoiceLinks id={invoice.id} />} />
   )
 }

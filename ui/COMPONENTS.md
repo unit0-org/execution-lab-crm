@@ -155,6 +155,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `MetaRow` | `label`, `value` | Label/value detail row with a bottom rule (order summary). |
 | `MultiSelect` | `options`, `selected`, `onToggle`, `placeholder` | Multi-select dropdown; the trigger shows the chosen labels. |
 | `NumberedStep` | `n`, `title`, `desc` | Circled index + title + description (waitlist explainer). |
+| `PageActions` | `children` | The top-right cluster of page-level actions on a detail page (Edit, Download, Send, an Add menu, …). One home for that row so every page's actions sit and space identically; wraps on narrow screens. |
 | `Pager` | `at`, `total`, `onMove`, `label='item'` | Prev/next stepper through `total` positions showing "N of total"; `onMove(index)` gets the new 0-based index, and it hides itself when there's nothing to page. `label` names the unit for the arrows' aria-labels (e.g. "invoice", "page"). |
 | `Pagination` | `page`, `pageCount`, `onPage`, `perPage`, `onPerPage` | Page navigator: prev/next chevrons around a "page / total" label, with an optional page-size select (pass `perPage` + `onPerPage`). Hides when there is only one page. Pair with `usePagination`. |
 | `Popover` | `open`, `onClose`, `trigger`, `align`, `children` | Anchored popover, closing on outside click; the panel is portaled to `<body>` so a scrolling, overflow, or hover-transformed ancestor can't clip or mis-anchor it. |
@@ -215,6 +216,7 @@ with the shared leading select-all + trailing delete columns).
 | `Nav` | `items`, `currentPath`, `onNavigate` | App nav list: renders `items` as entries — each a plain link or a `{label,items}` category group — highlighting `currentPath`. |
 | `NavEntry` | `entry`, `currentPath`, `onNavigate` | One nav entry: a `{label,items}` category group when it has `items`, otherwise a plain link, active when it matches `currentPath`. |
 | `NavGroup` | `label`, `items`, `currentPath`, `onNavigate` | A nav category: a tappable header that expands its child links, open when one of them matches `currentPath`. |
+| `PageHeader` | `title`, `actions` | A detail page's header: the `title` node on the left (heading, status, subtitle — whatever the page needs) and its `actions` as a `PageActions` cluster top-right. Use on every single-entity page so their headers line up and their action rows behave the same. |
 | `PortalHeader` | `kicker`, `title`, `infoLabel`, `linkLabel`, `linkHref`, `logoSrc`, `logoAlt`, `aside` | Portal masthead: brand lockup + cohort meta and program link. `aside` renders an extra node (e.g. a member sign-in link) in the right column. |
 | `Sidebar` | `items`, `settings`, `currentPath`, `email` | The app nav rail: `items` + `settings` navs over a user footer, with a toggle that collapses it to icons. `signOutNext` = post-logout landing. |
 | `SidebarFooter` | `email`, `signOutNext` | Sidebar footer: the signed-in `email` over a sign-out control (an icon when collapsed). `signOutNext` = post-logout landing path. |
