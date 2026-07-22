@@ -7,7 +7,8 @@ export const SETTINGS =
 export const CRM = { label: 'CRM', items: [
   { href: '/contacts', label: 'Contacts', icon: 'users' },
   { href: '/companies', label: 'Companies', icon: 'building' },
-  { href: '/meetings', label: 'Meetings', icon: 'video' }
+  { href: '/meetings', label: 'Meetings', icon: 'video' },
+  { href: '/contact-merge-and-fix', label: 'Merge & Fix', icon: 'merge' }
 ] }
 export const EVENTS = { label: 'Events', items: [
   { href: '/events', label: 'Events', icon: 'calendar' }
