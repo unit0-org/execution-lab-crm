@@ -128,6 +128,11 @@ test auth users are seeded into `auth.users` and signed in normally.
   (`mergeContacts`) via the shared `MergeModal`/`MergeReview`, so the
   no-auto-merge + always-confirm invariant holds. Read-only MCP twin:
   `find_duplicate_contacts` (the write side stays `merge_contacts`).
+  **Dismissals** are the one thing stored: marking a group "not duplicates"
+  (`dismissGroup`) records its canonical contact pairs in
+  `contact_merge_dismissal`, and `findDuplicateGroups` filters them out
+  (`withoutDismissed`) so a pair never reappears. That table is
+  contact-owned — folded by `mergeDismissals` (see the merge invariant).
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
@@ -439,6 +444,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `offer_share` | cascade (→ `offer` & `contact`) | `foldOfferCollab`→`mergeOfferShares` (move loser's shares to winner; skip/clear self-shares once winner owns the offer; runs **after** `claimContactRecords`) |
 | `offer_comment` | cascade (→ `offer` & `contact`) | `foldOfferCollab`→`mergeOfferComments` (reassign `author_contact_id`) |
 | `offer_comment_mention` | cascade (→ `offer_comment` & `contact`) | `foldOfferCollab`→`mergeOfferCommentMentions` (dedupe reassign `mentioned_contact_id`) |
+| `contact_merge_dismissal` | cascade | `mergeDismissals` (drop any "not duplicates" pair touching a loser) |
 | `contact_google_link` | cascade | **not migrated** (sync artifact; re-sync recreates) |
 | `sync_conflict` | cascade | **not migrated** (sync artifact) |
 
