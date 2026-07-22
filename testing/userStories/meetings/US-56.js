@@ -1,6 +1,6 @@
 const userStory = {
   id: 'US-56',
-  implemented: 'partial',
+  implemented: true,
   role: 'Staff',
   title: "Keep a contact's tasks in sync with Google Tasks",
   story:
@@ -20,10 +20,6 @@ const userStory = {
       're-running the poll never duplicates or double-applies.',
     'A task deleted in Google removes its CRM row, and a CRM delete removes ' +
       'its Google task — mirrored both ways.'
-  ],
-  gaps: [
-    'A Google-app change appears within ~15 min — the sync-tasks Cloud ' +
-      'Scheduler must be provisioned; the daily cron reconciles until then.'
   ]
 };
 
