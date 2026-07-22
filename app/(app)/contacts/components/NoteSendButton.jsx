@@ -9,7 +9,7 @@ import { SubmitButton } from '@/ui/atoms/SubmitButton'
 export function NoteSendButton({ disabled }) {
   return (
     <EndRow>
-      <SubmitButton tone="primary" size="sm" disabled={disabled}>
+      <SubmitButton tone="primary" size="sm" icon disabled={disabled}>
         <Icon name="arrowUp" size={16} />
       </SubmitButton>
     </EndRow>

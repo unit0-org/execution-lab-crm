@@ -41,7 +41,7 @@ Conventions (from `AGENTS.md`):
 |---|---|---|
 | `Avatar` | `src`, `name`, `size=40` | Circular profile photo, or tokened initials fallback. |
 | `Badge` | `tone='accent'`, `children` | Small static status/label pill. |
-| `Button` | `tone='default'`, `size`, `block`, `loading`, `disabled`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones`; `loading` shows a spinner + disables while keeping size (no CLS). |
+| `Button` | `tone='default'`, `size`, `block`, `icon`, `loading`, `disabled`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones`; `loading` shows a spinner + disables while keeping size (no CLS); `icon` makes a compact square that centres a single icon child. |
 | `ButtonLink` | `href`, `tone='default'`, `size`, `block`, `target`, `children` | Navigation link styled as a Button (shares `buttonStyle`); `target="_blank"` opens a new tab. |
 | `Card` | `tone`, `hoverHost`, `id`, `children` | Surface container for grouped content. |
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`). |
