@@ -7,6 +7,6 @@ export function usePaletteKeys(results, onPick) {
 
     const first = results[0]
 
-    if (first) onPick(first.id)
+    if (first) onPick(first.href)
   }
 }

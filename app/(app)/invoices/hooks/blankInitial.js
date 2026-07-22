@@ -1,9 +1,8 @@
 import { buildInvoiceCode } from '@/lib/invoice/controllers/buildInvoiceCode'
+import { emptyClient } from './emptyClient'
 
 const EMPTY_LINE =
   { description: '', detail: '', quantity: '1', unitAmount: '' }
-
-const EMPTY_CLIENT = { contactId: null, name: '', email: '' }
 
 const today = () => new Date().toISOString().slice(0, 10)
 
@@ -12,7 +11,7 @@ export function blankInitial() {
   return {
     id: null,
     number: buildInvoiceCode(today()),
-    client: { ...EMPTY_CLIENT },
+    client: emptyClient(),
     issuedAt: today(),
     dueAt: today(),
     gst: false,

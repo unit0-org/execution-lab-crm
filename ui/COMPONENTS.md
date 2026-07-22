@@ -156,7 +156,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `MultiSelect` | `options`, `selected`, `onToggle`, `placeholder` | Multi-select dropdown; the trigger shows the chosen labels. |
 | `NumberedStep` | `n`, `title`, `desc` | Circled index + title + description (waitlist explainer). |
 | `Pager` | `at`, `total`, `onMove`, `label='item'` | Prev/next stepper through `total` positions showing "N of total"; `onMove(index)` gets the new 0-based index, and it hides itself when there's nothing to page. `label` names the unit for the arrows' aria-labels (e.g. "invoice", "page"). |
-| `Pagination` | `page`, `pageCount`, `onPage` | Page navigator: prev/next chevrons around a "page / total" label. Hides itself when there is only one page. Pair with `usePagination`. |
+| `Pagination` | `page`, `pageCount`, `onPage`, `perPage`, `onPerPage` | Page navigator: prev/next chevrons around a "page / total" label, with an optional page-size select (pass `perPage` + `onPerPage`). Hides when there is only one page. Pair with `usePagination`. |
 | `Popover` | `open`, `onClose`, `trigger`, `align`, `children` | Anchored popover, closing on outside click; the panel is portaled to `<body>` so a scrolling, overflow, or hover-transformed ancestor can't clip or mis-anchor it. |
 | `PriceTag` | `price`, `regular`, `currency='CAD'`, `size=30` | Price line: optional struck regular + price + currency; takes pre-formatted strings, e.g. "$1,500" (portal). `size` is in px. |
 | `RadioCards` | `label`, `name`, `options`, `required`, `hint` | Portal radio-card group (native radios; choice submits). |
@@ -211,7 +211,7 @@ with the shared leading select-all + trailing delete columns).
 | `AccentPanel` | `tone='mint'`, `children` | Glowing tone-bordered surface with a brand gradient top stripe — for confirmation/celebration cards. |
 | `CollapseToggle` | `onClick` | Sidebar show/hide toggle — the panel icon when open, an arrow when collapsed (pointing the way it would expand). |
 | `HeroPanel` | `tone='launch'`, `main`, `aside` | Featured-cohort panel: a glowing tone-bordered surface with a brand gradient edge; `main`/`aside` sit side by side, stacking on mobile. |
-| `Modal` | `open`, `onClose`, `wide`, `children` | Centered dialog over a dimmed backdrop — Esc, click outside, or the X closes it; focuses its first field on open. `wide` widens it, scrolls when tall, and is resizable (drag the bottom-right corner). |
+| `Modal` | `open`, `onClose`, `wide`, `align`, `children` | Centered dialog over a dimmed backdrop — Esc, click outside, or the X closes it; focuses its first field on open. `wide` widens it, scrolls when tall, and is resizable (drag the bottom-right corner). `align="top"` pins it to the top instead of centering. |
 | `Nav` | `items`, `currentPath`, `onNavigate` | App nav list: renders `items` as entries — each a plain link or a `{label,items}` category group — highlighting `currentPath`. |
 | `NavEntry` | `entry`, `currentPath`, `onNavigate` | One nav entry: a `{label,items}` category group when it has `items`, otherwise a plain link, active when it matches `currentPath`. |
 | `NavGroup` | `label`, `items`, `currentPath`, `onNavigate` | A nav category: a tappable header that expands its child links, open when one of them matches `currentPath`. |
@@ -219,7 +219,7 @@ with the shared leading select-all + trailing delete columns).
 | `Sidebar` | `items`, `settings`, `currentPath`, `email` | The app nav rail: `items` + `settings` navs over a user footer, with a toggle that collapses it to icons. `signOutNext` = post-logout landing. |
 | `SidebarFooter` | `email`, `signOutNext` | Sidebar footer: the signed-in `email` over a sign-out control (an icon when collapsed). `signOutNext` = post-logout landing path. |
 | `ThemeToggle` | `onClick` | Light/dark theme switch — a floating top-right toggle whose icon shows the mode you'd switch to; dimmed when idle, solid on hover. |
-| `TitledModal` | `open`, `title`, `onClose`, `wide`, `children` | Modal with a titled header row: the title sits top-left, the close button top-right, so body content never sits under it. Prefer this over a bare `Modal` for any titled dialog. |
+| `TitledModal` | `open`, `title`, `onClose`, `wide`, `align`, `children` | Modal with a titled header row: the title sits top-left, the close button top-right, so body content never sits under it. Prefer this over a bare `Modal` for any titled dialog. |
 | `Toaster` | — | Toast outlet — mount once at the root; stacks toasts bottom-center. |
 | `UserEmail` | `value`, `href` | The signed-in user's email. Loaded on the server and passed in, so it's present on the first paint — no skeleton, no layout shift. When an href is given the email links there (the footer points it at /preferences). |
 

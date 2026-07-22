@@ -14,6 +14,7 @@ export function toPerson(contact) {
     id: contact.id,
     name: name || email,
     subtitle: name ? email : '',
-    photo: contact.photo_url
+    photo: contact.photo_url,
+    href: `/contacts/${contact.id}`
   }
 }

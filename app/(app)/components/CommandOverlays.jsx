@@ -7,7 +7,7 @@ export function CommandOverlays({ bar }) {
   return (
     <>
       <CommandPalette open={bar.palette.open} onClose={bar.palette.hide}
-        people={bar.people} onPick={bar.goToPerson}
+        people={bar.people} onPick={bar.goTo}
         onAdd={bar.goToAddPerson} />
       <LogNoteModal open={bar.log.open} onClose={bar.log.hide}
         onLogged={bar.onLogged} />

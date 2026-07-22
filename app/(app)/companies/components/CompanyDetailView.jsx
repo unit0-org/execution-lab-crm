@@ -5,7 +5,8 @@ import { useCompany } from '../hooks/useCompany'
 import { useDocumentTitle } from '@/app/(app)/contacts/hooks/useDocumentTitle'
 import { CompanyDetail } from './CompanyDetail'
 
-export function CompanyDetailView({ initialCompany, initialContacts }) {
+export function CompanyDetailView(props) {
+  const { initialCompany, initialContacts, initialInvoices } = props
   const seed = initialCompany
   const { company, refresh } = useCompany(seed?.id, seed)
 
@@ -15,6 +16,6 @@ export function CompanyDetailView({ initialCompany, initialContacts }) {
 
   return (
     <CompanyDetail company={company} onChanged={refresh}
-      initialContacts={initialContacts} />
+      initialContacts={initialContacts} initialInvoices={initialInvoices} />
   )
 }

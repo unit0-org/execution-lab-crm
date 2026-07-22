@@ -11,7 +11,13 @@ const userStory = {
       'permanent.',
     'Deleting an empty selection does nothing.',
     'Search matches on both name and email; a blank search behaves ' +
-      'predictably.'
+      'predictably.',
+    'The command-palette search also finds companies by name, opening the ' +
+      'company page.',
+    'On mobile the search panel opens at the top of the screen, not ' +
+      'vertically centered.',
+    'The contacts list paginates at 25 per page, with a selectable page ' +
+      'size.'
   ]
 };
 
