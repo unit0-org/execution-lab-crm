@@ -12,8 +12,8 @@ export function useCompanyAutocomplete(value, onChange) {
     onChange({ companyId: null, name: text, email: '', address: '' })
   }
   const select = (option) => {
-    setQuery(option.label)
-    onChange({ companyId: option.value, name: option.label,
+    setQuery(option.legalName)
+    onChange({ companyId: option.value, name: option.legalName,
       email: option.email, address: option.address })
   }
 
