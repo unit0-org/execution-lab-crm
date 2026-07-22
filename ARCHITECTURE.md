@@ -108,6 +108,16 @@ test auth users are seeded into `auth.users` and signed in normally.
   (`ContactEmail.findTakenEmails`), and the create redirect carries them to
   the contact page, which says so. The contact is still created — a taken
   email is never silently dropped, and never moved.
+- **company** (`lib/company/`) — a customer company we invoice (name, legal
+  name, address, business number, invoice email, website). Contacts link to
+  a company through **`company_contact`** with a `role` (owner / employee),
+  one row per (company, contact) pair — shown on both the company page and
+  the contact page. Paranoid (soft-delete). `company_contact` is
+  contact-owned, folded by `mergeCompanyLinks` (see the merge invariant).
+  A company is invoiceable — an invoice can bill a company instead of a
+  contact, and a company's activity is the invoices raised for it. Distinct
+  from `organization_profile` (our own seller identity) and the tenant
+  `organization`.
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
@@ -403,6 +413,7 @@ merge** (and pick the FK on-delete deliberately). Current state:
 | `event_participant` | cascade | `mergeParticipations` (dedupe per event, fold answers) |
 | `meeting_participant` | cascade | `mergeMeetingParticipations` (dedupe per meeting) |
 | `contact_category_link` | cascade | `mergeCategoryLinks` (idempotent, composite key) |
+| `company_contact` | cascade | `mergeCompanyLinks` (dedupe per company, winner's role wins) |
 | `contact_relationship` (from/to) | cascade | `mergeRelationships` (both ends, drop self-refs) |
 | `purchase` | set null | `claimContactRecords` (reassign) |
 | `invoice` | set null | `claimContactRecords` (reassign) |
