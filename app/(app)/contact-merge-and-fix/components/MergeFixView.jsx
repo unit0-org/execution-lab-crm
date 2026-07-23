@@ -14,5 +14,6 @@ export function MergeFixView({ initialGroups }) {
 
   if (!groups.list.length) return <AllClear />
 
-  return <DuplicateGroupList groups={groups.list} onMerged={groups.remove} />
+  return <DuplicateGroupList groups={groups.list}
+    onResolved={groups.remove} />
 }
