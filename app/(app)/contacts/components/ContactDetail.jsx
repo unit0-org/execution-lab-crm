@@ -2,7 +2,6 @@
 
 import { Stack } from '@/ui/layout/Stack'
 import { ContactHeader } from './ContactHeader'
-import { ContactActivityBar } from './ContactActivityBar'
 import { TotalSpent } from './TotalSpent'
 import { ContactChannels } from './ContactChannels'
 import { ContactSections } from './ContactSections'
@@ -17,8 +16,7 @@ export function ContactDetail({ contact, onChanged, sections }) {
     <Stack gap="lg">
       <ContactHeader contact={contact} onChanged={onChanged}
         googleLink={sections.googleLink}
-        portalMember={sections.portalMember} />
-      <ContactActivityBar act={act} />
+        portalMember={sections.portalMember} act={act} />
       <TotalSpent spend={sections.spend} />
       <ContactChannels contact={contact} onChanged={onChanged} />
       <ContactSections contactId={id} sections={sections} act={act} />
