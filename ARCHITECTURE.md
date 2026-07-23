@@ -118,6 +118,16 @@ test auth users are seeded into `auth.users` and signed in normally.
   contact, and a company's activity is the invoices raised for it. Distinct
   from `organization_profile` (our own seller identity) and the tenant
   `organization`.
+- **contact-merge-and-fix** (`lib/contact-merge-and-fix/`) — the "Merge &
+  Fix" surface (`/contact-merge-and-fix`). `findDuplicateGroups` surfaces
+  likely-duplicate contacts at **read time** (no stored suggestion table):
+  contacts that share a normalized full name (`nameKey`) or a normalized
+  phone (`normalizePhone`, digits-only) are grouped, tagged with the match
+  reason, and shaped like the contacts list. It owns **no merge path** — a
+  chosen group is folded through the existing contact-merge
+  (`mergeContacts`) via the shared `MergeModal`/`MergeReview`, so the
+  no-auto-merge + always-confirm invariant holds. Read-only MCP twin:
+  `find_duplicate_contacts` (the write side stays `merge_contacts`).
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
