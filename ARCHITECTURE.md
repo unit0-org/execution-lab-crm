@@ -64,9 +64,9 @@ leaves this stale is incomplete (this is a review-enforced rule in
 
 ## Testing: every user story, verified as the user (`testing/`)
 
-The Feature Spec artifact owns *behaviour*: 52 user stories (`US-1`…`US-52`),
-each listing the behaviours that must hold — **one test each**. `testing/`
-verifies them against a **running app**, never by importing app code:
+The Feature Spec artifact owns *behaviour*: every user story lists the
+behaviours that must hold — **one test each**. `testing/` verifies them
+against a **running app**, never by importing app code:
 
 - `testing/userStories/<domain>/US-<n>.js` — one story per file, the
   machine-readable mirror of the artifact. **A new or changed user story must
@@ -82,12 +82,28 @@ verifies them against a **running app**, never by importing app code:
   `SUPABASE_DB_URL`, and minting a real Supabase session into a Playwright
   `storageState` cookie so tests sign in as a genuine staff/member user.
 
-Runs against a **dedicated Supabase test project** via `.env.test`, which is
-truncated and re-seeded on every run — the `E2E_TEST_DB=1` interlock exists so
-it can never be pointed at dev or production. No service-role key is needed:
-test auth users are seeded into `auth.users` and signed in normally.
+Runs against a **throwaway database** configured in `.env.test`, truncated
+and re-seeded on every run — the `E2E_TEST_DB=1` interlock exists so it can
+never be pointed at dev or production. Easiest is the **local stack**:
+`npx supabase start` boots Postgres, GoTrue and a mail catcher in Docker and
+prints every value `.env.test` needs (`supabase/config.toml` is committed so
+it's reproducible). A dedicated hosted Supabase project works too. TLS is
+picked from the host (`lib/db/requiresSsl`) — a hosted pooler requires it,
+the local Postgres refuses it outright.
+
+Test auth users are seeded straight into `auth.users` and signed in
+normally, so most stories need no service-role key; the ones that set a
+member's password do, since that goes through Supabase's auth admin API.
 
     pnpm test && pnpm test:report
+
+**CI runs this on demand, not on every PR** (`.github/workflows/e2e.yml`):
+on the **`e2e` label**, on changes under paths that break things quietly
+(`supabase/migrations/`, `lib/auth/`, `lib/supabase/`, `lib/db/`,
+`lib/portalMember/`, `testing/`, `proxy.js`), or by hand from the Actions
+tab. It is deliberately **not a required check** — it's skipped on most PRs,
+and a required check that never runs blocks the merge queue. `ci.yml`
+(lint + `docs:ui` + `spec:status` + build) is what gates merging.
 
 ## Domain map (`lib/`)
 
