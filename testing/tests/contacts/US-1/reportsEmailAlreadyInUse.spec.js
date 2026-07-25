@@ -2,6 +2,7 @@ import { verifyBehaviour } from '../../../framework/verifyBehaviour.js';
 import { asStaff } from '../../../framework/asStaff.js';
 import { usesDatabase } from '../../../framework/usesDatabase.js';
 import { expect } from '../../../framework/playwright.js';
+import { expectHeading } from '../../../framework/expectHeading.js';
 import { givenAContact } from '../../../database/factories/givenAContact.js';
 import { uniqueEmail, uniqueName } from '../../../database/factories/unique.js';
 import { openNewContactPage, submitContactForm } from '../contactForm.js';
@@ -22,6 +23,6 @@ verifyBehaviour('US-1', 2, async ({ page }) => {
   await page.getByLabel('Email').first().fill(taken.toUpperCase());
   await submitContactForm(page);
 
-  await expect(page.getByText(firstName)).toBeVisible();
+  await expectHeading(page, firstName);
   await expect(page.getByText(IN_USE)).toBeVisible();
 });
