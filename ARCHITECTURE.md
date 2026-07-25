@@ -560,6 +560,17 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   page (`PortalInvite`) or the admin **Portal Members** page
   (`/portal-members`, in the sidebar) — which also has an invite-by-contact
   picker.
+- **An admin can set a member's password** from that same page
+  (`setMemberPassword`), so someone can be handed access instead of waiting
+  to click an emailed link. This is the one place the app uses Supabase's
+  **auth admin API** (`lib/supabase/adminAuth` over the shared
+  `serviceClient` — service-role, server-only, also behind `lib/storage`).
+  A member who has never signed in has **no login yet**, so it creates one
+  (`email_confirm: true`, so nothing is emailed) and `linkUser`s it — which
+  is what flips `invited` to `active` with no email round-trip. A member who
+  already has one gets the password replaced. Nothing is ever sent to the
+  member, a revoked member is refused, and a password can only be replaced,
+  never read back.
 - **Portal owners see everything.** An email in the owner allowlist
   (`isPortalOwner`, `lib/portal/auth/portalOwners.js`; `PORTAL_OWNER_EMAILS`
   env, comma-separated, with a fallback list) is a member implicitly —

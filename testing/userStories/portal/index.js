@@ -6,6 +6,7 @@ import US27 from './US-27.js';
 import US28 from './US-28.js';
 import US29 from './US-29.js';
 import US30 from './US-30.js';
+import US60 from './US-60.js';
 
 export const domain = {
   id: 'portal',
@@ -13,5 +14,5 @@ export const domain = {
 };
 
 export const stories = [
-  US23, US24, US25, US26, US27, US28, US29, US30
+  US23, US24, US25, US26, US27, US28, US29, US30, US60
 ];
