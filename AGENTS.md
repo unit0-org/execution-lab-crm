@@ -250,6 +250,16 @@ them (so adding one never renumbers the rest).
   local copy. If a dump ever lands in a commit, remove it and force-push
   before the branch is shared; treat the data as exposed.
 - CI (lint + build) must be green; that check gates merging.
+- **Label a major change `e2e` so the browser suite runs.** The full
+  Playwright suite is too slow to pay for on every PR, so `ci.yml` stays
+  lint + `docs:ui` + `spec:status` + build. The separate **E2E** workflow
+  runs `pnpm test` when the PR carries the **`e2e` label** (labelling
+  re-triggers it — no new commit needed), when it touches a path that can
+  break things quietly (`supabase/migrations/`, `lib/auth/`,
+  `lib/supabase/`, `lib/db/`, `lib/portalMember/`, `testing/`, `proxy.js`),
+  or on demand from the Actions tab. **If you'd call it a major change,
+  label it.** Run it locally first: `npx supabase start`, copy its values
+  into `.env.test` (see `.env.test.example`), then `pnpm test`.
 - **Offer it to the MCP.** Whenever you add an operation — a new `lib/`
   controller or server action that reads or writes data — ask whether it
   should also be exposed as an MCP tool in `lib/mcp/tools/`. Don't add the

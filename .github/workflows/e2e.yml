@@ -1,0 +1,137 @@
+name: E2E
+
+# The browser suite boots a real database, a real GoTrue and a real browser.
+# That is too slow to pay for on every PR, so it runs only when a change is
+# big enough to warrant it. Three ways in:
+#
+#   1. Put the `e2e` LABEL on the PR. Labelling re-triggers this workflow, so
+#      you can ask for a run without pushing a commit.
+#   2. Touch something that can break everything quietly — migrations, auth,
+#      the request proxy, the data layer, or the harness itself. Those run
+#      automatically; see RISKY below.
+#   3. Actions tab -> E2E -> "Run workflow".
+#
+# NOT a required check on purpose: it is skipped on most PRs, and a required
+# check that never runs blocks the merge queue forever. If you ever make it
+# required, add `merge_group` to the triggers first.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+  workflow_dispatch:
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: check
+        env:
+          EVENT: ${{ github.event_name }}
+          LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        # Anything under these paths can break the app in ways lint and a
+        # build never notice: schema, who may do what, request routing, the
+        # ORM connection, and the suite itself.
+        #
+        # Every decision is an `if` — under `set -e` a bare `cmd && exit`
+        # whose test fails takes the whole step down with it.
+        run: |
+          RISKY='^(supabase/migrations/|lib/auth/|lib/supabase/|lib/db/'
+          RISKY="$RISKY"'|lib/portalMember/|testing/|proxy\.js$'
+          RISKY="$RISKY"'|\.github/workflows/e2e\.yml$)'
+
+          decided() {
+            echo "run=$1" >> "$GITHUB_OUTPUT"
+            echo "$2"
+            exit 0
+          }
+
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            decided true "Run requested by hand."
+          fi
+
+          if echo "$LABELS" | grep -q '"e2e"'; then
+            decided true "PR carries the e2e label."
+          fi
+
+          # Both SHAs are parents of the merge ref checked out above, so this
+          # is the PR's own diff — no remote branch to resolve.
+          CHANGED=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          echo "Changed files:"
+          echo "$CHANGED"
+
+          if echo "$CHANGED" | grep -qE "$RISKY"; then
+            decided true "Touches a path the suite guards."
+          fi
+
+          decided false "No e2e label and nothing risky changed — skipping."
+
+  e2e:
+    needs: decide
+    if: needs.decide.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      # Only what the suite actually needs. Studio, imgproxy, edge functions,
+      # analytics and the pooler are dead weight in CI.
+      - name: Start the local Supabase stack
+        run: |
+          supabase start \
+            -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,realtime
+
+      # The stack prints its own credentials; the suite reads them from
+      # .env.test exactly as a developer's local run does. E2E_TEST_DB=1 is
+      # the harness's interlock — it refuses to touch a database without it.
+      - name: Write .env.test
+        run: |
+          eval "$(supabase status -o env)"
+          cat > .env.test <<ENV
+          E2E_TEST_DB=1
+          SUPABASE_DB_URL=$DB_URL
+          NEXT_PUBLIC_SUPABASE_URL=$API_URL
+          NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY
+          SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY
+          E2E_MAIL_URL=$MAILPIT_URL
+          E2E_PORT=3100
+          NEXT_PUBLIC_SITE_URL=http://localhost:3100
+          PORTAL_ORGANIZATION_ID=00000000-0000-4000-8000-000000000001
+          PORTAL_OWNER_EMAILS=owner@e2e.test
+          CRON_SECRET=e2e-cron-secret
+          MCP_TOKEN=e2e-mcp-token
+          ENV
+
+      - run: pnpm exec playwright install --with-deps chromium
+
+      - run: pnpm test
+
+      # Traces and screenshots for anything that failed, plus the story
+      # report's raw results.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-results
+          path: testing/results/
+          retention-days: 7

@@ -6,6 +6,8 @@
 
 CI enforces lint + build. Confirm the review-only rules:
 
+- [ ] Major change? Added the **`e2e`** label so the browser suite runs
+      (it also runs itself for migrations / auth / proxy / data-layer changes)
 - [ ] Atomic design; UI components live in `ui/` (2-level-max folders)
 - [ ] Structure / style / behavior are in separate files; behavior in hooks
 - [ ] `ui/` encapsulates look & feel; components take props, not styles
