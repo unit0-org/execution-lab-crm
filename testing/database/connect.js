@@ -1,4 +1,5 @@
 import pg from 'pg';
+import { requiresSsl } from '../../lib/db/requiresSsl.js';
 
 // Every mutating helper goes through this, so the interlock is unavoidable.
 export function assertTestDatabase() {
@@ -12,11 +13,12 @@ let pool;
 export function database() {
   if (!pool) {
     assertTestDatabase();
-    pool = new pg.Pool({
-      connectionString: process.env.SUPABASE_DB_URL,
-      ssl: { rejectUnauthorized: false },
-      max: 3
-    });
+    const connectionString = process.env.SUPABASE_DB_URL;
+    const ssl = requiresSsl(connectionString)
+      ? { rejectUnauthorized: false }
+      : false;
+
+    pool = new pg.Pool({ connectionString, ssl, max: 3 });
   }
 
   return pool;

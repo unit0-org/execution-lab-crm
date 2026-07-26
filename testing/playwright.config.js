@@ -2,16 +2,15 @@ import { defineConfig, devices } from '@playwright/test';
 import { join } from 'node:path';
 import { loadTestEnv } from './environment/loadTestEnv.js';
 import {
-  testsDir,
-  resultsDir,
-  resultsFile,
-  testingDir
+  testsDir, resultsDir, resultsFile, testingDir
 } from './config/paths.js';
 import { appServer, appUrl } from './config/appServer.js';
+import { timeouts } from './config/timeouts.js';
 
 loadTestEnv();
 
 export default defineConfig({
+  ...timeouts,
   testDir: testsDir,
   outputDir: join(resultsDir, 'artifacts'),
   globalSetup: join(testingDir, 'globalSetup.js'),

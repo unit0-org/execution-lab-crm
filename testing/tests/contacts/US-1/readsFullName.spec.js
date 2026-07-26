@@ -1,6 +1,6 @@
 import { verifyBehaviour } from '../../../framework/verifyBehaviour.js';
 import { asStaff } from '../../../framework/asStaff.js';
-import { expect } from '../../../framework/playwright.js';
+import { expectHeading } from '../../../framework/expectHeading.js';
 import { uniqueName } from '../../../database/factories/unique.js';
 import { createContact } from '../contactForm.js';
 
@@ -11,10 +11,10 @@ verifyBehaviour('US-1', 4, async ({ page }) => {
   const lastOnly = uniqueName('Johnson');
 
   await createContact(page, { firstName: firstOnly });
-  await expect(page.getByText(firstOnly)).toBeVisible();
+  await expectHeading(page, firstOnly);
 
   await createContact(page, { lastName: lastOnly });
-  await expect(page.getByText(lastOnly)).toBeVisible();
+  await expectHeading(page, lastOnly);
 
   await createContact(page);
 });

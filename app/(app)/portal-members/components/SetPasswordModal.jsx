@@ -20,8 +20,7 @@ export function SetPasswordModal({ open, onClose, member }) {
         <TextField label="New password" type="password" value={form.password}
           onChange={(event) => form.setPassword(event.target.value)} />
         <Text size="sm">{NOTE}</Text>
-        <FormActions label="Set password" onConfirm={form.submit}
-          onCancel={onClose} />
+        <FormActions onConfirm={form.submit} onCancel={onClose} />
       </Stack>
     </TitledModal>
   )
