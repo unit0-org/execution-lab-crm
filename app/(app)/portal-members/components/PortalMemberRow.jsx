@@ -1,7 +1,7 @@
 import { Tr } from '@/ui/molecules/Tr'
 import { Td } from '@/ui/molecules/Td'
 import { MemberToolsCell } from './MemberToolsCell'
-import { RevokePortalMember } from './RevokePortalMember'
+import { MemberActionsCell } from './MemberActionsCell'
 
 export function PortalMemberRow({ member, tools }) {
   const name = member.name || '—'
@@ -13,10 +13,7 @@ export function PortalMemberRow({ member, tools }) {
       <Td>{email}</Td>
       <Td>{member.status}</Td>
       <Td><MemberToolsCell member={member} tools={tools} /></Td>
-      <Td>
-        <RevokePortalMember contactId={member.contactId}
-          status={member.status} />
-      </Td>
+      <Td><MemberActionsCell member={member} /></Td>
     </Tr>
   )
 }
