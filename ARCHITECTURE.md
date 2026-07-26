@@ -540,8 +540,9 @@ these same helpers — change the rule there, not in each path.
 
 An invited CRM contact can sign in to the client portal to see their own
 data (Milestone 1: just sign-in + an authenticated home + a "Cohort
-registration" link). It reuses Supabase Auth via **email magic link
-only** (no Google sign-in — that's staff-only), mirroring the staff
+registration" link). It reuses Supabase Auth via **three sign-in methods
+— Google, email + password, and an email magic link** (see the sign-in
+methods note below), mirroring the staff
 `organization_user` invite pattern but linking
 to a **`contact_id`** instead of an org. Module: `lib/portalMember`
 (`PortalMember` model + controllers); the auth helpers are in
@@ -597,9 +598,19 @@ to a **`contact_id`** instead of an org. Module: `lib/portalMember`
   cookies as it rewrites** (`portalRewrite` → `makeProxyClient`, mirroring
   `updateSession` on the CRM host), so a member's session rolls forward on
   the portal host instead of dying at the access-token TTL and forcing a
-  fresh magic link every visit. The portal sign-in is **email magic link only**; the callback
-  skips `rememberGoogleToken` for `flow=portal` (`afterSession`), so an OTP
-  session never stores Google tokens. **Magic-link fallback:** if the
+  fresh magic link every visit. **Portal sign-in offers three methods**
+  (`app/portal/signin`): Google, email + password, and the magic link.
+  Google and the magic link both return through the shared
+  `/auth/callback`, which skips `rememberGoogleToken` for `flow=portal`
+  (`afterSession`); password sign-in never touches the callback at all.
+  Belt and braces on top of that: portal Google sign-in requests
+  `memberSignInOptions` — identity scopes only, **no** `access_type=offline`
+  — so Google issues no refresh token for a member to capture, unlike the
+  staff `signInOptions`. Whichever method fails, the user lands back on the
+  portal sign-in page, never the staff login
+  (`portalSignInRedirect`). Password failures collapse to one generic
+  message so the page can't be used to test which emails have accounts.
+  **Magic-link fallback:** if the
   portal callback URL isn't allow-listed in Supabase, the verify endpoint
   falls back to the project Site URL (the CRM host) and lands on the CRM
   root as `/?code=…`. The proxy's `portalCodeRedirect` bounces that code to
