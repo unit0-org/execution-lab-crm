@@ -19,7 +19,9 @@ const userStory = {
     'The merge refuses to run if any selected contact is missing, and ' +
       'leaves nothing half-done.',
     'Any new kind of contact-owned data is folded into the merge, so ' +
-      'nothing is left behind.'
+      'nothing is left behind.',
+    'The review says everything moves, and asks which version to keep ' +
+      'only for a field the records actually disagree on.'
   ]
 };
 
