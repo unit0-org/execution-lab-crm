@@ -2,9 +2,8 @@ const userStory = {
   id: 'US-62',
   implemented: 'partial',
   gaps: [
-    'The balance is not charged yet — no scheduler takes it.',
-    'A declined charge has no retry, email or staff surface.',
-    'The roster does not mark a part-paid seat.'
+    'The roster does not mark a part-paid seat.',
+    'Staff cannot see the scheduled charge on the registration.'
   ],
   role: 'Client',
   title: 'Pay a Fundamentals seat in two installments',

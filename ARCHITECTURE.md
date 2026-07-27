@@ -801,6 +801,20 @@ file trails for the flows you'll touch most — follow them top to bottom.
   `payment_followup` template with their `payUrl`, and stamps
   `payment_followup_sent_at` so it sends once. Distinct from the manual
   `sendPaymentReminder` nudge on the cohort page.
+- **Payment plan (50/50, US-62):** register → the applicant picks the plan
+  (`registration.payment_plan`) → checkout buys a **deposit** line and keeps
+  the card on file (`savedCardTerms`) → the paid webhook schedules the
+  balance (`schedulePlanInstallment`, due the 4th Monday on/after start) →
+  the daily cron's **`charge-installments`** job (`chargeDueInstallments`)
+  takes it off-session from that card. **The amount is never stored**: it is
+  `outstandingPlanCents` = the seat's discounted price less every cent
+  `purchase` holds for it, computed at charge time. A decline records the
+  reason on the row and emails the registrant a `payment_balance_failed`
+  link (`/portal/pay-balance/[installmentId]`, first failure only); the job
+  retries the card daily up to `MAX_CHARGE_ATTEMPTS` (4). Either route ends
+  in the same place — a `stripe_charge_id` on the installment, which is how
+  the seat's paid total finds the money (the self-serve one settles via the
+  session's `installment_id` metadata in the Stripe webhook).
 - **Waitlist:** join → on a freed spot, a priority invite is sent; the
   invite converts to a registration.
 - **Purchases:** Stripe charges sync into `purchase`; ≥ $100 promotes a
