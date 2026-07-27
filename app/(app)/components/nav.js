@@ -16,7 +16,7 @@ function programsGroup(role) {
 
   if (role === 'admin') items.push(PORTAL_MEMBERS)
 
-  return { label: 'Programs', items }
+  return { label: 'Programs', icon: 'graduation', items }
 }
 
 // The main sidebar: a top link plus the category groups.

@@ -9,9 +9,11 @@ import { PopoverPanel } from './PopoverPanel'
 /**
  * Anchored popover, closing on outside click; the panel is portaled to
  * `<body>` so a scrolling, overflow, or hover-transformed ancestor
- * can't clip or mis-anchor it.
+ * can't clip or mis-anchor it. `placement` hangs the panel below the
+ * trigger (default) or beside it (`'right'`, for the sidebar rail).
  */
-export function Popover({ open, onClose, trigger, align, children }) {
+export function Popover(props) {
+  const { open, onClose, trigger, align, placement, children } = props
   const ref = useRef(null)
   const panelRef = useRef(null)
   const rect = useAnchorRect(ref, open)
@@ -20,7 +22,8 @@ export function Popover({ open, onClose, trigger, align, children }) {
   return (
     <div ref={ref} style={wrapStyle}>
       {trigger}
-      <PopoverPanel open={open} align={align} rect={rect} panelRef={panelRef}>
+      <PopoverPanel open={open} align={align} rect={rect} placement={placement}
+        panelRef={panelRef}>
         {children}
       </PopoverPanel>
     </div>

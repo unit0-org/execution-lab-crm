@@ -155,7 +155,9 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   so the badge and the page can never disagree; only the page pays for
   `listContactsByIds`. Client navigation never re-runs that layout, so an
   action that changes the number (`mergeContacts`, `dismissGroup`,
-  `applyFixes`) calls `refreshSidebarCounts` to mark it stale.
+  `applyFixes`) calls `refreshSidebarCounts` to mark it stale. Folding the
+  nav never hides the count: a closed category and the collapsed rail's
+  category glyph both wear their links' `navBadgeTotal`.
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),

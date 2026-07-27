@@ -12,11 +12,18 @@ const edge = (align, rect) =>
     ? { right: window.innerWidth - rect.right }
     : { left: rect.left }
 
-// Fixed panel under the trigger (not absolute) so a scrolling ancestor
-// like a table's overflow wrapper can't clip it.
-export const panelStyle = (align, rect) => ({
-  position: 'fixed', top: rect.bottom + 4, zIndex: 30,
-  ...edge(align, rect),
+// Where the panel sits: under the trigger, or beside it (the sidebar rail's
+// flyout, which has no room below and hangs off the icon's right edge).
+const placements = {
+  bottom: (align, rect) => ({ top: rect.bottom + 4, ...edge(align, rect) }),
+  right: (align, rect) => ({ top: rect.top, left: rect.right + 8 })
+}
+
+// Fixed panel (not absolute) so a scrolling ancestor like a table's
+// overflow wrapper can't clip it.
+export const panelStyle = (align, rect, placement = 'bottom') => ({
+  position: 'fixed', zIndex: 30,
+  ...(placements[placement] || placements.bottom)(align, rect),
   width: 'max-content', maxWidth: 'min(320px, 90vw)',
   boxSizing: 'border-box', padding: space[3],
   background: color.bg.surface, borderRadius: radius.md,

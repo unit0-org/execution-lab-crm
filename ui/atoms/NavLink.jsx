@@ -1,8 +1,8 @@
 import NextLink from 'next/link'
-import { NavIcon } from './NavIcon'
+import { NavIconSlot } from './NavIconSlot'
 import { NavCount } from './NavCount'
 import { NavProgress } from './NavProgress'
-import { navLinkStyle, navIconStyle } from './NavLink.styles'
+import { navLinkStyle } from './NavLink.styles'
 
 /**
  * Sidebar navigation entry: icon + label, marked when `active`
@@ -18,7 +18,7 @@ export function NavLink(props) {
   return (
     <NextLink href={href} data-nav-item data-active={current} target={target}
       rel={rel} style={navLinkStyle} title={children} onClick={onNavigate}>
-      <span data-nav-icon style={navIconStyle}><NavIcon icon={icon} /></span>
+      <NavIconSlot icon={icon} />
       <span data-nav-label>{children}</span>
       <NavCount count={badge} />
       <NavProgress />
