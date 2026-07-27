@@ -1,6 +1,7 @@
 import { resolveWebhookEvent } from '@/lib/stripe/resolveWebhookEvent'
 import { handlePaidCharge } from '@/lib/purchase/controllers/handlePaidCharge'
-import { handlePaidCheckout } from '@/lib/registration/controllers'
+import { handlePaidCheckout, settleInstallmentFromSession }
+  from '@/lib/registration/controllers'
 
 const PAID = 'charge.succeeded'
 const CHECKOUT = 'checkout.session.completed'
@@ -17,8 +18,10 @@ export async function POST(request) {
     if (found.event.type === PAID)
       await handlePaidCharge(found.event.data.object, found.organizationId)
 
-    if (found.event.type === CHECKOUT)
+    if (found.event.type === CHECKOUT) {
       await handlePaidCheckout(found.event.data.object)
+      await settleInstallmentFromSession(found.event.data.object)
+    }
   } catch (e) {
     return new Response(e.message, { status: 400 })
   }
