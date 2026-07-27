@@ -815,6 +815,12 @@ file trails for the flows you'll touch most — follow them top to bottom.
   in the same place — a `stripe_charge_id` on the installment, which is how
   the seat's paid total finds the money (the self-serve one settles via the
   session's `installment_id` metadata in the Stripe webhook).
+  **A part-paid seat says so** — `attachPlanInstallments` flattens the
+  installment onto the registration (settled derived from the charge id,
+  never a stored status) and the roster, the registration panel and the
+  contact timeline all read it. A deposit seat is `status: 'paid'` (it holds
+  its seat like any other) and is told apart by the plan badge, so the
+  `confirmed` scope and capacity counting are untouched.
 - **Waitlist:** join → on a freed spot, a priority invite is sent; the
   invite converts to a registration.
 - **Purchases:** Stripe charges sync into `purchase`; ≥ $100 promotes a
