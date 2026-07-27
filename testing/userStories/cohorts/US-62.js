@@ -1,10 +1,6 @@
 const userStory = {
   id: 'US-62',
-  implemented: 'partial',
-  gaps: [
-    'The roster does not mark a part-paid seat.',
-    'Staff cannot see the scheduled charge on the registration.'
-  ],
+  implemented: true,
   role: 'Client',
   title: 'Pay a Fundamentals seat in two installments',
   story:
