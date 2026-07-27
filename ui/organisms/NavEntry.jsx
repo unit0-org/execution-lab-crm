@@ -13,7 +13,7 @@ export function NavEntry({ entry, currentPath, onNavigate }) {
     )
 
   return (
-    <NavLink href={entry.href} icon={entry.icon}
+    <NavLink href={entry.href} icon={entry.icon} badge={entry.badge}
       active={currentPath === entry.href} onNavigate={onNavigate}>
       {entry.label}
     </NavLink>

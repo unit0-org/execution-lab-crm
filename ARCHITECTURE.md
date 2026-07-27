@@ -149,6 +149,13 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   `contact_merge_dismissal`, and `findDuplicateGroups` filters them out
   (`withoutDismissed`) so a pair never reappears. That table is
   contact-owned — folded by `mergeDismissals` (see the merge invariant).
+  The sidebar link carries a **count badge** — `countAttentionItems`
+  (groups + fixes), rendered by `AppShellServer` like the bell's unread
+  count. Both halves share `duplicateGroupIds` (the id-only derivation),
+  so the badge and the page can never disagree; only the page pays for
+  `listContactsByIds`. Client navigation never re-runs that layout, so an
+  action that changes the number (`mergeContacts`, `dismissGroup`,
+  `applyFixes`) calls `refreshSidebarCounts` to mark it stale.
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),

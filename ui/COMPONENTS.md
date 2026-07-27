@@ -70,7 +70,7 @@ Conventions (from `AGENTS.md`):
 | `MonoLabel` | `tone='muted'`, `size=11`, `caps`, `align`, `children` | Monospaced micro-label/kicker (JetBrains Mono); `tone` picks a brand/neutral color, `caps` uppercases, `align` blocks + aligns (portal). |
 | `MonoLink` | `href`, `size=11`, `underline`, `external=true`, `children` | Monospaced accent link; new tab by default, `external={false}` for in-app nav in the same tab (portal). |
 | `NavIcon` | `icon` | Sidebar nav glyph: the cog for Settings, otherwise a line icon. |
-| `NavLink` | `href`, `active`, `icon`, `children`, `onNavigate`, `newTab` | Sidebar navigation entry: icon + label, marked when `active` (`newTab` opens the link in a new tab). |
+| `NavLink` | `href`, `active`, `icon`, `badge`, `children`, `onNavigate`, `newTab` | Sidebar navigation entry: icon + label, marked when `active` (`newTab` opens the link in a new tab). `badge` = how many items that page has waiting, shown as a count pill. |
 | `NavProgress` | — | Fixed top progress bar (thin brand-gradient) shown while a `Link` navigation is pending; rendered inside the link atoms, not directly. |
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`): centers it over the label while keeping the label's footprint, so a button keeps its size between idle and pending (no CLS). |
 | `ProgressBar` | — | Indeterminate top-of-page progress: a fill sweeping across a track. |

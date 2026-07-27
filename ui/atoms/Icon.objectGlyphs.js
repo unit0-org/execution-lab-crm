@@ -20,6 +20,10 @@ export const objectGlyphs = {
   folder: 'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0'
     + ' 1 2 2z',
   bolt: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+  // Two branches joining into one — the Merge & Fix nav item.
+  merge:
+    'M6 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6M18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6'
+    + 'M6 21V9a9 9 0 0 0 9 9',
   building:
     'M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z'
     + 'M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2'

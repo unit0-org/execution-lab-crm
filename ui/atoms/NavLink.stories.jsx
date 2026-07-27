@@ -13,6 +13,10 @@ export const Default = {}
 
 export const Active = { args: { active: true } }
 
+export const Badged = {
+  args: { icon: 'merge', children: 'Merge & Fix', badge: 12 }
+}
+
 export const Group = {
   render: () => (
     <Stack gap="xs">

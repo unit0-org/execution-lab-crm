@@ -16,7 +16,8 @@ export function NavGroup({ label, items, currentPath, onNavigate }) {
       <NavGroupHeader label={label} onToggle={toggle} open={open} />
       {items.map((item) => (
         <NavLink key={item.href} href={item.href} icon={item.icon}
-          active={currentPath === item.href} onNavigate={onNavigate}>
+          badge={item.badge} active={currentPath === item.href}
+          onNavigate={onNavigate}>
           {item.label}
         </NavLink>
       ))}

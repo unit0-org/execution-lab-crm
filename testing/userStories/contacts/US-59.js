@@ -22,7 +22,8 @@ const userStory = {
       '— all succeed or none — and the rows update in place.',
     'Applied, merged and dismissed items disappear from the surface.',
     'No auto-merge: every merge needs the review modal + confirm, and a ' +
-      'dismissal never deletes a contact.'
+      'dismissal never deletes a contact.',
+    'The sidebar Merge & Fix link badges waiting items; none at zero.'
   ]
 };
 
