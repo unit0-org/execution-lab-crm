@@ -541,6 +541,19 @@ database rule). It feeds the portal scarcity label, sold-out /
 `cohortIsFull` checks, and waitlist openings. Change what counts as a taken
 seat in the scope, not in each view.
 
+That reconciliation is a **heuristic**, and its limits are load-bearing:
+`nearestPurchase` picks the registrant's succeeded charge closest to
+sign-up or payment, within a month. It has no link back to the checkout,
+so it can only ever be a guess — two guards keep it honest. The window
+stops an older unrelated charge being adopted, and a seat whose checkout
+captured **$0 (a comp) reconciles to no charge at all**, because otherwise
+whatever else that person bought that month becomes the cohort's revenue.
+A seat marked paid out of band keeps `amount_total` null (not 0) and stays
+matchable. The exact link exists in Stripe — `registration`
+(`stripe_session_id`, `stripe_payment_intent_id`) vs `purchase.stripe_id`
+(the **charge** id) — but the charge's intent/session is fetched at import
+and never persisted, so it can't be joined on today.
+
 ## Invariant: one discount applies, resolved in a single place
 
 The cohort price is the regular Stripe price (`stripe_price_id`) with at most
