@@ -216,6 +216,8 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   table is contact-owned (no contact-merge fold-in) nor on the contact
   activity timeline; the single source of truth for the three kinds is
   `lib/cohort/resourceKinds.js`.
+  **Deleting a cohort is only allowed while nothing outside it points at
+  it** — see the cohort-delete invariant below.
 - **registration** — a person registering for a cohort (`registration`,
   status `pending`→`paid`), **one row per person per cohort** — `unique
   (cohort_id, email)`, email stored normalized (trimmed + lowercased). A
@@ -567,6 +569,42 @@ reconciling each seat to its real Stripe charge in `purchase`
 database rule). It feeds the portal scarcity label, sold-out /
 `cohortIsFull` checks, and waitlist openings. Change what counts as a taken
 seat in the scope, not in each view.
+
+## Invariant: a cohort is deletable only while nothing points at it
+
+A cohort may be deleted **only when no other table references it**. That
+rule is defined **once**, in `lib/cohort/controllers/findDeleteBlockers.js`,
+which returns `{ [cohortId]: reason }` — and both callers go through it:
+`deleteCohort` as the server-side guard, and `listCohortsWithStats`, which
+hands each row a `deleteBlocker` so the admin list disables the delete with
+its reason instead of offering a click the server would refuse.
+
+Two things block a delete, and the reading is deliberately the safest one:
+
+- **Any `registration` row, of any status** — not just a confirmed
+  (seat-holding) one. An `expired`/`failed` registration, or a `pending`
+  one past its hold, still records a person and their payment history, so
+  it keeps the cohort. This is the one place that does NOT use
+  `Registration.scope('confirmed')`, on purpose.
+- **Any `waitlist_entry` pointing at the cohort by *either* column.**
+  `cohort_id` is the cohort the person joined the waitlist for and carries
+  **no foreign key at all** (added bare in `0047_waitlist_form_fields`), so
+  a delete would leave it dangling — `previewAcceptance` still reads it.
+  `invite_cohort_id` is `ON DELETE SET NULL`, so a delete would silently
+  void an outstanding invite rather than fail.
+
+What the cohort **owns** goes with it, deleted explicitly (not by trusting
+the DB cascade) in one transaction by `Cohort#destroyWithFolders`
+(`lib/cohort/models/Cohort/instanceMethods/`): `cohort_resource` →
+`cohort_folder` → the cohort.
+
+**Add a table (or column) that references a cohort and you must decide
+here**: does it block the delete (add it to `findDeleteBlockers`), or is it
+cohort-owned and removed by `destroyWithFolders`? Leave it out and the
+delete either fails with a raw FK error or drops data silently. The full
+set today is `registration.cohort_id`, `waitlist_entry.cohort_id`,
+`waitlist_entry.invite_cohort_id` (all blocking) and
+`cohort_folder.cohort_id` → `cohort_resource.folder_id` (owned).
 
 ## Invariant: one discount applies, resolved in a single place
 
