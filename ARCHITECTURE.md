@@ -586,6 +586,18 @@ prefilled. Both the displayed price (`resolveCohortAmounts`, which now takes
 the validated customer code) and the Stripe session (`startCheckout`) consume
 these same helpers — change the rule there, not in each path.
 
+**On the 50/50 payment plan the discount is baked in, not delegated.**
+Pay-in-full buys `stripe_price_id` and lets Stripe apply the promotion code.
+A plan deposit is an **inline `price_data` line** priced by
+`resolvePlanAmounts` — the same effective code resolved by the same helper
+(`checkoutDiscountCode`), applied here, then halved (`splitInHalf`, deposit
+takes the odd cent). Handing a *fixed-amount* coupon to Stripe on a half-price
+line would spend the whole discount on the deposit and leave the balance
+undiscounted; baking it in keeps one discount across the whole seat and keeps
+the number the portal shows identical to the number Stripe charges. So a plan
+session carries **no promotion code** — `checkoutLineItem` is the one place
+that branches.
+
 ## Portal member sign-in (invitation-only client portal)
 
 An invited CRM contact can sign in to the client portal to see their own
@@ -789,6 +801,26 @@ file trails for the flows you'll touch most — follow them top to bottom.
   `payment_followup` template with their `payUrl`, and stamps
   `payment_followup_sent_at` so it sends once. Distinct from the manual
   `sendPaymentReminder` nudge on the cohort page.
+- **Payment plan (50/50, US-62):** register → the applicant picks the plan
+  (`registration.payment_plan`) → checkout buys a **deposit** line and keeps
+  the card on file (`savedCardTerms`) → the paid webhook schedules the
+  balance (`schedulePlanInstallment`, due the 4th Monday on/after start) →
+  the daily cron's **`charge-installments`** job (`chargeDueInstallments`)
+  takes it off-session from that card. **The amount is never stored**: it is
+  `outstandingPlanCents` = the seat's discounted price less every cent
+  `purchase` holds for it, computed at charge time. A decline records the
+  reason on the row and emails the registrant a `payment_balance_failed`
+  link (`/portal/pay-balance/[installmentId]`, first failure only); the job
+  retries the card daily up to `MAX_CHARGE_ATTEMPTS` (4). Either route ends
+  in the same place — a `stripe_charge_id` on the installment, which is how
+  the seat's paid total finds the money (the self-serve one settles via the
+  session's `installment_id` metadata in the Stripe webhook).
+  **A part-paid seat says so** — `attachPlanInstallments` flattens the
+  installment onto the registration (settled derived from the charge id,
+  never a stored status) and the roster, the registration panel and the
+  contact timeline all read it. A deposit seat is `status: 'paid'` (it holds
+  its seat like any other) and is told apart by the plan badge, so the
+  `confirmed` scope and capacity counting are untouched.
 - **Waitlist:** join → on a freed spot, a priority invite is sent; the
   invite converts to a registration.
 - **Purchases:** Stripe charges sync into `purchase`; ≥ $100 promotes a
