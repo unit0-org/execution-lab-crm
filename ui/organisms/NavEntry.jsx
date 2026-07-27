@@ -8,7 +8,7 @@ import { NavGroup } from './NavGroup'
 export function NavEntry({ entry, currentPath, onNavigate }) {
   if (entry.items)
     return (
-      <NavGroup label={entry.label} items={entry.items}
+      <NavGroup label={entry.label} icon={entry.icon} items={entry.items}
         currentPath={currentPath} onNavigate={onNavigate} />
     )
 

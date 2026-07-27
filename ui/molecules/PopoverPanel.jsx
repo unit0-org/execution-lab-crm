@@ -7,11 +7,15 @@ import { panelStyle } from './Popover.styles'
 // portaled to <body>, so a scrolling, overflow, or transformed ancestor (e.g.
 // a card that lifts on hover) can't clip or mis-anchor it. Hidden until it has
 // a measured rect.
-export function PopoverPanel({ open, align, rect, panelRef, children }) {
+export function PopoverPanel(props) {
+  const { open, align, rect, placement, panelRef, children } = props
+
   if (!open || !rect) return null
 
   return createPortal(
-    <div ref={panelRef} style={panelStyle(align, rect)}>{children}</div>,
+    <div ref={panelRef} style={panelStyle(align, rect, placement)}>
+      {children}
+    </div>,
     document.body
   )
 }
