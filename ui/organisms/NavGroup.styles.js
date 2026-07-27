@@ -1,4 +1,5 @@
 import { space } from '../tokens/space'
+import { navLinkStyle } from '../atoms/NavLink.styles'
 
 export const navGroupStyle = {
   display: 'flex',
@@ -6,25 +7,33 @@ export const navGroupStyle = {
   gap: space[1]
 }
 
-// No `display` here (same trap as navLinkStyle): it's set in globals.css so
-// the collapsed-rail rule (.sidebar-collapsed → display:none) can win. An
+// A category header is a nav row like any other, so it borrows the link's
+// style and only undoes what being a <button> brings with it. No `display`
+// here (same trap as navLinkStyle): it's set in globals.css so the
+// collapsed-rail rule (.sidebar-collapsed → display:none) can win. An
 // inline display would beat the stylesheet and strand the header's chevron
-// in the icon rail.
+// in the icon rail. `background` is the same trap: the button's default
+// chrome is cleared in globals.css so the hover and open-category fills —
+// the whole point of the header — aren't outranked by an inline reset.
 export const navGroupHeaderStyle = {
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  gap: space[3],
-  padding: `${space[2]} ${space[3]}`,
-  background: 'none',
+  ...navLinkStyle,
+  width: '100%',
   border: 'none',
-  fontSize: '11px',
-  fontWeight: 700,
-  textTransform: 'uppercase',
-  letterSpacing: '0.08em'
+  fontFamily: 'inherit',
+  cursor: 'pointer'
 }
 
 export const chevronStyle = {
   display: 'flex',
   alignItems: 'center',
+  marginLeft: 'auto',
   transition: 'transform 150ms ease'
+}
+
+// Children are text-only, so indent them past where the glyph would be
+// (row padding + icon + its gap) to line up under the category's label.
+export const navChildrenStyle = {
+  flexDirection: 'column',
+  gap: space[1],
+  paddingLeft: `calc(${space[3]} + 18px + ${space[3]})`
 }
