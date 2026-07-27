@@ -4,11 +4,15 @@ export const DASHBOARD =
 export const SETTINGS =
   { href: '/settings', label: 'Settings', icon: 'gear' }
 
+// The one link that carries a count badge (nav.js fills it in).
+export const MERGE_FIX =
+  { href: '/contact-merge-and-fix', label: 'Merge & Fix', icon: 'merge' }
+
 export const CRM = { label: 'CRM', items: [
   { href: '/contacts', label: 'Contacts', icon: 'users' },
   { href: '/companies', label: 'Companies', icon: 'building' },
   { href: '/meetings', label: 'Meetings', icon: 'video' },
-  { href: '/contact-merge-and-fix', label: 'Merge & Fix', icon: 'merge' }
+  MERGE_FIX
 ] }
 export const EVENTS = { label: 'Events', items: [
   { href: '/events', label: 'Events', icon: 'calendar' }

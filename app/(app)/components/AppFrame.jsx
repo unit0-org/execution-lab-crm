@@ -8,10 +8,10 @@ import { useSidebar } from '../hooks/useSidebar'
 import { CommandBar } from './CommandBar'
 import { navFor, settingsNav } from './nav'
 
-export function AppFrame({ role, email, unread, children }) {
+export function AppFrame({ role, email, unread, mergeFixCount, children }) {
   const nav = useSidebar()
   const sidebar = (
-    <Sidebar items={navFor(role)} settings={settingsNav()}
+    <Sidebar items={navFor(role, mergeFixCount)} settings={settingsNav()}
       currentPath={usePathname()} email={email}
       onToggleCollapse={nav.toggleCollapse} onNavigate={nav.close} />
   )

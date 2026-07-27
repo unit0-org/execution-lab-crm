@@ -1,14 +1,16 @@
 import NextLink from 'next/link'
 import { NavIcon } from './NavIcon'
+import { NavCount } from './NavCount'
 import { NavProgress } from './NavProgress'
 import { navLinkStyle, navIconStyle } from './NavLink.styles'
 
 /**
  * Sidebar navigation entry: icon + label, marked when `active`
- * (`newTab` opens the link in a new tab).
+ * (`newTab` opens the link in a new tab). `badge` = how many items that
+ * page has waiting, shown as a count pill.
  */
 export function NavLink(props) {
-  const { href, active, icon, children, onNavigate, newTab } = props
+  const { href, active, icon, badge, children, onNavigate, newTab } = props
   const current = active || undefined
   const target = newTab ? '_blank' : undefined
   const rel = newTab ? 'noopener noreferrer' : undefined
@@ -18,6 +20,7 @@ export function NavLink(props) {
       rel={rel} style={navLinkStyle} title={children} onClick={onNavigate}>
       <span data-nav-icon style={navIconStyle}><NavIcon icon={icon} /></span>
       <span data-nav-label>{children}</span>
+      <NavCount count={badge} />
       <NavProgress />
     </NextLink>
   )

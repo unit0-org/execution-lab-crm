@@ -1,6 +1,14 @@
 import {
-  DASHBOARD, CRM, EVENTS, SALES, COHORTS, PORTAL_MEMBERS, SETTINGS
+  DASHBOARD, CRM, EVENTS, SALES, COHORTS, PORTAL_MEMBERS, SETTINGS, MERGE_FIX
 } from './navItems'
+
+// CRM group with Merge & Fix badged by how many items are waiting there.
+function crmGroup(mergeFixCount) {
+  const badge = (item) =>
+    item.href === MERGE_FIX.href ? { ...item, badge: mergeFixCount } : item
+
+  return { ...CRM, items: CRM.items.map(badge) }
+}
 
 // Programs group: Cohorts for all; Portal Members is admin-only.
 function programsGroup(role) {
@@ -12,8 +20,10 @@ function programsGroup(role) {
 }
 
 // The main sidebar: a top link plus the category groups.
-export function navFor(role) {
-  return [DASHBOARD, CRM, EVENTS, programsGroup(role), SALES]
+export function navFor(role, mergeFixCount) {
+  return [
+    DASHBOARD, crmGroup(mergeFixCount), EVENTS, programsGroup(role), SALES
+  ]
 }
 
 // Bottom of the sidebar: Settings (Cron now lives in the Settings page).

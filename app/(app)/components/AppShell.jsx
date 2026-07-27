@@ -5,9 +5,12 @@ import { withMembership } from './withMembership'
 
 // The app frame for a confirmed member. Membership gating (loading /
 // non-member) lives in withMembership; this stays presentational.
-function AppShellBody({ membership, email, unread, children }) {
+function AppShellBody(props) {
+  const { membership, email, unread, mergeFixCount, children } = props
+
   return (
-    <AppFrame role={membership.role} email={email} unread={unread}>
+    <AppFrame role={membership.role} email={email} unread={unread}
+      mergeFixCount={mergeFixCount}>
       {children}
     </AppFrame>
   )
