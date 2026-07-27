@@ -586,6 +586,18 @@ prefilled. Both the displayed price (`resolveCohortAmounts`, which now takes
 the validated customer code) and the Stripe session (`startCheckout`) consume
 these same helpers — change the rule there, not in each path.
 
+**On the 50/50 payment plan the discount is baked in, not delegated.**
+Pay-in-full buys `stripe_price_id` and lets Stripe apply the promotion code.
+A plan deposit is an **inline `price_data` line** priced by
+`resolvePlanAmounts` — the same effective code resolved by the same helper
+(`checkoutDiscountCode`), applied here, then halved (`splitInHalf`, deposit
+takes the odd cent). Handing a *fixed-amount* coupon to Stripe on a half-price
+line would spend the whole discount on the deposit and leave the balance
+undiscounted; baking it in keeps one discount across the whole seat and keeps
+the number the portal shows identical to the number Stripe charges. So a plan
+session carries **no promotion code** — `checkoutLineItem` is the one place
+that branches.
+
 ## Portal member sign-in (invitation-only client portal)
 
 An invited CRM contact can sign in to the client portal to see their own

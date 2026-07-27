@@ -18,7 +18,7 @@ export function RegisterView({ card, invite, coupon }) {
           <CouponBanner code={coupon} />
           <RegisterHeader state={state} />
           <RegisterForm cohortId={card.slug} invite={invite} state={state}
-            promo={coupon} holdHours={card.holdHours} />
+            promo={coupon} holdHours={card.holdHours} plan={card.plan} />
         </Stack>
       }
       aside={<OrderSummary card={card} />} />

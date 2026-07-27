@@ -1,4 +1,5 @@
 import { splitName } from './splitName'
+import { wantsPaymentPlan } from './wantsPaymentPlan'
 
 const REQUIRED = [
   'email', 'linkedin', 'business', 'stage', 'obstacle', 'commitment'
@@ -25,5 +26,5 @@ export function formToRegistration(formData) {
 
   for (const field of OPTIONAL) data[field] = get(formData, field)
 
-  return data
+  return { ...data, payment_plan: wantsPaymentPlan(formData) }
 }

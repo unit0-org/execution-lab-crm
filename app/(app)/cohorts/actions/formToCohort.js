@@ -1,3 +1,5 @@
+import { offersPlanFromForm } from '../components/paymentPlanOptions'
+
 const TEXT_FIELDS = [
   'label', 'start_date', 'description', 'stripe_price_id', 'promo_code'
 ]
@@ -15,6 +17,8 @@ export function formToCohort(formData) {
   for (const field of WINDOW_FIELDS) addIfFilled(data, formData, field)
 
   data.capacity = Number(formData.get('capacity')) || null
+  data.offers_payment_plan =
+    offersPlanFromForm(formData.get('offers_payment_plan'))
 
   return data
 }
