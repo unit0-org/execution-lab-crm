@@ -12,11 +12,12 @@ export const navGroupStyle = {
 // here (same trap as navLinkStyle): it's set in globals.css so the
 // collapsed-rail rule (.sidebar-collapsed → display:none) can win. An
 // inline display would beat the stylesheet and strand the header's chevron
-// in the icon rail.
+// in the icon rail. `background` is the same trap: the button's default
+// chrome is cleared in globals.css so the hover and open-category fills —
+// the whole point of the header — aren't outranked by an inline reset.
 export const navGroupHeaderStyle = {
   ...navLinkStyle,
   width: '100%',
-  background: 'none',
   border: 'none',
   fontFamily: 'inherit',
   cursor: 'pointer'

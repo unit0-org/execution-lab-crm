@@ -205,6 +205,11 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 }
 
 [data-nav-item] { display: flex; }
+/* Nav rows that are <button>s (the category header, the rail's flyout
+   trigger) shed their chrome HERE, not inline: an inline `background`
+   outranks every rule below it, which silently cost the header its hover
+   and open-category fills. */
+[data-nav-group-header], button[data-nav-item] { background: none; }
 [data-nav-item]:not([data-active]) { color: var(--color-text-secondary); }
 [data-nav-item]:not([data-active]):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
 /* Active is the accent colour alone — the row keeps no pill, so the nav
