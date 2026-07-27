@@ -6,27 +6,26 @@ export const SETTINGS =
 
 // The one link that carries a count badge (nav.js fills it in).
 export const MERGE_FIX =
-  { href: '/contact-merge-and-fix', label: 'Merge & Fix', icon: 'merge' }
+  { href: '/contact-merge-and-fix', label: 'Merge & Fix' }
 
-// A group's own `icon` is what the collapsed rail shows in place of its
-// links — one glyph per category, opening the links in a flyout.
+// Only a category carries an `icon`: it is the glyph the collapsed rail
+// shows in place of the category's links, and the one the expanded row
+// leads with. The children under it are text-only, indented past it.
 export const CRM = { label: 'CRM', icon: 'users', items: [
-  { href: '/contacts', label: 'Contacts', icon: 'users' },
-  { href: '/companies', label: 'Companies', icon: 'building' },
-  { href: '/meetings', label: 'Meetings', icon: 'video' },
+  { href: '/contacts', label: 'Contacts' },
+  { href: '/companies', label: 'Companies' },
+  { href: '/meetings', label: 'Meetings' },
   MERGE_FIX
 ] }
-export const EVENTS = { label: 'Events', icon: 'calendar', items: [
-  { href: '/events', label: 'Events', icon: 'calendar' }
-] }
+// Events is a plain link, not a one-child category: a header that opens to
+// reveal itself would just be a dead click.
+export const EVENTS = { href: '/events', label: 'Events', icon: 'calendar' }
 export const SALES = { label: 'Sales', icon: 'card', items: [
-  { href: '/purchases', label: 'Purchases', icon: 'card' },
-  { href: '/invoices', label: 'Invoices', icon: 'file' }
+  { href: '/purchases', label: 'Purchases' },
+  { href: '/invoices', label: 'Invoices' }
 ] }
 
-// Contacts keeps `users`; these two carry their own glyph so no two links
-// in a category read as the same thing.
-export const COHORTS =
-  { href: '/cohorts', label: 'Cohorts', icon: 'graduation' }
+// Programs' children (nav.js builds that group around them).
+export const COHORTS = { href: '/cohorts', label: 'Cohorts' }
 export const PORTAL_MEMBERS =
-  { href: '/portal-members', label: 'Portal Members', icon: 'userCheck' }
+  { href: '/portal-members', label: 'Portal Members' }

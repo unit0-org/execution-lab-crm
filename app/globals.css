@@ -207,20 +207,34 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 [data-nav-item] { display: flex; }
 [data-nav-item]:not([data-active]) { color: var(--color-text-secondary); }
 [data-nav-item]:not([data-active]):hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
-[data-nav-item][data-active] { color: var(--color-accent); background: var(--color-accent-soft); }
+/* Active is the accent colour alone — the row keeps no pill, so the nav
+   reads as a list of words rather than a strip of buttons. */
+[data-nav-item][data-active] { color: var(--color-accent); }
 [data-nav-item][data-active] [data-nav-icon] { color: var(--color-accent); }
+/* The rail has no label to colour, so there a fill is the only marker. */
+.sidebar-collapsed [data-sidebar] [data-nav-item][data-active] { background: var(--color-bg-subtle); }
 
 /* Sidebar category groups — a tappable header over collapsible children. */
 [data-nav-group-header] { display: flex; color: var(--color-text-secondary); cursor: pointer; }
-[data-nav-group-header]:hover { color: var(--color-text-primary); }
-[data-nav-group]:not([data-open]) [data-nav-item] { display: none; }
-[data-nav-group][data-open] [data-nav-chevron] { transform: rotate(90deg); }
+[data-nav-group-header]:hover { background: var(--color-bg-subtle); color: var(--color-text-primary); }
+/* An open category stays tinted, so it's clear which header owns the
+   indented links below it. */
+[data-nav-group][data-open] > [data-nav-group-header] { background: var(--color-bg-subtle); color: var(--color-text-primary); }
+/* The label takes the slack so the chevron parks right, with any rolled-up
+   count between the two. */
+[data-nav-group-header] [data-nav-label] { flex: 1; text-align: left; }
+[data-nav-children] { display: flex; }
+[data-nav-group]:not([data-open]) [data-nav-children] { display: none; }
+[data-nav-group][data-open] [data-nav-chevron] { transform: rotate(180deg); }
 /* Collapsed rail: a category is one glyph that opens its links in a flyout
    (Stripe's rail), not a spill of every leaf into the rail. So headers and
    child links go, and the flyout trigger — a button, not a link — comes in.
-   Its Popover wrapper has to fill the rail or the glyph sits off-centre. */
+   Its Popover wrapper has to fill the rail or the glyph sits off-centre.
+   A section's caption goes too; its block keeps its top margin, which is
+   what still separates one group of glyphs from the next. */
 .sidebar-collapsed [data-nav-group-header] { display: none; }
-.sidebar-collapsed [data-nav-group] a[data-nav-item] { display: none; }
+.sidebar-collapsed [data-nav-children] { display: none; }
+.sidebar-collapsed [data-nav-section-label] { display: none; }
 [data-nav-flyout] { display: none; }
 [data-nav-flyout] > * { display: flex; width: 100%; }
 .sidebar-collapsed [data-nav-flyout] { display: block; }
@@ -368,8 +382,11 @@ input[type="range"].slider:focus-visible::-moz-range-thumb {
   .sidebar-collapsed [data-sidebar] [data-nav-badge] { position: static; margin-left: auto; transform: none; }
   /* No rail on mobile, so no flyout: the drawer shows the links themselves. */
   .sidebar-collapsed [data-nav-flyout] { display: none; }
-  .sidebar-collapsed [data-nav-group][data-open] a[data-nav-item] { display: flex; }
+  .sidebar-collapsed [data-nav-group][data-open] [data-nav-children] { display: flex; }
   .sidebar-collapsed [data-nav-group-header] { display: flex; }
+  .sidebar-collapsed [data-nav-section-label] { display: block; }
+  /* Full-width rows again, so the active one is coloured, not filled. */
+  .sidebar-collapsed [data-sidebar] [data-nav-item][data-active] { background: none; }
   .sidebar-collapsed [data-sidebar-when-expanded] { display: block; }
   .sidebar-collapsed [data-sidebar-when-collapsed] { display: none; }
 }

@@ -1,11 +1,19 @@
 import { NavLink } from '../atoms/NavLink'
 import { NavGroup } from './NavGroup'
+import { NavSection } from './NavSection'
 
 /**
- * One nav entry: a `{label,items}` category group when it has `items`,
+ * One nav entry: a `{label,section,items}` titled block when it is a
+ * `section`, a `{label,items}` category group when it has `items`,
  * otherwise a plain link, active when it matches `currentPath`.
  */
 export function NavEntry({ entry, currentPath, onNavigate }) {
+  if (entry.section)
+    return (
+      <NavSection label={entry.label} items={entry.items}
+        currentPath={currentPath} onNavigate={onNavigate} />
+    )
+
   if (entry.items)
     return (
       <NavGroup label={entry.label} icon={entry.icon} items={entry.items}

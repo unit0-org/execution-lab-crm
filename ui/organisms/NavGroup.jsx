@@ -3,7 +3,7 @@ import { NavGroupHeader } from './NavGroupHeader'
 import { NavFlyout } from './NavFlyout'
 import { useNavGroup } from './useNavGroup'
 import { navBadgeTotal } from './navBadgeTotal'
-import { navGroupStyle } from './NavGroup.styles'
+import { navGroupStyle, navChildrenStyle } from './NavGroup.styles'
 
 /**
  * A nav category: a tappable header that expands its child links, open
@@ -17,15 +17,16 @@ export function NavGroup({ label, icon, items, currentPath, onNavigate }) {
 
   return (
     <div data-nav-group data-open={expanded} style={navGroupStyle}>
-      <NavGroupHeader label={label} onToggle={toggle} open={open}
+      <NavGroupHeader label={label} icon={icon} onToggle={toggle} open={open}
         badge={hidden} />
-      {items.map((item) => (
-        <NavLink key={item.href} href={item.href} icon={item.icon}
-          badge={item.badge} active={currentPath === item.href}
-          onNavigate={onNavigate}>
-          {item.label}
-        </NavLink>
-      ))}
+      <div data-nav-children style={navChildrenStyle}>
+        {items.map((item) => (
+          <NavLink key={item.href} href={item.href} badge={item.badge}
+            active={currentPath === item.href} onNavigate={onNavigate}>
+            {item.label}
+          </NavLink>
+        ))}
+      </div>
       <NavFlyout label={label} icon={icon} items={items}
         currentPath={currentPath} onNavigate={onNavigate} />
     </div>
