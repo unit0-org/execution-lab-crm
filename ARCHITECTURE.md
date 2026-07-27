@@ -227,6 +227,22 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   only on payment. The seat is confirmed only on payment, with a 2h hold
   from `created_at` (see the confirmed-scope invariant); the portal tells the
   applicant so via `SeatHoldNote`.
+- **registration_installment** — the second half of a seat bought on the
+  **50/50 payment plan** (US-62), offered only by a cohort with
+  `offers_payment_plan`. One row per scheduled charge, `due_on` =
+  `resolvePlanChargeDate(cohort.start_date)` — the **4th Monday on or after
+  the start date**, derived, never a stored per-cohort date. It holds the
+  schedule and the Stripe ids and **no amount**: what is owed is computed at
+  charge time as the seat's price less what Stripe actually captured (the
+  derive-money rule), so it survives a refund or a partial payment. Its
+  state is derived from the ids too — `scope('settled')` (has a charge id)
+  and `scope('dueBy', today)` (none yet, date arrived); never an inline null
+  check. FK CASCADE on `registration_id`; not contact-owned, so no
+  contact-merge fold-in (it rides along the registration, which
+  `claimContactRecords` reassigns).
+  **A seat can therefore have more than one charge**, which is why
+  `attachPaidCharges` **sums** them (see the money-derivation note under
+  `purchase`).
 - **waitlist** — `waitlist_entry` (unique per org+email); priority invites
   open a spot and convert to a registration. Status lifecycle:
   `waiting`→`invited`→`accepted` (a pending registration exists)→`converted`
@@ -240,6 +256,15 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   `Purchase.scope('earned')` (refunded excluded, null status still counts),
   never an inline status check. Adding a new money aggregate means using that
   scope. The `$100` customer threshold is `CUSTOMER_MIN_PURCHASE_CENTS`.
+  **A seat's paid amount is the SUM of its charges, not one of them.**
+  `attachPaidCharges` reconciles a registration to *every* purchase behind
+  it (`chargesForRegistration`): the deposit, matched by closeness
+  (`nearestPurchase` — a seat is often charged days after sign-up), plus
+  each plan installment, matched **exactly** by the charge id recorded when
+  it was taken. Exact matching is what keeps a second cohort's charge in the
+  same month out of the total; the result is deduped by `stripe_id`. Add
+  another way to pay for a seat and it must join that reconciliation, or the
+  seat reads as underpaid everywhere (`cohortStats` revenue included).
 - **invoice** — invoices with line items, PDF generation, Stripe charge,
   and email delivery. Brand PDF primitives (fonts, logo, palette, and a
   paginating flow/document toolkit) live in shared `lib/pdf/`, reused by

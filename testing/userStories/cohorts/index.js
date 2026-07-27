@@ -8,6 +8,7 @@ import US19 from './US-19.js';
 import US20 from './US-20.js';
 import US21 from './US-21.js';
 import US22 from './US-22.js';
+import US62 from './US-62.js';
 
 export const domain = {
   id: 'cohorts',
@@ -15,5 +16,5 @@ export const domain = {
 };
 
 export const stories = [
-  US13, US14, US15, US16, US17, US18, US19, US20, US21, US22
+  US13, US14, US15, US16, US17, US18, US19, US20, US21, US22, US62
 ];
