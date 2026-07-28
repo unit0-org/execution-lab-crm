@@ -583,28 +583,37 @@ matchable. The exact link exists in Stripe — `registration`
 (the **charge** id) — but the charge's intent/session is fetched at import
 and never persisted, so it can't be joined on today.
 
-## Invariant: a cohort is deletable only while nothing points at it
+## Invariant: a cohort is deletable only while something still needs it
 
-A cohort may be deleted **only when no other table references it**. That
+A cohort may be deleted **only when nothing live still points at it**. That
 rule is defined **once**, in `lib/cohort/controllers/findDeleteBlockers.js`,
 which returns `{ [cohortId]: reason }` — and both callers go through it:
 `deleteCohort` as the server-side guard, and `listCohortsWithStats`, which
 hands each row a `deleteBlocker` so the admin list disables the delete with
 its reason instead of offering a click the server would refuse.
 
-Two things block a delete, and the reading is deliberately the safest one:
+The distinction that matters is **a live claim vs. a historical record**:
 
-- **Any `registration` row, of any status** — not just a confirmed
+- **Any `registration` row, of any status, blocks** — not just a confirmed
   (seat-holding) one. An `expired`/`failed` registration, or a `pending`
-  one past its hold, still records a person and their payment history, so
+  one past its hold, still records a person *and their payment history*, so
   it keeps the cohort. This is the one place that does NOT use
   `Registration.scope('confirmed')`, on purpose.
-- **Any `waitlist_entry` pointing at the cohort by *either* column.**
-  `cohort_id` is the cohort the person joined the waitlist for and carries
-  **no foreign key at all** (added bare in `0047_waitlist_form_fields`), so
-  a delete would leave it dangling — `previewAcceptance` still reads it.
-  `invite_cohort_id` is `ON DELETE SET NULL`, so a delete would silently
-  void an outstanding invite rather than fail.
+- **Only an *active* `waitlist_entry` blocks** — one still `waiting` or
+  `invited`, via `WaitlistEntry.scope('active')`, the model's own definition
+  of "still in the waiting line" (`expireStaleInvites` sweeps a lapsed
+  invite to `expired`). Either cohort column counts: `cohort_id` (the cohort they joined the waitlist for) and
+  `invite_cohort_id` (the one they were invited to). A lapsed or accepted
+  entry is history and must NOT block — reading every row regardless of
+  status made a cohort with zero sign-ups permanently undeletable because
+  someone's invite had expired months earlier.
+
+Why the two differ: a registration carries money, a spent waitlist entry
+carries nothing but its own past. So the waitlist entry may safely **lose
+its pointer** — `invite_cohort_id` has always been `ON DELETE SET NULL`,
+and `0097_waitlist_cohort_fk` gives `cohort_id` the same rule (it was added
+bare in `0047_waitlist_form_fields`, with no foreign key at all, so a
+delete used to leave it dangling for `previewAcceptance` to read).
 
 What the cohort **owns** goes with it, deleted explicitly (not by trusting
 the DB cascade) in one transaction by `Cohort#destroyWithFolders`
@@ -612,12 +621,15 @@ the DB cascade) in one transaction by `Cohort#destroyWithFolders`
 `cohort_folder` → the cohort.
 
 **Add a table (or column) that references a cohort and you must decide
-here**: does it block the delete (add it to `findDeleteBlockers`), or is it
-cohort-owned and removed by `destroyWithFolders`? Leave it out and the
-delete either fails with a raw FK error or drops data silently. The full
-set today is `registration.cohort_id`, `waitlist_entry.cohort_id`,
-`waitlist_entry.invite_cohort_id` (all blocking) and
-`cohort_folder.cohort_id` → `cohort_resource.folder_id` (owned).
+here**, in one of three ways: it **blocks** the delete (add it to
+`findDeleteBlockers` — and if the blocking depends on a status, go through
+that model's scope, never a literal), it is **cohort-owned** and removed by
+`destroyWithFolders`, or it merely **remembers** the cohort and is nulled by
+its FK. Leave it out and the delete either fails with a raw FK error or
+drops data silently. The full set today is `registration.cohort_id`
+(blocks), `waitlist_entry.cohort_id` and `waitlist_entry.invite_cohort_id`
+(block while active, else set null) and `cohort_folder.cohort_id` →
+`cohort_resource.folder_id` (owned).
 
 ## Invariant: one discount applies, resolved in a single place
 
