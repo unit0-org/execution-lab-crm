@@ -235,11 +235,10 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
    (Stripe's rail), not a spill of every leaf into the rail. So headers and
    child links go, and the flyout trigger — a button, not a link — comes in.
    Its Popover wrapper has to fill the rail or the glyph sits off-centre.
-   A section's caption goes too; its block keeps its top margin, which is
-   what still separates one group of glyphs from the next. */
+   A section block keeps its top margin, which is what separates one group
+   of glyphs from the next. */
 .sidebar-collapsed [data-nav-group-header] { display: none; }
 .sidebar-collapsed [data-nav-children] { display: none; }
-.sidebar-collapsed [data-nav-section-label] { display: none; }
 [data-nav-flyout] { display: none; }
 [data-nav-flyout] > * { display: flex; width: 100%; }
 .sidebar-collapsed [data-nav-flyout] { display: block; }
@@ -389,7 +388,6 @@ input[type="range"].slider:focus-visible::-moz-range-thumb {
   .sidebar-collapsed [data-nav-flyout] { display: none; }
   .sidebar-collapsed [data-nav-group][data-open] [data-nav-children] { display: flex; }
   .sidebar-collapsed [data-nav-group-header] { display: flex; }
-  .sidebar-collapsed [data-nav-section-label] { display: block; }
   /* Full-width rows again, so the active one is coloured, not filled. */
   .sidebar-collapsed [data-sidebar] [data-nav-item][data-active] { background: none; }
   .sidebar-collapsed [data-sidebar-when-expanded] { display: block; }

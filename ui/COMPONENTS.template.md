@@ -57,6 +57,8 @@ Helpers: `matchOptions(options, query, limit=5)` and
 `hasExactLabel(options, query)` back `Autocomplete`'s filtering.
 
 Hooks: `useToggle(initial)`,
+`useHoverMenu()` (opens on hover, closes a beat after the pointer leaves —
+spread its `hoverProps` on the trigger *and* the panel),
 `useOutsideClose(ref, onClose, open, extraRef?)` (`extraRef` also stays open
 for clicks inside a portaled panel),
 `useEscClose(onClose, open)`, `useAutoFocus(open)`, `useClipboard()`,

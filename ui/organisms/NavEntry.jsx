@@ -3,15 +3,15 @@ import { NavGroup } from './NavGroup'
 import { NavSection } from './NavSection'
 
 /**
- * One nav entry: a `{label,section,items}` titled block when it is a
- * `section`, a `{label,items}` category group when it has `items`,
- * otherwise a plain link, active when it matches `currentPath`.
+ * One nav entry: a `{section,items}` block when it is a `section`, a
+ * `{label,items}` category group when it has `items`, otherwise a plain
+ * link, active when it matches `currentPath`.
  */
 export function NavEntry({ entry, currentPath, onNavigate }) {
   if (entry.section)
     return (
-      <NavSection label={entry.label} items={entry.items}
-        currentPath={currentPath} onNavigate={onNavigate} />
+      <NavSection items={entry.items} currentPath={currentPath}
+        onNavigate={onNavigate} />
     )
 
   if (entry.items)

@@ -1,15 +1,14 @@
 import { NavEntry } from './NavEntry'
-import { navSectionStyle, navSectionLabelStyle } from './NavSection.styles'
+import { navSectionStyle } from './NavSection.styles'
 
 /**
- * A titled block of nav entries — a muted caption (e.g. "Workspace") over
- * its links and category groups. The caption only names the block; unlike
- * a category header it is not a toggle, so the entries are always there.
+ * A block of nav entries set apart from the block above it by space alone
+ * — no caption, no toggle. That space is the only grouping the collapsed
+ * rail has, where the glyphs carry no words to group them.
  */
-export function NavSection({ label, items, currentPath, onNavigate }) {
+export function NavSection({ items, currentPath, onNavigate }) {
   return (
     <div style={navSectionStyle}>
-      <div data-nav-section-label style={navSectionLabelStyle}>{label}</div>
       {items.map((entry) => (
         <NavEntry key={entry.label} entry={entry}
           currentPath={currentPath} onNavigate={onNavigate} />
