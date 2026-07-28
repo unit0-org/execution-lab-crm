@@ -2,7 +2,7 @@
 
 import { Form } from '@/ui/molecules/Form'
 import { Stack } from '@/ui/layout/Stack'
-import { SubmitButton } from '@/ui/atoms/SubmitButton'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { FieldError } from '@/ui/atoms/FieldError'
 import { useFormAction } from '@/app/(app)/hooks/useFormAction'
 import { createAutomationAction } from '../actions/createAutomation'
@@ -19,7 +19,7 @@ export function AutomationForm({ templates, categories, onCreated }) {
       <Stack gap="sm">
         <TriggerFields form={form} categories={categories} />
         <ActionFields form={form} templates={templates} />
-        <SubmitButton tone="primary">Create</SubmitButton>
+        <FormActions label="Create" />
         <FieldError message={error} />
       </Stack>
     </Form>

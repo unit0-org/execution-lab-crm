@@ -3,9 +3,7 @@
 import { Form } from '@/ui/molecules/Form'
 import { Stack } from '@/ui/layout/Stack'
 import { Heading } from '@/ui/atoms/Heading'
-import { Inline } from '@/ui/layout/Inline'
-import { Button } from '@/ui/atoms/Button'
-import { SubmitButton } from '@/ui/atoms/SubmitButton'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { MeetingFields } from './MeetingFields'
 import { useEditMeeting } from '../hooks/useEditMeeting'
 
@@ -18,10 +16,7 @@ export function EditMeetingForm({ meeting, onSaved, onCancel }) {
       <Stack gap="md">
         <Heading level={3}>Edit meeting</Heading>
         <MeetingFields meeting={meeting} />
-        <Inline gap="sm">
-          <SubmitButton tone="primary" size="sm">Save</SubmitButton>
-          <Button size="sm" onClick={onCancel}>Cancel</Button>
-        </Inline>
+        <FormActions onCancel={onCancel} />
       </Stack>
     </Form>
   )

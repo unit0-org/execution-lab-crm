@@ -1,17 +1,18 @@
 'use client'
 
-import { Inline } from '@/ui/layout/Inline'
-import { Button } from '@/ui/atoms/Button'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { SendAllMenu } from './SendAllMenu'
 
+// Send this one / send them all / cancel. "Send all" rides in the shared
+// row's extra slot so the three sit where every dialog's buttons sit.
 export function SendActions({ draft, drafts, sending, onSend, onCancel }) {
+  const sendAll = (
+    <SendAllMenu show={drafts.length > 1} disabled={sending}
+      onSendAll={() => onSend(drafts)} />
+  )
+
   return (
-    <Inline gap="sm" nowrap>
-      <Button tone="primary" size="sm" disabled={sending}
-        onClick={() => onSend([draft])}>Send</Button>
-      <SendAllMenu show={drafts.length > 1} disabled={sending}
-        onSendAll={() => onSend(drafts)} />
-      <Button size="sm" onClick={onCancel}>Cancel</Button>
-    </Inline>
+    <FormActions label="Send" busy={sending} extra={sendAll}
+      onCancel={onCancel} onConfirm={() => onSend([draft])} />
   )
 }

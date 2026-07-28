@@ -1,11 +1,10 @@
 'use client'
 
-import { Button } from '@/ui/atoms/Button'
+import { FormActions } from '@/ui/molecules/FormActions'
 
-export function ApplyFixesBar({ count, onApply }) {
+export function ApplyFixesBar({ count, busy, onApply }) {
   return (
-    <Button size="sm" tone="primary" disabled={!count} onClick={onApply}>
-      Apply selected ({count})
-    </Button>
+    <FormActions label={`Apply selected (${count})`} busy={busy}
+      disabled={!count} onConfirm={onApply} />
   )
 }
