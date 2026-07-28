@@ -13,10 +13,8 @@ export const navLinkStyle = {
   padding: `${space[2]} ${space[3]}`,
   borderRadius: radius.md,
   textDecoration: 'none',
-  fontSize: '13px',
-  fontWeight: 700,
-  textTransform: 'uppercase',
-  letterSpacing: '0.08em'
+  fontSize: '14px',
+  fontWeight: 500
 }
 
 // Collapse the icon's inline-SVG line box so the glyph centers on the

@@ -3,12 +3,13 @@ import { color } from '../tokens/color'
 import { navLinkStyle } from '../atoms/NavLink.styles'
 
 // The rail trigger wears the nav row's styling but must fill the rail, so
-// its glyph lands exactly where every other rail glyph does. No `display`:
-// globals.css owns that (see the navLinkStyle note).
+// its glyph lands exactly where every other rail glyph does. Neither
+// `display` nor `background` is set here: globals.css owns both (see the
+// navLinkStyle note), so the row's hover tint and the rail's active fill
+// reach this button like they reach every link.
 export const railButtonStyle = {
   ...navLinkStyle,
   width: '100%',
-  background: 'none',
   border: 'none',
   cursor: 'pointer'
 }
