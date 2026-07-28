@@ -5,22 +5,23 @@ import { Stack } from '@/ui/layout/Stack'
 import { MergeModal } from '@/app/(app)/contacts/components/MergeModal'
 import { GroupHeader } from './GroupHeader'
 import { GroupContacts } from './GroupContacts'
-import { useGroupMerge } from '../hooks/useGroupMerge'
-import { useGroupDismiss } from '../hooks/useGroupDismiss'
-import { useBusyRun } from '@/app/(app)/hooks/useBusyRun'
+import { AmbiguousNote } from './AmbiguousNote'
+import { useGroupCard } from '../hooks/useGroupCard'
 
-export function DuplicateGroupCard({ group, onResolved }) {
-  const merge = useGroupMerge(group, onResolved)
-  const dismiss = useBusyRun(useGroupDismiss(group, onResolved))
+export function DuplicateGroupCard({ group, selection, onResolved }) {
+  const card = useGroupCard(group, selection, onResolved)
 
   return (
     <Card>
       <Stack gap="sm">
-        <GroupHeader reason={group.reason} onMerge={merge.start}
-          onDismiss={dismiss.run} dismissing={dismiss.busy} />
+        <GroupHeader reason={group.reason} selected={card.selected}
+          mergeable={card.mergeable} onSelect={card.select}
+          onMerge={card.merge.start} onDismiss={card.dismiss.run}
+          dismissing={card.dismiss.busy} />
+        <AmbiguousNote mergeable={card.mergeable} />
         <GroupContacts contacts={group.contacts} />
-        <MergeModal contacts={merge.review} onConfirm={merge.confirm}
-          onCancel={merge.cancel} />
+        <MergeModal contacts={card.merge.review}
+          onConfirm={card.merge.confirm} onCancel={card.merge.cancel} />
       </Stack>
     </Card>
   )

@@ -4,12 +4,12 @@ import { Stack } from '@/ui/layout/Stack'
 import { DuplicateGroupCard } from './DuplicateGroupCard'
 import { groupKey } from '../hooks/groupKey'
 
-export function DuplicateGroupList({ groups, onResolved }) {
+export function DuplicateGroupList({ groups, selection, onResolved }) {
   return (
     <Stack gap="md">
       {groups.map((group) => (
         <DuplicateGroupCard key={groupKey(group)} group={group}
-          onResolved={onResolved} />
+          selection={selection} onResolved={onResolved} />
       ))}
     </Stack>
   )
