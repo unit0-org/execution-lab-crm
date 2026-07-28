@@ -191,6 +191,8 @@ Helpers: `matchOptions(options, query, limit=5)` and
 `hasExactLabel(options, query)` back `Autocomplete`'s filtering.
 
 Hooks: `useToggle(initial)`,
+`useHoverMenu()` (opens on hover, closes a beat after the pointer leaves —
+spread its `hoverProps` on the trigger *and* the panel),
 `useOutsideClose(ref, onClose, open, extraRef?)` (`extraRef` also stays open
 for clicks inside a portaled panel),
 `useEscClose(onClose, open)`, `useAutoFocus(open)`, `useClipboard()`,
@@ -213,11 +215,11 @@ with the shared leading select-all + trailing delete columns).
 | `CollapseToggle` | `onClick` | Sidebar show/hide toggle — the panel icon when open, an arrow when collapsed (pointing the way it would expand). |
 | `HeroPanel` | `tone='launch'`, `main`, `aside` | Featured-cohort panel: a glowing tone-bordered surface with a brand gradient edge; `main`/`aside` sit side by side, stacking on mobile. |
 | `Modal` | `open`, `onClose`, `wide`, `align`, `children` | Centered dialog over a dimmed backdrop — Esc, click outside, or the X closes it; focuses its first field on open. `wide` widens it, scrolls when tall, and is resizable (drag the bottom-right corner). `align="top"` pins it to the top instead of centering. |
-| `Nav` | `items`, `currentPath`, `onNavigate` | App nav list: renders `items` as entries — each a plain link or a `{label,items}` category group — highlighting `currentPath`. |
-| `NavEntry` | `entry`, `currentPath`, `onNavigate` | One nav entry: a `{label,section,items}` titled block when it is a `section`, a `{label,items}` category group when it has `items`, otherwise a plain link, active when it matches `currentPath`. |
-| `NavFlyout` | `label`, `icon`, `items`, `currentPath`, `onNavigate` | A category in the collapsed rail: one glyph that opens the category's links in a panel beside it, instead of spilling every link into the rail. Hidden while the sidebar is expanded (globals.css owns that). |
+| `Nav` | `items`, `currentPath`, `onNavigate` | App nav list: renders `items` as entries — each a plain link, a `{label,items}` category group, or a `{section,items}` block — highlighting `currentPath`. |
+| `NavEntry` | `entry`, `currentPath`, `onNavigate` | One nav entry: a `{section,items}` block when it is a `section`, a `{label,items}` category group when it has `items`, otherwise a plain link, active when it matches `currentPath`. |
+| `NavFlyout` | `label`, `icon`, `items`, `currentPath`, `onNavigate` | A category in the collapsed rail: one glyph that opens the category's links in a panel beside it — on **hover**, since a rail of bare glyphs otherwise makes you click to find out what each one holds. Clicking still toggles it, for touch. Hidden while the sidebar is expanded (globals.css owns that). The panel takes the hover props too: it is portaled to `<body>` and sits clear of the glyph, so it has to hold itself open while the pointer crosses to it. |
 | `NavGroup` | `label`, `icon`, `items`, `currentPath`, `onNavigate` | A nav category: a tappable header that expands its child links, open when one of them matches `currentPath`. In the collapsed rail the whole category becomes one glyph (`icon`) that opens its links in a flyout. |
-| `NavSection` | `label`, `items`, `currentPath`, `onNavigate` | A titled block of nav entries — a muted caption (e.g. "Workspace") over its links and category groups. The caption only names the block; unlike a category header it is not a toggle, so the entries are always there. |
+| `NavSection` | `items`, `currentPath`, `onNavigate` | A block of nav entries set apart from the block above it by space alone — no caption, no toggle. That space is the only grouping the collapsed rail has, where the glyphs carry no words to group them. |
 | `PageHeader` | `title`, `actions` | A detail page's header: the `title` node on the left (heading, status, subtitle — whatever the page needs) and its `actions` as a `PageActions` cluster top-right. Use on every single-entity page so their headers line up and their action rows behave the same. |
 | `PortalHeader` | `kicker`, `title`, `infoLabel`, `linkLabel`, `linkHref`, `logoSrc`, `logoAlt`, `aside` | Portal masthead: brand lockup + cohort meta and program link. `aside` renders an extra node (e.g. a member sign-in link) in the right column. |
 | `Sidebar` | `items`, `settings`, `currentPath`, `email` | The app nav rail: `items` + `settings` navs over a user footer, with a toggle that collapses it to icons. `signOutNext` = post-logout landing. |

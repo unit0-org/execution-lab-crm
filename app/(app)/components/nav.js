@@ -19,13 +19,13 @@ function programsGroup(role) {
   return { label: 'Programs', icon: 'graduation', items }
 }
 
-// The main sidebar: Dashboard on its own, then everything else under one
-// titled block, the way Stripe's nav reads.
+// The main sidebar: Dashboard on its own, then the working areas as one
+// block below it — set apart by space, not by a caption.
 export function navFor(role, mergeFixCount) {
   const items =
     [crmGroup(mergeFixCount), EVENTS, programsGroup(role), SALES]
 
-  return [DASHBOARD, { label: 'Workspace', section: true, items }]
+  return [DASHBOARD, { section: true, items }]
 }
 
 // Bottom of the sidebar: Settings (Cron now lives in the Settings page).
