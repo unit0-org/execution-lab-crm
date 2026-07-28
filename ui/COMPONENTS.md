@@ -134,7 +134,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `ChipRadios` | `label`, `name`, `options`, `required`, `hint`, `value` | Portal chip radios (cohort picker). `options` are `{ value, label }`; `value` preselects one. |
 | `Collapsible` | `title`, `preview`, `defaultOpen=true`, `addLabel`, `onAdd`, `children` | Expand/collapse section, on a native `<details>`. `title` heads the clickable row; `preview` is an optional collapsed-only body (a summary of what expanding reveals); `children` is the expanded body. `onAdd` puts the section's `+` in that header, opening the create flow without toggling the panel. Never hand-build a section's collapse or its add button — use this, so every collapsible section behaves the same way. |
 | `Combobox` | `label`, `value`, `onChange`, `options`, `onPick`, `hint` | Lower-level field that just renders the `options` you pass (no filtering or create). Prefer `Autocomplete`. |
-| `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `message='This cannot be undone.'`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; `message`/`confirmLabel`/`tone` are overridable. |
+| `ConfirmDialog` | `open`, `title`, `onConfirm`, `onCancel`, `busy`, `message='This cannot be undone.'`, `confirmLabel='Delete'`, `tone='danger'` | Confirmation modal; `message`/`confirmLabel`/`tone` are overridable, and `busy` spins the confirm while the action it fires runs. |
 | `CopyList` | `values`, `collapse` | Copy-to-clipboard list: comma-separated values, each click-to-copy. `collapse` shows the first value + a "+N more" toggle for tight columns instead. |
 | `CopyText` | `value`, `truncate`, `children` | Copy-to-clipboard text; `truncate` ellipsizes a long value. |
 | `EmptyState` | `title`, `message` | Portal empty-state block: a `Display` title over a muted line, shown when a list has no items. |
@@ -145,7 +145,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `FilterBar` | `options`, `active`, `basePath`, `param` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. |
 | `FilterChip` | `href`, `label`, `active` | One URL-driven filter chip: a pill link, highlighted when active. |
 | `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, its first editable field autofocuses on mount, and typed values survive a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate). |
-| `FormActions` | `label='Save'`, `tone='primary'`, `size='sm'` | The one form/dialog action row: a primary button — a submit by default, or an `onConfirm` click action — with an optional Cancel, aligned to the RIGHT so every form and modal places its buttons the same way. |
+| `FormActions` | `label='Save'`, `tone='primary'`, `size='sm'` | The one form/dialog action row: a primary button — a submit by default, or an `onConfirm` click action — with an optional Cancel, aligned to the RIGHT so every form and modal places its buttons the same way. `busy` spins the primary while the action runs, `disabled` holds it until there is something to submit, and `extra` slots one more control beside it (e.g. "send all"). |
 | `FormError` | `message` | Form-level error message; renders nothing when there is none. |
 | `IconUpload` | `label`, `title`, `onPick` | File upload trigger: a hidden CSV input behind an upload glyph. |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form — no block layout, sits with its siblings. |

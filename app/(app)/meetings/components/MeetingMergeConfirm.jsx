@@ -1,12 +1,13 @@
-import { Inline } from '@/ui/layout/Inline'
-import { Button } from '@/ui/atoms/Button'
+'use client'
+
+import { FormActions } from '@/ui/molecules/FormActions'
+import { useBusyRun } from '@/app/(app)/hooks/useBusyRun'
 
 export function MeetingMergeConfirm({ winnerId, onConfirm, onCancel }) {
+  const merge = useBusyRun(onConfirm)
+
   return (
-    <Inline gap="sm">
-      <Button tone="primary" size="sm"
-        onClick={() => onConfirm(winnerId)}>Merge</Button>
-      <Button size="sm" onClick={onCancel}>Cancel</Button>
-    </Inline>
+    <FormActions label="Merge" busy={merge.busy} onCancel={onCancel}
+      onConfirm={() => merge.run(winnerId)} />
   )
 }

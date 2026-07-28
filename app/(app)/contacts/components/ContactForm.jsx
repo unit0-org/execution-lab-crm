@@ -2,7 +2,7 @@
 
 import { Form } from '@/ui/molecules/Form'
 import { TextField } from '@/ui/atoms/TextField'
-import { SubmitButton } from '@/ui/atoms/SubmitButton'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { Stack } from '@/ui/layout/Stack'
 import { EmailFields } from './EmailFields'
 import { FormError } from './FormError'
@@ -18,7 +18,7 @@ export function ContactForm() {
         <TextField label="Last name" name="last_name" />
         <EmailFields />
         <FormError message={error} />
-        <SubmitButton tone="primary">Create contact</SubmitButton>
+        <FormActions label="Create contact" />
       </Stack>
     </Form>
   )

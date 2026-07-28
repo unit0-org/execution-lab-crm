@@ -3,7 +3,7 @@
 import { Form } from '@/ui/molecules/Form'
 import { TextField } from '@/ui/atoms/TextField'
 import { Select } from '@/ui/atoms/Select'
-import { SubmitButton } from '@/ui/atoms/SubmitButton'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { Stack } from '@/ui/layout/Stack'
 import { useConfirmEvent } from '../hooks/useConfirmEvent'
 
@@ -20,7 +20,7 @@ export function ConfirmEventForm({ result }) {
           defaultValue={result.eventTitle} />
         <TextField label="Date" name="date" type="date" />
         <Select label="Type" name="type" options={TYPES} />
-        <SubmitButton tone="primary">Save event</SubmitButton>
+        <FormActions label="Save event" />
       </Stack>
     </Form>
   )

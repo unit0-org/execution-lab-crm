@@ -13,7 +13,8 @@ export function FixSuggestions({ fix }) {
       <SectionHeader title="Suggested fixes" />
       <FixList fixes={fix.list} selected={fix.selected}
         onToggle={fix.toggle} />
-      <ApplyFixesBar count={fix.selected.size} onApply={fix.apply} />
+      <ApplyFixesBar count={fix.selected.size} busy={fix.busy}
+        onApply={fix.apply} />
     </Stack>
   )
 }

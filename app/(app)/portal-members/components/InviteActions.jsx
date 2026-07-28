@@ -1,5 +1,4 @@
-import { EndRow } from '@/ui/layout/EndRow'
-import { Button } from '@/ui/atoms/Button'
+import { FormActions } from '@/ui/molecules/FormActions'
 
 const inviteLabel = (count) => (count > 1 ? `Invite ${count}` : 'Invite')
 
@@ -7,12 +6,7 @@ const inviteLabel = (count) => (count > 1 ? `Invite ${count}` : 'Invite')
 // and shows a spinner while the invites send.
 export function InviteActions({ count, onCancel, onInvite, busy }) {
   return (
-    <EndRow>
-      <Button tone="quiet" onClick={onCancel}>Cancel</Button>
-      <Button tone="primary" onClick={onInvite} disabled={!count}
-        loading={busy}>
-        {inviteLabel(count)}
-      </Button>
-    </EndRow>
+    <FormActions label={inviteLabel(count)} busy={busy} disabled={!count}
+      onCancel={onCancel} onConfirm={onInvite} />
   )
 }

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Stack } from '@/ui/layout/Stack'
-import { Heading } from '@/ui/atoms/Heading'
 import { Text } from '@/ui/atoms/Text'
 import { SurvivorChoices } from './SurvivorChoices'
 import { MergeSummary } from './MergeSummary'
@@ -20,7 +19,6 @@ export function MergeReview({ contacts, onConfirm, onCancel }) {
 
   return (
     <Stack gap="md">
-      <Heading level={3}>Merge contacts</Heading>
       <MergeSummary conflicts={conflicts} />
       <SurvivorChoices contacts={contacts} conflicts={conflicts}
         winnerId={winnerId} onPick={setWinnerId} />

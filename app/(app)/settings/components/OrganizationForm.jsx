@@ -2,7 +2,7 @@
 
 import { Form } from '@/ui/molecules/Form'
 import { Stack } from '@/ui/layout/Stack'
-import { SubmitButton } from '@/ui/atoms/SubmitButton'
+import { FormActions } from '@/ui/molecules/FormActions'
 import { FieldError } from '@/ui/atoms/FieldError'
 import { showToast } from '@/ui/molecules/toastBus'
 import { OrganizationFields } from './OrganizationFields'
@@ -17,7 +17,7 @@ export function OrganizationForm({ profile }) {
     <Form action={action}>
       <Stack gap="sm">
         <OrganizationFields profile={profile} />
-        <SubmitButton tone="primary">Save</SubmitButton>
+        <FormActions />
         <FieldError message={error} />
       </Stack>
     </Form>
