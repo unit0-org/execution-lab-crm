@@ -11,5 +11,17 @@ export function useDuplicateGroups(initial) {
   const remove = (key) =>
     setList((prev) => prev.filter((group) => groupKey(group) !== key))
 
-  return { list, remove }
+  // After a batch, every group holding a contact that was folded away goes —
+  // both the merged group itself and any *other* group that suggested the
+  // same contact (one person can match on name here and on phone there),
+  // which would otherwise sit there pointing at a deleted record.
+  const withoutContacts = (ids) => {
+    const gone = new Set(ids)
+    const holdsGone = (group) =>
+      group.contacts.some((contact) => gone.has(contact.id))
+
+    setList((prev) => prev.filter((group) => !holdsGone(group)))
+  }
+
+  return { list, remove, withoutContacts }
 }

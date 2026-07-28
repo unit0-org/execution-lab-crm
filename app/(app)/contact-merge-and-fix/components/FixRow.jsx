@@ -3,13 +3,15 @@
 import { Inline } from '@/ui/layout/Inline'
 import { Checkbox } from '@/ui/atoms/Checkbox'
 import { Text } from '@/ui/atoms/Text'
-import { fixKey } from '../hooks/fixKey'
+import { fixSelectionKey } from '../hooks/selectionKeys'
 
-export function FixRow({ fix, checked, onToggle }) {
+export function FixRow({ fix, selection }) {
+  const key = fixSelectionKey(fix)
+
   return (
     <Inline gap="sm">
-      <Checkbox checked={checked} label={fix.current}
-        onChange={() => onToggle(fixKey(fix))} />
+      <Checkbox checked={selection.has(key)} label={fix.current}
+        onChange={() => selection.toggle(key)} />
       <Text size="sm">“{fix.current}” → “{fix.proposed}”</Text>
     </Inline>
   )

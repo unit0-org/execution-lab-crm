@@ -8,21 +8,21 @@ const userStory = {
     'contacts and offer safe formatting fixes, so I can clean up my ' +
     'contacts in one place instead of hunting manually.',
   behaviours: [
-    'The Merge & Fix surface lists suggested duplicate groups, each ' +
-      'labelled with its match reason (same name or same phone).',
-    'Merging a group opens the review modal and, on confirm, folds it ' +
-      'into one contact via the existing contact-merge operation.',
-    'Dismissing a suggested pair removes it and it does not reappear on ' +
-      'a later visit.',
-    'A group is suppressed once dismissals reduce it below two ' +
-      'mergeable contacts.',
-    'The surface lists safe normalization fixes (whitespace in names ' +
-      'and phones) only where the stored value differs from normalized.',
-    'Selecting several fixes and applying runs them in one transaction ' +
-      '— all succeed or none — and the rows update in place.',
-    'Applied, merged and dismissed items disappear from the surface.',
-    'No auto-merge: every merge needs the review modal + confirm, and a ' +
-      'dismissal never deletes a contact.',
+    'The surface lists duplicate groups, labelled by match reason.',
+    'Merging a group opens the review modal and folds it into one.',
+    'A dismissed pair goes for good, and never deletes a contact.',
+    'A group is suppressed once dismissals leave it under two contacts.',
+    'Safe whitespace fixes in names and phones list only where the ' +
+      'stored value differs from normalized.',
+    'Applying fixes runs them in one transaction — all or none.',
+    'Groups and fixes share one selection; one "Apply selected" runs it.',
+    'Applying opens one review naming who survives each merge; one ' +
+      'confirm runs them all, and cancelling runs nothing.',
+    'A group whose contacts disagree on name cannot be batched — it ' +
+      'merges from its own review, so I choose who survives.',
+    'Applied, merged and dismissed items go — including a group left ' +
+      'pointing at a contact the batch folded away.',
+    'No auto-merge: batched or not, a merge needs the review + confirm.',
     'The sidebar Merge & Fix link badges waiting items; none at zero.'
   ]
 };

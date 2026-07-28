@@ -44,7 +44,7 @@ Conventions (from `AGENTS.md`):
 | `Button` | `tone='default'`, `size`, `block`, `icon`, `loading`, `disabled`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones`; `loading` shows a spinner + disables while keeping size (no CLS); `icon` makes a compact square that centres a single icon child. |
 | `ButtonLink` | `href`, `tone='default'`, `size`, `block`, `target`, `children` | Navigation link styled as a Button (shares `buttonStyle`); `target="_blank"` opens a new tab. |
 | `Card` | `tone`, `hoverHost`, `id`, `children` | Surface container for grouped content. |
-| `Checkbox` | `checked`, `onChange`, `label`, `indeterminate` | Boolean toggle (`onChange` → `e.target.checked`). |
+| `Checkbox` | `checked`, `onChange`, `label`, `indeterminate`, `disabled` | Boolean toggle (`onChange` → `e.target.checked`). `disabled` greys it out for a row that can't take part in a bulk action; say why beside it. |
 | `ColorSwatch` | `color`, `active`, `onPick` | One selectable color square; ringed when it's the chosen one. |
 | `DateText` | `value`, `withTime` | Display-only date. A date-only value renders UTC-safe (so it never drifts a day in the viewer's timezone); `withTime` adds the time in the business timezone, so a timestamp shows the real Pacific wall-clock, not UTC. |
 | `Display` | `size='md'`, `children` | Oversized uppercase display headline (`sm`/`md`/`lg`/`xl`) for portal hero/section titles. Renders an `<h1>`. |
