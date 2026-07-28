@@ -12,16 +12,16 @@ const userStory = {
     'Merging a group opens the review modal and folds it into one.',
     'A dismissed pair goes for good, and never deletes a contact.',
     'A group is suppressed once dismissals leave it under two contacts.',
-    'Safe whitespace fixes in names and phones list only where the ' +
-      'stored value differs from normalized.',
+    'Safe whitespace fixes list only where stored differs from normalized.',
     'Applying fixes runs them in one transaction — all or none.',
     'Groups and fixes share one selection; one "Apply selected" runs it.',
     'Applying opens one review naming who survives each merge; one ' +
       'confirm runs them all, and cancelling runs nothing.',
-    'A group whose contacts disagree on name cannot be batched — it ' +
-      'merges from its own review, so I choose who survives.',
-    'Applied, merged and dismissed items go — including a group left ' +
-      'pointing at a contact the batch folded away.',
+    'A group whose names disagree is unbatchable; it merges from its own ' +
+      'review, so I choose who survives.',
+    'A running batch ticks each line off as it lands, with a count.',
+    'A failed step stops the run, says why, and keeps what applied.',
+    'Applied and dismissed items go, plus groups left pointing at them.',
     'No auto-merge: batched or not, a merge needs the review + confirm.',
     'The sidebar Merge & Fix link badges waiting items; none at zero.'
   ]
