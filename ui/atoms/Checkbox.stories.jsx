@@ -16,3 +16,7 @@ export const Checked = { args: { checked: true } }
 export const Indeterminate = {
   args: { checked: false, indeterminate: true }
 }
+
+export const Disabled = {
+  args: { checked: false, disabled: true }
+}

@@ -31,7 +31,7 @@ export function Collapsible({
         </div>
         <CollapsiblePreview preview={preview} />
       </summary>
-      <div style={bodyStyle}>{children}</div>
+      <div data-collapsible-body style={bodyStyle}>{children}</div>
     </details>
   )
 }

@@ -157,7 +157,16 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   action that changes the number (`mergeContacts`, `dismissGroup`,
   `applyFixes`) calls `refreshSidebarCounts` to mark it stale. Folding the
   nav never hides the count: a closed category and the collapsed rail's
-  category glyph both wear their links' `navBadgeTotal`.
+  category glyph both wear their links' `navBadgeTotal`. **Batch apply**
+  keeps that no-new-merge-path rule: the surface holds **one selection**
+  over both sections (`useSelection`, keys namespaced `group:`/`fix:`),
+  `applyPlan` turns it into merges (each with its survivor from
+  `planMerge`) + fixes, one `TitledModal` reviews the plan, and `runPlan`
+  runs the merges **sequentially through `mergeContactsAction`** before the
+  fixes' single `applyFixes` transaction. A group `planMerge` can't decide
+  (its contacts disagree on name) is unselectable and merges from its own
+  review. After a batch, every group holding a folded-away contact leaves
+  the surface — one contact can appear in a name group *and* a phone group.
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),
