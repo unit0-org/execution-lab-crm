@@ -4,7 +4,7 @@ import { Link } from '@/ui/atoms/Link'
 import { DateText } from '@/ui/atoms/DateText'
 import { formatMoney } from '@/lib/purchase/controllers/formatMoney'
 import { CohortStatusSelect } from './CohortStatusSelect'
-import { CohortEditButton } from './CohortEditButton'
+import { CohortRowActions } from './CohortRowActions'
 
 export function CohortRow({ cohort, onChanged }) {
   const spots = `${cohort.filled} / ${cohort.capacity}`
@@ -21,7 +21,9 @@ export function CohortRow({ cohort, onChanged }) {
       </Td>
       <Td>{spots}</Td>
       <Td>{revenue}</Td>
-      <Td><CohortEditButton cohort={cohort} /></Td>
+      <Td>
+        <CohortRowActions cohort={cohort} onChanged={onChanged} />
+      </Td>
     </Tr>
   )
 }
