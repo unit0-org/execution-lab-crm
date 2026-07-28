@@ -1,6 +1,7 @@
 import { space } from '../tokens/space'
 import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
+import { entrance } from '../tokens/motion'
 
 export const wrapStyle = {
   position: 'relative', display: 'inline-flex', alignItems: 'center'
@@ -20,8 +21,10 @@ const placements = {
 }
 
 // Fixed panel (not absolute) so a scrolling ancestor like a table's
-// overflow wrapper can't clip it.
+// overflow wrapper can't clip it. It drops out of the trigger, which shows
+// where the menu came from.
 export const panelStyle = (align, rect, placement = 'bottom') => ({
+  ...entrance('slideDown', 'quick'),
   position: 'fixed', zIndex: 30,
   ...(placements[placement] || placements.bottom)(align, rect),
   width: 'max-content', maxWidth: 'min(320px, 90vw)',

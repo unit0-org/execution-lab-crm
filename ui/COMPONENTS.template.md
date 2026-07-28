@@ -84,6 +84,13 @@ belongs to, beside that module's `components/`; see the HOC rule in
 ## Tokens — `ui/tokens/`
 
 `color`, `labelColors`, `statusColors`, `tone`, `space`, `radius`,
-`typography`. The design system's values — import these; never hardcode a
-color/font/size/spacing/radius at a call site. Extend a token or a
-primitive instead.
+`typography`, `motion`. The design system's values — import these; never
+hardcode a color/font/size/spacing/radius/duration at a call site. Extend a
+token or a primitive instead.
+
+`motion` carries the two durations (`quick` for a state change — hover,
+press; `soft` for something arriving or leaving) and the one easing curve,
+plus `entrance(keyframe, speed)` for a primitive that animates itself in.
+Movement belongs **inside** the primitive, so every dialog, menu and section
+opens the same way — and every animation yields to
+`prefers-reduced-motion`.
