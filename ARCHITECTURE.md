@@ -520,7 +520,14 @@ merge** (and pick the FK on-delete deliberately). Current state:
 
 Plain reassign is safe only when nothing is unique per contact. Where a
 uniqueness/composite key exists (meetings, phones, category links), dedupe
-before reassigning or the update throws.
+before reassigning or the update throws — and **dedupe means destroying
+every duplicate first, then moving what is left**, not interleaving the two.
+The constraint bites mid-transaction: a loser's row moved onto a value the
+winner still holds throws even though the winner's copy is about to be
+destroyed, and the order rows come back in is not ours to choose. This is
+what `mergePhones` got wrong — two contacts sharing a phone is exactly what
+marks them duplicates, so the merge that mattered most was the one that
+failed.
 
 **Soft-delete vs. merge (force-delete).** `contact` and `meeting` are
 **paranoid** (a `deleted_at` column): a *direct* `delete_contact` /
