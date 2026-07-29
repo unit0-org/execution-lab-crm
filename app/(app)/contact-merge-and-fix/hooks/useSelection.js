@@ -8,11 +8,16 @@ import { flip } from './flip'
 export function useSelection() {
   const [keys, setKeys] = useState(() => new Set())
 
+  // Only what applied is unchecked: a run that stopped early leaves the rest
+  // selected, ready to try again.
+  const forget = (gone) =>
+    setKeys((prev) => new Set([...prev].filter((key) => !gone.has(key))))
+
   return {
     keys,
     size: keys.size,
     has: (key) => keys.has(key),
     toggle: (key) => setKeys((prev) => flip(prev, key)),
-    clear: () => setKeys(new Set())
+    forget
   }
 }

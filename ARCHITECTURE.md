@@ -167,6 +167,15 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   (its contacts disagree on name) is unselectable and merges from its own
   review. After a batch, every group holding a folded-away contact leaves
   the surface — one contact can appear in a name group *and* a phone group.
+  Each step reports its landing as it happens (`runPlan(plan, onLanded)`,
+  keyed by the same selection keys), so the review doubles as the run's
+  **progress board** — a check per line plus an "n of m" count. `runOnce`
+  collects the landed keys in a plain array rather than reading them back
+  out of React state (an async chain only ever sees the state as it was at
+  the click) and hands them to `settle`, so **only what landed leaves the
+  surface**: a step that fails (a rejected action, or one answering
+  `{ error }` — `failIfError`) stops the run, toasts why, and leaves the
+  rest listed and still checked.
 - **org** — organization + membership/roles + invites. A member's
   `organization_user` row keeps its `email` after sign-in and carries an
   editable `display_name` (their identity to teammates, e.g. mentions),

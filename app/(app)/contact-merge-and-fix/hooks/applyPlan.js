@@ -24,3 +24,10 @@ export const planSize = (plan) => plan.merges.length + plan.fixes.length
 // The contacts a plan folds away — every id that stops existing once it runs.
 export const mergedAwayIds = (plan) =>
   plan.merges.flatMap((merge) => merge.loserIds)
+
+// The part of a plan that actually landed. A run stops at a failed step, so
+// only what ran may leave the surface — the rest is still there to retry.
+export const appliedPart = (plan, landed) => ({
+  merges: plan.merges.filter((m) => landed.has(groupSelectionKey(m.group))),
+  fixes: plan.fixes.filter((fix) => landed.has(fixSelectionKey(fix)))
+})
