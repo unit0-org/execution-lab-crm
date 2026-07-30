@@ -369,14 +369,22 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   **SHA-256 hashed email** (the raw address never leaves us) and the Luma
   guest's `api_id` as `eventId`, LinkedIn's dedup key, so retried
   deliveries collapse to one conversion. Amounts follow the derive rule:
-  the conversion value is read from what that registrant **actually paid**
-  (`event_participant.amount_paid_cents`), never a price copied onto the
-  event; `conversion_value_cents` is an optional per-event override only.
+  the conversion value is **always** read from what that registrant
+  actually paid (`event_participant.amount_paid_cents`) — there is no
+  stored or overridable amount (an override column shipped in `0098` and
+  was dropped in `0100`; money lives once, on the registration).
   Needs `LINKEDIN_ACCESS_TOKEN` (no-ops without it), and the API version is
   a constant in `lib/linkedin/api/client.js` that LinkedIn sunsets
   periodically. A LinkedIn failure is logged and swallowed — the guest is
   already imported and Luma must still get its 2xx. Settings live at
-  `/events/[id]/settings`. Not contact-owned (no contact-merge fold-in).
+  `/events/[id]/settings`. The **attribution window** is the one setting we
+  deliberately do NOT store: it belongs to the LinkedIn rule (and someone
+  can change it in Campaign Manager), so it is read back per page load
+  (`readAttributionDays`) and written straight through
+  (`applyAttributionWindow`, a Rest.li `PARTIAL_UPDATE`) — default 7 days,
+  and LinkedIn only accepts 1/7/28/30/90. Unlike the webhook path, that
+  write is interactive, so its failure surfaces in the toast instead of
+  being swallowed. Not contact-owned (no contact-merge fold-in).
 - **drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
   API: invoice-PDF upload (narrow `drive.file` scope) plus list / download /
   move for the meeting-transcript import, which uses the broad `drive` scope

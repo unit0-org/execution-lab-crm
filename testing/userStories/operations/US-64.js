@@ -12,8 +12,10 @@ const userStory = {
     'guest.registered on a linked event reports one conversion, keyed ' +
       'on the SHA-256 hashed email — never the raw address.',
     'An event with no linked rule reports nothing.',
-    'A conversion is worth what that registrant actually paid.',
-    'A value set on the settings page overrides that; clearing reverts.',
+    'A conversion is worth what that registrant actually paid — always ' +
+      'derived, never a stored or overridable amount.',
+    'The settings page sets the attribution window, defaulting to 7 days.',
+    'That window is read from and written to LinkedIn, never stored here.',
     'guest.updated and ticket.registered never report, so approval and ' +
       'check-in cannot double-count one person.',
     'A retried delivery reuses the dedup id, so LinkedIn counts one.',
