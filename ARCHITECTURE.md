@@ -384,7 +384,14 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   (`applyAttributionWindow`, a Rest.li `PARTIAL_UPDATE`) — default 7 days,
   and LinkedIn only accepts 1/7/28/30/90. Unlike the webhook path, that
   write is interactive, so its failure surfaces in the toast instead of
-  being swallowed. Not contact-owned (no contact-merge fold-in).
+  being swallowed. On an **approval-gated** Luma event the conversion is
+  reported when the spot is *requested* (Luma sends `guest.registered`
+  with `pending_approval`, which `apiGuestTimestamps` maps to
+  `invited_at`, NOT `registered_at`) — asking for the spot is the action
+  the ad produced, and a later decline is accepted as a small over-count.
+  Both outcomes of the report are logged: every other path is a silent
+  no-op, so without a success line "reported" and "never ran" look
+  identical afterwards. Not contact-owned (no contact-merge fold-in).
 - **drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
   API: invoice-PDF upload (narrow `drive.file` scope) plus list / download /
   move for the meeting-transcript import, which uses the broad `drive` scope

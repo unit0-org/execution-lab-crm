@@ -12,14 +12,15 @@ const userStory = {
     'guest.registered on a linked event reports one conversion, keyed ' +
       'on the SHA-256 hashed email — never the raw address.',
     'An event with no linked rule reports nothing.',
-    'A conversion is worth what that registrant actually paid — always ' +
-      'derived, never a stored or overridable amount.',
+    'A conversion is worth what that registrant paid — always derived.',
     'The event page shows whether it reports to LinkedIn, and its window.',
     'The settings page sets the attribution window, defaulting to 7 days.',
     'That window is read from and written to LinkedIn, never stored here.',
     'guest.updated and ticket.registered never report, so approval and ' +
       'check-in cannot double-count one person.',
+    'An approval-gated event reports on request, not on approval.',
     'A retried delivery reuses the dedup id, so LinkedIn counts one.',
+    'A reported conversion is logged, so success is checkable later.',
     'The conversion is stamped when they registered, not when we ran.',
     'A LinkedIn failure is logged and swallowed; Luma still gets 2xx.',
     'Without an access token the report is skipped silently.'
