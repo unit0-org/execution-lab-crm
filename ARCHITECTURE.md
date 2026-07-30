@@ -351,12 +351,32 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   duplicate — so a historical CSV import and its live Luma event converge to
   one `own_event` row. The single webhook
   fires for **all** actions: `dispatchLumaEvent` handles guest actions
-  (`handleGuestWebhook`) and `event.created`/`event.updated`
+  (`handleGuestWebhook`) — with **`guest.registered` routed one level
+  earlier** to `handleGuestRegistered`, which imports the guest and then
+  reports it to LinkedIn (see **linkedin** below); `guest.updated` and
+  `ticket.registered` deliberately do NOT report, since they fire again
+  for the same person on approval/check-in — and `event.created`/`event.updated`
   (`handleEventWebhook` keeps the `OwnEvent` title/date/url in sync), and
   `calendar.person.subscribed` (`handleCalendarSubscribe` captures the
   subscriber as a contact/lead); everything else is ignored.
   `event.canceled` is not yet handled (the `event` table has no cancel
   state — a future change).
+- **linkedin** — server-side ad conversion reporting. `event_linkedin_conversion`
+  links one `own_event` to one LinkedIn conversion rule URN; **the row's
+  existence is the opt-in** — an event with no row never reports. A
+  `guest.registered` webhook (above) calls `reportEventRegistration`, which
+  POSTs to `api.linkedin.com/rest/conversionEvents` with the registrant's
+  **SHA-256 hashed email** (the raw address never leaves us) and the Luma
+  guest's `api_id` as `eventId`, LinkedIn's dedup key, so retried
+  deliveries collapse to one conversion. Amounts follow the derive rule:
+  the conversion value is read from what that registrant **actually paid**
+  (`event_participant.amount_paid_cents`), never a price copied onto the
+  event; `conversion_value_cents` is an optional per-event override only.
+  Needs `LINKEDIN_ACCESS_TOKEN` (no-ops without it), and the API version is
+  a constant in `lib/linkedin/api/client.js` that LinkedIn sunsets
+  periodically. A LinkedIn failure is logged and swallowed — the guest is
+  already imported and Luma must still get its 2xx. Settings live at
+  `/events/[id]/settings`. Not contact-owned (no contact-merge fold-in).
 - **drive** — CSV/event imports. `lib/drive/` wraps the Drive REST
   API: invoice-PDF upload (narrow `drive.file` scope) plus list / download /
   move for the meeting-transcript import, which uses the broad `drive` scope
