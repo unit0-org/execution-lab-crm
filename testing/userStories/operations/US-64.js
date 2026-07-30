@@ -14,6 +14,7 @@ const userStory = {
     'An event with no linked rule reports nothing.',
     'A conversion is worth what that registrant actually paid — always ' +
       'derived, never a stored or overridable amount.',
+    'The event page shows whether it reports to LinkedIn, and its window.',
     'The settings page sets the attribution window, defaulting to 7 days.',
     'That window is read from and written to LinkedIn, never stored here.',
     'guest.updated and ticket.registered never report, so approval and ' +
