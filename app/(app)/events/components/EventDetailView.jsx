@@ -5,7 +5,7 @@ import { useAttendees } from '../hooks/useAttendees'
 import { EventDetail } from './EventDetail'
 import { EventNotFound } from './EventNotFound'
 
-export function EventDetailView({ initialEvent, attendees }) {
+export function EventDetailView({ initialEvent, attendees, settings }) {
   const seed = initialEvent
   const { event, refresh } = useEvent(seed?.id, seed)
   const list = useAttendees(seed?.id, attendees)
@@ -15,6 +15,6 @@ export function EventDetailView({ initialEvent, attendees }) {
 
   return (
     <EventDetail event={event} attendees={list.attendees}
-      onChanged={onChanged} />
+      settings={settings} onChanged={onChanged} />
   )
 }
