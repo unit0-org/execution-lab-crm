@@ -1,6 +1,6 @@
 import { getEventAction } from '../../actions/getEvent'
-import { getEventConversionAction }
-  from '../../actions/getEventConversion'
+import { getConversionSettingsAction }
+  from '../../actions/getConversionSettings'
 import { EventSettingsView } from '../../components/EventSettingsView'
 import { EventNotFound } from '../../components/EventNotFound'
 
@@ -12,7 +12,7 @@ export async function EventSettingsServer({ params }) {
 
   if (!event) return <EventNotFound />
 
-  const conversion = await getEventConversionAction(id)
+  const settings = await getConversionSettingsAction(id)
 
-  return <EventSettingsView event={event} initialConversion={conversion} />
+  return <EventSettingsView event={event} initialSettings={settings} />
 }

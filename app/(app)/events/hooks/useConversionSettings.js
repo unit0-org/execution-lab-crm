@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { getEventConversionAction } from '../actions/getEventConversion'
+import { getConversionSettingsAction }
+  from '../actions/getConversionSettings'
 
 // Seeded with the server-loaded settings; only refetches on refresh.
-export function useEventConversion(eventId, initial) {
-  const [conversion, setConversion] = useState(initial)
+export function useConversionSettings(eventId, initial) {
+  const [settings, setSettings] = useState(initial)
   const [n, setN] = useState(0)
   const hydrated = useRef(false)
 
@@ -16,8 +17,8 @@ export function useEventConversion(eventId, initial) {
       return
     }
 
-    getEventConversionAction(eventId).then(setConversion)
+    getConversionSettingsAction(eventId).then(setSettings)
   }, [eventId, n])
 
-  return { conversion, refresh: () => setN((x) => x + 1) }
+  return { settings, refresh: () => setN((x) => x + 1) }
 }
