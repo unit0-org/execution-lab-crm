@@ -1,20 +1,25 @@
 import { Stack } from '@/ui/layout/Stack'
-import { digestAction } from './actions/digest'
-import { getDigestSettingAction } from './actions/getDigestSetting'
-import { DashboardHeader } from './components/DashboardHeader'
-import { DigestBoard } from './components/DigestBoard'
+import { getEventFunnelAction } from './actions/getEventFunnel'
+import { listFunnelTypesAction } from './actions/listFunnelTypes'
+import { FunnelHeader } from './components/FunnelHeader'
+import { FunnelKpis } from './components/FunnelKpis'
+import { FunnelPanel } from './components/FunnelPanel'
+import { BestEventsCard } from './components/BestEventsCard'
 
-export async function DashboardServer() {
-  const [board, setting] = await Promise.all([
-    digestAction(),
-    getDigestSettingAction()
+// The dashboard: how the events we host turn strangers into clients.
+export async function DashboardServer({ searchParams }) {
+  const { period, type } = await searchParams
+  const filter = { period: period || null, type: type || null }
+  const [funnel, types] = await Promise.all([
+    getEventFunnelAction(filter), listFunnelTypesAction()
   ])
-  const digestSetting = setting || {}
 
   return (
     <Stack gap="lg">
-      <DashboardHeader setting={digestSetting} />
-      <DigestBoard digest={board} />
+      <FunnelHeader filter={filter} types={types} />
+      <FunnelKpis funnel={funnel} />
+      <FunnelPanel funnel={funnel} />
+      <BestEventsCard events={funnel.best} />
     </Stack>
   )
 }
