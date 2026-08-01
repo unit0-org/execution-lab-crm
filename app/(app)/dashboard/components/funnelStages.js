@@ -7,7 +7,7 @@ export function funnelStages({ stages, participants }) {
       label: '1 · Attended',
       value: stages.attended,
       tone: 'cold',
-      caption: `unique people · ${participants} check-ins`
+      caption: `unique participants · ${participants} check-ins`
     },
     {
       label: '2 · Nurturing',

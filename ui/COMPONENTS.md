@@ -100,7 +100,7 @@ submit; returns `{ value }` untouched for a controlled one.
 
 | Component | Props | Use for |
 |---|---|---|
-| `CardGrid` | `children`, `align='stretch'` | Responsive grid of cards: columns auto-fill to a minimum width, so a short last row keeps card width instead of stretching. Pass `align="start"` when cards differ in height (default stretches them to equal heights). |
+| `CardGrid` | `children`, `align='stretch'`, `min=240` | Responsive grid of cards: columns auto-fill to a minimum width, so a short last row keeps card width instead of stretching. Pass `align="start"` when cards differ in height (default stretches them to equal heights), and a smaller `min` for a row of compact tiles (e.g. stats) that should stay on one line rather than wrap. |
 | `Columns` | `children` | Multi-column layout: equal-width columns that wrap to a single column on narrow screens. |
 | `Connector` | `show` | Timeline connector: a dotted segment from one dot down to the next. |
 | `EndRow` | `children` | Row aligned to the end (right). |
@@ -142,7 +142,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `Field` | `label`, `required`, `hint`, `error`, `children` | Portal form field: mono label row (+ `*`/hint) over a control, with an error slot beneath. |
 | `FieldArea` | `label`, `hint`, `required`, `...rest` | Portal labelled textarea (`Field` + `FieldTextArea`). |
 | `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (`Field` + `FieldInput`). |
-| `FilterBar` | `options`, `active`, `basePath`, `param`, `keep` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. Pass `keep` — the page's other query params — when a page carries more than one bar, so picking a chip here preserves the other bar's selection. |
+| `FilterBar` | `...props` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. Pass `keep` — the page's other query params — when a page carries more than one bar, so picking a chip here preserves the other bar's selection. Pass `reset={false}` when the options already include an explicit "everything" choice, i.e. when no param means a default rather than all. |
 | `FilterChip` | `href`, `label`, `active` | One URL-driven filter chip: a pill link, highlighted when active. |
 | `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, its first editable field autofocuses on mount, and typed values survive a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate). |
 | `FormActions` | `label='Save'`, `tone='primary'`, `size='sm'` | The one form/dialog action row: a primary button — a submit by default, or an `onConfirm` click action — with an optional Cancel, aligned to the RIGHT so every form and modal places its buttons the same way. `busy` spins the primary while the action runs, `disabled` holds it until there is something to submit, and `extra` slots one more control beside it (e.g. "send all"). |
