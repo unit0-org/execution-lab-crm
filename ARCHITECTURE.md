@@ -138,8 +138,14 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   Fix" surface (`/contact-merge-and-fix`). `findDuplicateGroups` surfaces
   likely-duplicate contacts at **read time** (no stored suggestion table):
   contacts that share a normalized full name (`nameKey`) or a normalized
-  phone (`normalizePhone`, digits-only) are grouped, tagged with the match
-  reason, and shaped like the contacts list. It owns **no merge path** — a
+  phone (`normalizePhone`, digits-only) are grouped and shaped like the
+  contacts list. Detection runs **one rule at a time**, so the same people
+  come back once per rule that matched; `combineGroupReasons` folds those
+  by their canonically ordered contact ids into **one group per set of
+  contacts carrying every reason** (`reasons: ['name', 'phone']`, several
+  badges on the card). Without it a pair matching on both was listed twice
+  and merging one card left the other pointing at a deleted contact. It
+  owns **no merge path** — a
   chosen group is folded through the existing contact-merge
   (`mergeContacts`) via the shared `MergeModal`/`MergeReview`, so the
   no-auto-merge + always-confirm invariant holds. Read-only MCP twin:
@@ -345,7 +351,13 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   be one — see `settingsTabs.js`). Not contact-owned (no merge fold-in).
 - **luma** — Luma event guests flow into `event`/`event_participant` (NOT
   `registration`/`cohort` — separate subsystems). Three intake paths share
-  one seam (`importMappedGuest`: upsert contact → participation → answers):
+  one seam (`importMappedGuest`: upsert contact → participation → answers).
+  **That seam refuses invite-only guests** (`isInviteOnly`): a Luma invite
+  says what we did, not what they did, and mass invites once made up 85% of
+  `event_participant` (2,883 of 3,459 rows, mostly nameless) before being
+  deleted. The same predicate defines what intake rejects and what that
+  cleanup removed. Anyone who registered, waitlisted, declined or checked in
+  is never invite-only, whatever else is on the row. The paths are:
   the manual **CSV import** (`mapLumaGuest`), a **live webhook**
   (`/api/luma/webhook` → `resolveWebhookEvent` verifies the
   `Webhook-Signature` HMAC against `LUMA_WEBHOOK_SECRET`, then
