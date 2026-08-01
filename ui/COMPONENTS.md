@@ -142,11 +142,12 @@ submit; returns `{ value }` untouched for a controlled one.
 | `Field` | `label`, `required`, `hint`, `error`, `children` | Portal form field: mono label row (+ `*`/hint) over a control, with an error slot beneath. |
 | `FieldArea` | `label`, `hint`, `required`, `...rest` | Portal labelled textarea (`Field` + `FieldTextArea`). |
 | `FieldText` | `label`, `hint`, `required`, `...rest` | Portal labelled text input (`Field` + `FieldInput`). |
-| `FilterBar` | `options`, `active`, `basePath`, `param` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. |
+| `FilterBar` | `options`, `active`, `basePath`, `param`, `keep` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. Pass `keep` — the page's other query params — when a page carries more than one bar, so picking a chip here preserves the other bar's selection. |
 | `FilterChip` | `href`, `label`, `active` | One URL-driven filter chip: a pill link, highlighted when active. |
 | `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, its first editable field autofocuses on mount, and typed values survive a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate). |
 | `FormActions` | `label='Save'`, `tone='primary'`, `size='sm'` | The one form/dialog action row: a primary button — a submit by default, or an `onConfirm` click action — with an optional Cancel, aligned to the RIGHT so every form and modal places its buttons the same way. `busy` spins the primary while the action runs, `disabled` holds it until there is something to submit, and `extra` slots one more control beside it (e.g. "send all"). |
 | `FormError` | `message` | Form-level error message; renders nothing when there is none. |
+| `FunnelFlow` | `stages`, `steps` | Conversion funnel: tinted stages left to right, each pair joined by an arrow carrying the share that made it from one stage to the next. Stacks on narrow screens. `stages` = `[{ label, value, caption, tone }]`; `steps` = the percentage between each pair, so one fewer than `stages`. |
 | `IconUpload` | `label`, `title`, `onPick` | File upload trigger: a hidden CSV input behind an upload glyph. |
 | `InlineForm` | `action`, `method`, `children` | Inline (e.g. GET) form — no block layout, sits with its siblings. |
 | `Insight` | `label`, `value` | Insight tile: system-derived, styled apart from manual nuggets. |

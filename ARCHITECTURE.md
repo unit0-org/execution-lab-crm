@@ -299,8 +299,21 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   registration with `amount_total` 0) is a *customer*; everyone else is a
   *lead* (`toSignal` → `isCustomer`). Customers are excluded from lead
   views (`excludedLeadIds`). Powers hot leads/segments for the MCP
-  `dashboard_summary` tool; the `/dashboard` **page** now renders the
-  weekly-**digest** payload (`buildDigest`), not a separate summary.
+  `dashboard_summary` tool. The `/dashboard` **page** renders the **events
+  funnel** (`eventFunnel`) — KPI counts, a three-stage funnel and the
+  events ranked by conversion, all scoped by a period + event-type filter
+  read from the URL. **Funnel rules:** a *hosted* event is dated on or
+  before now (an upcoming event never counts, so it can't drag a rate
+  down); *attended* counts distinct contacts with a check-in (a check-in
+  with no contact can't be scored, so it's left out of the rates but still
+  counted in the headline check-in total); *nurturing* is any touch — a
+  note, meeting, email, purchase or a further event check-in — dated
+  **strictly after** that contact's first check-in, so the check-in that
+  put them in the funnel is never its own follow-up; *clients* is the
+  customer rule above, first reached strictly after that check-in.
+  **`purchaseActivity` deliberately does not use `Purchase.scope('earned')`**
+  — a refunded purchase is not money but it is contact, so it counts as
+  nurturing while never counting as revenue or making anyone a customer.
 - **google** — OAuth accounts, contact/calendar sync, and a review queue
   for sync conflicts (`sync_conflict`, `contact_google_link`).
 - **email** — templated transactional email (Resend) + editable templates.
@@ -309,9 +322,9 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   `withAlwaysCc`, deduped against the recipient and any existing CC, so
   every outgoing email CCs that address.
 - **digest** — the weekly staff insights payload (`lib/digest/`). `buildDigest`
-  is the single generator, feeding two display functions off one payload:
-  the email (`renderDigestHtml`) and the **dashboard** (`/dashboard` →
-  `DigestBoard`). It gathers hot leads (top leads by heat, reusing the
+  is the single generator, feeding the email (`renderDigestHtml`). It used
+  to feed the dashboard too, until `/dashboard` became the events funnel;
+  the digest is now **email-only**. It gathers hot leads (top leads by heat, reusing the
   dashboard `mergeSignals`/`hotLeads`) plus four last-7-day sections —
   follow-ups (contacts never contacted or idle ≥ `STALE_DAYS` (60),
   never-contacted first then longest-stale, capped at `MAX_FOLLOW_UPS` (15)
@@ -325,9 +338,11 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   `sendWeeklyDigest` emails every staff member (`listMembers`) via `sendEmail`
   and stamps `digest_setting.last_sent_at`; `sendWeeklyDigestIfDue` (the
   cron entry) gates it to Mondays and once per week. `digest_setting`
-  (one row per org: `send_hour`, `last_sent_at`) is edited from the
-  **dashboard** gear (`/dashboard` → `DigestSettings` modal), which also has
-  a "Send it now" button. Not contact-owned (no contact-merge fold-in).
+  (one row per org: `send_hour`, `last_sent_at`) **has no UI** — it was
+  edited from a gear on the old dashboard, removed when `/dashboard`
+  became the events funnel. The Monday cron still sends; the row is only
+  changeable in the database until a settings tab is put back (it used to
+  be one — see `settingsTabs.js`). Not contact-owned (no merge fold-in).
 - **luma** — Luma event guests flow into `event`/`event_participant` (NOT
   `registration`/`cohort` — separate subsystems). Three intake paths share
   one seam (`importMappedGuest`: upsert contact → participation → answers):
