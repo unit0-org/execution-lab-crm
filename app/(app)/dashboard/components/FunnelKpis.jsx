@@ -9,7 +9,7 @@ import { eventsHref } from './eventsHref'
 // carrying the same filter, so its count matches the rows you land on.
 export function FunnelKpis({ funnel, filter }) {
   return (
-    <CardGrid min={150}>
+    <CardGrid min={150} fit>
       <Stat label="Events" value={funnel.events}
         href={eventsHref(filter)} />
       <Stat label="Participants" value={funnel.participants} />
