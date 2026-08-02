@@ -19,7 +19,7 @@ export async function DashboardServer({ searchParams }) {
     <Stack gap="lg">
       <FunnelHeader filter={filter} types={types} />
       <FunnelKpis funnel={funnel} filter={filter} />
-      <FunnelPanel funnel={funnel} />
+      <FunnelPanel funnel={funnel} filter={filter} />
       <BestEventsCard events={funnel.best} />
     </Stack>
   )

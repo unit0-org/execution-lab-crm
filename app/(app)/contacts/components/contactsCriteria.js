@@ -1,12 +1,17 @@
 const splitValues = (raw) => (raw ? raw.split(',').filter(Boolean) : [])
 
-// The contacts list criteria carried by the URL: the lead filter chip
-// plus the event-participation filter (?statuses=…&events=…).
+// The contacts list criteria carried by the URL: the lead filter chip,
+// the event-participation filter (?statuses=…&events=…), and a dashboard
+// drill-in (?stage=…&period=…&type=…) which names a funnel stage and the
+// events it was measured over rather than listing ids.
 export function toContactsCriteria(params = {}) {
   return {
     filter: params.filter || null,
     statuses: splitValues(params.statuses),
-    events: splitValues(params.events)
+    events: splitValues(params.events),
+    stage: params.stage || null,
+    period: params.period || null,
+    type: params.type || null
   }
 }
 
@@ -14,7 +19,10 @@ export function toContactsCriteria(params = {}) {
 export function criteriaParams(criteria) {
   return {
     statuses: criteria.statuses.join(','),
-    events: criteria.events.join(',')
+    events: criteria.events.join(','),
+    stage: criteria.stage || '',
+    period: criteria.period || '',
+    type: criteria.type || ''
   }
 }
 

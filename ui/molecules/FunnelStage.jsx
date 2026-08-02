@@ -1,25 +1,23 @@
-import { Card } from '../atoms/Card'
-import { statLabel, statValue } from './Stat.styles'
-import { stageStyle, stageCaption } from './FunnelFlow.styles'
+import NextLink from 'next/link'
+import { FunnelStageBody } from './FunnelStageBody'
+import { stageStyle } from './FunnelFlow.styles'
+import { statLinkStyle } from './Stat.styles'
 
-function Caption({ children }) {
-  if (!children) return null
+// A flex wrapper owning only the sizing, around the stage surface. With
+// an `href` the whole stage becomes one link into the people it counts,
+// lifting on hover the same way a linked Stat does.
+export function FunnelStage({ label, value, caption, tone, href }) {
+  const body =
+    <FunnelStageBody label={label} value={value} caption={caption}
+      tone={tone} />
 
-  return <div style={stageCaption}>{children}</div>
-}
+  if (!href) return <div style={stageStyle}>{body}</div>
 
-// A stage is a Card — same border, tone stripe, padding and hover — inside
-// a flex wrapper that owns only the sizing. Shares Stat's label and value
-// treatment on purpose: a stage and a KPI tile are the same kind of number
-// and must read identically.
-export function FunnelStage({ label, value, caption, tone }) {
   return (
     <div style={stageStyle}>
-      <Card tone={tone}>
-        <div style={statLabel}>{label}</div>
-        <div style={statValue(tone)}>{value}</div>
-        <Caption>{caption}</Caption>
-      </Card>
+      <NextLink href={href} style={statLinkStyle} data-card-lift>
+        {body}
+      </NextLink>
     </div>
   )
 }
