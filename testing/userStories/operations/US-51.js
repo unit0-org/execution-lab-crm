@@ -11,7 +11,9 @@ const userStory = {
   behaviours: [
     'Every import and sync is keyed on a stable identifier so re-running ' +
       'finds-or-updates rather than creating anew.',
-    'Replaying a payment or charge notification produces no second record.'
+    'Replaying a payment or charge notification produces no second record.',
+    'A record with no stable identifier at all is refused rather than ' +
+      'created, so it cannot return as a fresh copy on every run.'
   ]
 };
 

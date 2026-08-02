@@ -8,7 +8,7 @@ const userStory = {
     'contacts and offer safe formatting fixes, so I can clean up my ' +
     'contacts in one place instead of hunting manually.',
   behaviours: [
-    'The surface lists duplicate groups, labelled by match reason.',
+    'One card per set of contacts, carrying every reason that matched.',
     'Merging a group opens the review modal and folds it into one.',
     'A dismissed pair goes for good, and never deletes a contact.',
     'A group is suppressed once dismissals leave it under two contacts.',

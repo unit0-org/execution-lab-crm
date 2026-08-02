@@ -11,6 +11,7 @@ import US10 from './US-10.js';
 import US11 from './US-11.js';
 import US12 from './US-12.js';
 import US59 from './US-59.js';
+import US66 from './US-66.js';
 
 export const domain = {
   id: 'contacts',
@@ -18,5 +19,6 @@ export const domain = {
 };
 
 export const stories = [
-  US1, US2, US3, US4, US5, US6, US7, US8, US9, US10, US11, US12, US59
+  US1, US2, US3, US4, US5, US6, US7, US8, US9, US10, US11, US12,
+  US59, US66
 ];
