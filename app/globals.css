@@ -209,7 +209,12 @@ a[data-tone]:active { transform: translateY(0.5px) scale(0.98); filter: brightne
 /* Shared surface hover: cards, note rows and any opted-in Stack tint to the
    subtle surface. !important beats the primitives' inline base background. */
 [data-hover-bg] { transition: background var(--motion-quick) var(--motion-ease); }
-[data-hover-bg]:hover { background: var(--color-bg-subtle) !important; }
+/* Only the innermost hoverable surface tints. A card whose body is other
+   cards is a container, not a target — tinting it would light up the whole
+   panel when you point at one card inside it. */
+[data-hover-bg]:not(:has([data-hover-bg])):hover {
+  background: var(--color-bg-subtle) !important;
+}
 
 @media (hover: hover) {
   [data-hover-host] [data-hover-reveal] { opacity: 0; transition: opacity 120ms ease; }

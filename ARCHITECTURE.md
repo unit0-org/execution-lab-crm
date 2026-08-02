@@ -138,8 +138,14 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   Fix" surface (`/contact-merge-and-fix`). `findDuplicateGroups` surfaces
   likely-duplicate contacts at **read time** (no stored suggestion table):
   contacts that share a normalized full name (`nameKey`) or a normalized
-  phone (`normalizePhone`, digits-only) are grouped, tagged with the match
-  reason, and shaped like the contacts list. It owns **no merge path** — a
+  phone (`normalizePhone`, digits-only) are grouped and shaped like the
+  contacts list. Detection runs **one rule at a time**, so the same people
+  come back once per rule that matched; `combineGroupReasons` folds those
+  by their canonically ordered contact ids into **one group per set of
+  contacts carrying every reason** (`reasons: ['name', 'phone']`, several
+  badges on the card). Without it a pair matching on both was listed twice
+  and merging one card left the other pointing at a deleted contact. It
+  owns **no merge path** — a
   chosen group is folded through the existing contact-merge
   (`mergeContacts`) via the shared `MergeModal`/`MergeReview`, so the
   no-auto-merge + always-confirm invariant holds. Read-only MCP twin:
@@ -188,7 +194,14 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   the question is shared) or deleted via the contact `updateNugget` /
   `removeNugget` actions, which route to `event` by the nugget's
   `origin`. A Luma re-import can overwrite such an edit or recreate a
-  deleted answer, since `ParticipantAnswer.record` upserts.
+  deleted answer, since `ParticipantAnswer.record` upserts. A
+  participant's attendance status is a **derived** read of the
+  `event_participant` timestamp columns, never a stored status column:
+  `statusStates` maps timestamp → label, and `participationStatuses`
+  narrows that to the statuses the contacts list can filter by (all but
+  "Invited", which is on its way out). The contacts list reaches into
+  `event` through `participantContactIds` for that filter — the one
+  cross-module read from `contact` into `event`.
 - **meeting** — meetings synced from Google Calendar or entered by hand,
   with participants (`meeting_participant`), notes, attachments,
   transcripts (`meeting_transcript`), and merge suggestions. A meeting may
@@ -311,6 +324,12 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   **strictly after** that contact's first check-in, so the check-in that
   put them in the funnel is never its own follow-up; *clients* is the
   customer rule above, first reached strictly after that check-in.
+  **The Events KPI tile drills through:** it links to `/events` carrying
+  the dashboard's period + type (`eventsHref`), and `listEvents` applies
+  the same `hostedEventScope` + `eventTypeWhere` the funnel uses, so the
+  tile's count and the rows it lands on agree. With **no** `period` param
+  `/events` applies no date filter at all — that's how the list keeps
+  showing upcoming events by default.
   **`purchaseActivity` deliberately does not use `Purchase.scope('earned')`**
   — a refunded purchase is not money but it is contact, so it counts as
   nurturing while never counting as revenue or making anyone a customer.
@@ -345,7 +364,13 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   be one — see `settingsTabs.js`). Not contact-owned (no merge fold-in).
 - **luma** — Luma event guests flow into `event`/`event_participant` (NOT
   `registration`/`cohort` — separate subsystems). Three intake paths share
-  one seam (`importMappedGuest`: upsert contact → participation → answers):
+  one seam (`importMappedGuest`: upsert contact → participation → answers).
+  **That seam refuses invite-only guests** (`isInviteOnly`): a Luma invite
+  says what we did, not what they did, and mass invites once made up 85% of
+  `event_participant` (2,883 of 3,459 rows, mostly nameless) before being
+  deleted. The same predicate defines what intake rejects and what that
+  cleanup removed. Anyone who registered, waitlisted, declined or checked in
+  is never invite-only, whatever else is on the row. The paths are:
   the manual **CSV import** (`mapLumaGuest`), a **live webhook**
   (`/api/luma/webhook` → `resolveWebhookEvent` verifies the
   `Webhook-Signature` HMAC against `LUMA_WEBHOOK_SECRET`, then

@@ -6,13 +6,13 @@ import { EventsServer } from './EventsServer'
 
 export const dynamic = 'force-dynamic'
 
-export default function EventsPage() {
+export default function EventsPage({ searchParams }) {
   return (
     <Page width="wide">
       <Stack gap="md">
         <Heading>Events</Heading>
         <Link href="/events/import">Import CSV</Link>
-        <EventsServer />
+        <EventsServer searchParams={searchParams} />
       </Stack>
     </Page>
   )

@@ -1,8 +1,8 @@
 import { space } from '../tokens/space'
 
-export const cardGridStyle = (align) => ({
+export const cardGridStyle = (align, min) => ({
   display: 'grid',
   gap: space[4],
-  gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+  gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))`,
   alignItems: align
 })
