@@ -22,11 +22,7 @@ export const tones = {
   // a border token it painted the label at 12% opacity, which read as a
   // disabled button ("Not duplicates" looked dead). Border stays subtle,
   // the label stays legible.
-  quiet: {
-    background: 'transparent',
-    color: color.text.secondary,
-    border: border(color.border.default)
-  },
+  quiet: { ...outline(color.border.default), color: color.text.secondary },
   primaryOutline: outline(color.accent.solid),
   launchOutline: outline(color.warmth.cool),
   waveOutline: outline(color.warmth.wave),
