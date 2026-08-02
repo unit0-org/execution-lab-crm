@@ -20,7 +20,10 @@ const userStory = {
     'A name we did not have is filled in by a later sync; a name already ' +
       'on file is never overwritten.',
     'The events list filters by period and by type.',
-    'I can select many events and delete them together after one confirm.'
+    'I can select many events and delete them together after one confirm.',
+    'One list shows participations across every event, filtered by status ' +
+      'and event, where I can select and remove many at once — that ' +
+      'removes their place on the event, never the contact.'
   ]
 };
 
