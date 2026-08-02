@@ -14,7 +14,7 @@ export function DuplicateGroupCard({ group, selection, onResolved }) {
   return (
     <Card>
       <Stack gap="sm">
-        <GroupHeader reason={group.reason} selected={card.selected}
+        <GroupHeader reasons={group.reasons} selected={card.selected}
           mergeable={card.mergeable} onSelect={card.select}
           onMerge={card.merge.start} onDismiss={card.dismiss.run}
           dismissing={card.dismiss.busy} />

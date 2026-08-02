@@ -194,7 +194,14 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   the question is shared) or deleted via the contact `updateNugget` /
   `removeNugget` actions, which route to `event` by the nugget's
   `origin`. A Luma re-import can overwrite such an edit or recreate a
-  deleted answer, since `ParticipantAnswer.record` upserts.
+  deleted answer, since `ParticipantAnswer.record` upserts. A
+  participant's attendance status is a **derived** read of the
+  `event_participant` timestamp columns, never a stored status column:
+  `statusStates` maps timestamp → label, and `participationStatuses`
+  narrows that to the statuses the contacts list can filter by (all but
+  "Invited", which is on its way out). The contacts list reaches into
+  `event` through `participantContactIds` for that filter — the one
+  cross-module read from `contact` into `event`.
 - **meeting** — meetings synced from Google Calendar or entered by hand,
   with participants (`meeting_participant`), notes, attachments,
   transcripts (`meeting_transcript`), and merge suggestions. A meeting may
@@ -317,6 +324,12 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   **strictly after** that contact's first check-in, so the check-in that
   put them in the funnel is never its own follow-up; *clients* is the
   customer rule above, first reached strictly after that check-in.
+  **The Events KPI tile drills through:** it links to `/events` carrying
+  the dashboard's period + type (`eventsHref`), and `listEvents` applies
+  the same `hostedEventScope` + `eventTypeWhere` the funnel uses, so the
+  tile's count and the rows it lands on agree. With **no** `period` param
+  `/events` applies no date filter at all — that's how the list keeps
+  showing upcoming events by default.
   **`purchaseActivity` deliberately does not use `Purchase.scope('earned')`**
   — a refunded purchase is not money but it is contact, so it counts as
   nurturing while never counting as revenue or making anyone a customer.

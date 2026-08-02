@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { listEventsAction } from '../actions/listEvents'
 
-export function useEvents(initialEvents) {
+// The events list, reloaded on demand with the filter the page is on, so
+// a row change never silently drops the list back to every event.
+export function useEvents(initialEvents, filter) {
   const [events, setEvents] = useState(initialEvents)
   const [tick, setTick] = useState(0)
   const hydrated = useRef(false)
@@ -15,8 +17,8 @@ export function useEvents(initialEvents) {
       return
     }
 
-    listEventsAction().then(setEvents)
-  }, [tick])
+    listEventsAction(filter).then(setEvents)
+  }, [tick, filter])
 
   return { events, loading: false, reload: () => setTick((n) => n + 1) }
 }
