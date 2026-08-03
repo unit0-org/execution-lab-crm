@@ -8,7 +8,8 @@ import { RegisterClosed } from '../../../components/RegisterClosed'
 import { RegisterFull } from '../../../components/RegisterFull'
 import { RegisterView } from '../../../components/RegisterView'
 
-// Load one open cohort; a valid invite skips the full check + prefills, a
+// Load one open cohort; a claim — a waitlist invite or a seat reserved for
+// them — skips the closed and full checks and prefills the form, and a
 // valid ?code= coupon reflects in the price and prefills the promo field.
 export async function RegisterServer({ params, searchParams }) {
   const { cohortId } = await params
@@ -16,15 +17,17 @@ export async function RegisterServer({ params, searchParams }) {
 
   if (!cohort) return <RegisterClosed />
 
-  const { invite, coupon } = await registerEntry(cohort.id, searchParams)
+  const entry = await registerEntry(cohort.id, searchParams)
   const phase = registrationPhase(cohort, todayIso())
   const open = phase === 'register' || phase === 'waitlist'
+  const claim = entry.invite || entry.reservation
 
-  if (!invite && !open) return <RegisterClosed />
+  if (!claim && !open) return <RegisterClosed />
 
-  if (!invite && await cohortIsFull(cohort)) return <RegisterFull />
+  if (!claim && await cohortIsFull(cohort)) return <RegisterFull />
 
-  const card = await cohortCard(cohort, coupon)
+  const card = await cohortCard(cohort, entry.coupon)
 
-  return <RegisterView card={card} invite={invite} coupon={coupon} />
+  return <RegisterView card={card} invite={entry.invite}
+    reservation={entry.reservation} coupon={entry.coupon} />
 }

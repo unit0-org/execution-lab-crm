@@ -1,4 +1,4 @@
-import { splitName } from './splitName'
+import { splitName } from '@/lib/contact/controllers/splitName'
 import { wantsPaymentPlan } from './wantsPaymentPlan'
 
 const REQUIRED = [

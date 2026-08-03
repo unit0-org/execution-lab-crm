@@ -7,20 +7,22 @@ import { MenuTrigger } from './MenuTrigger'
 import { MarkPaidMenuItem } from './MarkPaidMenuItem'
 import { CopyPayLinkMenuItem } from './CopyPayLinkMenuItem'
 import { NudgeMenuItem } from './NudgeMenuItem'
+import { ReservationMenuItems } from './ReservationMenuItems'
 
 // A three-dots menu of operations for one pending registrant.
-export function RegistrationMenu({ registrationId, cohortId }) {
+export function RegistrationMenu({ registration }) {
   const pop = useToggle()
   const trigger = <MenuTrigger onClick={pop.toggle} />
+  const id = registration.id
 
   return (
     <Popover open={pop.open} onClose={pop.hide} trigger={trigger} align="end">
       <Stack gap="sm">
-        <MarkPaidMenuItem registrationId={registrationId} cohortId={cohortId}
-          onDone={pop.hide} />
-        <CopyPayLinkMenuItem registrationId={registrationId}
-          onDone={pop.hide} />
-        <NudgeMenuItem registrationId={registrationId} onDone={pop.hide} />
+        <MarkPaidMenuItem registrationId={id} onDone={pop.hide}
+          cohortId={registration.cohort_id} />
+        <CopyPayLinkMenuItem registrationId={id} onDone={pop.hide} />
+        <NudgeMenuItem registrationId={id} onDone={pop.hide} />
+        <ReservationMenuItems registration={registration} onDone={pop.hide} />
       </Stack>
     </Popover>
   )

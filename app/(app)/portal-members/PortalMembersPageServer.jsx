@@ -3,7 +3,7 @@ import { listContacts } from '@/lib/contact/controllers/list'
 import { toolAccessByContacts } from '@/lib/portalTool/controllers'
 import { PORTAL_TOOLS } from '@/lib/portalTool/tools'
 import { PortalMembersView } from './components/PortalMembersView'
-import { toContactOptions } from './hooks/contactOptions'
+import { toContactOptions } from '@/lib/contact/controllers/toContactOptions'
 import { withToolKeys } from './hooks/withToolKeys'
 
 // Portal members admin: who has access, with invite, revoke and per-member

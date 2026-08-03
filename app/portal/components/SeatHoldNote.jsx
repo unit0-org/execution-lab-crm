@@ -1,8 +1,13 @@
 import { Text } from '@/ui/atoms/Text'
+import { ReservedSeatNote } from './ReservedSeatNote'
 
-// For pay-to-confirm cohorts: tells the applicant their seat is reserved
-// only while they finish payment. Nothing when the cohort doesn't hold.
-export function SeatHoldNote({ hours }) {
+// How long this applicant's seat is held. Someone completing a reserved
+// seat is on a different deal from someone starting a checkout, and is
+// told their own date rather than the 2-hour hold. Nothing when the
+// cohort doesn't hold at all.
+export function SeatHoldNote({ hours, reservedUntil }) {
+  if (reservedUntil) return <ReservedSeatNote until={reservedUntil} />
+
   if (!hours) return null
 
   return (
