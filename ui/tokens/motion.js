@@ -9,10 +9,15 @@ export const motion = {
   ease: 'var(--motion-ease)'
 }
 
-// One entrance animation, ready to spread into a style object. `both` holds
-// the first frame before it starts, so nothing flashes at full opacity.
+// One entrance animation, ready to spread into a style object. `backwards`
+// holds the first frame before it starts, so nothing flashes at full
+// opacity. It must not be `both`: every entrance ends where the element
+// already sits, and holding that last frame leaves an identity `transform`
+// behind — enough to make the element the containing block for any
+// `position: fixed` descendant, which drops dropdowns inside a dialog far
+// from the field they belong to.
 export const entrance = (name, speed = 'soft') => ({
-  animation: `${name} ${motion[speed]} ${motion.ease} both`
+  animation: `${name} ${motion[speed]} ${motion.ease} backwards`
 })
 
 // A quick transition across properties — what a control uses to answer a

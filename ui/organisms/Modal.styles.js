@@ -21,8 +21,8 @@ export const overlayStyle = (align = 'center') => ({
 // rises into place, so the dialog reads as arriving over the page.
 export const panelStyle = (wide) => ({
   position: 'relative', padding: space[6],
-  width: wide ? 'min(640px, 95vw)' : 'min(420px, 95vw)',
-  maxWidth: '95vw', maxHeight: '85vh',
+  width: wide ? 'min(720px, 95vw)' : 'min(460px, 95vw)',
+  maxWidth: '95vw', maxHeight: '90vh',
   overflow: 'auto', resize: 'both',
   background: color.bg.surface, borderRadius: radius.lg,
   border: `1px solid ${color.border.default}`,
