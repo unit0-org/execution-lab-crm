@@ -413,7 +413,10 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   earlier** to `handleGuestRegistered`, which imports the guest and then
   reports it to LinkedIn (see **linkedin** below); `guest.updated` and
   `ticket.registered` deliberately do NOT report, since they fire again
-  for the same person on approval/check-in — and `event.created`/`event.updated`
+  for the same person on approval/check-in. **Those three actions arrive
+  concurrently for a single registration** — which is why contact
+  identity resolution has to be serialized; see the "one person, one
+  contact" invariant below. And `event.created`/`event.updated`
   (`handleEventWebhook` keeps the `OwnEvent` title/date/url in sync), and
   `calendar.person.subscribed` (`handleCalendarSubscribe` captures the
   subscriber as a contact/lead); everything else is ignored.
@@ -634,6 +637,49 @@ folds every meeting-owned table — participants, notes, attachments, and
 **transcripts** (`mergeMeetingTranscripts`); **add a new table that
 references `meeting_id` and you MUST fold it in there too**, the
 meeting-side twin of the contact-merge invariant above.
+
+## Invariant: one person, one contact — identity resolution is serialized
+
+Every intake path (Luma webhook + sync, meeting attendees, registrations,
+Stripe charges, Google Contacts) reaches the same find-or-create seam:
+`lib/contact/controllers/resolveContactId.js`. It matches on **email
+first, then phone** — and it must never be reached by two callers at once
+for the same person.
+
+It used to be a plain look-then-create, and that lost. **One Luma
+registration fires three subscribed webhook actions** —
+`guest.registered`, `guest.updated` and `ticket.registered` — delivered as
+three concurrent requests carrying the same guest. All three looked, all
+three missed (nobody had written yet), and all three created a contact:
+one registrant became three, 24ms apart, with three `event_participant`
+rows on one event. Only the first kept the email, because
+`addEmailIfMissing` leaves an address with the contact that already owns
+it — which is why the losers show up in Merge & Fix as bare same-name,
+same-phone rows. `handleGuestRegistered` already knew these three actions
+fire for one person (it guards the LinkedIn conversion against
+double-counting); nothing guarded the contact.
+
+Two things now hold the line, and **both are required**:
+
+- `resolveContactId` runs under `withAdvisoryLocks` (`lib/db/`), taking a
+  Postgres advisory lock on each identity key (`contact-email:…`,
+  `contact-phone:…`) for the life of the transaction. Concurrent callers
+  naming the same person queue instead of racing. Keys are locked in
+  sorted order, so callers sharing only some keys cannot deadlock.
+- `createContactWithIdentity` writes the contact **and claims its email
+  and phone in that same transaction**. Claiming later would reopen the
+  hole: the identity has to be on file the instant the contact becomes
+  visible, or the next caller finds a contact it cannot match and makes
+  another one.
+
+`withAdvisoryLocks` is the one sanctioned use of raw SQL — an advisory
+lock touches no table, so there is nothing for Sequelize to model.
+
+Note what is **not** relied on: there is no unique index on
+`contact_email.email` or `contact_phone.phone` (`contact_phone` is unique
+on `(contact_id, phone)` only). Dedup is enforced by this seam alone, so
+**any new path that creates a contact must go through it** — a bare
+`Contact.create` bypasses every protection described here.
 
 ## Invariant: registration fields must flow to the CRM contact
 
