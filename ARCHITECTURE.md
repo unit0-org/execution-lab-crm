@@ -260,6 +260,24 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   only on payment. The seat is confirmed only on payment, with a 2h hold
   from `created_at` (see the confirmed-scope invariant); the portal tells the
   applicant so via `SeatHoldNote`.
+  **A seat staff reserved for someone is the same row with a longer hold**
+  (US-67). `reserved_at` is stamped, and that column is the only thing
+  telling the two apart: it moves the hold to `RESERVATION_HOLD_DAYS` (7)
+  from `reserved_at` instead of 2h from `created_at`, so completing the form
+  later — which resets `created_at` — cannot shorten it. `status` gains
+  **`cancelled`**, which matches neither branch of the confirmed scope and
+  so releases the seat at once while keeping the row as history
+  (`cancelReservation`). Reserving is `previewReservation` → `reserveSeat`,
+  and its email is **composed, not templated-and-fired**: `seat_reserved`
+  seeds an editable draft the operator adds a personal note to, then
+  `sendComposedEmail` sends exactly what was reviewed — the same
+  preview-then-send shape as the waitlist acceptance, and the reason the
+  registration id is generated *before* the write (the reviewed link must be
+  the row that gets created). Reservations are **excluded from the
+  `payment_followup` cron** — its 2-hour wording is not their deal — and get
+  one pre-release warning instead, the **`reservation-reminders`** job,
+  `REMINDER_DAYS_BEFORE_RELEASE` (2) days out, stamped on
+  `reservation_reminder_sent_at` so it sends once.
 - **registration_installment** — the second half of a seat bought on the
   **50/50 payment plan** (US-62), offered only by a cohort with
   `offers_payment_plan`. One row per scheduled charge, `due_on` =
@@ -649,18 +667,48 @@ confirmedScope.js`); every seat-count query (`cohortStats`,
 `inWindowRegistrationCount`, `priorInWindowCount`) goes through
 `Registration.scope('confirmed')` — never an inline `status` list.
 
-A seat is confirmed only once payment lands: a `pending` seat is held only
-for `HOLD_HOURS` (2h) from `created_at`, after which the unpaid seat releases
-automatically. The window is **read-time, not stored** — the scope compares
-`created_at` to `NOW()`, so seat-count queries stay a plain `WHERE` and need
-no cron. The duration lives in `lib/cohort/controllers/holdPolicy.js`.
+A seat is confirmed only once payment lands, and until then it is held for a
+duration that depends on **how the seat was taken** — the one place that
+distinction exists:
+
+- a self-serve registration is held for `HOLD_HOURS` (**2h**) from
+  `created_at` — all an abandoned Stripe checkout deserves;
+- a seat **staff reserved** for someone is held for `RESERVATION_HOLD_DAYS`
+  (**7 days**) from `reserved_at` — it is a promise made to a person, not an
+  abandoned checkout.
+
+Both live in `lib/cohort/controllers/holdPolicy.js`, and the predicate that
+picks between them is written **once**, as `stillHeld`
+(`lib/registration/models/heldPredicate.js`), which the `confirmed` scope
+`AND`s onto `pending`. A null `reserved_at` makes the reservation
+comparison null (never true) and is what the self-serve branch tests for, so
+exactly one branch can ever match. Both windows stay **read-time, not
+stored** — the predicate compares to `NOW()`, so seat-count queries stay a
+plain `WHERE`, a lapsed hold frees its seat everywhere at the same instant,
+and **no cron releases anything**. `holdEndsAt` is the JS twin of that
+predicate, for display and for the reminder job; keep the two in step.
 
 The **cohort admin list** reflects the same rule for display: `paymentState`
 (`lib/registration/models/paymentState.js`) classifies a registration as
-`paid`, `pending` (still held), or `expired` (unpaid and past its hold — the
-seat released), mirroring the scope read-time from `created_at`. The
-`PaymentStatus` badge shows this, so a lapsed hold never keeps reading
-`pending`.
+`paid`, `reserved` (staff-held, still inside its 7 days), `pending`
+(self-serve, still inside its 2h), `expired` (unpaid and past whichever hold
+applied — the seat released) or `cancelled` (a reservation staff released
+early). It reads the same timestamps through `holdEndsAt`, so it can't drift
+from the scope. The `PaymentStatus` badge shows this — with the release date
+beside a reserved seat — so a lapsed hold never keeps reading held.
+
+**A claim on a held seat is validated through that same predicate.** The
+link a reserved person follows carries `?reservation=<id>`
+(`findHeldReservation`), which prefills the register form and — like a
+waitlist invite — skips the cohort-full check, because the seat counted as
+taken *is their own*; without that skip their own reservation is what reads
+back to them as sold out. The claim is worth exactly as long as the hold is:
+it goes through `stillHeld`, so a lapsed or cancelled reservation stops
+opening the door the moment its seat is gone. It is revalidated server-side
+on submit (`claimedReservationId`) and carries its id into the write, so
+completing the form lands back on that row — even if they corrected their
+email — instead of taking a second seat
+(`findReusableRegistration`).
 
 `cohortStats` counts `filled` from that scope; **revenue is derived** by
 reconciling each seat to its real Stripe charge in `purchase`
@@ -958,6 +1006,15 @@ file trails for the flows you'll touch most — follow them top to bottom.
   invoice for the seat (`invoiceRegistration` → `createInvoice` →
   `approveInvoice` → `sendInvoice`; amount defaults to the cohort's regular
   Stripe price, operator-editable).
+- **Reserve a seat (US-67):** cohort page `+` → `previewReservation`
+  (renders `seat_reserved` into an editable draft, generating the
+  registration id so the reviewed link is the row that gets created) →
+  operator edits/adds a note → `reserveSeat` → `createPendingRegistration`
+  (stamping `reserved_at`) → `syncRegistrationContact` →
+  `sendComposedEmail`. They follow `reserveUrl` → the register page claim →
+  ordinary checkout, landing back on the same row. Meanwhile the daily
+  `reservation-reminders` job warns anyone 2 days from release, and
+  `cancelReservation` (behind `ConfirmDialog`) releases a seat early.
 - **Payment follow-up:** the daily cron's `payment-followups` job →
   `sendPendingPaymentFollowups` finds registrations still `pending` 1–14
   days after sign-up that haven't been chased, emails each the

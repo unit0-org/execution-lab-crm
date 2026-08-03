@@ -7,8 +7,10 @@ import { CouponBanner } from './CouponBanner'
 import { cohortState } from './cohortState'
 
 // The full register screen: questionnaire + sticky order summary
-// (Stories 2.2–2.3). An invite turns it into a wave claim (3.2).
-export function RegisterView({ card, invite, coupon }) {
+// (Stories 2.2–2.3). An invite turns it into a wave claim (3.2); a
+// reservation keeps the ordinary framing — the seat is simply already
+// theirs — and only changes what the hold note says.
+export function RegisterView({ card, invite, reservation, coupon }) {
   const state = invite ? 'wave' : cohortState(card).state
 
   return (
@@ -18,7 +20,8 @@ export function RegisterView({ card, invite, coupon }) {
           <CouponBanner code={coupon} />
           <RegisterHeader state={state} />
           <RegisterForm cohortId={card.slug} invite={invite} state={state}
-            promo={coupon} holdHours={card.holdHours} plan={card.plan} />
+            reservation={reservation} promo={coupon}
+            holdHours={card.holdHours} plan={card.plan} />
         </Stack>
       }
       aside={<OrderSummary card={card} />} />

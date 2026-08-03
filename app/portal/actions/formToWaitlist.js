@@ -1,4 +1,4 @@
-import { splitName } from './splitName'
+import { splitName } from '@/lib/contact/controllers/splitName'
 
 const get = (formData, key) => (formData.get(key) || '').trim()
 
