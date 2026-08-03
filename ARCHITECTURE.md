@@ -234,7 +234,7 @@ and a required check that never runs blocks the merge queue. `ci.yml`
   (`featuredCohort` prefers a buyable one).
   **Pricing reward (see the reward invariant
   below):** registering *before* the window opens earns a 20% reward; once
-  it opens, only the first 2 in-window seats do. A cohort also owns
+  it opens the cohort sells at its regular price. A cohort also owns
   **`cohort_folder`** → **`cohort_resource`** — the operator creates named
   folders (e.g. "Session 1") on the cohort page and drops titled links into
   them (notes → Google Doc, resources → file link, recordings → YouTube;
@@ -663,9 +663,9 @@ same-name-different-person registrant becomes a new contact to merge later.
 A registration holds a seat when it's `paid`, or while it's `pending` **and
 still within its hold window**. That rule is defined **once**, as the
 `confirmed` scope on the `Registration` model (`lib/registration/models/
-confirmedScope.js`); every seat-count query (`cohortStats`,
-`inWindowRegistrationCount`, `priorInWindowCount`) goes through
-`Registration.scope('confirmed')` — never an inline `status` list.
+confirmedScope.js`); every seat-count query (`cohortStats`, and any future
+one) goes through `Registration.scope('confirmed')` — never an inline
+`status` list.
 
 A seat is confirmed only once payment lands, and until then it is held for a
 duration that depends on **how the seat was taken** — the one place that
@@ -783,9 +783,9 @@ drops data silently. The full set today is `registration.cohort_id`
 
 The cohort price is the regular Stripe price (`stripe_price_id`) with at most
 **one** discount applied — never stacked. Eligibility lives in
-`lib/cohort/controllers/rewardDiscount.js` (`rewardKind` → `'prereg'` before
-the window, `'earlybird'` for the first 2 **in-window** seats via
-`inWindowRegistrationCount`, else none) and resolves to the reusable 20% Stripe
+`lib/cohort/controllers/rewardDiscount.js` (`rewardKind` → `'earlybird'`
+**only** while the cohort is still before its registration window, else none —
+seats taken never enter into it) and resolves to the reusable 20% Stripe
 promotion code from `lib/stripe/readinessPromoCode.js` (`READY20`, overridable
 via `STRIPE_READINESS_CODE`; the coupon must exist in Stripe). Checkout picks
 the effective code by precedence in `effectiveDiscountCode.js`: **customer code
