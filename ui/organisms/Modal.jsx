@@ -18,7 +18,10 @@ export function Modal({ open, onClose, wide, align, children }) {
   const panel = useAutoFocus(open)
   const backdrop = useBackdropClose(onClose)
 
-  if (!open) return null
+  // There is no <body> to portal into while rendering on the server, and a
+  // dialog that opens on mount would crash the whole page. It opens on the
+  // client anyway, so skipping the server pass costs nothing.
+  if (!open || typeof document === 'undefined') return null
 
   // Portaled to <body>: a transformed ancestor (a section's entrance
   // animation, a card that lifts on hover) becomes the containing block
