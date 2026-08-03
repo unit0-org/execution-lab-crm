@@ -501,9 +501,11 @@ details[data-collapsible] summary svg {
 details[data-collapsible][open] summary svg { transform: rotate(180deg); }
 details[data-collapsible][open] [data-collapsible-preview] { display: none; }
 /* Expanding reveals the body with the chevron's turn, so the section reads
-   as opening rather than the page suddenly growing. */
+   as opening rather than the page suddenly growing. `backwards`, never
+   `both`: a held last frame leaves a transform that would anchor any fixed
+   dropdown inside the section to the section (see `entrance`). */
 details[data-collapsible][open] > [data-collapsible-body] {
-  animation: quietRise var(--motion-soft) var(--motion-ease) both;
+  animation: quietRise var(--motion-soft) var(--motion-ease) backwards;
 }
 
 /* Tactile press on the controls you tick through a list of suggestions. */
