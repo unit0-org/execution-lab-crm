@@ -1,5 +1,6 @@
 'use client'
 
+import { createPortal } from 'react-dom'
 import { overlayStyle, panelStyle } from './Modal.styles'
 import { ModalClose } from './ModalClose'
 import { useEscClose } from '../molecules/useEscClose'
@@ -19,12 +20,17 @@ export function Modal({ open, onClose, wide, align, children }) {
 
   if (!open) return null
 
-  return (
+  // Portaled to <body>: a transformed ancestor (a section's entrance
+  // animation, a card that lifts on hover) becomes the containing block
+  // for `position: fixed`, which sizes the backdrop to that ancestor and
+  // centres the dialog on the section it was opened from, not the screen.
+  return createPortal(
     <div style={overlayStyle(align)} {...backdrop}>
       <div ref={panel} style={panelStyle(wide)}>
         <ModalClose onClose={onClose} />
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
