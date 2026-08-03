@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { previewReservationAction } from '../actions/previewReservation'
+import { runPreview } from './runPreview'
 import { runReserve } from './runReserve'
 
 // Two steps: name the person, then read (and edit) the email they will
@@ -21,7 +21,7 @@ export function useReserveFlow(cohortId, onClose) {
     busy,
     edit,
     preview: (person) =>
-      previewReservationAction(cohortId, person).then(setDraft),
+      runPreview(cohortId, person, { setBusy, setDraft }),
     send: () => runReserve(draft, { setBusy, onClose, router }),
     back: () => setDraft(null)
   }

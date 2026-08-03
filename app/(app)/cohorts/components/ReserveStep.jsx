@@ -8,7 +8,7 @@ import { ReserveEmailReview } from './ReserveEmailReview'
 export function ReserveStep({ flow, contacts, onCancel }) {
   if (!flow.draft) {
     return <ReservePersonForm contacts={contacts} onCancel={onCancel}
-      onContinue={flow.preview} />
+      onContinue={flow.preview} busy={flow.busy} />
   }
 
   return <ReserveEmailReview flow={flow} />

@@ -9,7 +9,7 @@ import { toReservePerson } from './toReservePerson'
 
 // Who the seat is for. Picking an existing contact fills the fields in;
 // someone not in the CRM yet is simply typed, and reserving creates them.
-export function ReservePersonForm({ contacts, onContinue, onCancel }) {
+export function ReservePersonForm({ contacts, onContinue, onCancel, busy }) {
   const who = useReservePerson()
 
   return (
@@ -21,7 +21,8 @@ export function ReservePersonForm({ contacts, onContinue, onCancel }) {
         onChange={who.set('name')} />
       <TextField label="Email" value={who.person.email}
         onChange={who.set('email')} />
-      <FormActions label="Continue" disabled={!who.ready} onCancel={onCancel}
+      <FormActions label="Continue" disabled={!who.ready} busy={busy}
+        onCancel={onCancel}
         onConfirm={() => onContinue(toReservePerson(who.person))} />
     </Stack>
   )
