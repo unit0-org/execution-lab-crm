@@ -73,7 +73,7 @@ Conventions (from `AGENTS.md`):
 | `NavLink` | `href`, `active`, `icon`, `badge`, `children`, `onNavigate`, `newTab` | Sidebar navigation entry: icon + label, marked when `active` (`newTab` opens the link in a new tab). `badge` = how many items that page has waiting, shown as a count pill. |
 | `NavProgress` | — | Fixed top progress bar (thin brand-gradient) shown while a `Link` navigation is pending; rendered inside the link atoms, not directly. |
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`): centers it over the label while keeping the label's footprint, so a button keeps its size between idle and pending (no CLS). |
-| `ProgressBar` | — | Indeterminate top-of-page progress: a fill sweeping across a track. |
+| `ProgressBar` | `value`, `total` | Progress: a fill sweeping across a track while something works, or — given `value` and `total` — filled to how much of it is done, so a batch shows how far along it is instead of only that it is busy. |
 | `Radio` | `checked`, `onChange`, `label` | Single radio option. |
 | `RaisedControl` | `children` | Lifts a control (e.g. a delete button) above a `LinkCard`'s stretched link so it keeps receiving clicks. |
 | `RequiredMark` | — | The `*` that flags a required field, rendered by `FieldLabel`. Hidden from screen readers — the input's own `required` already conveys it. |
