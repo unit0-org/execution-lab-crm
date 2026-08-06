@@ -319,7 +319,14 @@ and a required check that never runs blocks the merge queue. `ci.yml`
 - **invoice** — invoices with line items, PDF generation, Stripe charge,
   and email delivery. Brand PDF primitives (fonts, logo, palette, and a
   paginating flow/document toolkit) live in shared `lib/pdf/`, reused by
-  both the invoice and offer-export PDFs.
+  both the invoice and offer-export PDFs. **Rendering a PDF is the app's
+  one memory-heavy operation** (each document embeds ~2.3 MB of fonts), so
+  **anything that renders a batch of them must cap how many run at once** —
+  `sendInvoices` renders a fixed two at a time for exactly this reason, and
+  the send dialog asks for one pair per round trip so it can show progress.
+  A `Promise.all` over the whole selection exhausts the container's heap and
+  takes the instance down, failing every other request it is serving, not
+  just its own.
 - **notification** — member-to-member alerts. `note_mention` records who a
   member tagged (`@`) in a `contact_note`; `notification` is the recipient's
   in-app inbox item (also emailed, with a deep link to the note). Both

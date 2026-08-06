@@ -1,8 +1,9 @@
 import { fontWeight } from '../tokens/typography'
-import { space } from '../tokens/space'
 import { quickTransition } from '../tokens/motion'
 import { tones } from './Button.tones'
 import { sizes } from './Button.sizes'
+import { iconOnly } from './Button.icon'
+import { joined } from './Button.joins'
 
 const transition = quickTransition(
   'background', 'border-color', 'color', 'transform', 'filter')
@@ -16,17 +17,9 @@ const base = {
 
 const full = (block) => (block ? { width: '100%' } : null)
 
-// Icon-only: a compact square that centres the glyph, in place of the text
-// button's wide padding and baseline-aligned content.
-const iconPad = { sm: space[2], md: space[2], lg: space[3] }
-const iconOnly = (size = 'md') => ({
-  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-  lineHeight: 0, padding: iconPad[size]
-})
-
 export const buttonStyle = (
-  { tone = 'default', size = 'md', block, icon } = {}
+  { tone = 'default', size = 'md', block, icon, join } = {}
 ) => ({
   ...base, ...tones[tone], ...sizes[size], ...full(block),
-  ...(icon ? iconOnly(size) : null)
+  ...iconOnly(icon, size), ...joined(join)
 })

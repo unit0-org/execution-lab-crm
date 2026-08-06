@@ -1,11 +1,20 @@
 import { Button } from '../atoms/Button'
 import { SubmitButton } from '../atoms/SubmitButton'
+import { SplitButton } from './SplitButton'
 
 // The row's finishing action — internal to FormActions, not public API. A
 // submit reads its pending state from the form; a click action is told when
-// it is running (`busy`), so neither ever looks dead while it works.
+// it is running (`busy`), so neither ever looks dead while it works. Given
+// `menu`, that click action carries its variants in a split button rather
+// than a second control parked beside it.
 export function FormActionsPrimary(props) {
-  const { onConfirm, label, tone, size, busy, disabled } = props
+  const { onConfirm, label, tone, size, busy, disabled, menu } = props
+
+  if (menu)
+    return (
+      <SplitButton label={label} items={menu} tone={tone} size={size}
+        busy={busy} disabled={disabled} onClick={onConfirm} />
+    )
 
   if (onConfirm)
     return (

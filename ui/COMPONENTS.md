@@ -41,7 +41,7 @@ Conventions (from `AGENTS.md`):
 |---|---|---|
 | `Avatar` | `src`, `name`, `size=40` | Circular profile photo, or tokened initials fallback. |
 | `Badge` | `tone='accent'`, `children` | Small static status/label pill. |
-| `Button` | `tone='default'`, `size`, `block`, `icon`, `loading`, `disabled`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones`; `loading` shows a spinner + disables while keeping size (no CLS); `icon` makes a compact square that centres a single icon child. |
+| `Button` | `tone='default'`, `size`, `block`, `icon`, `join`, `loading`, `disabled`, `children`, `...rest` | Primary/secondary actions; `tone` from `Button.tones`; `loading` shows a spinner + disables while keeping size (no CLS); `icon` makes a compact square that centres a single icon child; `join` (`'left'`/`'right'`) flattens the edge it shares with the button beside it, so a pair reads as one control (see `SplitButton`). |
 | `ButtonLink` | `href`, `tone='default'`, `size`, `block`, `target`, `children` | Navigation link styled as a Button (shares `buttonStyle`); `target="_blank"` opens a new tab. |
 | `Card` | `tone`, `hoverHost`, `id`, `children` | Surface container for grouped content. |
 | `Checkbox` | `checked`, `onChange`, `label`, `indeterminate`, `disabled` | Boolean toggle (`onChange` → `e.target.checked`). `disabled` greys it out for a row that can't take part in a bulk action; say why beside it. |
@@ -73,7 +73,7 @@ Conventions (from `AGENTS.md`):
 | `NavLink` | `href`, `active`, `icon`, `badge`, `children`, `onNavigate`, `newTab` | Sidebar navigation entry: icon + label, marked when `active` (`newTab` opens the link in a new tab). `badge` = how many items that page has waiting, shown as a count pill. |
 | `NavProgress` | — | Fixed top progress bar (thin brand-gradient) shown while a `Link` navigation is pending; rendered inside the link atoms, not directly. |
 | `Pending` | `children` | Keeps size while showing a spinner (used by `SubmitButton`): centers it over the label while keeping the label's footprint, so a button keeps its size between idle and pending (no CLS). |
-| `ProgressBar` | — | Indeterminate top-of-page progress: a fill sweeping across a track. |
+| `ProgressBar` | `value`, `total` | Progress: a fill sweeping across a track while something works, or — given `value` and `total` — filled to how much of it is done, so a batch shows how far along it is instead of only that it is busy. |
 | `Radio` | `checked`, `onChange`, `label` | Single radio option. |
 | `RaisedControl` | `children` | Lifts a control (e.g. a delete button) above a `LinkCard`'s stretched link so it keeps receiving clicks. |
 | `RequiredMark` | — | The `*` that flags a required field, rendered by `FieldLabel`. Hidden from screen readers — the input's own `required` already conveys it. |
@@ -145,7 +145,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `FilterBar` | `...props` | URL-driven filter chips; the active one is highlighted. Fixed height, so switching filters never shifts the list below it. Pass `keep` — the page's other query params — when a page carries more than one bar, so picking a chip here preserves the other bar's selection. Pass `reset={false}` when the options already include an explicit "everything" choice, i.e. when no param means a default rather than all. |
 | `FilterChip` | `href`, `label`, `active` | One URL-driven filter chip: a pill link, highlighted when active. |
 | `Form` | `action`, `children` | Form bound to a server action; Ctrl/Cmd+Enter submits from any field, its first editable field autofocuses on mount, and typed values survive a failed submit (uncontrolled `TextField`/`TextArea`/`Select` repopulate). |
-| `FormActions` | `label='Save'`, `tone='primary'`, `size='sm'` | The one form/dialog action row: a primary button — a submit by default, or an `onConfirm` click action — with an optional Cancel, aligned to the RIGHT so every form and modal places its buttons the same way. `busy` spins the primary while the action runs, `disabled` holds it until there is something to submit, and `extra` slots one more control beside it (e.g. "send all"). |
+| `FormActions` | `label='Save'`, `tone='primary'`, `size='sm'` | The one form/dialog action row: a primary button — a submit by default, or an `onConfirm` click action — with an optional Cancel, aligned to the RIGHT so every form and modal places its buttons the same way. `busy` spins the primary while the action runs, `disabled` holds it until there is something to submit, `menu` gives the primary a caret with its other ways to run (a `SplitButton`, e.g. "send all"), and `extra` slots one more control beside it. |
 | `FormError` | `message` | Form-level error message; renders nothing when there is none. |
 | `FunnelFlow` | `stages`, `steps` | Conversion funnel: tinted stages left to right, each pair joined by an arrow carrying the share that made it from one stage to the next. Stacks on narrow screens. `stages` = `[{ label, value, caption, tone, href }]` — an `href` makes that stage a link into the people it counts; `steps` = the percentage between each pair, so one fewer than `stages`. |
 | `IconUpload` | `label`, `title`, `onPick` | File upload trigger: a hidden CSV input behind an upload glyph. |
@@ -171,6 +171,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `SortArrow` | `active`, `dir` | Sort direction arrow, shown on the active column. |
 | `SortHeader` | `cols`, `sort`, `onSort` | Sortable table header row, built from `cols`. |
 | `SortLabel` | `col`, `sort`, `onSort` | Header cell: a sort button, plain text, or the select-all box. |
+| `SplitButton` | `label`, `items`, `tone`, `size`, `busy`, `disabled`, `onClick` | A default action joined to a caret that opens its other ways to run: click the label to do the usual thing, click the caret to pick a variant. `items` are `{ label, hint }` rows with their own `onClick`, `busy` spins the label while it runs, and `tone`/`size` are the `Button`'s. Use it instead of parking a second button beside the primary one. |
 | `Stat` | `label`, `value`, `tone`, `href` | Stat tile: a headline metric; `href` links the whole card. |
 | `StatBody` | `label`, `value`, `tone` | Stat tile body: a small uppercase label over a coloured value. |
 | `StatTile` | `value`, `label`, `tone='cold'` | Big stat over a mono caption, in a bordered tile (portal). |

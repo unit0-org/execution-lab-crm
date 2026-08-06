@@ -4,12 +4,15 @@ import { Pending } from './Pending'
 /**
  * Primary/secondary actions; `tone` from `Button.tones`; `loading` shows
  * a spinner + disables while keeping size (no CLS); `icon` makes a compact
- * square that centres a single icon child.
+ * square that centres a single icon child; `join` (`'left'`/`'right'`)
+ * flattens the edge it shares with the button beside it, so a pair reads
+ * as one control (see `SplitButton`).
  */
 export function Button({
-  tone = 'default', size, block, icon, loading, disabled, children, ...rest
+  tone = 'default', size, block, icon, join, loading, disabled, children,
+  ...rest
 }) {
-  const style = buttonStyle({ tone, size, block, icon })
+  const style = buttonStyle({ tone, size, block, icon, join })
   const type = rest.type || 'button'
   const isDisabled = loading || disabled
   const content = loading ? <Pending>{children}</Pending> : children

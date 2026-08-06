@@ -109,6 +109,9 @@ jobs:
       - name: Push image
         run: docker push ${{ env.IMAGE }}:${{ github.sha }}
 
+      # 1Gi, not the 512Mi default: rendering a PDF embeds megabytes of
+      # fonts, and one out-of-memory render kills the container for every
+      # request it is serving, not just its own.
       - name: Deploy to Cloud Run
         run: |
           secrets=$(gcloud secrets list --project "$PROJECT_ID" \
@@ -119,4 +122,4 @@ jobs:
             --region "$REGION" --project "$PROJECT_ID" \
             --set-secrets="$secrets" \
             --port 8080 --min-instances 1 --allow-unauthenticated \
-            --cpu-boost
+            --memory 1Gi --cpu-boost
