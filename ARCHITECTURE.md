@@ -835,7 +835,16 @@ seats taken never enter into it) and resolves to the reusable 20% Stripe
 promotion code from `lib/stripe/readinessPromoCode.js` (`READY20`, overridable
 via `STRIPE_READINESS_CODE`; the coupon must exist in Stripe). Checkout picks
 the effective code by precedence in `effectiveDiscountCode.js`: **customer code
-› reward 20% › cohort preset `promo_code` › none**. The customer code comes
+› reward 20% › cohort preset `promo_code` › none**. That helper returns the
+winning discount's **`source`** (`'coupon'` / `'earlybird'` / `'launch'`)
+alongside its code, and `resolveCohortAmounts` passes it through as
+`pricing.discountSource` (with `discountCode`), set only when the discount
+actually moved the price. **Every "why is this cheaper" statement reads that
+source, never the mere fact that a price is discounted** — the savings line
+(`saveLineText`) names the early-bird deadline only for `'earlybird'`, and the
+"Launch price" kicker/state (`heroAsideView`, `cohortStateKey`) is reserved for
+`'launch'`. Credit the wrong one and the portal advertises a deadline that has
+already passed. The customer code comes
 from the register promo field **or a `?code=` URL param** (e.g. a partner
 link `portal…?code=IN_MOTION_25`); it's validated against Stripe
 (`validCoupon` → `validPromotionCode`), then carried on the register CTA and
