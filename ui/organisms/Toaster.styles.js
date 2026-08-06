@@ -1,4 +1,5 @@
 import { space } from '../tokens/space'
+import { layer } from '../tokens/layer'
 
 export const toasterStyle = {
   position: 'fixed',
@@ -9,6 +10,6 @@ export const toasterStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   gap: space[2],
-  zIndex: 50,
+  zIndex: layer.toast,
   pointerEvents: 'none'
 }

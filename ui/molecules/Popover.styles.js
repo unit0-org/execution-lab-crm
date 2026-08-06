@@ -2,6 +2,7 @@ import { space } from '../tokens/space'
 import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
 import { entrance } from '../tokens/motion'
+import { layer } from '../tokens/layer'
 
 export const wrapStyle = {
   position: 'relative', display: 'inline-flex', alignItems: 'center'
@@ -22,10 +23,12 @@ const placements = {
 
 // Fixed panel (not absolute) so a scrolling ancestor like a table's
 // overflow wrapper can't clip it. It drops out of the trigger, which shows
-// where the menu came from.
+// where the menu came from. `layer.menu` outranks `layer.modal`: both this
+// and a dialog portal to <body>, so a lower z-index puts the menu behind
+// the dialog and its backdrop, where it can't be seen or clicked.
 export const panelStyle = (align, rect, placement = 'bottom') => ({
   ...entrance('slideDown', 'quick'),
-  position: 'fixed', zIndex: 30,
+  position: 'fixed', zIndex: layer.menu,
   ...(placements[placement] || placements.bottom)(align, rect),
   width: 'max-content', maxWidth: 'min(320px, 90vw)',
   boxSizing: 'border-box', padding: space[3],

@@ -159,7 +159,7 @@ submit; returns `{ value }` untouched for a controlled one.
 | `PageActions` | `children` | The top-right cluster of page-level actions on a detail page (Edit, Download, Send, an Add menu, …). One home for that row so every page's actions sit and space identically; wraps on narrow screens. |
 | `Pager` | `at`, `total`, `onMove`, `label='item'` | Prev/next stepper through `total` positions showing "N of total"; `onMove(index)` gets the new 0-based index, and it hides itself when there's nothing to page. `label` names the unit for the arrows' aria-labels (e.g. "invoice", "page"). |
 | `Pagination` | `page`, `pageCount`, `onPage`, `perPage`, `onPerPage` | Page navigator: prev/next chevrons around a "page / total" label, with an optional page-size select (pass `perPage` + `onPerPage`). Hides when there is only one page. Pair with `usePagination`. |
-| `Popover` | `open`, `onClose`, `trigger`, `align`, `placement`, `children` | Anchored popover, closing on outside click; the panel is portaled to `<body>` so a scrolling, overflow, or hover-transformed ancestor can't clip or mis-anchor it. `placement` hangs the panel below the trigger (default) or beside it (`'right'`, for the sidebar rail). |
+| `Popover` | `open`, `onClose`, `trigger`, `align`, `placement`, `children` | Anchored popover, closing on outside click; the panel is portaled to `<body>` so a scrolling, overflow, or hover-transformed ancestor can't clip or mis-anchor it, and ranks above a dialog so a menu opened from inside a `Modal` stays visible and clickable. `placement` hangs the panel below the trigger (default) or beside it (`'right'`, for the sidebar rail). |
 | `PriceTag` | `price`, `regular`, `currency='CAD'`, `size=30` | Price line: optional struck regular + price + currency; takes pre-formatted strings, e.g. "$1,500" (portal). `size` is in px. |
 | `RadioCards` | `label`, `name`, `options`, `required`, `hint` | Portal radio-card group (native radios; choice submits). |
 | `RowDelete` | `onConfirm`, `title='Delete'` | Delete control with confirm: a trash icon that asks first. |
@@ -237,9 +237,17 @@ belongs to, beside that module's `components/`; see the HOC rule in
 ## Tokens — `ui/tokens/`
 
 `color`, `labelColors`, `statusColors`, `tone`, `space`, `radius`,
-`typography`, `motion`. The design system's values — import these; never
-hardcode a color/font/size/spacing/radius/duration at a call site. Extend a
-token or a primitive instead.
+`typography`, `motion`, `layer`. The design system's values — import these;
+never hardcode a color/font/size/spacing/radius/duration at a call site.
+Extend a token or a primitive instead.
+
+`layer` is the overlay stacking order — `scrim` ‹ `modal` ‹ `menu` ‹ `toast`
+‹ `progress`. Anything floating over the page takes its `zIndex` from here,
+never a literal. The ordering is the contract, not decoration: everything
+that floats portals to `<body>`, so they are siblings in one stacking
+context, and a menu that ranks below `modal` disappears behind any dialog it
+was opened from — visible only as a sliver under the dialog's edge, and
+unclickable. That is why `menu` outranks `modal`.
 
 `motion` carries the two durations (`quick` for a state change — hover,
 press; `soft` for something arriving or leaving) and the one easing curve,
