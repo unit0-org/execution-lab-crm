@@ -15,6 +15,9 @@ const userStory = {
       'price.',
     'The struck-through "was" price only appears when the discount actually ' +
       'lowers the price.',
+    'Copy that explains a lower price names the discount that actually ' +
+      'applied: the early-bird deadline only for the earned reward, a ' +
+      'customer code by name, and "Launch price" only for the cohort preset.',
     "The price shown on the card matches what's charged at checkout."
   ]
 };

@@ -1,13 +1,10 @@
 import { MonoLabel } from '@/ui/atoms/MonoLabel'
 import { formatDollars } from '@/lib/portal/formatDollars'
-import { cohortMonthYear } from '@/lib/portal/cohortMonthYear'
+import { saveLineText } from './saveLineText'
 
-const beforeDate = (opensAt) =>
-  opensAt ? cohortMonthYear(opensAt).startLabel : 'registration opens'
-
-// "Save $X by registering before <date>" — only when a discount is actually
-// in effect (a regular price to compare against). The early-bird deadline is
-// always the day registration opens, so there is one phrasing.
+// "Save $X …" — only when a discount is actually in effect (a regular price
+// to compare against). What follows depends on which discount won; see
+// saveLineText.
 export function SaveLine({ pricing, opensAt }) {
   if (!pricing.regularCents) return null
 
@@ -15,7 +12,7 @@ export function SaveLine({ pricing, opensAt }) {
 
   return (
     <MonoLabel tone="cool" size={12}>
-      Save {save} by registering before {beforeDate(opensAt)}
+      {saveLineText(pricing, save, opensAt)}
     </MonoLabel>
   )
 }
