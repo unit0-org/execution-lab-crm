@@ -1,10 +1,12 @@
+import { layer } from '../tokens/layer'
+
 export const navProgressStyle = {
   position: 'fixed',
   top: 0,
   left: 0,
   right: 0,
   height: '2px',
-  zIndex: 60,
+  zIndex: layer.progress,
   overflow: 'hidden',
   pointerEvents: 'none'
 }

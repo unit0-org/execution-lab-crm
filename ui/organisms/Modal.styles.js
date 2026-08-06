@@ -2,12 +2,13 @@ import { space } from '../tokens/space'
 import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
 import { entrance } from '../tokens/motion'
+import { layer } from '../tokens/layer'
 
 // `align: 'top'` pins the panel to the top (used for the search palette on
 // mobile so it opens under the thumb); the default centers it. The backdrop
 // fades in so the page dims instead of blinking dark.
 export const overlayStyle = (align = 'center') => ({
-  position: 'fixed', inset: 0, zIndex: 40, display: 'flex',
+  position: 'fixed', inset: 0, zIndex: layer.modal, display: 'flex',
   alignItems: align === 'top' ? 'flex-start' : 'center',
   justifyContent: 'center',
   padding: space[4],

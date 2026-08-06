@@ -1,6 +1,7 @@
 import { space } from '../tokens/space'
 import { color } from '../tokens/color'
 import { radius } from '../tokens/radius'
+import { layer } from '../tokens/layer'
 
 export const wrapStyle = { position: 'relative', display: 'inline-flex' }
 
@@ -19,7 +20,7 @@ export const triggerStyle = {
 // Fixed-positioned so the table's overflow wrapper can't clip the menu.
 export const menuStyle = (rect) => ({
   position: 'fixed',
-  zIndex: 50,
+  zIndex: layer.menu,
   top: rect.bottom + 4,
   left: rect.left,
   padding: space[2],

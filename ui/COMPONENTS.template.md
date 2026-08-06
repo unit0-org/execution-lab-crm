@@ -84,9 +84,17 @@ belongs to, beside that module's `components/`; see the HOC rule in
 ## Tokens — `ui/tokens/`
 
 `color`, `labelColors`, `statusColors`, `tone`, `space`, `radius`,
-`typography`, `motion`. The design system's values — import these; never
-hardcode a color/font/size/spacing/radius/duration at a call site. Extend a
-token or a primitive instead.
+`typography`, `motion`, `layer`. The design system's values — import these;
+never hardcode a color/font/size/spacing/radius/duration at a call site.
+Extend a token or a primitive instead.
+
+`layer` is the overlay stacking order — `scrim` ‹ `modal` ‹ `menu` ‹ `toast`
+‹ `progress`. Anything floating over the page takes its `zIndex` from here,
+never a literal. The ordering is the contract, not decoration: everything
+that floats portals to `<body>`, so they are siblings in one stacking
+context, and a menu that ranks below `modal` disappears behind any dialog it
+was opened from — visible only as a sliver under the dialog's edge, and
+unclickable. That is why `menu` outranks `modal`.
 
 `motion` carries the two durations (`quick` for a state change — hover,
 press; `soft` for something arriving or leaving) and the one easing curve,
