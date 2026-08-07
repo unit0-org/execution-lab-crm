@@ -4,6 +4,7 @@ import US33 from './US-33.js';
 import US34 from './US-34.js';
 import US35 from './US-35.js';
 import US36 from './US-36.js';
+import US68 from './US-68.js';
 
 export const domain = {
   id: 'invoices',
@@ -11,5 +12,5 @@ export const domain = {
 };
 
 export const stories = [
-  US31, US32, US33, US34, US35, US36
+  US31, US32, US33, US34, US35, US36, US68
 ];

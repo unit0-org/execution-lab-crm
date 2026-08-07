@@ -1114,7 +1114,12 @@ file trails for the flows you'll touch most — follow them top to bottom.
   Invoices **auto-created from a Stripe purchase** (`autoInvoiceForOrg`) are
   created as a draft, then **auto-approved** (filing the PDF) and **marked
   paid** (the charge cleared — they're receipts). `paid` invoices stay
-  **sendable** (the receipt can be emailed).
+  **sendable** (the receipt can be emailed). **Which invoices count as money
+  still owed is a business predicate defined once** in
+  `lib/invoice/controllers/isInvoiceUnpaid.js` — `approved` or `sent`, since
+  a draft was never issued and a void one never will be. `toInvoiceRow` flags
+  each row with it, so the list's Unpaid filter and its pending-payments
+  total always describe the same invoices.
 - **Google sync:** OAuth account → contact/calendar sync; conflicts land
   in a review queue rather than auto-applying.
 - **Contact activity timeline:** `lib/activity/controllers/contactActivity.js`
