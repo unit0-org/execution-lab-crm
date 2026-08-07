@@ -21,5 +21,5 @@ export const buttonStyle = (
   { tone = 'default', size = 'md', block, icon, join } = {}
 ) => ({
   ...base, ...tones[tone], ...sizes[size], ...full(block),
-  ...iconOnly(icon, size), ...joined(join)
+  ...iconOnly(icon, size, join), ...joined(join)
 })
