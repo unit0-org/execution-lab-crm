@@ -13,8 +13,10 @@ export function InvoicesToolbar({ invoices, selection, onChanged }) {
   const remove = useActionHandler(bulkDeleteInvoicesAction, { onDone: refresh })
   const markSent = useBulkMarkSent(refresh)
   const send = useInvoiceSendFlow(refresh)
+  // Counted off the rows in view, so a selection made under one status
+  // chip never claims rows the current chip has filtered away.
   const chosen = invoices.filter((i) => selection.ids.has(i.id))
-  const count = selection.ids.size
+  const count = chosen.length
 
   return (
     <>
